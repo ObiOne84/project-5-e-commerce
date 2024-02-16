@@ -1,0 +1,12 @@
+/* Fonts */
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Libre Baskerville', serif;
+}
+
+.logo-font {
+    font-family: 'Montserrat Alternates', sans-serif;
+}
