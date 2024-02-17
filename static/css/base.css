@@ -81,6 +81,9 @@ body {
     background-color: #050101;
 }
 
+.search-box-container {
+    max-width: 40vW;
+}
 /* -------- Dropdown Menu ------------ */
 
 .bg-orange {
@@ -98,3 +101,30 @@ body {
 .icon:hover {
     color: #f09a53;
 }
+
+a.icon:focus {
+    color: #020299;
+    text-decoration: none;
+}
+
+nav a.icon {
+    color: #000;
+    font-weight: 600;
+    transition: transform 0.01s ease;
+}
+
+nav a.icon:hover {
+    color: #020299;
+    transform: scale(1.03);
+}
+
+nav {
+    background-color: #f09a53;
+}
+
+/* -----MEDIA QUERIES ----------- */
+@media (max-width: 991.98px) {
+    .search-box-container {
+        max-width: 100vW;
+    }
+  }

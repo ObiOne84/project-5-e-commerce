@@ -48,17 +48,17 @@
 <body>
 
     <!-- Header -->
-    <header class="container-fluid fixed-top">
-        <div class="row nav-bg-color border-org-bottom d-flex">
-            <div class="col-12 col-lg-4 my-auto text-center text-lg-start">
+    <header class="container-fluid fixed-top px-0 nav-bg-color border-org-bottom">
+        <div class="row d-flex">
+            <div class="col-12 col-lg-6 my-auto text-center text-lg-start">
                 <!-- Insert url link for home -->
                 <a href="{% url 'home' %}" class="nav-link">
-                    <h1 class="display-6 logo-font my-0 p-0 icon"><strong>Owl</strong><span
+                    <h1 class="display-6 logo-font my-0 p-0 icon"><strong><i class="fa-brands fa-earlybirds"></i> Owl</strong><span
                             class="text-uppercase">Bookstore</span></h1>
                 </a>
             </div>
-            <div class="col-12 col-lg-4 my-auto mx-auto">
-                <!-- Add action to the form -->
+            <!-- <div class="col-12 col-lg-6 my-auto mx-auto">
+
                 <form action="#" method="GET">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control rounded-1 border-orange" name="q"
@@ -71,8 +71,8 @@
                         </button>
                     </div>
                 </form>
-            </div>
-            <div class="col-12 col-lg-4 my-3 text-white">
+            </div> -->
+            <div class="col-12 col-lg-6 my-3 text-white">
                 <ul class="list-inline list-unstyled text-lg-end me-3 my-auto">
                     <li class="list-inline-item drowpdown mx-3">
                         <div class="text-center">
@@ -113,18 +113,14 @@
         </div>
         <!-- Navbar -->
         <div class="row">
-            <nav class="navbar navbar-expand-lg navbar-light w-100">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
+            <!-- <nav class="navbar navbar-expand-lg w-100 p-0"> -->
+                <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
                     aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button> -->
+                {% include 'includes/main-nav.html' %}
                 <!-- Add includes here for the navbar -->
-            </nav>
-        </div>
-        <div id="promotion-banner" class="row text-center">
-            <div class="col-12  text-white">
-                <h4 class="logo-font my-1">Free delivery on orders over ${{ free_delivery_threshold }}!</h4>
-            </div>
+            <!-- </nav> -->
         </div>
     </header>
 
@@ -157,7 +153,7 @@
                         </a>
                     </li>
                 </ul>
-                <div class="small text-center text-muted fst-italic">Copyright &copy; OwlBookstore
+                <div class="small text-center text-white fst-italic">Copyright &copy; OwlBookstore
                     <span id="copyright"></span>
                     <span class="d-block">Created by: <strong>Szymon Stepien</strong></span>
                 </div>
