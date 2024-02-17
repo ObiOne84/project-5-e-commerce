@@ -18,15 +18,19 @@ h6 {
 }
 
 .underline-orange {
-    border-bottom: 2px solid #f09a53;; /* Red underline */
-    display: inline; /* Ensures the underline only spans the text width */
+    border-bottom: 2px solid #f09a53;
+    ;
+    /* Red underline */
+    display: inline;
+    /* Ensures the underline only spans the text width */
 }
 
 /*------------- Background ---------------*/
 body {
     background: url('/media/bg-library.jpg') no-repeat center center fixed;
     background-size: cover;
-    height: calc(100vh - 164px);
+    height: calc(100vh - 200px);
+    /* min-height: 100vh; */
 }
 
 .overlay {
@@ -47,8 +51,10 @@ body {
 
 /*---------------- Buttons ----------------------*/
 .action-button {
-    background-color: #f09a53; /* Copper for button backgrounds */
-    color: #000000; /* White for button text */
+    background-color: #f09a53;
+    /* Copper for button backgrounds */
+    color: #000000;
+    /* White for button text */
 }
 
 .btn-orange {
@@ -68,8 +74,27 @@ body {
 .border-org-top {
     border-top: 3px solid #f09a53;
 }
+
 /* ---------------- Navbar -------------------- */
 
 .nav-bg-color {
     background-color: #050101;
+}
+
+/* -------- Dropdown Menu ------------ */
+
+.bg-orange {
+    background-color: rgb(250, 188, 138) !important;
+}
+
+.dropdown-toggle::after {
+    content: none;
+}
+
+.icon {
+    color: white;
+}
+
+.icon:hover {
+    color: #f09a53;
 }

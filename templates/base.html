@@ -48,22 +48,23 @@
 <body>
 
     <!-- Header -->
-    <header class="container-fluid fixed-top nav-bg-color border-org-bottom">
-        <div class="row">
-            <div class="col-12 col-lg-4 my-auto">
+    <header class="container-fluid fixed-top">
+        <div class="row nav-bg-color border-org-bottom d-flex">
+            <div class="col-12 col-lg-4 my-auto text-center text-lg-start">
                 <!-- Insert url link for home -->
-                <a href="#" class="nav-link">
-                    <h1 class="display-5 logo-font my-0"><strong>Owl</strong><span
+                <a href="{% url 'home' %}" class="nav-link">
+                    <h1 class="display-6 logo-font my-0 p-0 icon"><strong>Owl</strong><span
                             class="text-uppercase">Bookstore</span></h1>
                 </a>
             </div>
-            <div class="col-12 col-lg-4 mt-3 mx-auto">
+            <div class="col-12 col-lg-4 my-auto mx-auto">
                 <!-- Add action to the form -->
                 <form action="#" method="GET">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control rounded-1 border-orange" name="q"
-                            placeholder="Search our library" aria-label="Search" aria-describedby="button-addon2">
-                        <button class="btn btn-orange rounded-1 border-orange" type="submit" id="button-addon2">
+                            placeholder="Search our library" aria-label="Search" aria-describedby="search-box">
+                        <button class="btn btn-orange rounded-1 border-orange" type="submit" id="search-query"
+                            aria-label="Search product">
                             <span class="icon">
                                 <i class="fas fa-search"></i>
                             </span>
@@ -71,8 +72,59 @@
                     </div>
                 </form>
             </div>
-            <div class="col-12 col-lg-4 my-auto"></div>
-
+            <div class="col-12 col-lg-4 my-3 text-white">
+                <ul class="list-inline list-unstyled text-lg-end me-3 my-auto">
+                    <li class="list-inline-item drowpdown mx-3">
+                        <div class="text-center">
+                            <a class="text-decoration-none icon" href="{% url 'home' %}">
+                                <i class="fa-solid fa-house"></i>
+                                <div>
+                                    <p>Home</p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="list-inline-item drowpdown mx-3">
+                        <div class="text-center">
+                            <a class="dropdown-toggle text-decoration-none icon" href="#" id="account-menu"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-user d-block"></i>
+                                <span>My Account</span>
+                            </a>
+                            <ul class="dropdown-menu bg-orange" aria-labelledby="user-options">
+                                <!-- add link to accounts -->
+                                <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
+                                <li><a class="dropdown-item" href="{% url 'account_signup' %}">Register</a></li>
+                                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- Shopping basket total-->
+                    <li class="list-inline-item mx-3">
+                        <div class="text-center">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <!-- Add total here -->
+                            <p>$0.00</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Navbar -->
+        <div class="row">
+            <nav class="navbar navbar-expand-lg navbar-light w-100">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
+                    aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Add includes here for the navbar -->
+            </nav>
+        </div>
+        <div id="promotion-banner" class="row text-center">
+            <div class="col-12  text-white">
+                <h4 class="logo-font my-1">Free delivery on orders over ${{ free_delivery_threshold }}!</h4>
+            </div>
         </div>
     </header>
 
@@ -87,32 +139,30 @@
     {% endblock %}
 
     <!-- Footer -->
-    <footer class="mt-auto bg-body-tertiary no-print bring-above border-org-top nav-bg-color">
+    <footer class="mt-auto bring-above border-org-top nav-bg-color">
         {% include 'includes/newsletter.html' %}
-        <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                    <ul class="list-inline text-center">
-                        <li class="list-inline-item px-lg-3 py-1">
-                            <a href="https://github.com/ObiOne84/django-chefs-helper" target="_blank"
-                                aria-label="Visit Developer's GitHub Account, opens in new tab">
-                                <i class="fa-brands fa-square-github fs-1 hover-element"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item px-lg-3 py-1">
-                            <a href="https://www.linkedin.com/in/szymon-stepien-4b60a547/" target="_blank"
-                                aria-label="Visit Developer's LinkedIn Account, opens in new tab">
-                                <i class="fa-brands fa-linkedin fs-1 hover-element"></i>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="small text-center text-muted fst-italic">Copyright &copy; Chef's
-                        Helper
-                        <span id="copyright"></span>
-                        <span class="d-block">Created by: <strong>Szymon Stepien</strong></span>
-                    </div>
+        <div class="container">
+            <div class="justify-content-center">
+                <ul class="list-inline text-center">
+                    <li class="list-inline-item px-lg-3 py-1">
+                        <a href="#" target="_blank" class="icon display-6"
+                            aria-label="Visit Developer's GitHub Account, opens in new tab">
+                            <i class="fa-brands fa-square-github"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item px-lg-3 py-1">
+                        <a href="https://www.linkedin.com/in/szymon-stepien-4b60a547/" target="_blank"
+                            aria-label="Visit Developer's LinkedIn Account, opens in new tab" class="icon display-6">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="small text-center text-muted fst-italic">Copyright &copy; OwlBookstore
+                    <span id="copyright"></span>
+                    <span class="d-block">Created by: <strong>Szymon Stepien</strong></span>
                 </div>
             </div>
+        </div>
         </div>
     </footer>
 
