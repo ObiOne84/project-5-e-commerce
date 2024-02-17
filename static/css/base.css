@@ -1,12 +1,75 @@
-/* Fonts */
+/*------------------- Fonts --------------*/
 body {
     font-family: 'Lato', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Libre Baskerville', serif;
+    color: white;
 }
 
 .logo-font {
     font-family: 'Montserrat Alternates', sans-serif;
+}
+
+.underline-orange {
+    border-bottom: 2px solid #f09a53;; /* Red underline */
+    display: inline; /* Ensures the underline only spans the text width */
+}
+
+/*------------- Background ---------------*/
+body {
+    background: url('/media/bg-library.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: calc(100vh - 164px);
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.bring-above {
+    position: relative;
+    z-index: 2;
+
+}
+
+/*---------------- Buttons ----------------------*/
+.action-button {
+    background-color: #f09a53; /* Copper for button backgrounds */
+    color: #000000; /* White for button text */
+}
+
+.btn-orange {
+    background-color: #f09a53;
+    border: 2px solid #f09a53;
+}
+
+/* -------------- Borders ----------------------- */
+.border-orange {
+    border: 2px solid #f09a53;
+}
+
+.border-org-bottom {
+    border-bottom: 3px solid #f09a53;
+}
+
+.border-org-top {
+    border-top: 3px solid #f09a53;
+}
+/* ---------------- Navbar -------------------- */
+
+.nav-bg-color {
+    background-color: #050101;
 }
