@@ -3,10 +3,17 @@ from django.db import models
 
 class Category(models.Model):
     name = models.CharField(max_length=254)
-    subcategory = models.CharField(max_length=254, null=True, blank=True)
+    def __str__(self):
+        return self.name
+
+
+class Subcategory(models.Model):
+    name = models.CharField(max_length=254)
+    category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
+
 
 
 class Product(models.Model):
@@ -17,6 +24,7 @@ class Product(models.Model):
     category = models.ForeignKey(
         'Category', null=True, blank=True, on_delete=models.SET_NULL
     )
+    subcategory = models.ManyToManyField('Subcategory', blank=True)
     published_date = models.IntegerField(null=True, blank=True)
     publisher = models.CharField(max_length=50, null=True, blank=True)
     isbn_13 = models.CharField(max_length=13, null=True, blank=True)
