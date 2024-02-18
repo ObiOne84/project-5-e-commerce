@@ -1,17 +1,18 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light d-none d-lg-block">
+    <div class="container-fluid d-none d-lg-block">
+        <button class="navbar-toggler mobile-nav-button" type="button" data-bs-toggle="collapse"
+            data-bs-target="#main-nav" aria-controls="navbarNavDropdown" aria-expanded="false"
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-center" id="main-nav">
             <ul class="navbar-nav text-lg-end me-2">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-decoration-none active text-uppercase icon" href="#"
-                        id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        id="all-prodcut-links" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         All products
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <ul class="dropdown-menu" aria-labelledby="all-prodcut-links">
                         <li><a class="dropdown-item" href="#">By Price</a></li>
                         <li><a class="dropdown-item" href="#">By Rating</a></li>
                         <li><a class="dropdown-item" href="#">By Category</a></li>
@@ -20,10 +21,10 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-decoration-none active text-uppercase icon" href="#"
-                        id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        id="books-category-links" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Books
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <ul class="dropdown-menu" aria-labelledby="books-category-links">
                         <li><a class="dropdown-item" href="#">Action</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><a class="dropdown-item" href="#">All Books</a></li>
@@ -31,17 +32,17 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-decoration-none active text-uppercase icon" href="#"
-                        id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        id="comic-books-links" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Comics
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <ul class="dropdown-menu mb-3" aria-labelledby="comic-books-links">
                         <li><a class="dropdown-item" href="#">Marvel</a></li>
                         <li><a class="dropdown-item" href="#">DC</a></li>
                         <li><a class="dropdown-item" href="#">All Comics</a></li>
                     </ul>
                 </li>
             </ul>
-            <div class="d-flex justify-content-center flex-grow-1 search-box-container">
+            <div class="d-flex justify-content-center flex-grow-1 search-box-container d-none d-lg-block">
                 <!-- Add action to form -->
                 <form action="#" method="GET" class="w-100">
                     <div class="input-group">
@@ -57,6 +58,5 @@
                 </form>
             </div>
         </div>
-        
     </div>
 </nav>

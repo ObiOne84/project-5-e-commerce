@@ -84,26 +84,21 @@ body {
 .search-box-container {
     max-width: 40vW;
 }
+
 /* -------- Dropdown Menu ------------ */
-
-.bg-orange {
-    background-color: rgb(250, 188, 138) !important;
-}
-
-.dropdown-toggle::after {
-    content: none;
-}
 
 .icon {
     color: white;
+    transition: transform 0.01s ease;
 }
 
 .icon:hover {
-    color: #f09a53;
+    color: white;
 }
 
+.icon,
 a.icon:focus {
-    color: #020299;
+    color: white !important;
     text-decoration: none;
 }
 
@@ -114,12 +109,7 @@ nav a.icon {
 }
 
 nav a.icon:hover {
-    color: #020299;
     transform: scale(1.03);
-}
-
-nav {
-    background-color: #f09a53;
 }
 
 /* -----MEDIA QUERIES ----------- */
@@ -127,4 +117,13 @@ nav {
     .search-box-container {
         max-width: 100vW;
     }
-  }
+    .mobile-nav-button {
+        color: white !important;
+        border: none;
+        background-color: white !important;
+    }
+
+    nav a.icon:hover {
+        transform: none;
+    }
+}
