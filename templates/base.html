@@ -46,32 +46,15 @@
 </head>
 
 <body>
-
     <!-- Header -->
     <header class="container-fluid fixed-top px-0 nav-bg-color border-org-bottom">
         <div class="row d-flex">
             <div class="col-12 col-lg-6 my-auto text-center text-lg-start d-none d-lg-block">
-                <!-- Insert url link for home -->
                 <a href="{% url 'home' %}" class="nav-link">
                     <h1 class="display-6 logo-font my-0 p-0 icon"><strong><i class="fa-brands fa-earlybirds"></i>
                             Owl</strong><span class="text-uppercase">Bookstore</span></h1>
                 </a>
             </div>
-            <!-- <div class="col-12 col-lg-6 my-auto mx-auto">
-
-                <form action="#" method="GET">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control rounded-1 border-orange" name="q"
-                            placeholder="Search our library" aria-label="Search" aria-describedby="search-box">
-                        <button class="btn btn-orange rounded-1 border-orange" type="submit" id="search-query"
-                            aria-label="Search product">
-                            <span class="icon">
-                                <i class="fas fa-search"></i>
-                            </span>
-                        </button>
-                    </div>
-                </form>
-            </div> -->
             <div class="col-12 col-lg-6 my-3 text-white d-none d-lg-block">
                 <ul class="list-inline list-unstyled text-lg-end me-3 my-auto">
                     <li class="list-inline-item drowpdown mx-3">
@@ -128,9 +111,8 @@
     {% endblock %}
 
     <!-- Main content -->
-
-        {% block content %}
-        {% endblock %}
+    {% block content %}
+    {% endblock %}
 
 
     <!-- Footer -->

@@ -30,7 +30,6 @@ body {
     background: url('/media/bg-library.jpg') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 200px);
-    /* min-height: 100vh; */
 }
 
 .overlay {
@@ -40,7 +39,7 @@ body {
     left: 0;
     position: fixed;
     background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1;
+    z-index: -1;
 }
 
 .overlay-cover {
@@ -50,13 +49,21 @@ body {
     left: 0;
     position: fixed;
     background-color: #fff;
-    z-index: 2;
+    z-index: -1;
 }
 
-.bring-above {
+/* .bring-above {
     position: relative;
     z-index: 9999;
+} */
 
+/* .content-level {
+    position: relative;
+    z-index: 10;
+} */
+
+.top-space {
+    height: 200px;
 }
 
 /*---------------- Buttons ----------------------*/

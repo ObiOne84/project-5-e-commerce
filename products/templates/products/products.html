@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 
+
 {% block page_header %}
-<div class="container py-5">
+<div class="container top-space">
     <div class="row">
         <div class="col"></div>
     </div>
@@ -12,11 +13,92 @@
 
 {% block content %}
 <div class="overlay-cover"></div>
-<div class="container h-100  bring-above">
-    <h1>Product Page</h1>
-    <div class="bg-white">
-        {{ products }}
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <h2 class="logo-font text-uppercase text-black">Products</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <p class="text-muted mt-3 text-md-left">
+                {% if search_term or current_categories or current_sorting != 'None_None' %}
+                <span class="small"><a href="{% url 'products' %}">Products Home</a> | </span>
+                {% endif %}
+                {{ products|length }} Products{% if search_term %} found for
+                <strong>"{{ search_term }}"</strong>{% endif %}
+            </p>
+        </div>
+    </div>
+    <hr>
+    <div class="row mx-4 mx-md-0 mb-5">
+        {% for product in products %}
+        <div class="col-12 col-sm-4 col-md-3 col-lg-2 px-3 px-md-1">
+            <div class="card h-100 border-0">
+                {% if product.image %}
+                <a href="#">
+                    <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.title }}">
+                </a>
+                {% else %}
+                <a href="#">
+                    <img class="card-img-top" src="/media/noimage.png" alt="Image not available">
+                </a>
+                {% endif %}
+                <div class="card-body pb-0">
+                    <p class="mb-0 text-black">{{ product.title}}</p>
+                </div>
+                <div class="card-footer border-0 bg-white">
+                    <div class="row">
+                        <div class="col">
+                            <p class="fw-bold fs-5">${{ product.price }}</p>
+                            {% if product.category %}
+                            <p>{{ product.category }}</p>
+                            {% else %}
+                            <p>Not Available</p>
+                            {% endif %}
+                            {% if product.ave_rating %}
+                            <p><i class="fa-solid fa-star"></i> {{ product.ave_rating }} / 5</p>
+                            {% else %}
+                            <p>No Ratings</p>
+                            {% endif %}
+                        </div>
+                        {% if request.user.is_superuser %}
+                        <div class="col-12 d-flex justify-content-between">
+                            <!-- link to edit product -->
+                            <a href="#" class="card-link ps-3 text-primary fs-6"><i
+                                    class="fa-solid fa-pen-to-square"></i></a>
+                            <!-- link to delete product -->
+                            <a href="#" class="card-link pe-3 text-danger fs-6"><i
+                                    class="fa-solid fa-trash-can"></i></a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Source: Boutique ado walkthrough project -->
+        {% if forloop.counter|divisibleby:6 %}
+        <div class="col-12 d-none d-lg-block mb-4">
+            <hr>
+        </div>
+        {% endif %}
+        {% if forloop.counter|divisibleby:4 %}
+        <div class="col-12 d-none d-md-block d-lg-none mb-4">
+            <hr>
+        </div>
+        {% endif %}
+        {% if forloop.counter|divisibleby:3 %}
+        <div class="col-12 d-none d-sm-block d-md-none mb-4">
+            <hr>
+        </div>
+        {% endif %}
+        {% if forloop.counter|divisibleby:1 %}
+        <div class="col-12 d-block d-sm-none mb-4">
+            <hr>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <hr class="d-none d-sm-block my-4">
     </div>
 </div>
-
 {% endblock %}
