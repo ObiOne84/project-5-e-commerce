@@ -10,6 +10,7 @@ class SubcategoryInline(admin.TabularInline):
     model = Subcategory
     extra = 1
 
+
 class CategoryAdmin(admin.ModelAdmin):
     inlines = [SubcategoryInline]
     list_display = ('name',)

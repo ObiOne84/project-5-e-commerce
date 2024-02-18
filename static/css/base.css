@@ -43,9 +43,19 @@ body {
     z-index: 1;
 }
 
+.overlay-cover {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: #fff;
+    z-index: 2;
+}
+
 .bring-above {
     position: relative;
-    z-index: 2;
+    z-index: 9999;
 
 }
 
