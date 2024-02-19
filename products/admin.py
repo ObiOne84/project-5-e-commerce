@@ -16,7 +16,6 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)
 
 
-
 class BookAdmin(admin.ModelAdmin):
     list_display = ('num_pages', 'genre', 'cover',)
 

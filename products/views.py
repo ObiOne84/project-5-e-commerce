@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 
 from .models import Comic, Book
+
 
 def all_products(request):
     """A view to display all products"""
@@ -25,3 +26,19 @@ def all_products(request):
     }
 
     return render(request, 'products/products.html', context)
+
+
+def product_detail(request, product_id):
+    """A view to display product details"""
+    try:
+        book = Book.objects.get(pk=product_id)
+        product = book
+        context = {'product': product, 'product_type': 'book'}
+    except Book.DoesNotExist:
+        try:
+            comic = Comic.objects.get(pk=product_id)
+            product = comic
+            context = {'product': product, 'product_type': 'comic'}
+        except Comic.DoesNotExist:
+            return render(request, '404.html')  # or any other appropriate handling for non-existing products
+    return render(request, 'products/product_detail.html', context)

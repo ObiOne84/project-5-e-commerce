@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block page_header %}
+<div class="container top-space">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+<div class="overlay-cover"></div>
+<div class="container minimum-height">
+    <div class="row">
+        <hr>
+        <div class="col-3 mt-3">
+            {% if product.image %}
+            <a href="{{ product.image.url }}" target="_blank">
+                <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+            </a>
+            {% else %}
+            <a href="">
+                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+            </a>
+            {% endif %}
+        </div>
+        <div class="col-9 mt-3">
+            <div>
+                <p class="display-6 logo-font"><strong>{{ product.title }}</strong></p>
+                <p>Author(s): {{ product.author }}</p>
+                <p class="fw-bold fs-5">${{ product.price }}</p>
+                {% if product.ave_rating %}
+                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.ave_rating }} / 5</small>
+                <small class="text-muted"> ({{ product.ratings_count }} Ratings)</small>
+                {% else %}
+                <small class="text-muted">No Rating</small>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Description</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Reviews</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">More Details</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row pt-5">
+                <div class="col-lg-8 offset-lg-2">
+                    <div>
+                        {{ product.description }}
+                    </div>
+                </div>
+                <div class="col-lg-8 offset-lg-2 d-none"></div>
+                <div class="col-12 d-none">
+                    {% if product_type == 'book' %}
+                    <h1 class="text-black text-start">{{ product.title }}</h1>
+                    <p>{{ product.author }}</p>
+                    <!-- Add other book-specific details here -->
+                    {% elif product_type == 'comic' %}
+                    <p class="text-black text-start my-1">Cover Artist: {{ product.cover_artist }}</p>
+                    <p class="text-black text-start my-1">Illustrator: {{ product.illustrator }}</p>
+                    <!-- Add other comic-specific details here -->
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
