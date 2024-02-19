@@ -74,6 +74,31 @@ body {
     /* White for button text */
 }
 
+.page-link,
+.pagination-btn {
+    color: #050101;
+    border: 2px solid #050101;
+}
+
+.page-link:hover,
+.pagination-btn:hover {
+    color: #050101;
+}
+
+.page-item.active .page-link {
+    border: 2px solid #050101;
+    background-color: #050101;
+     color: white;
+}
+
+.rounded-right {
+    border-radius: 0 0.2rem 0.2rem 0;
+}
+
+.rounded-left {
+    border-radius: 0.2rem 0 0 0.2rem;
+}
+
 .btn-orange {
     background-color: #f09a53;
     border: 2px solid #f09a53;
