@@ -17,10 +17,32 @@ h6 {
     font-family: 'Montserrat Alternates', sans-serif;
 }
 
-.underline-orange {
-    border-bottom: 2px solid #f09a53;
-    display: inline;
+.collapse-link.active,
+.extra-info.active {
+    text-decoration: underline !important;
+    color: #050101 !important;
+    font-weight: bold;
 }
+
+
+/* Both not in use _________ */
+.truncated-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    /* Change cursor to pointer to indicate clickable element */
+}
+
+.expanded {
+    white-space: normal;
+    /* Allow text to wrap */
+    overflow: visible;
+    /* Allow overflow */
+    text-overflow: initial;
+    /* Remove ellipsis */
+}
+/* ______________________________________ */
 
 /*------------- Background ---------------*/
 body {
@@ -30,7 +52,7 @@ body {
 }
 
 .minimum-height {
-    min-height: 100vh;
+    min-height: 100%;
 }
 
 .overlay {
@@ -60,7 +82,8 @@ body {
 /*---------------- Buttons ----------------------*/
 .action-button {
     background-color: #f09a53;
-    color: #000000;
+    color: #050101;
+    border: 2px solid #050101;
 }
 
 .page-link,
@@ -72,12 +95,14 @@ body {
 .page-link:hover,
 .pagination-btn:hover {
     color: #050101;
+    background: #ebeaea;
+    transform: scale(1.03);
 }
 
 .page-item.active .page-link {
     border: 2px solid #050101;
     background-color: #050101;
-     color: white;
+    color: white;
 }
 
 .rounded-right {
@@ -148,6 +173,7 @@ nav a.icon:hover {
     .search-box-container {
         max-width: 100vW;
     }
+
     .mobile-nav-button {
         color: white !important;
         border: none;

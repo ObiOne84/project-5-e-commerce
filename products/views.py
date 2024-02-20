@@ -41,4 +41,9 @@ def product_detail(request, product_id):
             context = {'product': product, 'product_type': 'comic'}
         except Comic.DoesNotExist:
             return render(request, '404.html')  # or any other appropriate handling for non-existing products
+
+    if product.subcategory.exists():
+        subcategory = product.subcategory.first()  # Assuming each product has only one subcategory
+        context['subcategory'] = subcategory
+    
     return render(request, 'products/product_detail.html', context)
