@@ -29,4 +29,13 @@ $(document).ready(function () {
         }
     });
 
+    // Dispaly or hide overflown text
+    $('.dynamic-text').on('click', function () {
+        if ($(this).hasClass('overflow-hidden')) {
+            $(this).removeClass('overflow-hidden');
+        } else {
+            $(this).addClass('overflow-hidden');
+        }
+    });
+
 });

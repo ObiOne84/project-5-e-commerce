@@ -17,6 +17,18 @@ h6 {
     font-family: 'Montserrat Alternates', sans-serif;
 }
 
+.overflow-hidden {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+}
+
+.shortened-text {
+    cursor: pointer;
+    color: blue;
+}
+
 .collapse-link.active,
 .extra-info.active {
     text-decoration: underline !important;
@@ -24,29 +36,10 @@ h6 {
     font-weight: bold;
 }
 
-.mobile-nav-tabs {
+
+/* .mobile-nav-tabs {
     border-radius: none;
-}
-
-
-/* Both not in use _________ */
-.truncated-text {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    cursor: pointer;
-    /* Change cursor to pointer to indicate clickable element */
-}
-
-.expanded {
-    white-space: normal;
-    /* Allow text to wrap */
-    overflow: visible;
-    /* Allow overflow */
-    text-overflow: initial;
-    /* Remove ellipsis */
-}
-/* ______________________________________ */
+} */
 
 /*------------- Background ---------------*/
 body {
@@ -96,6 +89,7 @@ body {
     border: 2px solid #050101;
 }
 
+
 .page-link:hover,
 .pagination-btn:hover {
     color: #050101;
@@ -103,10 +97,18 @@ body {
     transform: scale(1.03);
 }
 
+.btn-black-brown,
 .page-item.active .page-link {
     border: 2px solid #050101;
     background-color: #050101;
     color: white;
+}
+
+.btn-black-brown:hover {
+    border: 2px solid #050101;
+    background-color: white;
+    color: #050101;
+    transform: scale(1.03);
 }
 
 .rounded-right {
@@ -148,7 +150,6 @@ body {
 /* -------- Dropdown Menu ------------ */
 
 .icon {
-    color: white;
     transition: transform 0.01s ease;
 }
 

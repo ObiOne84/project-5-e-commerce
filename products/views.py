@@ -11,8 +11,8 @@ def all_products(request):
     books = Book.objects.all()
     products = list(comics) + list(books)
     total_products = len(products)
-    is_paginated = len(products) > 18
-    paginator = Paginator(products, 18)
+    is_paginated = len(products) > 24
+    paginator = Paginator(products, 24)
 
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
