@@ -13,11 +13,11 @@
 
 {% block content %}
 <div class="overlay-cover"></div>
-<div class="container-lg minimum-height">
+<div class="container-lg minimum-height mb-4">
     <div class="row">
         <div class="col-12 col-md-10 col-lg-8 offset-md-1 offset-lg-2 mt-3 my-auto">
-            <!-- <hr class="m-0 p-0"> -->
-            <div class="row mx-1 mx-md-0 my-auto">
+            <hr class="mx-md-2 mx-4 p-0">
+            <div class="row mx-1 mx-md-0 my-3">
                 <div class="col-lg-4 col-sm-5">
                     {% if product.image %}
                     <a href="{{ product.image.url }}" target="_blank">
@@ -52,47 +52,87 @@
                     <button type="button"
                         class="btn btn-sm ms-2 p-1 pagination-btn review-btn"><strong>Review</strong></button>
                     {% endif %}
+                    <div class="row">
+                        <!-- Boutique ado walkthrough project -->
+                        <div class="col-12">
+                            <p class="mt-3"><strong>Quantity:</strong></p>
+                            <div class="form-group w-50">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button class="decrement-qty btn btn-secondary rounded-1"
+                                            data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <input class="form-control qty_input" type="number" name="quantity" value="1"
+                                        min="1" max="99" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
+                                    <div class="input-group-append">
+                                        <button class="increment-qty btn btn-secondary rounded-1"
+                                            data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 mt-2">
+                            <a href="{% url 'products' %}" class="btn btn-outline-warning rounded-1 mt-5">
+                                <span class="icon">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span class="text-uppercase">Keep Shopping</span>
+                            </a>
+                            <input type="submit" class="btn btn-outline-info rounded-1 text-uppercase mt-5" value="Add to Bag">
+                        </div>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </div>
                 </div>
             </div>
-            <div class="row mx-1 mx-md-0 my-auto">
+            <div class="row mx-1 mx-md-0">
                 <div class="col">
+                    <!-- Main view tabs -->
                     <div class="row mt-3 d-none d-md-block">
                         <div class="col-12">
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active extra-info text-muted" aria-current="page" href="#">Description</a>
+                                    <a class="nav-link extra-info active text-muted" aria-current="page" href="#">Description</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link extra-info text-muted" href="">More Details</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link extra-info text-muted" href="#">Reviews</a>
-                                </li>
-                                
+                                </li>                 
                             </ul>
                         </div>
                     </div>
-                    
-                    <div class="row pt-md-3 nav nav-tabs">
+                    <div class="row py-md-3 nav mobile-nav-tabs">
                         <div class="col-12 extra-content active-content">
+                            <!-- Mobile view tabs -->
                             <div class="d-block d-md-none mx-2">
-                                <hr class="d-block d-md-none">
+                                <hr class="d-block d-md-none my-1">
                                 <a class="nav-item text-decoration-none text-muted collapse-link active" data-bs-toggle="collapse" href="#collapse-description" role="button" aria-expanded="false" aria-controls="collapse-description">
-                                   <p>Description <span><i class="fa-solid fa-caret-down"></i></span></p>                           
+                                   <p class="my-0">Description <span><i class="fa-solid fa-caret-down"></i></span></p>                           
                                 </a>
                             </div>
-                            <p class="mx-2 collapse:show d-md-block" id="collapse-description">
-                                {{ product.description }}
+                            <p class="mx-2 collapse show d-md-block my-auto" id="collapse-description">
+                                <span class="d-flex align-items-center">{{ product.description }}</span>   
                             </p>
                         </div>
-                        <div class="col-12 table-responsive-sm extra-content d-block d-md-none">
-                            <div class="d-block d-md-none mx-2 mx-md-0">
-                                <hr class="d-block d-md-none nav">
+                        <div class="col-12 table-responsive-sm extra-content d-block d-md-none my-auto">
+                            <!-- Mobile view tabs -->
+                            <div class="d-block d-md-none mx-2">
+                                <hr class="d-block d-md-none nav my-1">
                                 <a class="nav-item text-decoration-none text-muted collapse-link" data-bs-toggle="collapse" href="#collapse-details" role="button" aria-expanded="false" aria-controls="collapse-details">
-                                   <p>More Details <span><i class="fa-solid fa-caret-down"></i></span></p>                           
+                                   <p class="my-0">More Details <span><i class="fa-solid fa-caret-down"></i></span></p>                           
                                 </a>
                             </div>
-                            <table class="table table-borderless mx-2 collapse d-md-block w-100" id="collapse-details">
+                            <table class="table table-borderless mx-2 collapse d-md-block w-100 my-1" id="collapse-details">
                                 {% if product.publisher is not null %}
                                 <tr>
                                     <th class="text-black text-start my-1"><strong>Publisher:</strong></th>
@@ -117,7 +157,7 @@
                                     <td><span class="ms-2">{{ subcategory.name }}</span></td>
                                 </tr>
                                 {% endif %}
-                                <!-- For book -->
+                                <!-- Book specific details here -->
                                 {% if product_type == 'book' %}
                                     {% if product.genre is not null %}
                                     <tr>
@@ -138,7 +178,7 @@
                                     </tr>
                                     {% endif %}
                                 {% elif product_type == 'comic' %}
-                                <!-- Add other comic-specific details here -->
+                                <!-- Comic-specific details here -->
                                     {% if product.cover_artist is not null %}
                                     <tr>
                                         <th class="text-black text-start my-1"><strong>Cover Artist:</strong></th>
@@ -179,32 +219,29 @@
                             </table>
                         </div>
                         <div class="col-12 offset-lg-2 extra-content d-block d-md-none">
-                            <div class="d-block d-md-none mx-2 mx-md-0">
-                                <hr class="d-block d-md-none nav">
+                            <!-- Mobile view tabs -->
+                            <div class="d-block d-md-none mx-2">
+                                <hr class="d-block d-md-none nav my-1">
                                 <a class="nav-item text-decoration-none text-muted collapse-link" data-bs-toggle="collapse" href="#collapse-reviews" role="button" aria-expanded="false" aria-controls="collapse-reviews">
-                                   <p>Reviews <span><i class="fa-solid fa-caret-down"></i></span></p>                           
+                                   <p class="my-0">Reviews <span><i class="fa-solid fa-caret-down"></i></span></p>                           
                                 </a>
                             </div>
                             <P class="mx-2 collapse d-md-block" id="collapse-reviews">Reviews Go Here</P>
-                            <hr class="d-block d-md-none nav my-4 mx-2">
+                            <hr class="d-block d-md-none nav mt-1 mb-4 mx-2">
                         </div>
                     </div>
                 </div>
-                <!-- </div> -->
             </div>
+            <hr class="mx-2 p-0 my-1 d-none d-md-block">
         </div>
     </div>
 </div>
+
 {% endblock %}
 
 {% block postload_js %}
 {{ block.super }}
-<!-- <script>
-    // toggle between product description, reviews, and details
-    $('.extra-info').on('click', function () {
-        alert('You clicked the toggle');
-    });
-</script> -->
-<script src="{% static 'products/js/script-product.js' %}" type="text/javascript"></script>
+
+    <script src="{% static 'products/js/script-product.js' %}" type="text/javascript"></script>
 
 {% endblock %}

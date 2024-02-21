@@ -24,6 +24,10 @@ h6 {
     font-weight: bold;
 }
 
+.mobile-nav-tabs {
+    border-radius: none;
+}
+
 
 /* Both not in use _________ */
 .truncated-text {
