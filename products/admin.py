@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Category, Book, Comic, Subcategory
+from .models import Product, Category, Book, Comic, Subcategory, Review
 
 
 class SubcategoryAdmin(admin.ModelAdmin):
@@ -25,7 +25,14 @@ class ComicAdmin(admin.ModelAdmin):
                     'illustrator', 'cover_artist',)
 
 
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email',
+                    'body', 'created_on', 'approved',)
+
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Subcategory, SubcategoryAdmin)
 admin.site.register(Book, BookAdmin)
 admin.site.register(Comic, ComicAdmin)
+admin.site.register(Review, ReviewAdmin)
+

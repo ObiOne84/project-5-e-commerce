@@ -31,7 +31,8 @@
                 </div>
                 <div class="col-lg-8 col-sm-7 mt-3">
                     <p class="fs-4 fw-bold logo-font">{{ product.title }}</p>
-                    <p class="overflow-hidden dynamic-text"><strong>Author(s):</strong><span class="small ps-1">{{ product.author }}</span></p>
+                    <p class="overflow-hidden dynamic-text"><strong>Author(s):</strong><span
+                            class="small ps-1">{{ product.author }}</span></p>
                     <p class="fw-bold fs-5">${{ product.price }}</p>
                     {% if product_type == 'book' %}
                     <a href="#" class="text-decoration-none">
@@ -220,7 +221,7 @@
                                 {% endif %}
                             </table>
                         </div>
-                        <div class="col-12 offset-lg-2 extra-content d-block d-md-none">
+                        <div class="col-12 extra-content d-block d-md-none">
                             <!-- Mobile view tabs -->
                             <div class="d-block d-md-none mx-0 mx-sm-2">
                                 <hr class="d-block d-md-none nav my-1">
@@ -230,7 +231,22 @@
                                     <p class="my-0">Reviews <span><i class="fa-solid fa-caret-down"></i></span></p>
                                 </a>
                             </div>
-                            <P class="mx-0 mx-sm-2 collapse d-md-block" id="collapse-reviews">Reviews Go Here</P>
+                            <div class="mx-0 mx-sm-2 collapse d-md-block" id="collapse-reviews">
+                                {% if reviews %}
+                                <div class="card-body overflow-auto p-0 m-0">
+                                    {% for review in reviews %}
+                                    <div class="p-0">
+                                        <p class="m-0 p-0">By: <strong>{{ review.name }}</strong>
+                                            <span>, on: {{ review.created_on }}</span>
+                                        </p>
+                                        <p class="mx-0 my-1 p-0">{{ review.body | safe }}</p>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                <p class="my-0">No reviews yet.</p>
+                                {% endif %}
+                            </div>
                             <hr class="d-block d-md-none nav mt-1 mb-4 mx-2">
                         </div>
                     </div>
