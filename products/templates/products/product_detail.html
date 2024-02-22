@@ -232,27 +232,53 @@
                                 </a>
                             </div>
                             <div class="mx-0 mx-sm-2 collapse d-md-block" id="collapse-reviews">
-                                {% if reviews %}
-                                <div class="card-body overflow-auto p-0 m-0">
-                                    {% for review in reviews %}
-                                    <div class="p-0">
-                                        <p class="m-0 p-0">By: <strong>{{ review.name }}</strong>
-                                            <span>, on: {{ review.created_on }}</span>
-                                        </p>
-                                        <p class="mx-0 my-1 p-0">{{ review.body | safe }}</p>
+                                <div if="review-list" class="d-none">
+                                    {% if reviews %}
+                                    <div class="card-body overflow-auto p-0 m-0">
+                                        {% for review in reviews %}
+                                        <div class="p-0">
+                                            <p class="m-0 p-0">By: <strong>{{ review.name }}</strong>
+                                                <span>, on: {{ review.created_on }}</span>
+                                            </p>
+                                            <p class="mx-0 my-1 p-0">{{ review.body | safe }}</p>
+                                        </div>
+                                        {% endfor %}
                                     </div>
-                                    {% endfor %}
+                                    {% else %}
+                                    <p class="my-0">No reviews yet.</p>
+                                    {% endif %}
                                 </div>
-                                {% else %}
-                                <p class="my-0">No reviews yet.</p>
-                                {% endif %}
+                                <div id="review-product">
+                                    <div class="card-body mb-3`">
+                                        {% if reviewed %}
+                                        <div class="alert alert-success" role="alert">
+                                            Your review is awaiting approval.
+                                        </div>
+                                        {% else %}
+                                        {% if user.is_authenticated %}
+                                        <h3>Leave a review:</h3>
+                                        <form method="POST" id="review-form">
+                                            {% csrf_token %}
+                                            <div>
+
+                                            </div>
+                                            <div id="review-error" class="alert alert-danger hide">
+                                                <!-- error message goes here -->
+                                            </div>
+                                            <button type="submit" class="btn btn-primary text-uppercase"
+                                                id="review-button" aria-label="Submit">Submit</button>
+                                        </form>
+                                        {% endif %}
+                                        {% endif %}
+                                    </div>
+                                </div>
                             </div>
                             <hr class="d-block d-md-none nav mt-1 mb-4 mx-2">
                         </div>
                     </div>
                 </div>
             </div>
-            <hr class="mx-0 mx-sm-2 p-0 my-1 d-none d-md-block">
+            <hr class="mx-0 mx-md-3 p-0 my-1 d-none d-md-block">
         </div>
     </div>
 </div>
