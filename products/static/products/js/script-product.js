@@ -27,6 +27,7 @@ $(document).ready(function () {
             $(this).removeClass('active');
         } else {
             $(this).addClass('active');
+            hideReviewForm();
         }
     });
 
@@ -44,7 +45,21 @@ $(document).ready(function () {
         showReviewForm();
     });
 
-    // Check to form for error and save in the local storage if true
+    // Show review from or hide if for is displayed
+    $('#cancel-review').on('click', function () {
+        const ScreenWidth = screen.width
+        if (ScreenWidth >= 768) {
+            console.log('You need code');
+            hideReviewForm();
+            $('.extra-info').last().removeClass('active');
+            $('.extra-info').first().addClass('active');
+            $('.extra-content').first().removeClass('d-md-none').addClass('d-md-block');
+        } else {
+            hideReviewForm();
+        }
+    });
+
+    // Check the form for error and save in the local storage if true
     document.getElementById("review-form").addEventListener("submit", function () {
 
         const bodyInput = document.getElementById('id_body');
@@ -55,23 +70,21 @@ $(document).ready(function () {
         }
         console.log(hasError);
     });
-
-    const screenWidth = screen.width;
-    const screenHeight = screen.height;
-
-    console.log('Screen Width:', screenWidth);
-    console.log('Screen Height:', screenHeight);
-
 });
+
+// ____________FUNCTIONS_________________________________________
 
 function showReviewForm() {
     const ScreenWidth = screen.width
     if (ScreenWidth >= 768) {
-    $('.description-nav').removeClass('active');
-    $('.reviews-nav').addClass('active');
-    $('#product-description').addClass('d-md-none');
-    $('#review-list').addClass('d-md-none');
-    $('#review-form-container').removeClass('d-none').addClass('d-block');
+        $('.extra-info').removeClass('active');
+        $('.reviews-nav').addClass('active');
+        $('.extra-content').addClass('d-md-none');
+        $('#review-form-container').removeClass('d-none').addClass('d-block');
+    } else {
+        $('.collapse').removeClass('show');
+        $('.collapse-link').removeClass('active');
+        $('#review-form-container').removeClass('d-none').addClass('d-block');
     }
 }
 

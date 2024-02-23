@@ -50,8 +50,8 @@
                     <small class="text-muted">No Rating</small>
                     {% endif %}
                     {% if user.is_authenticated %}
-                    <button type="button"
-                        class="btn btn-sm ms-2 p-0 p-sm-1 pagination-btn review-btn text-uppercase" id="review-button"><small>Review</small></button>
+                    <button type="button" class="btn btn-sm ms-2 p-0 p-sm-1 pagination-btn review-btn text-uppercase"
+                        id="review-button"><small>Review</small></button>
                     {% endif %}
                     <div class="row">
                         <!-- Boutique ado walkthrough project -->
@@ -97,7 +97,7 @@
                         <div class="col-12">
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link extra-info active text-muted description-nav" aria-current="page"
+                                    <a class="nav-link extra-info active text-muted" aria-current="page"
                                         href="#">Description</a>
                                 </li>
                                 <li class="nav-item">
@@ -110,13 +110,14 @@
                         </div>
                     </div>
                     <div class="row py-md-3 nav mobile-nav-tabs">
-                        <div class="col-12 extra-content active-content" id="product-description">
+                        <div class="col-12 extra-content active-content">
                             <!-- Mobile view tabs -->
                             <div class="d-block d-md-none mx-0 mx-sm-2">
                                 <hr class="d-block d-md-none my-1">
                                 <a class="nav-item text-decoration-none text-muted collapse-link active"
                                     data-bs-toggle="collapse" href="#collapse-description" role="button"
-                                    aria-expanded="false" aria-controls="collapse-description">
+                                    aria-expanded="false" aria-controls="collapse-description"
+                                    id="mobile-description-link">
                                     <p class="my-0">Description <span><i class="fa-solid fa-caret-down"></i></span></p>
                                 </a>
                             </div>
@@ -221,7 +222,7 @@
                                 {% endif %}
                             </table>
                         </div>
-                        <div class="col-12 extra-content d-block d-md-none" id="review-list">
+                        <div class="col-12 extra-content d-block d-md-none">
                             <!-- Mobile view tabs -->
                             <div class="d-block d-md-none mx-0 mx-sm-2">
                                 <hr class="d-block d-md-none nav my-1">
@@ -259,6 +260,8 @@
                                     {{ review_form | crispy | safe }}
                                     <button type="submit" class="btn btn-primary text-uppercase" id="review-button"
                                         aria-label="Submit">Submit</button>
+                                    <button type="button" class="btn btn-warning text-uppercase" id="cancel-review"
+                                        aria-label="Cancel">Cancel</button>
                                 </form>
                             </div>
                             <hr class="d-block d-md-none nav mt-1 mb-4 mx-2">
