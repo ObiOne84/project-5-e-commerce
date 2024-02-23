@@ -125,7 +125,7 @@
                                 <span class="d-flex align-items-center">{{ product.description }}</span>
                             </p>
                         </div>
-                        <div class="col-12 table-responsive-sm extra-content d-block d-md-none my-auto">
+                        <div class="col-12 table-responsive-sm extra-content d-block d-md-none">
                             <!-- Mobile view tabs -->
                             <div class="d-block d-md-none mx-0 mx-sm-2">
                                 <hr class="d-block d-md-none nav my-1">
@@ -233,7 +233,7 @@
                                 </a>
                             </div>
                             <div class="mx-0 mx-sm-2 collapse d-md-block" id="collapse-reviews">
-                                <div if="review-list" class="d-block">
+                                <div id="review-list" class="d-block">
                                     {% if reviews %}
                                     <div class="card-body overflow-auto p-0 m-0">
                                         {% for review in reviews %}

@@ -36,6 +36,9 @@ h6 {
     font-weight: bold;
 }
 
+.row.py-md-3.nav.mobile-nav-tabs {
+    min-height: 180px;
+}
 
 /* .mobile-nav-tabs {
     border-radius: none;
@@ -187,5 +190,11 @@ nav a.icon:hover {
 
     nav a.icon:hover {
         transform: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .row.py-md-3.nav.mobile-nav-tabs {
+        min-height: 50px;
     }
 }

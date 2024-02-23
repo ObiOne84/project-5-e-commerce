@@ -33,31 +33,12 @@ def all_products(request):
 def product_detail(request, product_id):
     """A view to display product details"""
     try:
-        book = Book.objects.get(pk=product_id)
+        product = Book.objects.get(pk=product_id)
         product_type = 'book'
-        # product = book
-        # reviews = product.reviews.filter(
-        #     approved=True).order_by('created_on')
-
-        # context = {
-        #     'product': product,
-        #     'product_type': 'book',
-        #     'reviews': reviews,
-        #     'reviewed': False,
-        # }
     except Book.DoesNotExist:
         try:
             product = Comic.objects.get(pk=product_id)
             product_type = 'comic'
-            # product = comic
-            # reviews = product.reviews.filter(
-            # approved=True).order_by('created_on')
-
-            # context = {
-            #     'product': product,
-            #     'product_type': 'comic',
-            #     'reviews': reviews,
-            #     'reviewed': False,}
         except Comic.DoesNotExist:
             return render(request, '404.html')  # or any other appropriate handling for non-existing products
 
