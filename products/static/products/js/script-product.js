@@ -49,7 +49,6 @@ $(document).ready(function () {
     $('#cancel-review').on('click', function () {
         const ScreenWidth = screen.width
         if (ScreenWidth >= 768) {
-            console.log('You need code');
             hideReviewForm();
             $('.extra-info').last().removeClass('active');
             $('.extra-info').first().addClass('active');
@@ -60,16 +59,19 @@ $(document).ready(function () {
     });
 
     // Check the form for error and save in the local storage if true
-    document.getElementById("review-form").addEventListener("submit", function () {
+    const reviewForm = document.getElementById("review-form");
+    if (reviewForm) {
+        reviewForm.addEventListener("submit", function () {
 
-        const bodyInput = document.getElementById('id_body');
-        const hasError = bodyInput.value.trim() === '';
+            const bodyInput = document.getElementById('id_body');
+            const hasError = bodyInput.value.trim() === '';
 
-        if (hasError) {
-            localStorage.setItem("formError", "true");
-        }
-        console.log(hasError);
-    });
+            if (hasError) {
+                localStorage.setItem("formError", "true");
+            }
+        });
+    }
+
 });
 
 // ____________FUNCTIONS_________________________________________

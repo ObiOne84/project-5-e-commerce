@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.http import HttpResponseForbidden
 
 from .models import Comic, Book, Review
 from .forms import ReviewForm
@@ -45,17 +46,20 @@ def product_detail(request, product_id):
     reviews = product.reviews.filter(approved=True).order_by('created_on')
 
     if request.method == 'POST':
-        form = ReviewForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.instance.email = request.user.email
-            form.instance.name = request.user.username
-            review = form.save(commit=False)
-            review.product = product
-            review.save()
-            messages.success(request, 'Review submitted successfully.')
-            return redirect(reverse('product_detail', args=[product_id]))
+        if request.user.is_authenticated:
+            form = ReviewForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.instance.email = request.user.email
+                form.instance.name = request.user.username
+                review = form.save(commit=False)
+                review.product = product
+                review.save()
+                messages.success(request, 'Review submitted successfully.')
+                return redirect(reverse('product_detail', args=[product_id]))
+            else:
+                messages.error(request, 'Failed to add review. Please ensure the form is valid.')
         else:
-            messages.error(request, 'Failed to add review. Please ensure the form is valid.')
+            return HttpResponseForbidden("You must be logged in to submit a review.")
     else:
         form = ReviewForm()
 

@@ -252,6 +252,7 @@
                             </div>
                             <hr class="d-block d-md-none nav mt-1 mb-4 mx-2">
                         </div>
+                        {% if user.is_authenticated %}
                         <div class="col-12 d-none" id="review-form-container">
                             <div class="card-body mb-3`">
                                 <p>Leave a review:</p>
@@ -266,6 +267,7 @@
                             </div>
                             <hr class="d-block d-md-none nav mt-1 mb-4 mx-2">
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
