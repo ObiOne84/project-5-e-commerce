@@ -5,7 +5,7 @@
 {% block head_title %}{% trans "Account" %}{% endblock %}
 
 {% block inner_content %}
-    <h2 class="text-uppercase"><i class="fa-solid fa-envelopes-bulk"></i> {% trans "E-mail Addresses" %}</h2>
+    <h2 class="text-uppercase">{% trans "E-mail Addresses" %}</h2>
     <hr>
 {% if user.emailaddress_set.all %}
 <p>{% trans 'The following e-mail addresses are associated with your account:' %}</p>
