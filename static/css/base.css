@@ -48,7 +48,14 @@ h6 {
 body {
     background: url('/media/bg-library.jpg') no-repeat center center fixed;
     background-size: cover;
-    height: calc(100vh - 200px);
+    /* height: calc(100vh - 280px); */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
 }
 
 .minimum-height {
@@ -76,7 +83,11 @@ body {
 }
 
 .top-space {
-    height: 200px;
+    height: 180px;
+}
+
+footer {
+    min-height: 100px;
 }
 
 /*---------------- Buttons ----------------------*/
