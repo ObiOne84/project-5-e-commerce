@@ -77,11 +77,24 @@
                                 <span>My Account</span>
                             </a>
                             <ul class="dropdown-menu bg-orange" aria-labelledby="user-options">
+                                {% if request.user.is_authenticated %}
+                                <!-- Add link to add product -->
+                                    {% if request.user.is_superuser %}
+                                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear me-1"></i>
+                                            Product Management</a></li>
+                                    {% endif %}
                                 <!-- add link to accounts -->
-                                <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
-                                <li><a class="dropdown-item" href="{% url 'account_signup' %}">Register</a></li>
-                                <li><a class="dropdown-item" href="#">My Profile</a></li>
-                                <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-regular fa-id-card me-1"></i> My
+                                    Profile</a></li>
+                                <li><a class="dropdown-item" href="{% url 'account_logout' %}"><i
+                                            class="fa-solid fa-right-from-bracket fa-flip-horizontal me-1"></i>
+                                        Logout</a></li>
+                                {% else %}
+                                <li><a class="dropdown-item" href="{% url 'account_login' %}"><i
+                                            class="fa-solid fa-right-to-bracket me-1"></i> Login</a></li>
+                                <li><a class="dropdown-item" href="{% url 'account_signup' %}"><i
+                                            class="fa-solid fa-user-plus me-1"></i> Register</a></li>
+                                {% endif %}
                             </ul>
                         </div>
                     </li>
