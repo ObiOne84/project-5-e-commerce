@@ -1,1 +1,24 @@
 {% extends "base.html" %}
+
+{% block page_header %}
+<div class="container top-space">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+<div class="container header-container minimum-height">
+    <div class="overlay"></div>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="allauth-form-inner-content">
+                {% block inner_content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
