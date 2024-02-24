@@ -1,5 +1,4 @@
 {% extends "account/base.html" %}
-{% load crispy_forms_tags %}
 
 {% load i18n %}
 {% load account socialaccount %}
@@ -7,8 +6,8 @@
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block inner_content %}
-<!-- add here style -->
-<h1>{% trans "Sign In" %}</h1>
+<h2 class="text-uppercase"><i class="fa-solid fa-right-to-bracket"></i> {% trans "Sign In" %}</h2>
+<hr>
 
 {% get_providers as socialaccount_providers %}
 
@@ -40,8 +39,10 @@
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
-  <a href="{% url 'home' %}" class="btn btn-outline-info rounded-1">Home</a>
-  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+  <div class="form-buttons">
+  <a href="{% url 'home' %}" class="btn pagination-btn rounded-1 me-1">Home</a>
+  <button class="primaryAction btn btn-black-brown rounded-1" type="submit">{% trans "Sign In" %}</button>
+  </div>
   <p>
     <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
   </p>

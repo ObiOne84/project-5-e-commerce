@@ -10,7 +10,7 @@ h4,
 h5,
 h6 {
     font-family: 'Libre Baskerville', serif;
-    color: white;
+    /* color: white; */
 }
 
 .logo-font {
@@ -88,6 +88,10 @@ main {
 
 footer {
     min-height: 100px;
+}
+
+.container-vh-100 {
+    min-height: calc(100vh - 280px);
 }
 
 /*---------------- Buttons ----------------------*/
@@ -186,6 +190,44 @@ nav a.icon {
 nav a.icon:hover {
     transform: scale(1.03);
 }
+
+/* ----------Allauth ---------------- */
+
+.allauth-form-inner-content label:not([for='id_remember']) {
+    display: none;
+}
+
+.allauth-form-inner-content p a {
+    text-decoration: none;
+}
+
+.allauth-form-inner-content p {
+    margin-top: 1.5rem;  /* mt-4 */
+    color: #6c757d; /* text-secondary */
+}
+
+.allauth-form-inner-content .form-buttons,
+.allauth-form-inner-content input {
+    margin: 0.5rem 0 0.5rem 0;
+}
+.allauth-form-inner-content input {
+    border-color: #050101;
+}
+
+.allauth-form-inner-content input::placeholder {
+    color: #aab7c4;
+}
+
+/* hides and unhides requirements on password change page */
+/* .revealed-text {
+    display: none;
+    cursor: pointer;
+}
+
+.hidden-text:hover + .revealed-text {
+    display: block;
+} */
+
 
 /* -----MEDIA QUERIES ----------- */
 @media (max-width: 991.98px) {
