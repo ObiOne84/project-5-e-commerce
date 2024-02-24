@@ -98,6 +98,23 @@ footer {
     min-height: calc(100vh - 280px);
 }
 
+/* Toasts */
+.message-container {
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 999999999;
+}
+
+.custom-toast {
+    overflow: visible;
+}
+
+.toast-capper {
+    height: 2px;
+}
+
+
 /*---------------- Buttons ----------------------*/
 .action-button {
     background-color: #f09a53;
