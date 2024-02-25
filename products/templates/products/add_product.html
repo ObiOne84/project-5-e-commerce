@@ -19,16 +19,50 @@
         <div class="col text-center">
             <h2 class="logo-font text-uppercase text-black">Add Product</h2>
         </div>
+        <hr class="mt-4">
     </div>
     <div class="row">
         <div class="col-12 col-md-6">
-            <form action="{% url 'add_product' %}" method="POST" id="add-product-form" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ comic_form|crispy }}
-            </form>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link extra-info active text-muted" aria-current="page" href="#">Add Comic</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link extra-info text-muted" href="">Add Book</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link extra-info text-muted reviews-nav" href="#">Add Book</a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="col-12 extra-content active-content">
+                <form action="{% url 'add_product' %}" method="POST" id="add-comic-form" enctype="multipart/form-data"
+                    class="form">
+                    {% csrf_token %}
+                    {{ comic_form|crispy }}
+                    <button class="btn btn-warning rounded-0" type="submit">Add Product</button>
+                </form>
+            </div>
+            <div class="col-12 extra-content d-block d-md-none">
+                <form action="{% url 'add_product' %}" method="POST" id="add-book-form" enctype="multipart/form-data"
+                    class="form">
+                    {% csrf_token %}
+                    {{ book_form|crispy}}
+                    <button class="btn btn-warning rounded-0" type="submit">Add Product</button>
+                </form>
+            </div>
+
+
+
         </div>
     </div>
 </div>
+
 
 {% endblock %}
 

@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.constraints import UniqueConstraint
 
 
 class Category(models.Model):
@@ -16,6 +17,9 @@ class Subcategory(models.Model):
 
     class Meta:
         verbose_name_plural = 'Subcategories'
+        constraints = [
+            UniqueConstraint(fields=['name', 'category'], name='unique_subcategory_per_category')
+        ]
 
     name = models.CharField(max_length=254)
     category = models.ForeignKey(
