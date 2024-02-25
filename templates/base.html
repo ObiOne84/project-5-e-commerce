@@ -80,7 +80,7 @@
                                 {% if request.user.is_authenticated %}
                                 <!-- Add link to add product -->
                                 {% if request.user.is_superuser %}
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear me-1"></i>
+                                <li><a class="dropdown-item" href="{% url 'add_product' %}"><i class="fa-solid fa-gear me-1"></i>
                                         Product Management</a></li>
                                 {% endif %}
                                 <!-- add link to accounts -->

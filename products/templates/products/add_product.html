@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block page_header %}
+<div class="container top-space">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+<div class="overlay-cover"></div>
+
+<div class="container-lg">
+    <div class="row">
+        <div class="col text-center">
+            <h2 class="logo-font text-uppercase text-black">Add Product</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <form action="{% url 'add_product' %}" method="POST" id="add-product-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ comic_form|crispy }}
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block postload_js %}
+{{ block.super }}
+
+<script src="{% static 'products/js/script-product.js' %}" type="text/javascript"></script>
+
+{% endblock %}
