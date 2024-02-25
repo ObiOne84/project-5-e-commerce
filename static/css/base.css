@@ -114,6 +114,26 @@ footer {
     height: 2px;
 }
 
+/* ----dropdown menu ----- */
+.dropdown-menu li {
+    position: relative;
+    }
+    .dropdown-menu .dropdown-submenu {
+    display: none;
+    position: absolute;
+    /* left: 100%; */
+    /* right: 100%; */
+    /* top: -7px; */
+    /* bottom: 100%; */
+    top: 100%;
+    }
+    .dropdown-menu .dropdown-submenu-left {
+    right: 100%;
+    left: auto;
+    }
+    .dropdown-menu > li:hover > .dropdown-submenu {
+    display: block;
+    }
 
 /*---------------- Buttons ----------------------*/
 .action-button {
@@ -231,6 +251,11 @@ nav a.icon:hover {
 .allauth-form-inner-content input {
     margin: 0.5rem 0 0.5rem 0;
 }
+
+/* allauth form and other forms */
+.form select,
+.form textarea,
+.form input,
 .allauth-form-inner-content input {
     border-color: #050101;
 }
@@ -248,7 +273,13 @@ nav a.icon:hover {
 .hidden-text:hover + .revealed-text {
     display: block;
 } */
+/* ----------Forms ------------ */
 
+.form select,
+.form textarea,
+.form input {
+    margin: 0.5rem 0 0.5rem 0;
+}
 
 /* -----MEDIA QUERIES ----------- */
 @media (max-width: 991.98px) {

@@ -4,8 +4,8 @@ from django.core.paginator import Paginator
 from django.http import HttpResponseForbidden
 from django.views import View
 
-from .models import Comic, Book, Review, Category, Subcategory
-from .forms import ReviewForm, AddComicForm, AddBookForm, SubcategoryForm
+from .models import Comic, Book, Review, Subcategory
+from .forms import ReviewForm, AddComicForm, AddBookForm
 
 
 def all_products(request):
@@ -73,55 +73,65 @@ def product_detail(request, product_id):
         'reviewed': False,
     }
 
-    if product.subcategory.exists():
-        subcategory = product.subcategory.first()  # Assuming each product has only one subcategory
-        context['subcategory'] = subcategory
+    if product.subcategory:
+        if product.subcategory.exists():
+            subcategory = product.subcategory.first()  # Assuming each product has only one subcategory
+            context['subcategory'] = subcategory
     
     return render(request, 'products/product_detail.html', context)
 
 
-class AddProduct(View):
+class AddBook(View):
     """A view to allow site owner to add new products to catalogue"""
 
     def get(self, request, *args, **kwargs):
-        comic_form = AddComicForm()
         book_form = AddBookForm()
-        # forms = {}
-        # for category in Category.objects.all():
-        #     subcategory_choices = Subcategory.objects.filter(category=category).values_list('id', 'name')
-        #     form = SubcategoryForm(choices=subcategory_choices)
-        #     forms[category.name] = form
-
         context = {
-            'comic_form': comic_form,
             'book_form': book_form,
-            # 'forms': forms,
         }
-        return render(request, 'products/add_product.html', context)
+        return render(request, 'products/add_book.html', context)
 
     def post(self, request, *args, **kwargs):
 
-        comic_form = AddComicForm(request.POST, request.FILES)
         book_form = AddBookForm(request.POST, request.FILES)
-        # forms = {}
-        # for category in Category.objects.all():
-        #     subcategory_choices = Subcategory.objects.filter(category=category).values_list('id', 'name')
-        #     form = SubcategoryForm(choices=subcategory_choices)
-        #     forms[category.name] = form
-        if comic_form.is_valid():
-            comic = comic_form.save()
-            messages.success(request, 'Successfully added product')
-            return redirect(reverse('product_detail', args=[comic.id]))
-        elif book_form.is_valid():
+
+        if book_form.is_valid():
             book = book_form.save()
             messages.success(request, 'Successfully added product')
             return redirect(reverse('product_detail', args=[book.id]))
         else:
             messages.error(request, 'Failed to add product. Please ensure form is valid.')
             context = {
-                'comic_form': comic_form,
                 'book_form': book_form,
-                # 'forms': forms,
             }
-            return render(request, 'products/add_product.html', context)
+            print(comic_form.errors)
+            print(book_form.errors)
+            return render(request, 'products/add_book.html', context)
 
+class AddComic(View):
+    """A view to add comic book"""
+
+    def get(self, request, *args, **kwargs):
+        comic_form = AddComicForm()
+        context = {
+            'comic_form': comic_form,
+        }
+        return render(request, 'products/add_comic.html', context)
+
+    def post(self, request, *args, **kwargs):
+
+        comic_form = AddComicForm(request.POST, request.FILES)
+
+        if comic_form.is_valid():
+            comic = comic_form.save()
+            messages.success(request, 'Successfully added product')
+            return redirect(reverse('product_detail', args=[comic.id]))
+        else:
+            messages.error(request, 'Failed to add product. Please ensure form is valid.')
+            context = {
+                'comic_form': comic_form,
+
+            }
+            print(comic_form.errors)
+
+            return render(request, 'products/add_comic.html', context)

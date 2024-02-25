@@ -37,7 +37,7 @@ class Product(models.Model):
     category = models.ForeignKey(
         'Category', null=True, blank=True, on_delete=models.SET_NULL
     )
-    subcategory = models.ManyToManyField('Subcategory', blank=True)
+    subcategory = models.ForeignKey('Subcategory', null=True, blank=True, on_delete=models.SET_NULL)
     published_date = models.IntegerField(null=True, blank=True)
     publisher = models.CharField(max_length=50, null=True, blank=True)
     isbn_13 = models.CharField(max_length=13, null=True, blank=True)
