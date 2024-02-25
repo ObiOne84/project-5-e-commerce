@@ -73,11 +73,6 @@ def product_detail(request, product_id):
         'review_form': form,
         'reviewed': False,
     }
-
-    # if product.subcategory:
-    #     if product.subcategory.exists():
-    #         subcategory = product.subcategory.first()  # Assuming each product has only one subcategory
-    #         context['subcategory'] = subcategory
     
     return render(request, 'products/product_detail.html', context)
 
@@ -140,7 +135,7 @@ class AddComic(View):
 
 @login_required
 def edit_book(request, product_id):
-    """A view to update product"""
+    """A view to update book"""
 
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can update products.')
@@ -175,18 +170,19 @@ def edit_book(request, product_id):
     return render(request, template, context)
 
 
+@login_required
 def edit_comic(request, product_id):
-    """A view to update product"""
+    """A view to update comic"""
 
     if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can update products.')
+        messages.error(request, 'Sorry, only store owners can update product.')
         return redirect(reverse('home'))
  
     try:
         product = get_object_or_404(Comic, pk=product_id)
         product_type = 'comic'
     except Comic.DoesNotExist:
-        messages.error(request, 'The product you are looking for does not exist.')
+        messages.error(request, 'The product you are looking for does not exists.')
         return render(request, '404.html')
     
     if request.method == 'POST':
@@ -211,5 +207,43 @@ def edit_comic(request, product_id):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def delete_book(request, product_id):
+    """Delete a product from the store"""
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can delete product.')
+        return redirect(reverse('home'))
+    
+    try:
+        product = get_object_or_404(Book, pk=product_id)
+        product.delete()
+        messages.success(request, f'Product {product.title} deleted!')
+    except Book.DoesNotExist:
+        messages.error(request, f"The {product.title} does not exist!")
+    
+    return redirect(reverse('products'))
+
+
+@login_required
+def delete_comic(request, product_id):
+    """Delete a product from the store"""
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can delete product.')
+        return redirect(reverse('home'))
+    
+    try:
+        product = get_object_or_404(Comic, pk=product_id)
+        product.delete()
+        messages.success(request, f'Product {product.title} deleted!')
+    except Comic.DoesNotExist:
+        messages.error(request, f"The {product.title} does not exist!")
+    
+    return redirect(reverse('products'))
+    
+
 
 

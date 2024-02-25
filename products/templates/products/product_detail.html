@@ -20,11 +20,14 @@
             <div>
                 {% if product_type == 'book' %}
                 <a href="{% url 'edit_book' product.id %}">Edit</a>
+                <a href="{% url 'delete_book' product.id %}">Delete</a>
                 {% elif product_type == 'comic' %}
                 <a href="{% url 'edit_comic' product.id %}">Edit</a>
+                <a href="{% url 'delete_comic' product.id %}">Delete</a>
                 {% else %}
-                <p class="text-muted">Invalid</p>
+                <p class="text-muted">Product you are looing for no exists.</p>
                 {% endif %}
+                
                 
             {% endif %}
             <hr class="mx-2 p-0">
