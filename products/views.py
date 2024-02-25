@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import HttpResponseForbidden
 from django.views import View
+from django.contrib.auth.decorators import login_required
 
 from .models import Comic, Book, Review, Subcategory
 from .forms import ReviewForm, AddComicForm, AddBookForm
@@ -135,3 +136,80 @@ class AddComic(View):
             print(comic_form.errors)
 
             return render(request, 'products/add_comic.html', context)
+
+
+@login_required
+def edit_book(request, product_id):
+    """A view to update product"""
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can update products.')
+        return redirect(reverse('home'))
+
+    try:
+        product = get_object_or_404(Book, pk=product_id)
+        product_type = 'book'
+    except Book.DoesNotExist:
+        messages.error(request, 'The product you are looking for does not exist.')
+        return render(request, '404.html')
+    
+    if request.method == 'POST':
+        form = AddBookForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Successfully updated {product.name}')
+            return redirect(reverse('product_detail', args=[product.id]))
+        else:
+            messages.error(request, f'Failed to update {product.title}. Please ensure the form is valid.')
+    else:
+        form = AddBookForm(instance=product)
+        messages.info(request, f'You are editing {product.title}')
+
+    template = 'products/edit_product.html'
+    context = {
+        'form': form,
+        'product': product,
+        'product_type': product_type,
+    }
+
+    return render(request, template, context)
+
+
+def edit_comic(request, product_id):
+    """A view to update product"""
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can update products.')
+        return redirect(reverse('home'))
+ 
+    try:
+        product = get_object_or_404(Comic, pk=product_id)
+        product_type = 'comic'
+    except Comic.DoesNotExist:
+        messages.error(request, 'The product you are looking for does not exist.')
+        return render(request, '404.html')
+    
+    if request.method == 'POST':
+
+        form = AddComicForm(request.POST, request.FILES, instance=product)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Successfully updated {product.name}')
+            return redirect(reverse('product_detail', args=[product.id]))
+        else:
+            messages.error(request, f'Failed to update {product.title}. Please ensure the form is valid.')
+    else:
+        form = AddComicForm(instance=product)
+        messages.info(request, f'You are editing {product.title}')
+
+    template = 'products/edit_product.html'
+    context = {
+        'form': form,
+        'product': product,
+        'product_type': product_type,
+    }
+
+    return render(request, template, context)
+
+

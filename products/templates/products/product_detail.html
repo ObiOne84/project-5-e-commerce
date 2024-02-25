@@ -16,6 +16,17 @@
 <div class="container-lg minimum-height mb-4">
     <div class="row">
         <div class="col-12 col-lg-10 col-xl-8 offset-xl-2 offset-lg-1 mt-3 my-auto px-md-5 px-lg-0">
+            {% if request.user.is_superuser %}
+            <div>
+                {% if product_type == 'book' %}
+                <a href="{% url 'edit_book' product.id %}">Edit</a>
+                {% elif product_type == 'comic' %}
+                <a href="{% url 'edit_comic' product.id %}">Edit</a>
+                {% else %}
+                <p class="text-muted">Invalid</p>
+                {% endif %}
+                
+            {% endif %}
             <hr class="mx-2 p-0">
             <div class="row mx-auto mx-md-0 my-3">
                 <div class="col-lg-4 col-sm-5">
