@@ -74,10 +74,10 @@ def product_detail(request, product_id):
         'reviewed': False,
     }
 
-    if product.subcategory:
-        if product.subcategory.exists():
-            subcategory = product.subcategory.first()  # Assuming each product has only one subcategory
-            context['subcategory'] = subcategory
+    # if product.subcategory:
+    #     if product.subcategory.exists():
+    #         subcategory = product.subcategory.first()  # Assuming each product has only one subcategory
+    #         context['subcategory'] = subcategory
     
     return render(request, 'products/product_detail.html', context)
 
@@ -157,7 +157,7 @@ def edit_book(request, product_id):
         form = AddBookForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
-            messages.success(request, f'Successfully updated {product.name}')
+            messages.success(request, f'Successfully updated {product.title}')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
             messages.error(request, f'Failed to update {product.title}. Please ensure the form is valid.')
@@ -195,7 +195,7 @@ def edit_comic(request, product_id):
 
         if form.is_valid():
             form.save()
-            messages.success(request, f'Successfully updated {product.name}')
+            messages.success(request, f'Successfully updated {product.title}')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
             messages.error(request, f'Failed to update {product.title}. Please ensure the form is valid.')

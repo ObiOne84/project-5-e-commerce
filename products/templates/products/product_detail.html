@@ -166,10 +166,10 @@
                                     <td><span class="ms-2">{{ product.category }}</span></td>
                                 </tr>
                                 {% endif %}
-                                {% if subcategory %}
+                                {% if product.subcategory is not null %}
                                 <tr>
                                     <th class="text-black text-start my-1"><strong>Subcategory:</strong></th>
-                                    <td><span class="ms-2">{{ subcategory.name }}</span></td>
+                                    <td><span class="ms-2">{{ product.subcategory }}</span></td>
                                 </tr>
                                 {% endif %}
                                 <!-- Book specific details here -->
