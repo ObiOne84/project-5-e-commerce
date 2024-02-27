@@ -13,7 +13,7 @@ class SubcategoryInline(admin.TabularInline):
 
 class CategoryAdmin(admin.ModelAdmin):
     inlines = [SubcategoryInline]
-    list_display = ('name',)
+    list_display = ('name', 'product_type',)
 
 
 class BookAdmin(admin.ModelAdmin):

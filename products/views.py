@@ -243,7 +243,7 @@ def delete_comic(request, product_id):
         messages.error(request, f"The {product.title} does not exist!")
     
     return redirect(reverse('products'))
-    
+
 
 
 

@@ -78,34 +78,6 @@
                             </a>
                             <ul class="dropdown-menu bg-orange" aria-labelledby="user-options">
                                 {% if request.user.is_authenticated %}
-                                <!-- Add link to add product -->
-                                {% if request.user.is_superuser %}
-                                <!-- Source: https://mdbootstrap.com/docs/standard/extended/dropdown-multilevel/# -->
-                                <!-- <li>
-                                    <a class="dropdown-item" href="#">
-                                        &laquo; <i class="fa-solid fa-gear me-1"></i> Product Management
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-submenu">
-                                        <li>
-                                            <a class="dropdown-item" href="#">Submenu item 1</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">Submenu item 2</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">Submenu item 4</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">Submenu item 5</a>
-                                        </li>
-                                    </ul>
-                                </li> -->
-                                <li>
-                                    <a class="dropdown-item" href="{% url 'add_book' %}"><i
-                                            class="fa-solid fa-gear me-1"></i>
-                                        Add Book</a>
-                                </li>
-                                {% endif %}
                                 <!-- add link to accounts -->
                                 <li><a class="dropdown-item" href="#"><i class="fa-regular fa-id-card me-1"></i> My
                                         Profile</a></li>

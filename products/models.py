@@ -4,11 +4,17 @@ from django.utils.text import slugify
 
 
 class Category(models.Model):
+    PRODUCT_CHOICES = [
+        ('comic', 'Comic'),
+        ('book', 'Book'),
+        ('product', 'Product'),
+    ]
 
     class Meta:
         verbose_name_plural = 'Categories'
 
     name = models.CharField(max_length=254)
+    product_type = models.CharField(max_length=20, choices=PRODUCT_CHOICES, null=True, blank=True, default=None)
 
     def __str__(self):
         return self.name
@@ -59,6 +65,7 @@ class Book(Product):
         ('paperback', 'Paperback'),
         ('hardcover', 'Hardcover'),
     ]
+    subtitle = models.CharField(max_length=254, null=True, blank=True)
     num_pages = models.IntegerField(null=True, blank=True)
     genre = models.CharField(max_length=50, null=True, blank=True)
     cover = models.CharField(
