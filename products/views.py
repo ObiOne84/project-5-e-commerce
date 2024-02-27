@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
+from django.db.models import Q
 from django.core.paginator import Paginator
 from django.http import HttpResponseForbidden
 from django.views import View
 from django.contrib.auth.decorators import login_required
+from itertools import chain
 
 from .models import Comic, Book, Review, Subcategory
 from .forms import ReviewForm, AddComicForm, AddBookForm
@@ -14,7 +16,30 @@ def all_products(request):
 
     comics = Comic.objects.all()
     books = Book.objects.all()
-    products = list(comics) + list(books)
+    # products = list(comics) + list(books)
+    products = list(Comic.objects.all()) + list(Book.objects.all())
+    # products = list(comics) + list(books)
+
+    # Source: Boutique Ado walkthrough project
+    query = None
+    # categories = None
+
+    if request.GET:
+        if 'q' in request.GET:
+            query = request.GET['q']
+            if query:
+                queries = Q(title__icontains=query) | Q(author__icontains=query)
+                comics = comics.filter(queries)
+                books = books.filter(queries)
+                # Source: https://stackoverflow.com/questions/46695150/django-search-fields-in-multiple-models
+                products = list(chain(books, comics))
+                if len(products) == 0:
+                    messages.error(request, f"Sorry we didn't find any product matching '{query}'.")
+                    return redirect(reverse('products'))
+            else:
+                messages.error(request, "You didn't enter any search criteria!")
+                return redirect(reverse('products'))
+
     total_products = len(products)
     is_paginated = len(products) > 24
     paginator = Paginator(products, 24)
@@ -28,6 +53,7 @@ def all_products(request):
         'paginator': paginator,
         'is_paginated': is_paginated,
         'total_products': total_products,
+        'search_term': query,
     }
 
     return render(request, 'products/products.html', context)
