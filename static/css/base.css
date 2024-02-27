@@ -117,8 +117,9 @@ footer {
 /* ----dropdown menu ----- */
 .dropdown-menu li {
     position: relative;
-    }
-    .dropdown-menu .dropdown-submenu {
+}
+
+.dropdown-menu .dropdown-submenu {
     display: none;
     position: absolute;
     /* left: 100%; */
@@ -126,14 +127,16 @@ footer {
     /* top: -7px; */
     /* bottom: 100%; */
     top: 100%;
-    }
-    .dropdown-menu .dropdown-submenu-left {
+}
+
+.dropdown-menu .dropdown-submenu-left {
     right: 100%;
     left: auto;
-    }
-    .dropdown-menu > li:hover > .dropdown-submenu {
+}
+
+.dropdown-menu>li:hover>.dropdown-submenu {
     display: block;
-    }
+}
 
 /*---------------- Buttons ----------------------*/
 .action-button {
@@ -243,8 +246,10 @@ nav a.icon:hover {
 }
 
 .allauth-form-inner-content p {
-    margin-top: 1.5rem;  /* mt-4 */
-    color: #6c757d; /* text-secondary */
+    margin-top: 1.5rem;
+    /* mt-4 */
+    color: #6c757d;
+    /* text-secondary */
 }
 
 .allauth-form-inner-content .form-buttons,
@@ -296,10 +301,39 @@ nav a.icon:hover {
     nav a.icon:hover {
         transform: none;
     }
+
+    /* ----Mobile admin dropdown menu */
+    /* .dropdown-menu li {
+        display: inline-block;
+        position: relative;
+    }
+
+    .dropdown-menu .dropdown-submenu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+    } */
+
+    /* 
+    .dropdown-menu>li:hover>.dropdown-submenu {
+        display: block;
+    } */
+
+    /* Show the dropdown submenu when its parent is focused */
+    .dropdown-menu>li:focus>.dropdown-submenu {
+        display: block;
+    }
+
 }
 
 @media (max-width: 768px) {
     .row.py-md-3.nav.mobile-nav-tabs {
         min-height: 50px;
+    }
+
+    .dropdown-menu[data-bs-popper] {
+        left: -50% !important;
     }
 }

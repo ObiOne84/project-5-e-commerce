@@ -6,17 +6,40 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="text-center my-auto dropdown">
-            <a class="dropdown-toggle text-decoration-none icon" href="#" id="mobile-account-menu" data-bs-toggle="dropdown"
-                aria-expanded="false">
+            <a class="dropdown-toggle text-decoration-none icon" href="#" id="mobile-account-menu"
+                data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa-solid fa-user d-block"></i>
                 <span>My Account</span>
             </a>
             <div class="dropdown-menu" aria-labelledby="user-options">
+                {% if request.user.is_authenticated %}
                 <!-- add link to accounts -->
-                <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>
-                <a class="dropdown-item" href="{% url 'account_signup' %}">Register</a>
                 <a class="dropdown-item" href="#">My Profile</a>
                 <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+                    {% if request.user.is_superuser %}
+                    <!-- Source: https://mdbootstrap.com/docs/standard/extended/dropdown-multilevel/# -->
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            <i class="fa-solid fa-gear me-1"></i> Product Management <i class="fa-solid fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-submenu">
+                            <li>
+                                <a class="dropdown-item" href="{% url 'add_book' %}">Add Book</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'add_comic' %}">Add Comic</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'admin:index' %}">Admin Panel</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                {% else %}
+                <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>
+                <a class="dropdown-item" href="{% url 'account_signup' %}">Register</a>
+                {% endif %}
+
             </div>
         </div>
         <!-- Shopping basket total-->
