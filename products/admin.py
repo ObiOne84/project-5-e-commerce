@@ -3,7 +3,7 @@ from .models import Product, Category, Book, Comic, Subcategory, Review
 
 
 class SubcategoryAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('id', 'name',)
 
 
 class SubcategoryInline(admin.TabularInline):
@@ -13,20 +13,20 @@ class SubcategoryInline(admin.TabularInline):
 
 class CategoryAdmin(admin.ModelAdmin):
     inlines = [SubcategoryInline]
-    list_display = ('name', 'product_type',)
+    list_display = ('id', 'name', 'product_type',)
 
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('num_pages', 'genre', 'cover',)
+    list_display = ('id', 'title', 'author', 'num_pages', 'genre', 'cover',)
 
 
 class ComicAdmin(admin.ModelAdmin):
-    list_display = ('series', 'age_rating',
+    list_display = ('id', 'title', 'author', 'series', 'age_rating',
                     'illustrator', 'cover_artist',)
 
 
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email',
+    list_display = ('id', 'name', 'email',
                     'body', 'created_on', 'approved',)
 
 
