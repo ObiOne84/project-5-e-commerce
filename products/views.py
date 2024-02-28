@@ -7,7 +7,7 @@ from django.views import View
 from django.contrib.auth.decorators import login_required
 from itertools import chain
 
-from .models import Comic, Book, Review, Subcategory
+from .models import Comic, Book, Review, Subcategory, Category
 from .forms import ReviewForm, AddComicForm, AddBookForm
 
 
@@ -22,9 +22,22 @@ def all_products(request):
 
     # Source: Boutique Ado walkthrough project
     query = None
-    # categories = None
+    categories = None
 
     if request.GET:
+        if 'category' in request.GET:
+            categories = request.GET['category'].split(',')
+            print('1 step')
+            print(categories)
+            if categories == ['books']:
+                products = books
+            elif categories == ['comics']:
+                products = comics
+            else:
+                comics = comics.filter(category__name__in=categories)
+                books = books.filter(category__name__in=categories)
+                products = list(chain(books, comics))
+                categories = Category.objects.filter(name__in=categories)
         if 'q' in request.GET:
             query = request.GET['q']
             if query:
@@ -54,6 +67,7 @@ def all_products(request):
         'is_paginated': is_paginated,
         'total_products': total_products,
         'search_term': query,
+        'categories': categories,
     }
 
     return render(request, 'products/products.html', context)

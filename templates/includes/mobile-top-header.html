@@ -16,25 +16,25 @@
                 <!-- add link to accounts -->
                 <a class="dropdown-item" href="#">My Profile</a>
                 <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
-                    {% if request.user.is_superuser %}
-                    <!-- Source: https://mdbootstrap.com/docs/standard/extended/dropdown-multilevel/# -->
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <i class="fa-solid fa-gear me-1"></i> Product Management <i class="fa-solid fa-caret-down"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-submenu">
-                            <li>
-                                <a class="dropdown-item" href="{% url 'add_book' %}">Add Book</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{% url 'add_comic' %}">Add Comic</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{% url 'admin:index' %}">Admin Panel</a>
-                            </li>
-                        </ul>
-                    </li>
-                    {% endif %}
+                {% if request.user.is_superuser %}
+                <!-- Source: https://mdbootstrap.com/docs/standard/extended/dropdown-multilevel/# -->
+                <li>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa-solid fa-gear me-1"></i> Product Management <i class="fa-solid fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-submenu">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'add_book' %}">Add Book</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'add_comic' %}">Add Comic</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'admin:index' %}">Admin Panel</a>
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
                 {% else %}
                 <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>
                 <a class="dropdown-item" href="{% url 'account_signup' %}">Register</a>
@@ -79,9 +79,31 @@
                         Books
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="mobile-book-categories-links">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">All Books</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=adventure"
+                                aria-label="Adventure">Adventure</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=business"
+                                aria-label="Business">Business</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=children"
+                                aria-label="Children">Children</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=crime"
+                                arial-label="Crime">Crime</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=drama"
+                                aria-label="Drama">Drama</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=fiction"
+                                aria-label="Fiction">Fiction</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=non_fiction"
+                                aria-label="Non-fiction">Non-Fiction</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=religion"
+                                aria-label="Religion">Religion</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=sci_fiction"
+                                aria-label="Sci-Fiction">Sci-Fiction</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=science"
+                                aria-label="Science">Science</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=travel"
+                                arial-label="Travel">Travel</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=books"
+                                aria-label="All Books">All Books</a></li>
+                        <!-- <li><a class="dropdown-item" href="{% url 'products' %}?category=adventure,business,children,crime,drama,fiction,non_fiction,religion,sci_fiction,science,travel">All Books</a></li> -->
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -90,9 +112,15 @@
                         Comics
                     </a>
                     <ul class="dropdown-menu last-dropdown" aria-labelledby="mobile-comics-links">
-                        <li><a class="dropdown-item" href="#">Marvel</a></li>
-                        <li><a class="dropdown-item" href="#">DC</a></li>
-                        <li><a class="dropdown-item" href="#">All Comics</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=marvel_universe"
+                                aria-label="Marver Universe">Marvel</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=dc_universe"
+                                aria-label="DC Universe">DC</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=comics"
+                                aria-label="All Comic Books">All Comics</a></li>
+                        <!-- <li><a class="dropdown-item"
+                                href="{% url 'products' %}?category=marvel_universe,dc_universe" aria-label="All Comic Books">All Comics</a></li> -->
                     </ul>
                 </li>
             </ul>
