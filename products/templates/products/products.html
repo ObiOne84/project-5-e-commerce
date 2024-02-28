@@ -50,7 +50,8 @@
                         <div class="col">
                             <p class="fw-bold fs-5">${{ product.price }}</p>
                             {% if product.category %}
-                            <p>{{ product.category }}</p>
+                            <!-- Update the style of the link -->
+                            <a class="dropdown-item" href="{% url 'products' %}?category={{ product.category.name }}" aria-label="{{ product.category.name }}">{{ product.category.display_name }}</a>
                             {% else %}
                             <p>Not Available</p>
                             {% endif %}
