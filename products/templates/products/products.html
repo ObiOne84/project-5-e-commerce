@@ -13,7 +13,7 @@
 
 {% block content %}
 <div class="overlay-cover"></div>
-<div class="container-lg">
+<div class="container-lg h-100">
     <div class="row">
         <div class="col text-center">
             <h2 class="logo-font text-uppercase text-black">Products</h2>
@@ -51,7 +51,7 @@
                             <p class="fw-bold fs-5">${{ product.price }}</p>
                             {% if product.category %}
                             <!-- Update the style of the link -->
-                            <a class="dropdown-item" href="{% url 'products' %}?category={{ product.category.name }}" aria-label="{{ product.category.name }}">{{ product.category.display_name }}</a>
+                            <a class="text-decoration-none" href="{% url 'products' %}?category={{ product.category.name }}" aria-label="{{ product.category.name }}">{{ product.category.display_name }}</a>
                             {% else %}
                             <p>Not Available</p>
                             {% endif %}

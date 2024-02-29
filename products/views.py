@@ -27,17 +27,23 @@ def all_products(request):
     if request.GET:
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
-            print('1 step')
-            print(categories)
             if categories == ['books']:
                 products = books
+                messages.success(request, "You are viewing results for 'all books'")
             elif categories == ['comics']:
                 products = comics
+                messages.success(request, "You are viewing results for 'all comic books'")
             else:
                 comics = comics.filter(category__name__in=categories)
                 books = books.filter(category__name__in=categories)
                 products = list(chain(books, comics))
                 categories = Category.objects.filter(name__in=categories)
+                category_display_names = ', '.join(category.display_name for category in categories)
+                if len(products) > 0:
+                    messages.success(request, f"You are viewing results for '{category_display_names}'")
+                else:
+                   messages.error(request, f"Sorry, there is not results for '{category_display_names}'")
+                   return redirect(reverse('products'))
         if 'q' in request.GET:
             query = request.GET['q']
             if query:

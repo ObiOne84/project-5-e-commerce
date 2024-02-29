@@ -49,11 +49,11 @@
                             class="small ps-1">{{ product.author }}</span></p>
                     <p class="fw-bold fs-5">${{ product.price }}</p>
                     {% if product_type == 'book' %}
-                    <a href="#" class="text-decoration-none">
+                    <a href="{% url 'products' %}?category=books" class="text-decoration-none">
                         <p><span><i class="fa-solid fa-tag"></i> </span>Books</p>
                     </a>
                     {% elif product_type == 'comic' %}
-                    <a href="#" class="text-decoration-none">
+                    <a href="{% url 'products' %}?category=comics" class="text-decoration-none">
                         <p><span><i class="fa-solid fa-tag"></i> </span>Comics</p>
                     </a>
                     {% endif %}
@@ -168,7 +168,7 @@
                                 <tr>
                                     <th class="text-black text-start my-1"><strong>Category:</strong></th>
                                     <!-- <td><span class="ms-2">{{ product.category.display_name }}</span></td> -->
-                                    <td><span class="ms-2"><a href="{% url 'products' %}?category={{ product.category.name }}" aria-label="{{ product.category.name }}">{{ product.category.display_name }}</a></span></td>
+                                    <td><span class="ms-2"><a class="text-decoration-none" href="{% url 'products' %}?category={{ product.category.name }}" aria-label="{{ product.category.name }}">{{ product.category.display_name }}</a></span></td>
                                     {% else %}
                                 </tr>
                                 {% endif %}
