@@ -127,7 +127,7 @@
 
     <!-- source: https://docs.djangoproject.com/en/5.0/topics/pagination/ -->
     <!-- Pagination navigation bar -->
-
+    {% if is_paginated %}
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center my-4">
             {% if page_obj.has_previous %}
@@ -148,6 +148,7 @@
             {% endif %}
         </ul>
     </nav>
+    {% endif %}
     <div class="btt-button shadow-sm rounded-0 border border-black">
         <a class="btt-link d-flex h-100">
             <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>

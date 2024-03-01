@@ -111,8 +111,8 @@ def all_products(request):
 
     products_list = list(products)
     total_products = len(products_list)
-    # is_paginated = len(products) > 100
-    paginator = Paginator(products, 100)
+    is_paginated = total_products > 18
+    paginator = Paginator(products, 18)
 
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
@@ -121,7 +121,7 @@ def all_products(request):
         # 'products': page_obj,
         'page_obj': page_obj,
         'paginator': paginator,
-        # 'is_paginated': is_paginated,
+        'is_paginated': is_paginated,
         'total_products': total_products,
         'search_term': query,
         'current_categories': categories,
