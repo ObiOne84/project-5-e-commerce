@@ -54,7 +54,7 @@ class Product(models.Model):
     publisher = models.CharField(max_length=50, null=True, blank=True)
     isbn_13 = models.CharField(max_length=13, null=True, blank=True)
     isbn_10 = models.CharField(max_length=10, null=True, blank=True)
-    ave_rating = models.DecimalField(
+    rating = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True, default=0
     )
     ratings_count = models.IntegerField(null=True, blank=True)

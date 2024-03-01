@@ -43,11 +43,11 @@ def all_products(request):
                             products = sorted(products, key=lambda x: x.category_name, reverse=True)
             else:
                 if sortkey == 'name':
-                    sortkey = 'lower_name'
-                    books = books.annotate(lower_name=Lower('name'))
-                    comics = comics.annotate(lower_name=Lower('name'))
+                    sortkey = 'title'
+                    # books = books.annotate(lower_name=Lower('name'))
+                    # comics = comics.annotate(lower_name=Lower('name'))
                     # print('LINE 35: ', products)
-                    products = products.order_by(sortkey)
+                    # products = products.order_by(sortkey)
                 if 'direction' in request.GET:
                     direction = request.GET['direction']
                     if direction == 'desc':
@@ -114,7 +114,7 @@ def all_products(request):
         'search_term': query,
         'current_categories': categories,
         'current_sorting': current_sorting,
-        'category': category,
+        category: category,
     }
 
     return render(request, 'products/products.html', context)

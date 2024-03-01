@@ -286,6 +286,19 @@ nav a.icon:hover {
     margin: 0.5rem 0 0.5rem 0;
 }
 
+/* return to top arrow */
+.btt-button {
+    height: 42px;
+    width: 42px;
+    position: fixed;
+    bottom: 120px;
+    right: 20px;
+}
+
+.btt-link {
+    cursor: pointer;
+}
+
 /* -----MEDIA QUERIES ----------- */
 @media (max-width: 991.98px) {
     .search-box-container {

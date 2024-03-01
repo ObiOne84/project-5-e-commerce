@@ -13,7 +13,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="all-prodcut-links">
                         <li><a class="dropdown-item" href="{% url 'products' %}?sort=price&direction=asc">By Price</a></li>
-                        <li><a class="dropdown-item" href="{% url 'products' %}?sort=ave_rating&direction=desc">By Rating</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?sort=rating&direction=desc">By Rating</a></li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?sort=category&direction=asc">By Category</a></li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?category={% for c in category %}{{ c.name }}{% if not forloop.last %},{% endif %}{% endfor %}">All Products</a></li>
                     </ul>
