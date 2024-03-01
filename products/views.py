@@ -13,10 +13,11 @@ from .forms import ReviewForm, AddComicForm, AddBookForm
 
 
 def all_products(request):
-    """A view to display all products"""
+    """A view to display all products, with sorting and filetring"""
 
     comics = Comic.objects.all()
     books = Book.objects.all()
+    # Source: https://docs.djangoproject.com/en/3.0/ref/models/querysets/#union
     products = comics.union(books)
     category = Category.objects.all()
     # print('LINE 20: ', products)
@@ -28,6 +29,47 @@ def all_products(request):
 
 
     if request.GET:
+        # if 'sort' in request.GET:
+        #     sortkey = request.GET['sort']
+        #     sort = sortkey
+        #     if sortkey == 'category':
+        #             books = books.annotate(category_name=Lower('category__name'))
+        #             comics = comics.annotate(category_name=Lower('category__name'))
+        #             products = list(chain(comics, books))
+        #             if 'direction' in request.GET:
+        #                 direction = request.GET['direction']
+        #                 if direction == 'asc' or None:
+        #                     products = sorted(products, key=lambda x: x.category_name)
+        #                 else:
+        #                     products = sorted(products, key=lambda x: x.category_name, reverse=True)
+        #     else:
+        #         if sortkey == 'name':
+        #             sortkey = 'title'
+        #         if 'direction' in request.GET:
+        #             direction = request.GET['direction']
+        #             if direction == 'desc':
+        #                 sortkey = f'-{sortkey}'
+        #         products = products.order_by(sortkey)
+           
+        if 'category' in request.GET:
+            categories = request.GET['category'].split(',')
+            if categories == ['books']:
+                products = books
+                messages.success(request, "You are viewing results for 'all books'")
+            elif categories == ['comics']:
+                products = comics
+                messages.success(request, "You are viewing results for 'all comic books'")
+            else:
+                comics = comics.filter(category__name__in=categories)
+                books = books.filter(category__name__in=categories)
+                products = comics.union(books)
+                categories = Category.objects.filter(name__in=categories)
+                category_display_names = ', '.join(category.display_name for category in categories)
+                if len(products) > 0:
+                    messages.success(request, f"You are viewing results for '{category_display_names}'")
+                else:
+                   messages.error(request, f"Sorry, there is not results for '{category_display_names}'")
+                   return redirect(reverse('products'))
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey
@@ -44,41 +86,11 @@ def all_products(request):
             else:
                 if sortkey == 'name':
                     sortkey = 'title'
-                    # books = books.annotate(lower_name=Lower('name'))
-                    # comics = comics.annotate(lower_name=Lower('name'))
-                    # print('LINE 35: ', products)
-                    # products = products.order_by(sortkey)
                 if 'direction' in request.GET:
                     direction = request.GET['direction']
                     if direction == 'desc':
                         sortkey = f'-{sortkey}'
                 products = products.order_by(sortkey)
-            # print('LINE 45: ', products)
-
-            # products = sorted(products, key=lambda x:getattr(x, sortkey))
-           
-        if 'category' in request.GET:
-            categories = request.GET['category'].split(',')
-            if categories == ['books']:
-                products = books
-                # print('LINE 53: ', products)
-                messages.success(request, "You are viewing results for 'all books'")
-            elif categories == ['comics']:
-                products = comics
-                # print('LINE 57: ', products)
-                messages.success(request, "You are viewing results for 'all comic books'")
-            else:
-                comics = comics.filter(category__name__in=categories)
-                books = books.filter(category__name__in=categories)
-                products = comics.union(books)
-                # print('LINE 63: ', products)
-                categories = Category.objects.filter(name__in=categories)
-                category_display_names = ', '.join(category.display_name for category in categories)
-                if len(products) > 0:
-                    messages.success(request, f"You are viewing results for '{category_display_names}'")
-                else:
-                   messages.error(request, f"Sorry, there is not results for '{category_display_names}'")
-                   return redirect(reverse('products'))
         if 'q' in request.GET:
             query = request.GET['q']
             if query:
@@ -100,7 +112,7 @@ def all_products(request):
     products_list = list(products)
     total_products = len(products_list)
     # is_paginated = len(products) > 100
-    paginator = Paginator(products, 24)
+    paginator = Paginator(products, 100)
 
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
