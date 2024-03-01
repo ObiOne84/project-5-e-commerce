@@ -12,10 +12,10 @@
                         All products
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="all-prodcut-links">
-                        <li><a class="dropdown-item" href="#">By Price</a></li>
-                        <li><a class="dropdown-item" href="#">By Rating</a></li>
-                        <li><a class="dropdown-item" href="#">By Category</a></li>
-                        <li><a class="dropdown-item" href="{% url 'products' %}">All Products</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?sort=price&direction=asc">By Price</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?sort=ave_rating&direction=desc">By Rating</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?sort=category&direction=asc">By Category</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category={% for c in category %}{{ c.name }}{% if not forloop.last %},{% endif %}{% endfor %}">All Products</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -35,8 +35,8 @@
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=sci_fiction" aria-label="Sci-Fiction">Sci-Fiction</a></li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=science" aria-label="Science">Science</a></li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=travel" arial-label="Travel">Travel</a></li>
-                        <li><a class="dropdown-item" href="{% url 'products' %}?category=books" aria-label="All Books">All Books</a></li>
-                        <!-- <li><a class="dropdown-item" href="{% url 'products' %}?category=adventure,business,children,crime,drama,fiction,non_fiction,religion,sci_fiction,science,travel">All Books</a></li> -->
+                        <!-- <li><a class="dropdown-item" href="{% url 'products' %}?category=books" aria-label="All Books">All Books</a></li> -->
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=adventure,business,children,crime,drama,fiction,non_fiction,religion,sci_fiction,science,travel">All Books</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -48,9 +48,9 @@
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=marvel_universe" aria-label="Marver Universe">Marvel</a>
                         </li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=dc_universe" aria-label="DC Universe">DC</a></li>
-                        <li><a class="dropdown-item" href="{% url 'products' %}?category=comics" aria-label="All Comic Books">All Comics</a></li>
-                        <!-- <li><a class="dropdown-item"
-                                href="{% url 'products' %}?category=marvel_universe,dc_universe" aria-label="All Comic Books">All Comics</a></li> -->
+                        <!-- <li><a class="dropdown-item" href="{% url 'products' %}?category=comics" aria-label="All Comic Books">All Comics</a></li> -->
+                        <li><a class="dropdown-item"
+                                href="{% url 'products' %}?category=marvel_universe,dc_universe" aria-label="All Comic Books">All Comics</a></li>
 
                     </ul>
                 </li>

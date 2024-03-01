@@ -10,12 +10,12 @@ class Category(models.Model):
         ('product', 'Product'),
     ]
 
-    class Meta:
-        verbose_name_plural = 'Categories'
-
     name = models.CharField(max_length=254)
     product_type = models.CharField(max_length=20, choices=PRODUCT_CHOICES, null=True, blank=True, default=None)
     display_name = models.CharField(max_length=254, null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = 'Categories'
 
     def __str__(self):
         return self.name
@@ -26,15 +26,15 @@ class Category(models.Model):
 
 class Subcategory(models.Model):
 
+    name = models.CharField(max_length=254)
+    category = models.ForeignKey(
+        'Category', null=True, blank=True, on_delete=models.CASCADE)
+    
     class Meta:
         verbose_name_plural = 'Subcategories'
         constraints = [
             UniqueConstraint(fields=['name', 'category'], name='unique_subcategory_per_category')
         ]
-
-    name = models.CharField(max_length=254)
-    category = models.ForeignKey(
-        'Category', null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -46,7 +46,8 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     description = models.TextField()
     category = models.ForeignKey(
-        'Category', null=True, blank=True, on_delete=models.SET_NULL
+        'Category', null=True, blank=True, on_delete=models.SET_NULL,
+        default='Non Available'
     )
     subcategory = models.ForeignKey('Subcategory', null=True, blank=True, on_delete=models.SET_NULL)
     published_date = models.IntegerField(null=True, blank=True)
@@ -54,7 +55,7 @@ class Product(models.Model):
     isbn_13 = models.CharField(max_length=13, null=True, blank=True)
     isbn_10 = models.CharField(max_length=10, null=True, blank=True)
     ave_rating = models.DecimalField(
-        max_digits=6, decimal_places=2, null=True, blank=True
+        max_digits=6, decimal_places=2, null=True, blank=True, default=0
     )
     ratings_count = models.IntegerField(null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)

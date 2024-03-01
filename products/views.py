@@ -6,6 +6,7 @@ from django.http import HttpResponseForbidden
 from django.views import View
 from django.contrib.auth.decorators import login_required
 from itertools import chain
+from django.db.models.functions import Lower
 
 from .models import Comic, Book, Review, Subcategory, Category
 from .forms import ReviewForm, AddComicForm, AddBookForm
@@ -16,27 +17,61 @@ def all_products(request):
 
     comics = Comic.objects.all()
     books = Book.objects.all()
-    # products = list(comics) + list(books)
-    products = list(Comic.objects.all()) + list(Book.objects.all())
-    # products = list(comics) + list(books)
-
+    products = comics.union(books)
+    category = Category.objects.all()
+    # print('LINE 20: ', products)
     # Source: Boutique Ado walkthrough project
     query = None
     categories = None
+    sort = None
+    direction = None
+
 
     if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'category':
+                    books = books.annotate(category_name=Lower('category__name'))
+                    comics = comics.annotate(category_name=Lower('category__name'))
+                    products = list(chain(comics, books))
+                    if 'direction' in request.GET:
+                        direction = request.GET['direction']
+                        if direction == 'asc' or None:
+                            products = sorted(products, key=lambda x: x.category_name)
+                        else:
+                            products = sorted(products, key=lambda x: x.category_name, reverse=True)
+            else:
+                if sortkey == 'name':
+                    sortkey = 'lower_name'
+                    books = books.annotate(lower_name=Lower('name'))
+                    comics = comics.annotate(lower_name=Lower('name'))
+                    # print('LINE 35: ', products)
+                    products = products.order_by(sortkey)
+                if 'direction' in request.GET:
+                    direction = request.GET['direction']
+                    if direction == 'desc':
+                        sortkey = f'-{sortkey}'
+                products = products.order_by(sortkey)
+            # print('LINE 45: ', products)
+
+            # products = sorted(products, key=lambda x:getattr(x, sortkey))
+           
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             if categories == ['books']:
                 products = books
+                # print('LINE 53: ', products)
                 messages.success(request, "You are viewing results for 'all books'")
             elif categories == ['comics']:
                 products = comics
+                # print('LINE 57: ', products)
                 messages.success(request, "You are viewing results for 'all comic books'")
             else:
                 comics = comics.filter(category__name__in=categories)
                 books = books.filter(category__name__in=categories)
-                products = list(chain(books, comics))
+                products = comics.union(books)
+                # print('LINE 63: ', products)
                 categories = Category.objects.filter(name__in=categories)
                 category_display_names = ', '.join(category.display_name for category in categories)
                 if len(products) > 0:
@@ -50,8 +85,8 @@ def all_products(request):
                 queries = Q(title__icontains=query) | Q(author__icontains=query)
                 comics = comics.filter(queries)
                 books = books.filter(queries)
-                # Source: https://stackoverflow.com/questions/46695150/django-search-fields-in-multiple-models
-                products = list(chain(books, comics))
+                products = comics.union(books)
+                # print('LINE 78: ', products)
                 if len(products) == 0:
                     messages.error(request, f"Sorry we didn't find any product matching '{query}'.")
                     return redirect(reverse('products'))
@@ -59,25 +94,71 @@ def all_products(request):
                 messages.error(request, "You didn't enter any search criteria!")
                 return redirect(reverse('products'))
 
-    total_products = len(products)
-    is_paginated = len(products) > 24
+    current_sorting = f'{sort}_{direction}'
+    print(current_sorting)
+
+    products_list = list(products)
+    total_products = len(products_list)
+    # is_paginated = len(products) > 100
     paginator = Paginator(products, 24)
 
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
     context = {
-        'products': page_obj,
+        # 'products': page_obj,
         'page_obj': page_obj,
         'paginator': paginator,
-        'is_paginated': is_paginated,
+        # 'is_paginated': is_paginated,
         'total_products': total_products,
         'search_term': query,
-        'categories': categories,
+        'current_categories': categories,
+        'current_sorting': current_sorting,
+        'category': category,
     }
 
     return render(request, 'products/products.html', context)
 
+# def all_products(request):
+#     """A view to display all products, combining Comics and Books."""
+
+#     # Fetch and annotate each queryset for sorting
+#     comics = Comic.objects.annotate(lower_name=Lower('title'))
+#     books = Book.objects.annotate(lower_name=Lower('title'))
+    
+#     # Initialize variables
+#     query = None
+#     categories = None
+#     sort = None
+#     direction = None
+#     products_list = []
+
+#     if request.GET:
+#         sortkey = request.GET.get('sort', 'title') 
+#         direction = request.GET.get('direction', 'asc')
+#         if direction == 'desc':
+#             sortkey = f'-{sortkey}'
+
+#         combined_queryset = list(comics) + list(books)
+
+#         if sortkey in ['title', '-title']:
+#             combined_queryset.sort(key=lambda x: getattr(x, sortkey.strip('-')), reverse=direction == 'desc')
+
+#         products_list = combined_queryset
+
+#     paginator = Paginator(products_list, 24)
+#     page_number = request.GET.get("page")
+#     page_obj = paginator.get_page(page_number)
+
+#     context = {
+#         'page_obj': page_obj,
+#         'paginator': paginator,
+#         'search_term': query,
+#         'current_categories': categories,
+#         'current_sorting': f'{sort}_{direction}',
+#     }
+
+#     return render(request, 'products/products.html', context)
 
 def product_detail(request, product_id):
     """A view to display product details"""
@@ -89,7 +170,7 @@ def product_detail(request, product_id):
             product = Comic.objects.get(pk=product_id)
             product_type = 'comic'
         except Comic.DoesNotExist:
-            return render(request, '404.html')  # or any other appropriate handling for non-existing products
+            return render(request, '404.html')
             # You can change above line to the error message to display for the user.
 
     reviews = product.reviews.filter(approved=True).order_by('created_on')

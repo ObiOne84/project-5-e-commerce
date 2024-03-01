@@ -17,19 +17,43 @@
     <div class="row">
         <div class="col text-center">
             <h2 class="logo-font text-uppercase text-black">Products</h2>
+            <!-- Source: Boutique Ado walkthrough project -->
+            {% for c in current_categories %}
+                <a class="category-badge text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">
+                    <span class="p-2 mt-2 badge badge-white rounded-1 border border-dark text-black">{{ c.display_name }}</span>
+                </a>
+            {% endfor %}
+            <!-- <a class="category-badge text-decoration-none" href="{% url 'products' %}?category={% for c in category %}{{ c.name }}{% if not forloop.last %},{% endif %}{% endfor %}">
+                <span class="p-2 mt-2 badge badge-white rounded-1 border border-dark text-black">All Products</span>
+            </a> -->
         </div>
     </div>
     <div class="row">
+        <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
+            <div class="sort-select-wrapper w-50">
+                <select id="sort-selector" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                    <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                    <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
+                    <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
+                    <option value="rating_asc" {% if current_sorting == 'ave_rating_asc' %}selected{% endif %}>Rating (low to high)</option>
+                    <option value="rating_desc" {% if current_sorting == 'ave_rating_desc' %}selected{% endif %}>Rating (high to low)</option>
+                    <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
+                    <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
+                    <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>Category (A-Z)</option>
+                    <option value="category_desc" {% if current_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
+                </select>
+            </div>
+        </div>
         <div class="col-12 col-md-6">
             <p class="text-muted mt-3 text-md-left">
-                <span class="small">Total Products | {{ total_products }}</span>  
+                <span class="small"> Showing {{ page_obj|length }} out of {{ total_products }} products </span>  
             </p>
         </div>
     </div>
     <hr>
     
     <div class="row mx-4 mx-md-0 mb-5">
-        {% for product in products %}
+        {% for product in page_obj %}
         <div class="col-12 col-sm-4 col-md-3 col-lg-2 px-3 px-md-1">
             <div class="card h-100 border-0">
                 {% if product.image %}
@@ -102,7 +126,7 @@
 
     <!-- source: https://docs.djangoproject.com/en/5.0/topics/pagination/ -->
     <!-- Pagination navigation bar -->
-    {% if is_paginated %}
+
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center my-4">
             {% if page_obj.has_previous %}
@@ -123,6 +147,6 @@
             {% endif %}
         </ul>
     </nav>
-    {% endif %}
+
 </div>
 {% endblock %}
