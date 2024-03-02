@@ -173,7 +173,7 @@ def all_products(request):
 #     return render(request, 'products/products.html', context)
 
 def product_detail(request, product_id):
-    """A view to display product details"""
+    """A view to display product details and handle review functionality"""
     try:
         product = Book.objects.get(pk=product_id)
         product_type = 'book'
@@ -217,7 +217,7 @@ def product_detail(request, product_id):
 
 
 class AddBook(View):
-    """A view to allow site owner to add new products to catalogue"""
+    """A view to allow site owner to add new book to catalogue"""
 
     def get(self, request, *args, **kwargs):
         book_form = AddBookForm()
@@ -244,7 +244,7 @@ class AddBook(View):
             return render(request, 'products/add_book.html', context)
 
 class AddComic(View):
-    """A view to add comic book"""
+    """A view to add comic book to catalogue"""
 
     def get(self, request, *args, **kwargs):
         comic_form = AddComicForm()
@@ -350,7 +350,7 @@ def edit_comic(request, product_id):
 
 @login_required
 def delete_book(request, product_id):
-    """Delete a product from the store"""
+    """Delete a book from the store"""
 
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can delete product.')
@@ -368,7 +368,7 @@ def delete_book(request, product_id):
 
 @login_required
 def delete_comic(request, product_id):
-    """Delete a product from the store"""
+    """Delete a comic from the store"""
 
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can delete product.')

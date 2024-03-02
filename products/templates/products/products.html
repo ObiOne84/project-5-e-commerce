@@ -23,10 +23,12 @@
                     <span class="p-2 mt-2 badge badge-white rounded-1 border border-dark text-black">{{ c.display_name }}</span>
                 </a>
             {% endfor %}
+            {% if current_categories %}
             <!-- Below is button to return to all cateogies view -->
-            <!-- <a class="category-badge text-decoration-none" href="{% url 'products' %}?category={% for c in category %}{{ c.name }}{% if not forloop.last %},{% endif %}{% endfor %}">
+            <a class="category-badge text-decoration-none" href="{% url 'products' %}?category={% for c in category %}{{ c.name }}{% if not forloop.last %},{% endif %}{% endfor %}">
                 <span class="p-2 mt-2 badge badge-white rounded-1 border border-dark text-black">All Products</span>
-            </a> -->
+            </a>
+            {% endif %}
         </div>
     </div>
     <div class="row">
