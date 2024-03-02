@@ -299,6 +299,28 @@ nav a.icon:hover {
     cursor: pointer;
 }
 
+/* _______________BAG____________ */
+.full-bag-text {
+    transition: text-shadow 0.3s ease;
+    /* text-shadow: 0px 0px 5px #f3d9936e; */
+    color: #f09a53;
+}
+
+.full-bag-text:hover {
+    text-shadow: 0px 0px 20px rgba(240, 154, 83, 0.6) !important;
+    color: #f09a53 !important;
+}
+/* @keyframes text-pulse {
+    0% { font-size: 100%; }
+    50% { font-size: 105%; }
+    100% { font-size: 100%; }
+}
+
+.animated-text {
+    animation: text-pulse 2s alternate;
+*/
+
+
 /* -----MEDIA QUERIES ----------- */
 @media (max-width: 991.98px) {
     .search-box-container {

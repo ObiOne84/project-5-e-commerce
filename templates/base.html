@@ -115,13 +115,18 @@
                     </li>
                     <!-- Shopping basket total-->
                     <li class="list-inline-item mx-3">
-                        <a class="text-decoration-none icon" href="{% url 'view_bag' %}" aria-label="Go to shopping basket">
+                        <a class="text-decoration-none {% if grand_total %}fw-bold full-bag-text animated-text{% else %}icon{% endif %}" href="{% url 'view_bag' %}" aria-label="Go to shopping basket">
                             <div class="text-center">
                                 <i class="fa-solid fa-cart-shopping"></i>
-                                <!-- Add total here -->
-                                <p>$0.00</p>
+                                <p>
+                                    {% if grand_total %}
+                                        ${{ grand_total|floatformat:2 }}
+                                    {% else %}
+                                        $0.00
+                                    {% endif %}
+                                </p>
                             </div>
-                        </a>
+                        </a>                        
                     </li>
                 </ul>
             </div>
