@@ -115,11 +115,13 @@
                     </li>
                     <!-- Shopping basket total-->
                     <li class="list-inline-item mx-3">
-                        <div class="text-center">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <!-- Add total here -->
-                            <p>$0.00</p>
-                        </div>
+                        <a class="text-decoration-none icon" href="{% url 'view_bag' %}" aria-label="Go to shopping basket">
+                            <div class="text-center">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <!-- Add total here -->
+                                <p>$0.00</p>
+                            </div>
+                        </a>
                     </li>
                 </ul>
             </div>
