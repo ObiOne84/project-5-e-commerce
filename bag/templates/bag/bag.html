@@ -62,7 +62,7 @@
                                             </span>
                                         </button>
                                         <input class="form-control form-control-sm qty_input p-0 m-0 text-center" type="number" name="quantity"
-                                            value="{{ item.quantity }}" min="1" max="10" data-item_id="{{ item.item_id }}"
+                                            value="{{ item.quantity }}" min="1" max="10" data-item_id="{{ item.item_id }}" data-product_title="{{ item.product.title }}"
                                             id="id_qty_{{ item.item_id }}">
                                         <button class="increment-qty btn btn-sm btn-black-brown rounded-right m-0"
                                             type="button" data-item_id="{{ item.item_id }}"
@@ -137,8 +137,14 @@
     // Update quantity on click
     $('.update-item').click(function(e) {
         e.preventDefault(); // Prevent default form submission behavior
-        var form = $(this).prev('.update-form'); // Corrected selector
-        form.submit(); // Submit the form
+        var qtyInputVal = parseInt($(this).closest('tr').find('.qty_input').val());
+        var productTitle = $(this).closest('tr').find('.qty_input').data('product_title');
+        if (qtyInputVal > 0 && qtyInputVal < 10) {
+            var form = $(this).prev('.update-form'); // Corrected selector
+            form.submit();
+        } else {
+            alert(`You are attempting to add ${qtyInputVal} units of ${productTitle}. You can choose max 10 and min 1 product.`);
+        }
     });
 
     // Remove item and reload on click
@@ -147,7 +153,7 @@
         var csrfToken = "{{ csrf_token }}"; // Retrieve CSRF token from template
         var itemId = $(this).attr('id').split('remove_')[1]; // Extract item ID from button ID
         var url = `/bag/remove/${itemId}/`; // Construct URL for removing item
-        
+
         // Send POST request to remove item
         $.post(url, {csrfmiddlewaretoken: csrfToken}) // Include CSRF token in data
         .done(function() {
