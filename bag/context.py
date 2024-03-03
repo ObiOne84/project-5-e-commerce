@@ -1,5 +1,6 @@
 from decimal import Decimal
 from django.conf import settings
+from products.models import Comic, Book
 
 
 def bag_content(request):
@@ -7,6 +8,28 @@ def bag_content(request):
     bag_items = []
     total = 0
     product_count = 0
+    bag = request.session.get('bag', {})
+
+    for item_id, quantity in bag.items():
+        try:
+            book = Book.objects.get(pk=item_id)
+            product_type = 'book'
+            product = book
+        except Book.DoesNotExist:
+            try:
+                comic = Comic.objects.get(pk=item_id)
+                product_type = 'comic'
+                product = comic
+            except Comic.DoesNotExist:
+                return render(request, '404.html')
+
+        total += quantity * product.price
+        product_count += quantity
+        bag_items.append({
+            'item_id': item_id,
+            'quantity': quantity,
+            'product': product,
+        })
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PRECENTAGE / 100)
@@ -17,7 +40,7 @@ def bag_content(request):
 
     grand_total = delivery + total
     context = {
-        'bag_item': bag_items,
+        'bag_items': bag_items,
         'total': total,
         'product_count': product_count,
         'delivery': delivery,

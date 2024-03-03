@@ -20,6 +20,8 @@
        </div>
        <hr class="mt-4">
        <div>
+        <p>{{ grand_total|floatformat:2 }}</p>
+        <p>{{ bag_items }}</p>
         <!-- {{ free_delivery_threshold }}
         {{ grand_total }}
         {{ bag_item }}
@@ -30,7 +32,7 @@
         <div class="col-12 col-md-6">
             {% if bag_items %}
             <div class="table-responsive rounded-1">
-
+                
             </div>
             {% else %}
             <p class="lead">Your bag is empty</p>
