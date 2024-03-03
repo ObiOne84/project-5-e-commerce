@@ -4,8 +4,8 @@ from django.conf import settings
 
 def bag_content(request):
 
-    bag_items = ['list', 'more']
-    total = 100
+    bag_items = []
+    total = 0
     product_count = 0
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
