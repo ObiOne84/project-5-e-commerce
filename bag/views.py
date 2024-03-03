@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.views.decorators.http import require_POST
 
 
 def view_bag(request):
@@ -23,3 +24,37 @@ def add_to_bag(request, item_id):
     print(request.session['bag'])
     return redirect(redirect_url)
 
+
+def adjust_bag(request, item_id):
+    """Adjust the quantity of the specified product to the specified amount"""
+
+    quantity = int(request.POST.get('quantity'))
+    bag = request.session.get('bag', {})
+
+    if quantity > 0:
+        bag[item_id] = quantity
+    else:
+        bag.pop(item_id)
+
+    request.session['bag'] = bag
+
+    return redirect(reverse('view_bag'))
+
+
+@require_POST
+def remove_from_bag(request, item_id):
+    """Remove the item from the shopping basket"""
+
+    try:
+        bag = request.session.get('bag', {})
+        bag.pop(item_id)
+        request.session['bag'] = bag
+        return HttpResponse(status=200)
+
+    except KeyError:
+        # Item ID not found in the bag
+        return JsonResponse({'error': 'Item not found in the bag'}, status=404)
+
+    except Exception as e:
+        # Handle other exceptions
+        return JsonResponse({'error': str(e)}, status=500)

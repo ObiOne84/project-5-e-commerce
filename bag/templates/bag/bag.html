@@ -50,7 +50,7 @@
                             <p class="my-0 text-end">${{ item.product.price }}</p>
                         </td>
                         <td class="py-md-2 py-lg-4">
-                            <form class="form update-form" action="#" method="POST">
+                            <form class="form update-form" action="{% url 'adjust_bag' item.item_id %}" method="POST">
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <div class="input-group mb-3">
@@ -74,8 +74,8 @@
                                     </div>
                                 </div>
                             </form>
-                            <a href="" class="update-link text-info"><small>Update</small></a>
-                            <a href="" class="update-link text-danger float-end"><small>Delete</small></a>
+                            <a class="update-item text-info"><small>Update</small></a>
+                            <a id="remove_{{ item.item_id }}" class="remove-item text-danger float-end"><small>Delete</small></a>
                         </td>
                         <td class="py-md-2 py-lg-4">
                             <p class="my-0 text-end">${{ item.product.price }}</p>
@@ -131,24 +131,31 @@
 {{ block.super }}
 
 <script src="{% static 'products/js/quantity_input_script.js' %}" type="text/javascript"></script>
+
 <script>
+    // Source: Boutique Ado walkthrough project
     // Update quantity on click
-    $('.update-link').click(function(e) {
-        var form = $(this).prev('update-form');
-        form.submit();
+    $('.update-item').click(function(e) {
+        e.preventDefault(); // Prevent default form submission behavior
+        var form = $(this).prev('.update-form'); // Corrected selector
+        form.submit(); // Submit the form
     });
 
     // Remove item and reload on click
     $('.remove-item').click(function(e) {
-        var csrfToken = "{{ csrf_token }}"
-        var itemId = $(this).attr('id').split('remove_')[1];
-        var size = $(this).data('size');
-        var url = `/bag/remove/${itemId}`;
-
-        $.post(url, data)
+        e.preventDefault(); // Prevent default link behavior
+        var csrfToken = "{{ csrf_token }}"; // Retrieve CSRF token from template
+        var itemId = $(this).attr('id').split('remove_')[1]; // Extract item ID from button ID
+        var url = `/bag/remove/${itemId}/`; // Construct URL for removing item
+        
+        // Send POST request to remove item
+        $.post(url, {csrfmiddlewaretoken: csrfToken}) // Include CSRF token in data
         .done(function() {
-            location.reload();
+            location.reload(); // Reload page after successful removal
         })
+        .fail(function() {
+            console.error('Failed to remove item.'); // Log error if removal fails
+        });
     });
 </script>
 
