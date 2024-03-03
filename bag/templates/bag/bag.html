@@ -19,20 +19,72 @@
             <h2 class="logo-font text-uppercase text-black">Shopping Basket</h2>
        </div>
        <hr class="mt-4">
-       <div>
-        <p>{{ grand_total|floatformat:2 }}</p>
-        <p>{{ bag_items }}</p>
-        <!-- {{ free_delivery_threshold }}
-        {{ grand_total }}
-        {{ bag_item }}
-        {{ free_delivery_delta }} -->
-       </div>
     </div> 
     <div class="row mb-4">
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-10 col-lg-8">
             {% if bag_items %}
             <div class="table-responsive rounded-1">
-                
+                <table class="table table-sm table-borderless">
+                    <thead>
+                        <th scope="col">Product Info</th>
+                        <th scope="col"></th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col">Subtotal</th>
+                    </thead>
+
+                    {% for item in bag_items %}
+                    <tr>
+                        <td class="w-25 p-0 p-lg-2">
+                            {% if item.product.image %}
+                            <img class="img-fluid rounded-1 p-3" src="{{ item.product.image.url }}" alt="Image of {{ item.product.name }}">
+                            {% else %}
+                            <img class="img-fluid rounded-1 p-3" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                            {% endif %}
+                        </td>
+                        <td class="py-md-2 py-lg-4">
+                            <p class="my-0">{{ item.product.title }}</p>
+                            <p class="my-0 small text-muted"></p>
+                        </td>
+                        <td class="py-md-2 py-lg-4">
+                            <p class="my-0 text-end">${{ item.product.price }}</p>
+                        </td>
+                        <td class="py-md-2 py-lg-4">
+                            <p class="my-0 text-end">{{ item.quantity }}</p>
+                        </td>
+                        <td class="py-md-2 py-lg-4">
+                            <p class="my-0 text-end">${{ item.product.price }}</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="5" class="text-end">
+                            <h6><strong>Bag Total: ${{ total|floatformat:2 }}</strong></h6>
+                            <h6>Delivery: ${{ delivery|floatformat:2 }}</h6>
+                            <h4><strong>Grand Total: ${{ grand_total|floatformat:2 }}</strong></h4>
+                            {% if free_delivery_delta > 0 %}
+                            <p class="text-danger">
+                                You could get a free delivery by spending just <strong>${{ free_delivery_delta }}</strong> more!
+                            </p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="text-end">
+                            <a href="{% url 'products' %}" class="btn pagination-btn rounded-1" aria-label="Go back to products.">
+                                <span class="">
+                                    <i class="fas fa-chevron-left color-dark"></i>
+                                </span>
+                                <span class="text-uppercase">Keep Shopping</span>
+                            </a>
+                            <a href="#" class="btn btn-black-brown rounded-1 text-uppercase" aria-label="Go to checkout.">
+                                <span class="">
+                                    <i class="fa-solid fa-lock"></i>
+                                </span>
+                                <span class="text-uppercase">Checkout</span>
+                            </a>      
+                    </tr>
+                </table>
             </div>
             {% else %}
             <p class="lead">Your bag is empty</p>
