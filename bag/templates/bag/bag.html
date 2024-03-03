@@ -50,7 +50,32 @@
                             <p class="my-0 text-end">${{ item.product.price }}</p>
                         </td>
                         <td class="py-md-2 py-lg-4">
-                            <p class="my-0 text-end">{{ item.quantity }}</p>
+                            <form class="form update-form" action="#" method="POST">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <button class="decrement-qty btn btn-sm btn-black-brown rounded-left m-0"
+                                            type="button" data-item_id="{{ item.item_id }}"
+                                            id="decrement-qty_{{ item.item_id }}">
+                                            <span>
+                                                <i class="fa-solid fa-minus fa-sm"></i>
+                                            </span>
+                                        </button>
+                                        <input class="form-control form-control-sm qty_input p-0 m-0 text-center" type="number" name="quantity"
+                                            value="{{ item.quantity }}" min="1" max="10" data-item_id="{{ item.item_id }}"
+                                            id="id_qty_{{ item.item_id }}">
+                                        <button class="increment-qty btn btn-sm btn-black-brown rounded-right m-0"
+                                            type="button" data-item_id="{{ item.item_id }}"
+                                            id="increment-qty_{{ item.item_id }}">
+                                            <span>
+                                                <i class="fa-solid fa-plus fa-sm"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <a href="" class="update-link text-info"><small>Update</small></a>
+                            <a href="" class="update-link text-danger float-end"><small>Delete</small></a>
                         </td>
                         <td class="py-md-2 py-lg-4">
                             <p class="my-0 text-end">${{ item.product.price }}</p>
@@ -99,5 +124,32 @@
         <hr class="my-4 mx-2">
     </div>
 </div>
+
+{% endblock %}
+
+{% block postload_js %}
+{{ block.super }}
+
+<script src="{% static 'products/js/quantity_input_script.js' %}" type="text/javascript"></script>
+<script>
+    // Update quantity on click
+    $('.update-link').click(function(e) {
+        var form = $(this).prev('update-form');
+        form.submit();
+    });
+
+    // Remove item and reload on click
+    $('.remove-item').click(function(e) {
+        var csrfToken = "{{ csrf_token }}"
+        var itemId = $(this).attr('id').split('remove_')[1];
+        var size = $(this).data('size');
+        var url = `/bag/remove/${itemId}`;
+
+        $.post(url, data)
+        .done(function() {
+            location.reload();
+        })
+    });
+</script>
 
 {% endblock %}

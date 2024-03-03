@@ -1,14 +1,12 @@
-$(document).ready(function () {
 // Source: Boutique Ado walkthrough project
-
-     // Disable +/- buttons outside 1-99 range
-     function handleEnableDisable(itemId) {
+$(document).ready(function () {
+    // Disable +/- buttons outside 1-9 range
+    function handleEnableDisable(itemId) {
         var currentValue = parseInt($(`#id_qty_${itemId}`).val());
         var minusDisabled = currentValue < 2;
         var plusDisabled = currentValue > 9;
         $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
         $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
-
     }
 
     // Ensure proper enabling/disabling of all inputs on page load
@@ -27,18 +25,20 @@ $(document).ready(function () {
     // Increment quantity
     $('.increment-qty').click(function(e) {
         e.preventDefault();
-        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+        var closestInput = $(this).closest('.input-group').find('.qty_input');
+        var itemId = $(closestInput).data('item_id');
         var currentValue = parseInt($(closestInput).val());
-        $(closestInput).val(currentValue + 1)
+        $(closestInput).val(currentValue + 1);
         handleEnableDisable(itemId);
     });
 
     // Decrement quantity
     $('.decrement-qty').click(function(e) {
         e.preventDefault();
-        var closestInput = $(this).closest('.input-group').find('.qty_input')[0];
+        var closestInput = $(this).closest('.input-group').find('.qty_input');
+        var itemId = $(closestInput).data('item_id');
         var currentValue = parseInt($(closestInput).val());
-        $(closestInput).val(currentValue - 1)
+        $(closestInput).val(currentValue - 1);
         handleEnableDisable(itemId);
     });
 });
