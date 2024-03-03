@@ -310,6 +310,19 @@ nav a.icon:hover {
     text-shadow: 0px 0px 20px rgba(240, 154, 83, 0.6) !important;
     color: #f09a53 !important;
 }
+
+.thumbnail {
+    width: 15%;
+}
+
+.table-border-bottom tr:nth-last-child(-n+2) td {
+    border-bottom: none;
+}
+
+.table-border-bottom td,
+    .table-border-bottom th {
+      border-bottom: 1px solid #80808080; /* Change color as needed */
+}
 /* @keyframes text-pulse {
     0% { font-size: 100%; }
     50% { font-size: 105%; }

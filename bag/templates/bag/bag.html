@@ -18,24 +18,24 @@
         <div class="col text-center">
             <h2 class="logo-font text-uppercase text-black">Shopping Basket</h2>
        </div>
-       <hr class="mt-4">
+       <hr class="mt-4 mx-2 px-1">
     </div> 
-    <div class="row mb-4">
+    <div class="row">   
         <div class="col-12 col-md-10 col-lg-8">
             {% if bag_items %}
             <div class="table-responsive rounded-1">
-                <table class="table table-sm table-borderless">
+                <table class="table table-sm table-borderless"> <!-- table-border-bottom-->
                     <thead>
                         <th scope="col">Product Info</th>
                         <th scope="col"></th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Qty</th>
-                        <th scope="col">Subtotal</th>
+                        <th scope="col" class="text-end">Price</th>
+                        <th scope="col" class="text-end">Qty</th>
+                        <th scope="col" class="text-end">Subtotal</th>
                     </thead>
 
                     {% for item in bag_items %}
                     <tr>
-                        <td class="w-25 p-0 p-lg-2">
+                        <td class="thumbnail p-0 p-lg-2">
                             {% if item.product.image %}
                             <img class="img-fluid rounded-1 p-3" src="{{ item.product.image.url }}" alt="Image of {{ item.product.name }}">
                             {% else %}
@@ -96,6 +96,7 @@
             </a>
             {% endif %}
         </div>
+        <hr class="my-4 mx-2">
     </div>
 </div>
 
