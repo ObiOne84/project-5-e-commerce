@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [os.environ.get('LOCAL_HOST'), 'owl-bookstore-2a747a64a0a9.herokuapp.com/',]
+ALLOWED_HOSTS = [os.environ.get('LOCAL_HOST'), 'owl-bookstore-2a747a64a0a9.herokuapp.com',]
 
 
 # Application definition
