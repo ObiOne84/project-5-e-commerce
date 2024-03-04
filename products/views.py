@@ -109,8 +109,8 @@ def all_products(request):
     current_sorting = f'{sort}_{direction}'
     print(current_sorting)
 
-    products_list = list(products)
-    total_products = len(products_list)
+    # products_list = list(products)
+    # total_products = len(products_list)
     is_paginated = total_products > 18
     paginator = Paginator(products, 18)
 
