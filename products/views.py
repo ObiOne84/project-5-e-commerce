@@ -7,6 +7,7 @@ from django.views import View
 from django.contrib.auth.decorators import login_required
 from itertools import chain
 from django.db.models.functions import Lower
+from django.db.models import F
 
 from .models import Comic, Book, Review, Subcategory, Category
 from .forms import ReviewForm, AddComicForm, AddBookForm
@@ -14,13 +15,13 @@ from .forms import ReviewForm, AddComicForm, AddBookForm
 
 def all_products(request):
     """A view to display all products, with sorting and filetring"""
-
+    # changed all union to list(chain)
     comics = Comic.objects.all()
     books = Book.objects.all()
     # Source: https://docs.djangoproject.com/en/3.0/ref/models/querysets/#union
-    products = comics.union(books)
+    products = list(chain(comics, books))
+    # products = comics.union(books)
     category = Category.objects.all()
-    # print('LINE 20: ', products)
     # Source: Boutique Ado walkthrough project
     query = None
     categories = None
@@ -28,29 +29,7 @@ def all_products(request):
     direction = None
 
 
-    if request.GET:
-        # if 'sort' in request.GET:
-        #     sortkey = request.GET['sort']
-        #     sort = sortkey
-        #     if sortkey == 'category':
-        #             books = books.annotate(category_name=Lower('category__name'))
-        #             comics = comics.annotate(category_name=Lower('category__name'))
-        #             products = list(chain(comics, books))
-        #             if 'direction' in request.GET:
-        #                 direction = request.GET['direction']
-        #                 if direction == 'asc' or None:
-        #                     products = sorted(products, key=lambda x: x.category_name)
-        #                 else:
-        #                     products = sorted(products, key=lambda x: x.category_name, reverse=True)
-        #     else:
-        #         if sortkey == 'name':
-        #             sortkey = 'title'
-        #         if 'direction' in request.GET:
-        #             direction = request.GET['direction']
-        #             if direction == 'desc':
-        #                 sortkey = f'-{sortkey}'
-        #         products = products.order_by(sortkey)
-           
+    if request.GET:           
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             if categories == ['books']:
@@ -62,7 +41,8 @@ def all_products(request):
             else:
                 comics = comics.filter(category__name__in=categories)
                 books = books.filter(category__name__in=categories)
-                products = comics.union(books)
+                # products = comics.union(books)
+                products = list(chain(comics, books))
                 categories = Category.objects.filter(name__in=categories)
                 category_display_names = ', '.join(category.display_name for category in categories)
                 if len(products) > 0:
@@ -83,21 +63,59 @@ def all_products(request):
                             products = sorted(products, key=lambda x: x.category_name)
                         else:
                             products = sorted(products, key=lambda x: x.category_name, reverse=True)
-            else:
-                if sortkey == 'name':
+            elif sortkey == 'name':
                     sortkey = 'title'
-                if 'direction' in request.GET:
-                    direction = request.GET['direction']
-                    if direction == 'desc':
-                        sortkey = f'-{sortkey}'
-                products = products.order_by(sortkey)
+                    # Annotate both querysets with a common field name for title
+                    books = books.annotate(product_title=Lower('title'))
+                    comics = comics.annotate(product_title=Lower('title'))
+                    # Combine the annotated querysets
+                    products = list(chain(comics, books))
+                    if 'direction' in request.GET:
+                        direction = request.GET['direction']
+                        # Sort the combined queryset by title
+                        if direction == 'asc' or None:
+                            products = sorted(products, key=lambda x: x.product_title)
+                        else:
+                            products = sorted(products, key=lambda x: x.product_title, reverse=True)
+            elif sortkey == 'price':
+                    # Annotate both querysets with a common field name for price
+                    books = books.annotate(product_price=F('price'))
+                    comics = comics.annotate(product_price=F('price'))
+                    # Combine the annotated querysets
+                    products = list(chain(comics, books))
+                    if 'direction' in request.GET:
+                        direction = request.GET['direction']
+                        # Sort the combined queryset by price
+                        if direction == 'asc' or None:
+                            products = sorted(products, key=lambda x: x.product_price)
+                        else:
+                            products = sorted(products, key=lambda x: x.product_price, reverse=True)
+            elif sortkey == 'rating':
+                    # Annotate both querysets with a common field name for rating
+                    books = books.annotate(product_rating=F('rating'))
+                    comics = comics.annotate(product_rating=F('rating'))
+                    # Combine the annotated querysets
+                    products = list(chain(comics, books))
+                    if 'direction' in request.GET:
+                        direction = request.GET['direction']
+                        # Sort the combined queryset by rating
+                        if direction == 'asc' or None:
+                            products = sorted(products, key=lambda x: x.product_rating)
+                        else:
+                            products = sorted(products, key=lambda x: x.product_rating, reverse=True)
+            #     if 'direction' in request.GET:
+            #         direction = request.GET['direction']
+            #         if direction == 'desc':
+            #             sortkey = f'-{sortkey}'
+            #     products = products.order_by(sortkey)
         if 'q' in request.GET:
             query = request.GET['q']
             if query:
                 queries = Q(title__icontains=query) | Q(author__icontains=query)
                 comics = comics.filter(queries)
                 books = books.filter(queries)
-                products = comics.union(books)
+                product = list(chain(comics, books))
+                # products = comics.union(books)
                 # print('LINE 78: ', products)
                 if len(products) == 0:
                     messages.error(request, f"Sorry we didn't find any product matching '{query}'.")
@@ -131,46 +149,6 @@ def all_products(request):
 
     return render(request, 'products/products.html', context)
 
-# def all_products(request):
-#     """A view to display all products, combining Comics and Books."""
-
-#     # Fetch and annotate each queryset for sorting
-#     comics = Comic.objects.annotate(lower_name=Lower('title'))
-#     books = Book.objects.annotate(lower_name=Lower('title'))
-    
-#     # Initialize variables
-#     query = None
-#     categories = None
-#     sort = None
-#     direction = None
-#     products_list = []
-
-#     if request.GET:
-#         sortkey = request.GET.get('sort', 'title') 
-#         direction = request.GET.get('direction', 'asc')
-#         if direction == 'desc':
-#             sortkey = f'-{sortkey}'
-
-#         combined_queryset = list(comics) + list(books)
-
-#         if sortkey in ['title', '-title']:
-#             combined_queryset.sort(key=lambda x: getattr(x, sortkey.strip('-')), reverse=direction == 'desc')
-
-#         products_list = combined_queryset
-
-#     paginator = Paginator(products_list, 24)
-#     page_number = request.GET.get("page")
-#     page_obj = paginator.get_page(page_number)
-
-#     context = {
-#         'page_obj': page_obj,
-#         'paginator': paginator,
-#         'search_term': query,
-#         'current_categories': categories,
-#         'current_sorting': f'{sort}_{direction}',
-#     }
-
-#     return render(request, 'products/products.html', context)
 
 def product_detail(request, product_id):
     """A view to display product details and handle review functionality"""
