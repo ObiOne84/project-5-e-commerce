@@ -79,18 +79,18 @@
                             <div class="col-10 col-sm-12 col-md-8 mt-1 mx-0">
                                 <p class="mt-2"><strong>Quantity:</strong></p>
                                 <div class="form-group">
-                                    <div class="input-group mb-3 w-50">
-                                        <button class="decrement-qty btn btn-black-brown rounded-left p-1 m-0"
+                                    <div class="input-group mb-3 w-50 input-group-{{ item.item_id }}">
+                                        <button class="decrement-qty btn btn-black-brown rounded-left p-1 m-0 decrement-qty_{{ item.item_id }}"
                                             type="button" data-item_id="{{ product.id }}"
                                             id="decrement-qty_{{ product.id }}">
                                             <span class="px-2">
                                                 <i class="fa-solid fa-minus"></i>
                                             </span>
                                         </button>
-                                        <input class="form-control qty_input m-0 p-1 text-center" type="number" name="quantity"
+                                        <input class="form-control qty_input m-0 p-1 text-center id_qty_{{ item.item_id }}" type="number" name="quantity"
                                             value="1" min="1" max="10" data-item_id="{{ product.id }}"
                                             id="id_qty_{{ product.id }}">
-                                        <button class="increment-qty btn btn-black-brown rounded-right p-1 m-0"
+                                        <button class="increment-qty btn btn-black-brown rounded-right p-1 m-0 increment-qty_{{ item.item_id }}"
                                             type="button" data-item_id="{{ product.id }}"
                                             id="increment-qty_{{ product.id }}">
                                             <span class="px-2">
