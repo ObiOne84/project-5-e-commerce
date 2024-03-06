@@ -47,7 +47,7 @@ class Product(models.Model):
     description = models.TextField()
     category = models.ForeignKey(
         'Category', null=True, blank=True, on_delete=models.SET_NULL,
-        default='Non Available'
+        default=19
     )
     subcategory = models.ForeignKey('Subcategory', null=True, blank=True, on_delete=models.SET_NULL)
     published_date = models.IntegerField(null=True, blank=True)

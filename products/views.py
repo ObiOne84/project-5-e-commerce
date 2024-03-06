@@ -54,12 +54,12 @@ def all_products(request):
             sortkey = request.GET['sort']
             sort = sortkey
             if sortkey == 'category':
-                    books = books.annotate(category_name=Lower('category__name'))
-                    comics = comics.annotate(category_name=Lower('category__name'))
+                    books = books.annotate(category_name=Lower('category__name')).exclude(category__isnull=True)
+                    comics = comics.annotate(category_name=Lower('category__name')).exclude(category__isnull=True)
                     products = list(chain(comics, books))
                     if 'direction' in request.GET:
                         direction = request.GET['direction']
-                        if direction == 'asc' or None:
+                        if direction == 'asc' or direction is None:
                             products = sorted(products, key=lambda x: x.category_name)
                         else:
                             products = sorted(products, key=lambda x: x.category_name, reverse=True)
