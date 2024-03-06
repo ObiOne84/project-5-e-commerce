@@ -25,8 +25,8 @@
             <div class="py-md-2 py-lg-4 text-center table-row">
                 <form class="form update-form " action="{% url 'adjust_bag' item.item_id %}" method="POST">
                     {% csrf_token %}
-                    <div class="form-group input-group-{{ item.item_id }}">
-                        <div class="input-group mb-3">
+                    <div class="form-group">
+                        <div class="input-group mb-3 input-group-{{ item.item_id }}">
                             <button class="decrement-qty btn btn-sm btn-black-brown rounded-left m-0 decrement-qty_{{ item.item_id }}" type="button"
                                 data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
                                 <span>

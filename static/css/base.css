@@ -311,9 +311,9 @@ nav a.icon:hover {
     color: #f09a53 !important;
 }
 
-.thumbnail {
+/* .thumbnail {
     width: 17%;
-}
+} */
 
 .table-border-bottom tr:nth-last-child(-n+2) td {
     border-bottom: none;
@@ -326,12 +326,29 @@ nav a.icon:hover {
 }
 
 .table-qty-col {
-    min-width: 100px;
+    min-width: 80px;
 }
 
 .bag-total-info,
 p.my-0.text-end {
     margin-right: 0.5rem;
+}
+
+.custom-overflow {
+    /* Set a fixed height for the container */
+    height: 500px;
+    /* Adjust as needed */
+
+    /* Allow vertical scrolling */
+    overflow-y: auto;
+
+    /* Hide horizontal scrollbar */
+    overflow-x: hidden;
+}
+
+.price-content {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
 }
 
 /* @keyframes text-pulse {
@@ -361,10 +378,6 @@ p.my-0.text-end {
         transform: none;
     }
 
-    .thumbnail {
-        width: 50% !important;
-    }
-
     /* ----Mobile admin dropdown menu */
     /* .dropdown-menu li {
         display: inline-block;
@@ -388,14 +401,22 @@ p.my-0.text-end {
     .dropdown-menu>li:focus>.dropdown-submenu {
         display: block;
     }
-/* overflow for mobile devices */
+
+    /* overflow for mobile devices */
     .overflow-auto {
         max-height: 600px !important;
     }
 
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        /* Adjust padding for smaller buttons */
+        font-size: 0.875rem;
+        /* Adjust font size for smaller buttons */
+    }
+
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .row.py-md-3.nav.mobile-nav-tabs {
         min-height: 50px;
     }
@@ -403,12 +424,19 @@ p.my-0.text-end {
     .dropdown-menu[data-bs-popper] {
         left: -50% !important;
     }
+
+    .thumbnail {
+        width: 50% !important;
+    }
 }
 
 @media (max-width: 576px) {
 
-    .basket-btn,
-    .bag-total-info {
+    .basket-btn {
         font-size: 90%;
+    }
+
+    .thumbnail {
+        width: 75% !important;
     }
 }

@@ -73,7 +73,7 @@ def all_products(request):
                     if 'direction' in request.GET:
                         direction = request.GET['direction']
                         # Sort the combined queryset by title
-                        if direction == 'asc' or None:
+                        if direction == 'asc' or direction is None:
                             products = sorted(products, key=lambda x: x.product_title)
                         else:
                             products = sorted(products, key=lambda x: x.product_title, reverse=True)
@@ -86,7 +86,7 @@ def all_products(request):
                     if 'direction' in request.GET:
                         direction = request.GET['direction']
                         # Sort the combined queryset by price
-                        if direction == 'asc' or None:
+                        if direction == 'asc' or direction is None:
                             products = sorted(products, key=lambda x: x.product_price)
                         else:
                             products = sorted(products, key=lambda x: x.product_price, reverse=True)
@@ -99,7 +99,7 @@ def all_products(request):
                     if 'direction' in request.GET:
                         direction = request.GET['direction']
                         # Sort the combined queryset by rating
-                        if direction == 'asc' or None:
+                        if direction == 'asc' or direction is None:
                             products = sorted(products, key=lambda x: x.product_rating)
                         else:
                             products = sorted(products, key=lambda x: x.product_rating, reverse=True)
