@@ -7,7 +7,6 @@ $(document).ready(function () {
         var plusDisabled = currentValue > 9;
         $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
         $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
-        console.log(currentValue);
     }
 
     // Ensure proper enabling/disabling of all inputs on page load
@@ -16,7 +15,6 @@ $(document).ready(function () {
         var itemId = $(allQtyInput[i]).data('item_id');
         handleEnableDisable(itemId);
     }
-    console.log(allQtyInput);
 
     // Check enable/disable every time the input is changed
     $('.qty_input').change(function() {
@@ -32,9 +30,6 @@ $(document).ready(function () {
         var currentValue = parseInt($(closestInput).val());
         $(closestInput).val(currentValue + 1);
         handleEnableDisable(itemId);
-        // console.log(closestInput);
-        // console.log(itemId);
-        // console.log(currentValue);
     });
 
     // Decrement quantity
@@ -45,8 +40,5 @@ $(document).ready(function () {
         var currentValue = parseInt($(closestInput).val());
         $(closestInput).val(currentValue - 1);
         handleEnableDisable(itemId);
-        // console.log(closestInput);
-        // console.log(itemId);
-        // console.log(currentValue);
     });
 });

@@ -312,7 +312,7 @@ nav a.icon:hover {
 }
 
 .thumbnail {
-    width: 18%;
+    width: 17%;
 }
 
 .table-border-bottom tr:nth-last-child(-n+2) td {
@@ -320,8 +320,13 @@ nav a.icon:hover {
 }
 
 .table-border-bottom td,
-    .table-border-bottom th {
-      border-bottom: 1px solid #80808080; /* Change color as needed */
+.table-border-bottom th {
+    border-bottom: 1px solid #80808080;
+    /* Change color as needed */
+}
+
+.table-qty-col {
+    min-width: 100px;
 }
 
 .bag-total-info,
@@ -356,6 +361,10 @@ p.my-0.text-end {
         transform: none;
     }
 
+    .thumbnail {
+        width: 50% !important;
+    }
+
     /* ----Mobile admin dropdown menu */
     /* .dropdown-menu li {
         display: inline-block;
@@ -379,6 +388,10 @@ p.my-0.text-end {
     .dropdown-menu>li:focus>.dropdown-submenu {
         display: block;
     }
+/* overflow for mobile devices */
+    .overflow-auto {
+        max-height: 600px !important;
+    }
 
 }
 
@@ -389,5 +402,13 @@ p.my-0.text-end {
 
     .dropdown-menu[data-bs-popper] {
         left: -50% !important;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .basket-btn,
+    .bag-total-info {
+        font-size: 90%;
     }
 }

@@ -1,17 +1,16 @@
 {% load bag_tools %}
-<div class="table table-sm table-borderless d-block d-lg-none">
+<div class="table table-sm table-borderless d-block d-lg-none overflow-auto">
     {% for item in bag_items %}
-    <div class="col-12 text-center text-sm-left">Product Info</div>
+    <div class="col-12 text-start text-sm-center">Product Info</div>
     <div class="row table-row mx-2">
-        <div class="col-12 col-sm-6 w-25">
+        <div class="col-12 col-sm-6">
             {% if item.product.image %}
-            <img class="img-fluid rounded-1" src="{{ item.product.image.url }}" alt="Image of {{ item.product.name }}">
+            <img class="img-fluid rounded-1 d-block mx-auto thumbnail" src="{{ item.product.image.url }}" alt="Image of {{ item.product.name }}">
             {% else %}
             <img class="img-fluid rounded-1" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
             {% endif %}
         </div>
-        <div class="col-12 col-sm-6">
-            
+        <div class="col-12 col-sm-6 p-0 m-0">
             <p class="my-0">{{ item.product.title }}</p>
             <p class="my-0 small text-muted">Author(s): {{ item.product.author }}</p>
             <div class="d-flex justify-content-between">
@@ -26,34 +25,34 @@
             <div class="py-md-2 py-lg-4 text-center table-row">
                 <form class="form update-form " action="{% url 'adjust_bag' item.item_id %}" method="POST">
                     {% csrf_token %}
-                    <div class="form-group">
+                    <div class="form-group input-group-{{ item.item_id }}">
                         <div class="input-group mb-3">
-                            <button class="decrement-qty btn btn-sm btn-black-brown rounded-left m-0" type="button"
+                            <button class="decrement-qty btn btn-sm btn-black-brown rounded-left m-0 decrement-qty_{{ item.item_id }}" type="button"
                                 data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
                                 <span>
                                     <i class="fa-solid fa-minus fa-sm"></i>
                                 </span>
                             </button>
-                            <input class="form-control form-control-sm qty_input p-0 m-0 text-center item-quantity"
+                            <input class="form-control form-control-sm qty_input p-0 m-0 text-center id_qty_{{ item.item_id }}"
                                 type="number" name="quantity" value="{{ item.quantity }}" min="1" max="10"
                                 data-item_id="{{ item.item_id }}" data-product_title="{{ item.product.title }}"
                                 id="id_qty_{{ item.item_id }}">
-                            <button class="increment-qty btn btn-sm btn-black-brown rounded-right m-0" type="button"
+                            <button class="increment-qty btn btn-sm btn-black-brown rounded-right m-0 increment-qty_{{ item.item_id }}" type="button"
                                 data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
                                 <span>
                                     <i class="fa-solid fa-plus fa-sm"></i>
                                 </span>
                             </button>
                             <a class="update-item btn btn-sm btn-outline-info mx-1 rounded-1"><small><i
-                                class="fa-solid fa-rotate"></i></small></a>
-                    <a id="remove_{{ item.item_id }}" class="remove-item btn btn-sm btn-outline-danger float-end"><small><i
-                                class="fa-solid fa-trash-can"></i></small></a>
+                                        class="fa-solid fa-rotate"></i></small></a>
+                            <a id="remove_{{ item.item_id }}"
+                                class="remove-item btn btn-sm btn-outline-danger float-end"><small><i
+                                        class="fa-solid fa-trash-can"></i></small>
+                            </a>
                         </div>
                     </div>
                 </form>
-                
             </div>
-
         </div>
     </div>
     <hr>
