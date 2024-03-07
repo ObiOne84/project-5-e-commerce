@@ -114,7 +114,7 @@ def all_products(request):
                 queries = Q(title__icontains=query) | Q(author__icontains=query)
                 comics = comics.filter(queries)
                 books = books.filter(queries)
-                product = list(chain(comics, books))
+                products = list(chain(comics, books))
                 # products = comics.union(books)
                 # print('LINE 78: ', products)
                 if len(products) == 0:
