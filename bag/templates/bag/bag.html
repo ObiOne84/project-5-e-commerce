@@ -38,12 +38,14 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-sm-4 col-md-2">
+                        <a href="{% url 'product_detail' item.product.id %}">
                         {% if item.product.image %}
                         <img class="img-fluid rounded-1 mx-auto mx-md-0 thumbnail d-block" src="{{ item.product.image.url }}"
                             alt="Image of {{ item.product.name }}">
                         {% else %}
                         <img class="img-fluid rounded-1 mx-auto mx-md-0 thumbnail d-block" src="{{ MEDIA_URL }}noimage.png" alt="No image available for {{ item.product.name }}">
                         {% endif %}
+                        </a>
                     </div>
                     <div class="col-12 col-sm-8 col-md-4 my-3 my-md-0">
                         <p class="my-0">{{ item.product.title }}</p>
@@ -133,14 +135,10 @@
     $('.update-item').click(function (e) {
         e.preventDefault(); // Prevent default form submission behavior
         var qtyInputVal = parseInt($(this).closest('.table-row').find('.qty_input').val());
-        console.log(qtyInputVal);
         var productTitle = $(this).closest('.table-row').find('.qty_input').data('product_title');
         if (qtyInputVal > 0 && qtyInputVal < 11) {
             var form = $(this).closest('.table-row').find('.update-form');
-            console.log('post');
-            console.log(form);
             form.submit();
-
         } else {
             alert(
                 `You are attempting to add ${qtyInputVal} units of ${productTitle}. You can choose max 10 and min 1 product.`
@@ -150,20 +148,20 @@
 
     // Remove item and reload on click
     $('.remove-item').click(function (e) {
-        e.preventDefault(); // Prevent default link behavior
-        var csrfToken = "{{ csrf_token }}"; // Retrieve CSRF token from template
-        var itemId = $(this).attr('id').split('remove_')[1]; // Extract item ID from button ID
-        var url = `/bag/remove/${itemId}/`; // Construct URL for removing item
+        e.preventDefault();
+        var csrfToken = "{{ csrf_token }}";
+        var itemId = $(this).attr('id').split('remove_')[1];
+        var url = `/bag/remove/${itemId}/`;
 
         // Send POST request to remove item
         $.post(url, {
                 csrfmiddlewaretoken: csrfToken
-            }) // Include CSRF token in data
+            })
             .done(function () {
-                location.reload(); // Reload page after successful removal
+                location.reload();
             })
             .fail(function () {
-                console.error('Failed to remove item.'); // Log error if removal fails
+                console.error('Failed to remove item.');
             });
     });
 </script>

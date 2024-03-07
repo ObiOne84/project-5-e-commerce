@@ -1,0 +1,44 @@
+.stripe-style-input {
+    border: 1px solid gray;
+    border-radius: 0.25rem;
+    margin: 0.5rem 0 0.5rem 0;
+}
+
+.summary-container {
+    background-color: #e5e8ebbb;
+}
+
+.item-row:hover {
+    background-color: white;
+}
+
+/* popover style */
+/* Custom styles for the popover */
+.popover-content {
+    background-color: #2482e0; /* Set background color */
+    color: #333; /* Set text color */
+    border: 1px solid #ccc; /* Set border */
+    border-radius: 5px; /* Set border radius */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add box shadow */
+    padding: 10px; /* Add padding */
+}
+
+/* Optional: Custom styles for the popover arrow */
+.popover-arrow {
+    border-top-color: #f8f9fa; /* Match background color */
+}
+
+/* Optional: Custom styles for popover title */
+.popover-header {
+    background-color: #007bff; /* Set background color */
+    color: #fff; /* Set text color */
+    border-bottom: 1px solid #007bff; /* Add border bottom */
+    border-radius: 5px 5px 0 0; /* Set border radius */
+    padding: 10px; /* Add padding */
+}
+
+/* Optional: Custom styles for popover title close button */
+.popover-header .btn-close {
+    color: #fff; /* Set close button color */
+    font-size: 1rem; /* Set close button font size */
+}
