@@ -124,7 +124,7 @@
         </div>
         {% endif %}
         {% endfor %}
-        <hr class="d-none d-sm-block my-4 {% if is_paginated %} d-sm-none {% endif %}">
+        <hr class="d-none my-4 {% if total_products > 17 %}d-none{% else %}d-sm-block{% endif %}">
     </div>
 
     <!-- source: https://docs.djangoproject.com/en/5.0/topics/pagination/ -->

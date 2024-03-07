@@ -51,7 +51,7 @@
                 <div class="col-lg-8 col-sm-7 mt-3">
                     <p class="fs-4 fw-bold logo-font">{{ product.title }}</p>
                     <p class="overflow-hidden dynamic-text"><strong>Author(s):</strong><span
-                            class="small ps-1">{{ product.author }}</span></p>
+                            class="small ps-1 btt-link">{{ product.author }}</span></p>
                     <p class="fw-bold fs-5">${{ product.price }}</p>
                     {% if product_type == 'book' %}
                     <a href="{% url 'products' %}?category=books" class="text-decoration-none">

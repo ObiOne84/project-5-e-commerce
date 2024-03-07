@@ -311,19 +311,15 @@ nav a.icon:hover {
     color: #f09a53 !important;
 }
 
-/* .thumbnail {
-    width: 17%;
-} */
-
-.table-border-bottom tr:nth-last-child(-n+2) td {
+/* .table-border-bottom tr:nth-last-child(-n+2) td {
     border-bottom: none;
 }
 
 .table-border-bottom td,
 .table-border-bottom th {
     border-bottom: 1px solid #80808080;
-    /* Change color as needed */
-}
+ 
+} */
 
 .table-qty-col {
     min-width: 80px;
@@ -335,32 +331,15 @@ p.my-0.text-end {
 }
 
 .custom-overflow {
-    /* Set a fixed height for the container */
     height: 500px;
-    /* Adjust as needed */
-
-    /* Allow vertical scrolling */
     overflow-y: auto;
-
-    /* Hide horizontal scrollbar */
     overflow-x: hidden;
 }
-
+/* check if below code is used in the bag html */
 .price-content {
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
+    flex-direction: column;
 }
-
-/* @keyframes text-pulse {
-    0% { font-size: 100%; }
-    50% { font-size: 105%; }
-    100% { font-size: 100%; }
-}
-
-.animated-text {
-    animation: text-pulse 2s alternate;
-*/
-
 
 /* -----MEDIA QUERIES ----------- */
 @media (max-width: 991.98px) {
@@ -377,25 +356,6 @@ p.my-0.text-end {
     nav a.icon:hover {
         transform: none;
     }
-
-    /* ----Mobile admin dropdown menu */
-    /* .dropdown-menu li {
-        display: inline-block;
-        position: relative;
-    }
-
-    .dropdown-menu .dropdown-submenu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-    } */
-
-    /* 
-    .dropdown-menu>li:hover>.dropdown-submenu {
-        display: block;
-    } */
 
     /* Show the dropdown submenu when its parent is focused */
     .dropdown-menu>li:focus>.dropdown-submenu {

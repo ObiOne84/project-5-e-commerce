@@ -129,11 +129,12 @@ def all_products(request):
 
     products_list = list(products)
     total_products = len(products_list)
-    is_paginated = total_products > 18
+    # is_paginated = total_products > 18
     paginator = Paginator(products, 18)
 
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
+    is_paginated = paginator.count > 18
 
     context = {
         # 'products': page_obj,
