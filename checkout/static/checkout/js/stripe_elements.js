@@ -57,6 +57,7 @@ form.addEventListener('submit', function(ev) {
         }
     }).then(function(result) {
         if (result.error) {
+            // show error to your customer (e.g. insuficient funds)
             var errorDiv = document.getElementById('card-errors');
             var html = `
                 <span class="icon" role="alert">
@@ -67,8 +68,14 @@ form.addEventListener('submit', function(ev) {
             card.update({ 'disabled': false});
             $('#submit-button').attr('disabled', false);
         } else {
+            // the payment has been processed!
             if (result.paymentIntent.status === 'succeeded') {
                 form.submit();
+                // show success message to your cutomer
+                // There is a risk of the customer closing the window before callback
+                // execution. Set up a webhook plugin to listen for the 
+                // payment_intent.succeeded event that handles any business critical
+                // post.payment actions.
             }
         }
     });

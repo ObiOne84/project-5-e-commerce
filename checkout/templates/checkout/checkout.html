@@ -27,7 +27,7 @@
     </div>
     <div class="row">
         <div class="col-12 col-lg-6 order-lg-last my-2 my-lg-5">
-            <div class="summary-container p-1 p-sm-2 p-lg-4">
+            <div class="summary-container p-1 p-sm-2 p-lg-4 rounded-1">
                 <p class="fw-bold">Order Summary ({{ product_count }} items)</p>
                 <div class="row">
                     <div class="col-1 d-none d-sm-inline text-start">
@@ -47,7 +47,7 @@
                 <div class="row">
                     <div class="col">
                         {% for item in bag_items %}
-                        <div class="row my-1 item-row" data-bs-toggle="collapse"
+                        <div class="row my-1 item-row rounded-1" data-bs-toggle="collapse"
                             href="#collapseItemNo{{ forloop.counter }}" role="button" aria-expanded="false"
                             aria-controls="collapseItemNo{{ forloop.counter }}">
                             <div class="col-1 d-none d-sm-inline">
@@ -72,7 +72,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="collapse" id="collapseItemNo{{ forloop.counter }}">
+                        <div class="collapse my-sm-1 rounded-1" id="collapseItemNo{{ forloop.counter }}">
                             <div class="card card-body">
                                 <div class="row">
                                     <div class="col-6 mt-1 mt-sm-0 col-sm-2 mb-2 order-last order-sm-first">
