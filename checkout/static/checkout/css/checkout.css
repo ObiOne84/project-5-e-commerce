@@ -71,3 +71,8 @@
     color: #aab7c4;
 }
 
+@media (max-width: 576px) {
+    .order-conf-img img {
+        width: 100% !important;
+    }
+}
