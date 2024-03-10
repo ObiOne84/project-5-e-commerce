@@ -38,36 +38,7 @@ select:invalid,
 select option[value=""] {
     color: #aab7c4 !important; 
 }
-/* popover style */
-/* Custom styles for the popover */
-.popover-content {
-    background-color: #2482e0; /* Set background color */
-    color: #333; /* Set text color */
-    border: 1px solid #ccc; /* Set border */
-    border-radius: 5px; /* Set border radius */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add box shadow */
-    padding: 10px; /* Add padding */
-}
 
-/* Optional: Custom styles for the popover arrow */
-.popover-arrow {
-    border-top-color: #faf8f8; /* Match background color */
-}
-
-/* Optional: Custom styles for popover title */
-.popover-header {
-    background-color: #007bff; /* Set background color */
-    color: #fff; /* Set text color */
-    border-bottom: 1px solid #007bff; /* Add border bottom */
-    border-radius: 5px 5px 0 0; /* Set border radius */
-    padding: 10px; /* Add padding */
-}
-
-/* Optional: Custom styles for popover title close button */
-.popover-header .btn-close {
-    color: #fff; /* Set close button color */
-    font-size: 1rem; /* Set close button font size */
-}
 /* Source: Boutique Ado walkthrough project */
 /* ------- Loading Spinner ----------- */
 #loading-overlay {
@@ -122,11 +93,11 @@ select option[value=""] {
         width: 100% !important;
     }
 }
-
+/* -----------------------------Not Used---------------------------------------------------------- */
 /* Popover style */
 .popover {
     font-size: 0.875rem; /* Assuming $font-size-sm is equivalent to 0.875rem */
-    background-color: #f3efef !important; /* Replace with the actual value of $popover-bg */
+    background-color: #f3efef; /* Replace with the actual value of $popover-bg */
     max-width: 276px; /* Replace with the actual value of $popover-max-width */
     border-width: 1px; /* Replace with the actual value of $popover-border-width */
     border-color: rgba(0, 0, 0, 0.2); /* Replace with the actual value of $popover-border-color */
