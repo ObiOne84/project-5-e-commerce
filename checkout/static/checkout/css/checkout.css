@@ -1,9 +1,25 @@
+#card-element,
 .stripe-style-input {
-    border: 1px solid gray;
-    border-radius: 0.25rem;
-    margin: 0.5rem 0 0.5rem 0;
+    border: 1px solid #e5e8ebbb !important;
+    border-radius: 0.25rem !important;
+    margin: 0.5rem 0 0.5rem 0 !important;
 }
 
+#card-element:focus,
+.stripe-style-input:focus {
+    border: 1px solid #f09a53 !important;
+} 
+
+#card-element:hover,
+.stripe-style-input:hover {
+    border: 1px solid #f09a53 !important;
+    background-color: #eebd962c;
+} 
+
+.form-check-input:checked {
+    background-color: #f09a53;
+    border-color: #080808;
+}
 .summary-container {
     background-color: #e5e8ebbb;
 }
@@ -12,6 +28,16 @@
     background-color: white;
 }
 
+select,
+select option {
+    padding: 0 10px !important;
+    color: #000000;
+}
+
+select:invalid,
+select option[value=""] {
+    color: #aab7c4 !important; 
+}
 /* popover style */
 /* Custom styles for the popover */
 .popover-content {
