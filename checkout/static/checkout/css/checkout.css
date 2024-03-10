@@ -25,7 +25,7 @@
 
 /* Optional: Custom styles for the popover arrow */
 .popover-arrow {
-    border-top-color: #f8f9fa; /* Match background color */
+    border-top-color: #faf8f8; /* Match background color */
 }
 
 /* Optional: Custom styles for popover title */
@@ -95,4 +95,30 @@
     .order-conf-img img {
         width: 100% !important;
     }
+}
+
+/* Popover style */
+.popover {
+    font-size: 0.875rem; /* Assuming $font-size-sm is equivalent to 0.875rem */
+    background-color: #f3efef !important; /* Replace with the actual value of $popover-bg */
+    max-width: 276px; /* Replace with the actual value of $popover-max-width */
+    border-width: 1px; /* Replace with the actual value of $popover-border-width */
+    border-color: rgba(0, 0, 0, 0.2); /* Replace with the actual value of $popover-border-color */
+    border-radius: 0.5rem; /* Replace with the actual value of $popover-border-radius */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Replace with the actual value of $popover-box-shadow */
+}
+.popover .popover-header {
+    background-color: #f2f2f2; /* Replace with the actual value of $popover-header-bg */
+    color: #000000; /* Replace with the actual value of $popover-header-color */
+    padding: 0.5rem 0.5rem; /* Replace with the actual values of $popover-header-padding-y and $popover-header-padding-x */
+}
+
+.popover .popover-body {
+    color: #333333; /* Replace with the actual value of $popover-body-color */
+    padding: 0.5rem; /* Replace with the actual values of $popover-body-padding-y and $popover-body-padding-x */
+}
+
+.popover .arrow::before {
+    border-width: 0.5rem; /* Replace with the actual values of $popover-arrow-width and $popover-arrow-height */
+    border-color: transparent transparent #ffffff transparent; /* Replace with the actual value of $popover-arrow-color */
 }
