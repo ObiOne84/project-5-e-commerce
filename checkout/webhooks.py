@@ -1,10 +1,12 @@
 from django.conf import settings
 from django.http import HttpResponse
+
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
-
 from checkout.webhook_handler import StripeWH_Handler
+
 import stripe
+
 
 @require_POST
 @csrf_exempt
@@ -26,14 +28,20 @@ def webhook(request):
         )
     except ValueError as e:
         # Invalid payload
+        print(f'You have problem with payload {e}')
         return HttpResponse(status=400)
-    except stripe.error.SignatureVerficationErro as e:
+    except stripe.error.SignatureVerificationError as e:
         # Invalid signature
+        print(f'You have problem with signature {e}')
         return HttpResponse(status=400)
     except Exception as e:
+        print(f'You have problem with exception {e}')
         return HttpResponse(content=e, status=400)
 
     # Set up a webhook handler
+    handler = StripeWH_Handler(request)
+
+    # Map webhook to relevant handler functions
     event_map = {
         'payment_intent.succeeded': handler.handle_payment_intent_succeeded,
         'payment_intent.payment_failed': handler.handle_payment_intent_payment_failed,

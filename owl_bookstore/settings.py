@@ -106,6 +106,8 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+SITE_ID = 1
+
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
@@ -116,8 +118,6 @@ LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'owlbookstore@example.com'
-
-SITE_ID = 1
 
 WSGI_APPLICATION = 'owl_bookstore.wsgi.application'
 
@@ -194,7 +194,7 @@ if 'USE_AWS' in os.environ:
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-    # 'https://owl-bookstore.s3.eu-west-1.amazonaws.com/static/'
+
     # Static and media files
     STATICFILES_STORAGE = 'custom_storages.StaticStorage'
     STATICFILES_LOCATION = 'static'
@@ -208,6 +208,7 @@ if 'USE_AWS' in os.environ:
 # Stripe
 FREE_DELIVERY_THRESHOLD = 50
 STANDARD_DELIVERY_PRECENTAGE = 10
+
 STRIPE_CURRENCY = 'usd'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
