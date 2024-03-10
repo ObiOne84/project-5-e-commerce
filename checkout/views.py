@@ -88,13 +88,12 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
         
-        print(intent)
         order_form = OrderForm()
 
     if not stripe_public_key:
         messages.warning(request, 'Stripe public key is missing. \
             Did you forget to set it in your enviorment?')
-
+    print(intent)
     template = 'checkout/checkout.html'
     context = {
         'order_form': order_form,
