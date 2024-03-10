@@ -86,7 +86,12 @@
                 {% for item in order.lineitems.all %}
                     {% if order.lineitems.count > 10 %}
                     <div class="row my-1">
-                        <p>A lot in your order</p>
+                        <div class="col-8">
+                            {{ item.product.title }}
+                        </div>
+                        <div class="col-4 text-end">
+                            <p class="mb-0"></p>{{ item.quantity }} x ${{ item.product.price }}
+                        </div>
                     </div>     
                     {% else %}
                     <div class="row my-1">
@@ -100,7 +105,7 @@
                             {% endif %}
                         </div>
                         <div class="col-9 col-sm-10 text-start">
-                            <p class="mb-0 p-0 fw-bold"> {{ item.product.title }}</p>
+                            <p class="mb-0 p-0 fw-bold">{{ item.product.title }}</p>
                             <p class="mb-0">{{ item.quantity }} x ${{ item.product.price }}</p>
                         </div>
                     </div>
@@ -135,14 +140,14 @@
                         <p class="mb-0">${{ order.delivery_cost }}</p>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-6">
                         <p class="mb-0 p-0 fw-bold text-danger">Discount:</p>
                     </div>
                     <div class="col-6 text-end text-danger">
                         <p class="mb-0">-$0.00</p>
                     </div>
-                </div>
+                </div> -->
                 <div class="row">
                     <div class="col-6">
                         <p class="mb-0 p-0 fw-bold fs-5">Grand Total:</p>
