@@ -60,13 +60,13 @@
                                 </a>
                             </td>
                             <td>
-                                {{ order.date }}
+                                {{ order.date|date:"SHORT_DATE_FORMAT" }}
                             </td>
                             <td>
                                 <ul class="list-unstyled">
                                     {% for item in order.lineitems.all %}
                                     <li class="small">
-                                        {{ item.product.name }} x {{ item.quantity }}
+                                        {{ item.product.title|truncatechars:20 }} x {{ item.quantity }}
                                     </li>
                                     {% endfor %}
                                 </ul>
