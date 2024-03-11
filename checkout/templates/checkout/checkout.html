@@ -171,9 +171,9 @@
                     <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                     <input type="hidden" value="{{ client_secret }}" name="client_secret">
                 </fieldset>
-                <div class="submit-button text-right mt-5 mb-2">
+                <div class="submit-button text-end mt-5 mb-2">
                     <!-- Below is the link to shopping bag, in case user want to adjust anything in the bag  -->
-                    <a href="{% url 'view_bag' %}" class="btn btn-sm pagination-btn rounded-1 text-uppercase">
+                    <a href="{% url 'view_bag' %}" class="btn pagination-btn rounded-1 text-uppercase">
                         <span class="font-weight-bold"><i class="fa-solid fa-angles-left"></i> Basket</span>
                     </a>
                     <!--  submit button that will submit form with JS script  -->
