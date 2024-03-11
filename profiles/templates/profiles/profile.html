@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'profiles/css/profile.css' %}">
+{% endblock %}
+
+
+{% block page_header %}
+<div class="container top-space">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay-cover"></div>
+<!-- dont forget to remove min-height 400px -->
+<div class="container-lg h-100" style="min-height: 400px;">
+    <div class="row mb-3">
+        <div class="col text-center my-2 pb-2">
+            <h2 class="logo-font text-uppercase">Profile</h2>
+        </div>
+        <hr class="m-0 p-0">
+    </div>
+</div>
+
+{% endblock %}
