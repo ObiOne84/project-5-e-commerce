@@ -27,8 +27,11 @@ class UserProfile(models.Model):
 
 
 @receiver(post_save, sender=User)
-def create_or_update_profile(sender, instance, **kwargs):
+def create_or_update_profile(sender, instance, created, **kwargs):
     """
-    Update order total on lineitem delete
+    Create or update the user profile
     """
-    instance.order.update_total()
+    if created:
+        UserProfile.objects.create(user=instance)
+    # Exisiting users:just save the profile
+    instance.userprofile.save()

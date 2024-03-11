@@ -84,7 +84,7 @@
                             <ul class="dropdown-menu bg-orange" aria-labelledby="user-options">
                                 {% if request.user.is_authenticated %}
                                 <!-- add link to accounts -->
-                                <li><a class="dropdown-item" href="#"><i class="fa-regular fa-id-card me-1"></i> My
+                                <li><a class="dropdown-item" href="{% url 'profile' %}"><i class="fa-regular fa-id-card me-1"></i> My
                                         Profile</a></li>
                                 <li><a class="dropdown-item" href="{% url 'account_logout' %}"><i
                                             class="fa-solid fa-right-from-bracket fa-flip-horizontal me-1"></i>

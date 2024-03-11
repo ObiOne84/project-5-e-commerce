@@ -14,7 +14,7 @@
             <div class="dropdown-menu" aria-labelledby="user-options">
                 {% if request.user.is_authenticated %}
                 <!-- add link to accounts -->
-                <a class="dropdown-item" href="#">My Profile</a>
+                <a class="dropdown-item" href="{% url 'profile' %}">My Profile</a>
                 <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
                 {% if request.user.is_superuser %}
                 <!-- Source: https://mdbootstrap.com/docs/standard/extended/dropdown-multilevel/# -->
