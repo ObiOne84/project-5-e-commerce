@@ -160,5 +160,12 @@
         </div>
         <hr class="my-4 p-0 order-last">
     </div>
+    <div class="row">
+        <div class="col-12 col-md-8 text-end">
+            {% if from_profile %}
+                	<a href="{% url 'profile' %}" class="brn btn-black-brown rounded-1 my-2 text-uppercase">Back to My Profile</a>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock %}
