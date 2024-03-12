@@ -20,10 +20,24 @@
 <div class="container-lg h-100" style="min-height: 400px;">
     <div class="row mb-3">
         <div class="col text-center my-2 pb-2">
+            {% if from_profile %}
+            <h2 class="logo-font text-uppercase">Order History</h2>
+            {% else %}
             <h2 class="logo-font text-uppercase">Thank You</h2>
+            {% endif %}
         </div>
         <hr class="m-0 p-0">
+        {% if from_profile %}
+        <div class="col-12 mt-2">
+            <p class="mb-0">You order viewing order history for Order No: <strong>{{ order.order_number }}</strong></p>
+            <p>The confirmation email was sent to <strong>{{ order.email }}</strong>.</p>
+        </div>
+        <hr class="m-0 p-0">
+        {% else %}
+        <div class="col-12">
         <p>Your order information is below. A confirmation email will be sent to <strong>{{ order.email }}</strong>.</p>
+        </div>
+        {% endif %}
     </div>
     <div class="row">
         <div class="col-12 col-lg-6">
@@ -156,16 +170,17 @@
                         <p class="mb-0 fs-5 fw-bold">${{ order.grand_total }}</p>
                     </div>
                 </div>
+                <div class="row">
+                    {% if from_profile %}
+                    <div class="col-12 text-end border-top">     
+                        <a href="{% url 'profile' %}" class="btn btn-black-brown rounded-1 my-2 text-uppercase"><i class="fa-solid fa-angles-left"></i> Back to My Profile</a>      
+                    </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
+        
         <hr class="my-4 p-0 order-last">
-    </div>
-    <div class="row">
-        <div class="col-12 col-md-8 text-end">
-            {% if from_profile %}
-                	<a href="{% url 'profile' %}" class="brn btn-black-brown rounded-1 my-2 text-uppercase">Back to My Profile</a>
-            {% endif %}
-        </div>
     </div>
 </div>
 {% endblock %}

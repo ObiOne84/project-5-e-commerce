@@ -21,7 +21,20 @@
 <div class="container-lg h-100" style="min-height: 400px;">
     <div class="row mb-3">
         <div class="col text-center my-2 pb-2">
-            <h2 class="logo-font text-uppercase">Profile</h2>
+            <h2 class="logo-font text-uppercase">
+                {% if user.is_authenticated %}
+                    {% if user.first_name %}
+                        {% if user.first_name|length > 20 %}
+                            <span>Welcome, {{ user.first_name|slice:":20" }}...</span>
+                        {% else %}
+                        <span>{{ user.first_name }}'s </span>
+                        {% endif %}
+                    {% else %}
+                        <span>My </span>
+                    {% endif %}
+                {% endif %}
+                Profile
+            </h2>
         </div>
         <hr class="m-0 p-0">
     </div>
@@ -41,7 +54,7 @@
         </div>
         <div class="col-12 col-md-6">
             <p class="text-muted">Order History</p>
-            <div class="table-responsive">
+            <div class="table-responsive order-history-table">
                 <table class="table table-sm table-borderless">
                     <thead>
                         <tr>
