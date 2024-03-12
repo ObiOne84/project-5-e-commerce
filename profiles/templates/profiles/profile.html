@@ -40,18 +40,31 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-6">
-            <p class="text-muted">Default Delivery Information</p>
-            <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <div class="submit-button text-end mt-1 mb-2">
-                    <a href="{% url 'home' %}" class="btn pagination-btn rounded-1 text-uppercase me-1">
-                        <span class="font-weight-bold"><i class="fa-solid fa-angles-left"></i> Home</span>
-                    </a>
-                    <button class="btn btn-black-brown rounded-1 text-uppercase">Update Information</button>
+            <div class="row">
+                <div class="col-12">
+                    <!-- <a class="text-muted text-decoration-none" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Default Delivery Information <i class="fa-solid fa-caret-down"></i>
+                    </a> -->
+                    <p class="text-muted">Default Delivery Information</p>
+                <!-- </div>
+                <div class="col-12 collapse" id="collapseExample"> -->
+                    <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="submit-button text-end mt-1 mb-2">
+                            <a href="{% url 'home' %}" class="btn btn-sm pagination-btn rounded-1 text-uppercase me-1">
+                                <span class="font-weight-bold"><i class="fa-solid fa-angles-left"></i> Home</span>
+                            </a>
+                            <button class="btn btn-sm btn-black-brown rounded-1 text-uppercase">Update Information</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
+                <div class="col-12 my-3 border-top">
+                    <a class="text-muted text-decoration-none" href="{% url 'account_change_password' %}" aria-label="Link to change password"><span class="d-block mt-3">Change Password</span></a>    
+                </div>
+            </div>
         </div>
+        <hr class="mb-3 m-md-0 d-block d-md-none">
         <div class="col-12 col-md-6">
             <p class="text-muted">Order History</p>
             <div class="table-responsive order-history-table">
@@ -93,7 +106,9 @@
                 </table>
             </div>
         </div>
+        <hr class="my-2 p-0">
     </div>
+    
 </div>
 
 {% endblock %}
