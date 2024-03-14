@@ -1,17 +1,30 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from allauth.account.models import EmailAddress
 
 from .models import UserProfile
 from .forms import ProfileForm
 from checkout.models import Order
 
 
+@login_required
 def profile(request):
     """Display the user's profile"""
 
     profile = get_object_or_404(UserProfile, user=request.user)
 
-    form = ProfileForm(instance=profile)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully')
+        else:
+            messages.error(request, 'Update failed. Please ensure the form is valid.')
+    else:
+        form = ProfileForm(instance=profile)
+
     orders = profile.orders.all()
 
     template = 'profiles/profile.html'
@@ -23,6 +36,7 @@ def profile(request):
     return render(request, template, context)
 
 
+@login_required
 def order_history(request, order_number):
 
     order = get_object_or_404(Order, order_number=order_number)

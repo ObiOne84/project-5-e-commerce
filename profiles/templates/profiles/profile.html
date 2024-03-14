@@ -23,15 +23,15 @@
         <div class="col text-center my-2 pb-2">
             <h2 class="logo-font text-uppercase">
                 {% if user.is_authenticated %}
-                    {% if user.first_name %}
-                        {% if user.first_name|length > 20 %}
-                            <span>Welcome, {{ user.first_name|slice:":20" }}...</span>
-                        {% else %}
-                        <span>{{ user.first_name }}'s </span>
-                        {% endif %}
-                    {% else %}
-                        <span>My </span>
-                    {% endif %}
+                {% if user.first_name %}
+                {% if user.first_name|length > 20 %}
+                <span>Welcome, {{ user.first_name|slice:":20" }}...</span>
+                {% else %}
+                <span>{{ user.first_name }}'s </span>
+                {% endif %}
+                {% else %}
+                <span>My </span>
+                {% endif %}
                 {% endif %}
                 Profile
             </h2>
@@ -46,21 +46,23 @@
                         Default Delivery Information <i class="fa-solid fa-caret-down"></i>
                     </a> -->
                     <p class="text-muted">Default Delivery Information</p>
-                <!-- </div>
+                    <!-- </div>
                 <div class="col-12 collapse" id="collapseExample"> -->
                     <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                         {% csrf_token %}
-                        {{ form|crispy }}
+                        {{ form|crispy|safe }}
                         <div class="submit-button text-end mt-1 mb-2">
                             <a href="{% url 'home' %}" class="btn btn-sm pagination-btn rounded-1 text-uppercase me-1">
                                 <span class="font-weight-bold"><i class="fa-solid fa-angles-left"></i> Home</span>
                             </a>
-                            <button class="btn btn-sm btn-black-brown rounded-1 text-uppercase">Update Information</button>
+                            <button class="btn btn-sm btn-black-brown rounded-1 text-uppercase">Update
+                                Information</button>
                         </div>
                     </form>
                 </div>
                 <div class="col-12 my-3 border-top">
-                    <a class="text-muted text-decoration-none" href="{% url 'account_change_password' %}" aria-label="Link to change password"><span class="d-block mt-3">Change Password</span></a>    
+                    <a class="text-muted text-decoration-none" href="{% url 'account_change_password' %}"
+                        aria-label="Link to change password"><span class="d-block mt-3">Change Password</span></a>
                 </div>
             </div>
         </div>
@@ -108,7 +110,12 @@
         </div>
         <hr class="my-2 p-0">
     </div>
-    
+
 </div>
 
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script src="{% static 'profiles/js/profiles.js' %}" type="text/javascript"></script>
 {% endblock %}
