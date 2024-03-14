@@ -4,9 +4,11 @@
 
 {% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
 
-{% block inner_content %}
+{% block inner_page_title %}         
 <h2 class="text-uppercase">{% trans "Verify Your E-mail Address" %}</h2>
-<hr>
+{% endblock %}
+
+{% block inner_content %}
 
 {% url 'account_email' as email_url %}
 

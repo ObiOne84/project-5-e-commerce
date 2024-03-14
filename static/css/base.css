@@ -237,7 +237,10 @@ nav a.icon:hover {
 
 /* ----------Allauth ---------------- */
 
-.allauth-form-inner-content label:not([for='id_remember']) {
+/* .allauth-form-inner-content label:not([for='id_remember']) {
+    display: none;
+} */
+.allauth-form-inner-content label:not([for='id_remember']):not([for^='email_radio_']) {
     display: none;
 }
 

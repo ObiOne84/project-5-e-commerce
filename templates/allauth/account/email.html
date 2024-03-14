@@ -24,19 +24,19 @@
 
 {{ emailaddress.email }}
     {% if emailaddress.verified %}
-    <span class="verified">{% trans "Verified" %}</span>
+    <span class="text-success verified mx-1"><i class="fa-solid fa-check"></i> {% trans "Verified" %}</span>
     {% else %}
-    <span class="unverified">{% trans "Unverified" %}</span>
+    <span class="unverified text-danger mx-1"><i class="fa-solid fa-xmark"></i> {% trans "Unverified" %}</span>
     {% endif %}
-      {% if emailaddress.primary %}<span class="primary">{% trans "Primary" %}</span>{% endif %}
+      {% if emailaddress.primary %}<span class="primary mx-1 text-primary"><i class="fa-solid fa-at"></i> {% trans "Primary" %}</span>{% endif %}
 </label>
 </div>
   {% endfor %}
 
 <div class="buttonHolder form-buttons">
-      <button class="secondaryAction btn btn-outline-dark text-uppercase" type="submit" name="action_primary" >{% trans 'Make Primary' %}</button>
-      <button class="secondaryAction btn btn-outline-dark text-uppercase" type="submit" name="action_send" >{% trans 'Re-send Verification' %}</button>
-      <button class="primaryAction btn btn-outline-danger text-uppercase" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
+      <button class="secondaryAction btn btn-sm my-1 btn-outline-dark text-uppercase " type="submit" name="action_primary" >{% trans 'Make Primary' %}</button>
+      <button class="secondaryAction btn btn-sm my-1 btn-outline-dark text-uppercase" type="submit" name="action_send" >{% trans 'Re-send Verification' %}</button>
+      <button class="primaryAction btn btn-sm my-1 btn-outline-danger text-uppercase" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
 </div>
 
 </fieldset>
@@ -54,7 +54,7 @@
         {% csrf_token %}
         {{ form|crispy }}
         <a href="{% url 'profile' %}" class="btn pagination-btn rounded-1 my-2 text-uppercase"><i class="fa-solid fa-angles-left"></i> Back to My Profile</a>
-        <button name="action_add" type="submit" class="btn btn-black-brown rounded-1">{% trans "Add E-mail" %}</button>
+        <button name="action_add" type="submit" class="btn btn-black-brown rounded-1 text-uppercase">{% trans "Add E-mail" %}</button>
     </form>
 
 {% endblock %}

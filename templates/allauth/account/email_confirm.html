@@ -6,10 +6,11 @@
 {% block head_title %}{% trans "Confirm E-mail Address" %}{% endblock %}
 
 
-{% block inner_content %}
+{% block inner_page_title %}
 <h2 class="text-uppercase">{% trans "Confirm E-mail Address" %}</h2>
-<hr>
+{% endblock %}
 
+{% block inner_content %}
 {% if confirmation %}
 
 {% user_display confirmation.email_address.user as user_display %}

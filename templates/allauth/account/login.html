@@ -5,10 +5,11 @@
 
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
-{% block inner_content %}
+{% block inner_page_title %}
 <h2 class="text-uppercase">{% trans "Sign In" %}</h2>
-<hr>
+{% endblock %}
 
+{% block inner_content %}
 {% get_providers as socialaccount_providers %}
 
 {% if socialaccount_providers %}
