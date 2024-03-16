@@ -15,19 +15,16 @@ from .forms import ReviewForm, AddComicForm, AddBookForm
 
 def all_products(request):
     """A view to display all products, with sorting and filetring"""
-    # changed all union to list(chain)
+
     comics = Comic.objects.all()
     books = Book.objects.all()
-    # Source: https://docs.djangoproject.com/en/3.0/ref/models/querysets/#union
     products = list(chain(comics, books))
-    # products = comics.union(books)
     category = Category.objects.all()
     # Source: Boutique Ado walkthrough project
     query = None
     categories = None
     sort = None
     direction = None
-
 
     if request.GET:           
         if 'category' in request.GET:
@@ -41,7 +38,6 @@ def all_products(request):
             else:
                 comics = comics.filter(category__name__in=categories)
                 books = books.filter(category__name__in=categories)
-                # products = comics.union(books)
                 products = list(chain(comics, books))
                 categories = Category.objects.filter(name__in=categories)
                 category_display_names = ', '.join(category.display_name for category in categories)
@@ -103,11 +99,7 @@ def all_products(request):
                             products = sorted(products, key=lambda x: x.product_rating)
                         else:
                             products = sorted(products, key=lambda x: x.product_rating, reverse=True)
-            #     if 'direction' in request.GET:
-            #         direction = request.GET['direction']
-            #         if direction == 'desc':
-            #             sortkey = f'-{sortkey}'
-            #     products = products.order_by(sortkey)
+
         if 'q' in request.GET:
             query = request.GET['q']
             if query:
@@ -115,8 +107,6 @@ def all_products(request):
                 comics = comics.filter(queries)
                 books = books.filter(queries)
                 products = list(chain(comics, books))
-                # products = comics.union(books)
-                # print('LINE 78: ', products)
                 if len(products) == 0:
                     messages.error(request, f"Sorry we didn't find any product matching '{query}'.")
                     return redirect(reverse('products'))
@@ -125,27 +115,23 @@ def all_products(request):
                 return redirect(reverse('products'))
 
     current_sorting = f'{sort}_{direction}'
-    print(current_sorting)
 
-    products_list = list(products)
-    total_products = len(products_list)
-    # is_paginated = total_products > 18
     paginator = Paginator(products, 18)
-
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     is_paginated = paginator.count > 18
 
     context = {
-        # 'products': page_obj,
         'page_obj': page_obj,
         'paginator': paginator,
         'is_paginated': is_paginated,
-        'total_products': total_products,
+        'total_products': paginator.count,
         'search_term': query,
         'current_categories': categories,
         'current_sorting': current_sorting,
-        category: category,
+        'category': category,
+        'sort': sort,
+        'direction': direction,
     }
 
     return render(request, 'products/products.html', context)
