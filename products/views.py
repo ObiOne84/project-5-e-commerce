@@ -2,12 +2,12 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.db.models import Q
 from django.core.paginator import Paginator
-from django.http import HttpResponseForbidden
 from django.views import View
 from django.contrib.auth.decorators import login_required
 from itertools import chain
 from django.db.models.functions import Lower
 from django.db.models import F
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Comic, Book, Review, Subcategory, Category
 from .forms import ReviewForm, AddComicForm, AddBookForm
@@ -107,6 +107,7 @@ def all_products(request):
                 comics = comics.filter(queries)
                 books = books.filter(queries)
                 products = list(chain(comics, books))
+                messages.success(request, f'You are viewing result for "{query}"')
                 if len(products) == 0:
                     messages.error(request, f"Sorry we didn't find any product matching '{query}'.")
                     return redirect(reverse('products'))
@@ -166,7 +167,8 @@ def product_detail(request, product_id):
             else:
                 messages.error(request, 'Failed to add review. Please ensure the form is valid.')
         else:
-            return HttpResponseForbidden("You must be logged in to submit a review.")
+            messages.error(request, "You must be logged in to submit a review.")
+            return redirect(reverse('product_detail', args=[product_id]))
     else:
         form = ReviewForm()
 
@@ -181,8 +183,15 @@ def product_detail(request, product_id):
     return render(request, 'products/product_detail.html', context)
 
 
-class AddBook(View):
+class AddBook(LoginRequiredMixin, View):
     """A view to allow site owner to add new book to catalogue"""
+
+    def dispatch(self, request, *args, **kwargs):
+        """Method to prevent unauthorised users to add products"""
+        if not request.user.is_superuser:
+            messages.error(request, 'Sorry, only store owners can add products.')
+            return redirect(reverse('home'))
+        return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         book_form = AddBookForm()
@@ -208,8 +217,16 @@ class AddBook(View):
             print(book_form.errors)
             return render(request, 'products/add_book.html', context)
 
-class AddComic(View):
+
+class AddComic(LoginRequiredMixin, View):
     """A view to add comic book to catalogue"""
+
+    def dispatch(self, request, *args, **kwargs):
+        """Method to prevent unauthorised users to add products"""
+        if not request.user.is_superuser:
+            messages.error(request, 'Sorry, only store owners can add products.')
+            return redirect(reverse('home'))
+        return super().dispatch(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         comic_form = AddComicForm()

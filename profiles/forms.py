@@ -1,6 +1,7 @@
 from django import forms
 from .models import UserProfile
 
+
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
@@ -30,5 +31,6 @@ class ProfileForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'mt-1 rounded-1 profile-style-input'
+            self.fields[field].widget.attrs['class'] = 'mt-1 rounded-1\
+                profile-style-input'
             self.fields[field].label = False

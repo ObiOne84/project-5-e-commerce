@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (
+    render, redirect, reverse, get_object_or_404, HttpResponse
+)
 from django.contrib import messages
 from django.conf import settings
 from django.views.decorators.http import require_POST
@@ -14,6 +16,7 @@ import stripe
 import json
 
 
+# Source: Boutique Ado project walkthrough
 @require_POST
 def cache_checkout_data(request):
     try:
@@ -68,21 +71,26 @@ def checkout(request):
                     order_line_item.save()
                 except Product.DoesNotExist:
                     messages.error(request, (
-                        "One of the products in your bag wasn't found in our database."
+                        "One of the products in your bag \
+                            wasn't found in our database."
                         "Please contact our support team!"
                     ))
                     order.delete()
                     return redirect(reverse('view_bag'))
-            
+
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(
+                reverse('checkout_success', args=[order.order_number])
+            )
         else:
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
     else:
         bag = request.session.get('bag', {})
         if not bag:
-            messages.error(request, "There's nothing in your bag at the moment.")
+            messages.error(
+                request, "There's nothing in your bag at the moment."
+            )
             return redirect(reverse('products'))
 
         current_bag = bag_content(request)
@@ -90,7 +98,7 @@ def checkout(request):
         stripe_total = round(total * 100)
         stripe.api_key = stripe_secret_key
         intent = stripe.PaymentIntent.create(
-            amount = stripe_total,
+            amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
 
@@ -161,7 +169,7 @@ def checkout_success(request, order_number):
 
     if 'bag' in request.session:
         del request.session['bag']
-    
+
     template = 'checkout/checkout_success.html'
 
     context = {

@@ -5,7 +5,7 @@ from .models import UserProfile
 class UserProfileAdmin(admin.ModelAdmin):
     model = UserProfile
 
-    exlude = ('user',)
+    exclude = ('user',)
 
 
 admin.site.register(UserProfile, UserProfileAdmin)
