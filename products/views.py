@@ -116,10 +116,10 @@ def all_products(request):
 
     current_sorting = f'{sort}_{direction}'
 
-    paginator = Paginator(products, 18)
+    paginator = Paginator(products, 24)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    is_paginated = paginator.count > 18
+    is_paginated = paginator.count > 24
 
     context = {
         'page_obj': page_obj,

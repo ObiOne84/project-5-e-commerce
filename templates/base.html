@@ -147,12 +147,19 @@
 
     <div class="message-container">
         {% for message in messages %}
-        {% include 'includes/toasts/toast_success.html' %}
+            {% with message.level as level %}
+                {% if level == 40 %}
+                    {% include 'includes/toasts/toast_error.html' %}
+                {% elif level == 30 %}
+                    {% include 'includes/toasts/toast_warning.html' %}
+                {% elif level == 25 %}
+                    {% include 'includes/toasts/toast_success.html' %}
+                {% else %}
+                    {% include 'includes/toasts/toast_info.html' %}
+                {% endif %}
+            {% endwith %}
         {% endfor %}
     </div>
-
-
-
 
     {% block page_header %}
     {% endblock %}
@@ -194,18 +201,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Mailchimp script -->
     <!-- <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script> -->
-
-
-    <script>
-        // Get the toast element
-        var toastElement = document.querySelector('.toast');
-
-        // Create a new Bootstrap Toast instance
-        var toast = new bootstrap.Toast(toastElement);
-
-        // Show the toast
-        toast.show();
-    </script>
+    <script src="{% static 'js/toast.js' %}" type="text/javascript"></script>
 
     <!-- <script type="text/javascript">
         (function ($) {
