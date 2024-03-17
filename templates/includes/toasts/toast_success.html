@@ -1,8 +1,6 @@
 <div role="alert" aria-live="assertive" aria-atomic="true" class="toast border border-3 border-success rounded-1" data-bs-autohide="false">
     <div class="arrow-up arrow-success"></div>
-
     <div class="toast-header bg-light border-bottom border-success">
-        <!-- <img src="..." class="rounded me-2" alt="..."> -->
         <strong class="me-auto text-dagner"><span class="text-success me-1"><i class="fa-solid fa-circle-check"></i></span> Success!</strong>
         <small class="time">Just now</small>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -10,7 +8,7 @@
     <div class="toast-body bg-light">
         {{ message }}
     </div>
-    {% if grand_total %}
+    {% if grand_total and not on_profile_page %}
     <div class="border-top border-bottom border-success d-flex align-items-center">
         {% if user.is_authenticated %}
             {% if user.first_name %}

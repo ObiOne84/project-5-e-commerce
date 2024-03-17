@@ -112,10 +112,10 @@ footer {
 
 /* from CSS-tricks.com: https://css-tricks.com/snippets/css/css-triangle/ */
 .arrow-up {
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
     border-left: 4px solid transparent;
-    border-right: 4px solid transparent; 
+    border-right: 4px solid transparent;
     border-bottom: 10px solid black;
     position: absolute;
     top: -10px;
@@ -160,6 +160,36 @@ footer {
     overflow-x: hidden;
     overflow-y: auto;
 }
+
+/* ------ Toast animation ----------- */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.toast.show.slide-in-right {
+    animation: slideInRight 0.5s ease-out forwards;
+}
+
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+.toast.show.slide-out-left {
+    animation: slideOutLeft 0.5s ease-out forwards;
+}
+
 
 /* ----dropdown menu ----- */
 .dropdown-menu li {
@@ -385,6 +415,7 @@ p.my-0.text-end {
     overflow-y: auto;
     overflow-x: hidden;
 }
+
 /* check if below code is used in the bag html */
 .price-content {
     display: flex;
@@ -448,5 +479,22 @@ p.my-0.text-end {
 
     .thumbnail {
         width: 75% !important;
+    }
+
+    /* Toasts */
+    .message-container {
+
+        right: 0;
+        max-width: 280px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .toast {
+        padding: 5px 0 5px 0;
+        background-color: #ebecec !important;
+    }
+    .toast-body,
+    .toast-header {
+        background-color: #ebecec !important;
     }
 }

@@ -2,6 +2,7 @@
 var toastElement = document.querySelector('.toast');
 var toast = new bootstrap.Toast(toastElement);
 toast.show();
+toastElement.classList.add('slide-in-right');
 
 startTime = new Date();
 
@@ -29,7 +30,8 @@ function updateTime() {
         
     }
 
-    if (elapsedTime >= 150) {
+    if (elapsedTime >= 15) {
         toast.hide();
+        toastElement.classList.add('slide-out-left');
     }
 }
