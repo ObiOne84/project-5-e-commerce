@@ -121,6 +121,7 @@ def all_products(request):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     is_paginated = paginator.count > 24
+    quantity_range = range(1, 11)
 
     context = {
         'page_obj': page_obj,
@@ -133,6 +134,7 @@ def all_products(request):
         'category': category,
         'sort': sort,
         'direction': direction,
+        'quantity_range': quantity_range,
     }
 
     return render(request, 'products/products.html', context)

@@ -25,9 +25,27 @@ def add_to_bag(request, item_id):
             messages.error(request, 'Sorry, product you are looking \
                 for is no longer available.')
 
-    quantity = int(request.POST.get('quantity'))
+    # quantity = int(request.POST.get('quantity'))
+    quantity_str = request.POST.get('quantity')
+
+
     redirect_url = request.POST.get('redirect_url')
     bag = request.session.get('bag', {})
+
+    try:
+        quantity = int(quantity_str)
+    except TypeError as e:
+        messages.error(request, "Quantity must be a valid integer")
+        print(f'TypeError: {e}')
+        return redirect(redirect_url)
+    except ValueError as e:
+        messages.error(request, "Quantity must be a valid integer")
+        print(f'ValueError: {e}')
+        return redirect(redirect_url)
+    except Exception as e:
+        messages.error(request, "Quantity must be a valid integer")
+        print(f'Exception: {e}')
+        return redirect(redirect_url)
 
     if item_id in list(bag.keys()):
         bag[item_id] += quantity

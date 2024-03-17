@@ -119,6 +119,31 @@
                             {% endif %}
                         </div>
                     </div>
+                    <div class="row">
+                        <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-12 p-0 px-md-3 my-0">
+                                    <div class="form-group">
+                                        <div class="input-group input-group-{{ product.id }}">
+                                            <span class="me-1 fw-bold p-1">Qty: </span>
+                                            <select class="form-control qty_input m-0 p-1 text-center id_qty_{{ product.id }} rounded-1" name="quantity" id="id_qty_{{ product.id }}">
+                                                <option value="" selected disabled>Choose</option>
+                                                {% for i in quantity_range %}
+                                                    <option value="{{ i }}">{{ i }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 p-0 px-md-3 my-0">
+                                    <input type="submit" class="btn btn-sm w-100 btn-black-brown rounded-1 text-uppercase"
+                                        value="Add to Bag">
+                                </div>
+                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
