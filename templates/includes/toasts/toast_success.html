@@ -10,4 +10,50 @@
     <div class="toast-body bg-light">
         {{ message }}
     </div>
+    {% if grand_total %}
+    <div class="border-top border-bottom border-success d-flex align-items-center">
+        {% if user.is_authenticated %}
+            {% if user.first_name %}
+                {% if user.first_name|length > 20 %}
+                <p class="mx-3 my-auto py-2">{{ user.first_name|slice:":20" }}...
+                {% else %}
+                <p class="mx-3 my-auto py-2">{{ user.first_name }}'s 
+                {% endif %}
+            {% endif %}
+        {% else %}
+            <p class="mx-3 my-auto py-2">Your 
+        {% endif %}
+            Bag has {{ product_count }} item/s!</p>
+        </div>
+        <div class="bag-toast-view">
+            {% for item in bag_items %}
+            <div class="row my-1">
+                <div class="col-3">
+                    <img class="ms-3 w-100" src="{{ item.product.image.url }}" alt="Image for {{ item.product.title }}">
+                </div>
+                <div class="col-9">
+                    <p class="my-0">{{ item.product.title }}</p>
+                    <p class="my-0">Qty: {{ item.quantity }}</p>
+                    <p class="my-0">${{ item.product.price }} per unit</p>
+                </div>     
+                <div class="my-0">
+                    <hr class="my-1">
+                </div>    
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p class="my-1 fw-bold">
+                    <span class="ms-3">Total: </span><span class="float-end me-3">${{ total|floatformat:2 }}</span>
+                </p>
+            </div>
+            <div class="col-12 my-1">
+                <div class="mx-2">
+                    <a href="{% url 'checkout' %}" class="w-100 btn btn-black-brown rounded-1 text-uppercase my-1"
+                    aria-label="Go to checkout."><i class="fa-solid fa-lock me-1"></i> Checkout</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 </div>
