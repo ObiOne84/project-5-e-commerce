@@ -121,7 +121,7 @@
         {% endif %}
         <hr class="m-0 p-0 d-none d-lg-block">
     </div>
-    
+
 </div>
 
 {% endblock %}
@@ -136,13 +136,16 @@
         e.preventDefault(); // Prevent default form submission behavior
         var qtyInputVal = parseInt($(this).closest('.table-row').find('.qty_input').val());
         var productTitle = $(this).closest('.table-row').find('.qty_input').data('product_title');
+        var itemId = $(this).closest('.table-row').find('.qty_input').data('item_id');
+        var $errorDiv = $('#input-error-' + itemId);
         if (qtyInputVal > 0 && qtyInputVal < 11) {
             var form = $(this).closest('.table-row').find('.update-form');
             form.submit();
         } else {
-            alert(
-                `You are attempting to add ${qtyInputVal} units of ${productTitle}. You can choose max 10 and min 1 product.`
-            );
+            $errorDiv.text(`You are attempting to add ${qtyInputVal} units of ${productTitle}. You can choose max 10 and min 1 product.`).removeClass('d-none');
+            setTimeout(function() {
+                $('.input-error').addClass('d-none');
+            }, 15000); 
         }
     });
 
