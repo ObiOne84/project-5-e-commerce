@@ -81,17 +81,10 @@ def adjust_bag(request, item_id):
 
     if quantity > 0:
         total_quantity = bag[item_id] + quantity
-        if total_quantity > 10:
-            messages.error(
-                request, 'You can only add up to 10 items of the same product. '
-                'If you wish to pruchase more products, please contact our customer support! '
-            )
-            return redirect(reverse('view_bag'))
-        else:
-            bag[item_id] = quantity
-            messages.success(
-                request, f'Successfully updated quantity of {product.title} to {quantity}!'
-            )
+        bag[item_id] = quantity
+        messages.success(
+            request, f'Successfully updated quantity of {product.title} to {quantity}!'
+        )
     else:
         bag.pop(item_id)
         messages.success(request, f'Successfully removed {product.title} from the basket!')

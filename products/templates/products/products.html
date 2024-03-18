@@ -28,14 +28,14 @@
             {% for category in current_categories %}
                 {% if category.product_type == 'comic' %}
                     {% if forloop.counter == 1 %}
-                        <a class="category-badge text-decoration-none" href="{% url 'products' %}?category=comics" aria-label="All Comic Books">
+                        <a class="category-badge text-decoration-none" href="{% url 'products' %}?category=marvel_universe,dc_universe" aria-label="All Comic Books">
                             <span class="p-2 mt-2 badge badge-white rounded-1 border border-dark text-black">All Comics</span>
                         </a>
                     {% endif %}
                     {% comment %} Exit the loop after first comic category {% endcomment %}
                 {% elif category.product_type == 'book' %}
                     {% if forloop.counter == 1 %}
-                        <a class="category-badge text-decoration-none" href="{% url 'products' %}?category=books" aria-label="All Books">
+                        <a class="category-badge text-decoration-none" href="{% url 'products' %}?category=adventure,business,children,crime,drama,fiction,non_fiction,religion,sci_fiction,science,travel" aria-label="All Books">
                             <span class="p-2 mt-2 badge badge-white rounded-1 border border-dark text-black">All Books</span>
                         </a>
                     {% endif %}
@@ -88,14 +88,13 @@
         <div class="col-12 col-sm-4 col-md-3 col-lg-2 px-3 px-md-1">
             <div class="card h-100 border-0">
                 {% if product.image %}
-                <a href="{% url 'product_detail' product.id %}">
-                    <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.title }}">
-                </a>
+                    <a href="{% url 'product_detail' product.id %}">
+                        <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.title }}">
+                    </a>
                 {% else %}
-                <a href="{% url 'product_detail' product.id %}">
-                    <!-- <img class="card-img-top" src="/media/noimage.png" alt="Image not available"> -->
-                    <img class="card-img-top" src="{{ MEDIA_URL }}noimage.png" alt="Image not available">
-                </a>
+                    <a href="{% url 'product_detail' product.id %}">
+                        <img class="card-img-top" src="{{ MEDIA_URL }}noimage.png" alt="Image not available">
+                    </a>
                 {% endif %}
                 <div class="card-body pb-0">
                     <p class="mb-0 text-black">{{ product.title}}</p>
@@ -105,12 +104,11 @@
                         <div class="col">
                             <p class="fw-bold fs-5">${{ product.price }}</p>
                             {% if product.category %}
-                            <!-- Update the style of the link -->
-                            <a class="text-decoration-none"
-                                href="{% url 'products' %}?category={{ product.category.name }}"
-                                aria-label="{{ product.category.name }}">{{ product.category.display_name }}</a>
+                                <a class="text-decoration-none"
+                                    href="{% url 'products' %}?category={{ product.category.name }}"
+                                    aria-label="{{ product.category.name }}">{{ product.category.display_name }}</a>
                             {% else %}
-                            <p>Not Available</p>
+                                <p>Not Available</p>
                             {% endif %}
                             {% if product.rating %}
                             <p><i class="fa-solid fa-star"></i> {{ product.rating }} / 5</p>
@@ -149,24 +147,24 @@
         </div>
         <!-- Source: Boutique ado walkthrough project -->
         {% if forloop.counter|divisibleby:6 %}
-        <div class="col-12 d-none d-lg-block mb-4">
-            <hr class="counter-line">
-        </div>
+            <div class="col-12 d-none d-lg-block mb-4">
+                <hr class="counter-line">
+            </div>
         {% endif %}
         {% if forloop.counter|divisibleby:4 %}
-        <div class="col-12 d-none d-md-block d-lg-none mb-4">
-            <hr class="counter-line">
-        </div>
+            <div class="col-12 d-none d-md-block d-lg-none mb-4">
+                <hr class="counter-line">
+            </div>
         {% endif %}
         {% if forloop.counter|divisibleby:3 %}
-        <div class="col-12 d-none d-sm-block d-md-none mb-4">
-            <hr class="counter-line">
-        </div>
+            <div class="col-12 d-none d-sm-block d-md-none mb-4">
+                <hr class="counter-line">
+            </div>
         {% endif %}
         {% if forloop.counter|divisibleby:1 %}
-        <div class="col-12 d-block d-sm-none mb-4">
-            <hr class="counter-line">
-        </div>
+            <div class="col-12 d-block d-sm-none mb-4">
+                <hr class="counter-line">
+            </div>
         {% endif %}
         {% endfor %}
         {% with page_obj|length as n %}
@@ -176,8 +174,6 @@
                 <hr class="my-4 d-none d-sm-block">
             {% endif %}
         {% endwith %}
-
-
     </div>
 
     <!-- source: https://docs.djangoproject.com/en/5.0/topics/pagination/ -->
@@ -219,8 +215,8 @@
 {% endblock %}
 
 {% block postload_js %}
-{{ block.super }}
+    {{ block.super }}
 
-<script src="{% static 'products/js/sorting.js' %}" type="text/javascript"></script>
+    <script src="{% static 'products/js/sorting.js' %}" type="text/javascript"></script>
 
 {% endblock %}

@@ -31,10 +31,10 @@ def all_products(request):
             categories = request.GET['category'].split(',')
             if categories == ['books']:
                 products = books
-                messages.success(request, "You are viewing results for 'all books'")
+                messages.info(request, "You are viewing results for 'all books'")
             elif categories == ['comics']:
                 products = comics
-                messages.success(request, "You are viewing results for 'all comic books'")
+                messages.info(request, "You are viewing results for 'all comic books'")
             else:
                 comics = comics.filter(category__name__in=categories)
                 books = books.filter(category__name__in=categories)
@@ -42,7 +42,7 @@ def all_products(request):
                 categories = Category.objects.filter(name__in=categories)
                 category_display_names = ', '.join(category.display_name for category in categories)
                 if len(products) > 0:
-                    messages.success(request, f"You are viewing results for '{category_display_names}'")
+                    messages.info(request, f"You are viewing results for '{category_display_names}'")
                 else:
                    messages.error(request, f"Sorry, there is not results for '{category_display_names}'")
                    return redirect(reverse('products'))
@@ -107,13 +107,13 @@ def all_products(request):
                 comics = comics.filter(queries)
                 books = books.filter(queries)
                 products = list(chain(comics, books))
-                messages.success(request, f'You are viewing result for "{query}"')
                 if len(products) == 0:
                     messages.error(request, f"Sorry we didn't find any product matching '{query}'.")
                     return redirect(reverse('products'))
             else:
                 messages.error(request, "You didn't enter any search criteria!")
                 return redirect(reverse('products'))
+        messages.success(request, f'You are viewing result for "{query}"')
 
     current_sorting = f'{sort}_{direction}'
 
