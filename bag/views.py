@@ -25,10 +25,7 @@ def add_to_bag(request, item_id):
             messages.error(request, 'Sorry, product you are looking \
                 for is no longer available.')
 
-    # quantity = int(request.POST.get('quantity'))
     quantity_str = request.POST.get('quantity')
-
-
     redirect_url = request.POST.get('redirect_url')
     bag = request.session.get('bag', {})
 
@@ -48,7 +45,15 @@ def add_to_bag(request, item_id):
         return redirect(redirect_url)
 
     if item_id in list(bag.keys()):
-        bag[item_id] += quantity
+        total_quantity = bag[item_id] + quantity
+        if total_quantity > 10:
+            messages.error(
+                request, 'You can only add up to 10 items of the same product. '
+                'If you wish to pruchase more products, please contact our customer support! '
+            )
+            return redirect(redirect_url)
+        else:
+            bag[item_id] += quantity
     else:
         bag[item_id] = quantity
 
