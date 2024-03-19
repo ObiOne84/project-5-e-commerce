@@ -99,7 +99,6 @@ def all_products(request):
                             products = sorted(products, key=lambda x: x.product_rating)
                         else:
                             products = sorted(products, key=lambda x: x.product_rating, reverse=True)
-
         if 'q' in request.GET:
             query = request.GET['q']
             if query:
@@ -113,7 +112,8 @@ def all_products(request):
             else:
                 messages.error(request, "You didn't enter any search criteria!")
                 return redirect(reverse('products'))
-        messages.success(request, f'You are viewing result for "{query}"')
+        if query != None:
+            messages.success(request, f'You are viewing result for "{query}"')
 
     current_sorting = f'{sort}_{direction}'
 
