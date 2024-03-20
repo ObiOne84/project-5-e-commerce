@@ -291,9 +291,9 @@
                                 <form method="POST" id="review-form">
                                     {% csrf_token %}
                                     {{ review_form | crispy | safe }}
-                                    <button type="submit" class="btn btn-primary text-uppercase" id="review-button"
+                                    <button type="submit" class="btn btn-black-brown m-1 rounded-1 text-uppercase" id="review-button"
                                         aria-label="Submit">Submit</button>
-                                    <button type="button" class="btn btn-warning text-uppercase" id="cancel-review"
+                                    <button type="button" class="btn pagination-btn m-1 rounded-1 text-uppercase" id="cancel-review"
                                         aria-label="Cancel">Cancel</button>
                                 </form>
                             </div>

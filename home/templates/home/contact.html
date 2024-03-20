@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block page_header %}
+<div class="container top-space">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+<div class="overlay-cover"></div>
+
+<div class="container-lg">
+    <div class="row">
+        <div class="col text-center">
+            <h2 class="logo-font text-uppercase text-black">Contact Us</h2>
+        </div>
+        <hr class="mt-4">
+    </div>
+    <div class="row mb-4">
+        <div class="col-12 col-md-6">
+            <div class="form">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <a href="{% url 'home' %}" class="btn pagination-btn rounded-1 me-1 text-uppercase"><i class="fa-solid fa-angles-left"></i> Home</a>
+                    <button type="submit" class="btn btn-black-brown rounded-1 text-uppercase">
+                        <i class="fa-regular fa-envelope"></i> Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block postload_js %}
+{{ block.super }}
+
+
+{% endblock %}
