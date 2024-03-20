@@ -46,3 +46,9 @@ def contact(request):
     }
 
     return render(request, template, context)
+
+
+def faq(request):
+    """ A view to return the faq page """
+
+    return render(request, 'home/faq.html')
