@@ -27,12 +27,22 @@
                 <form method="POST">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <a href="{% url 'home' %}" class="btn pagination-btn rounded-1 me-1 text-uppercase"><i class="fa-solid fa-angles-left"></i> Home</a>
+                    <!-- <a href="{% url 'home' %}" class="btn pagination-btn rounded-1 me-1 text-uppercase"><i class="fa-solid fa-angles-left"></i> Home</a> -->
                     <button type="submit" class="btn btn-black-brown rounded-1 text-uppercase">
                         <i class="fa-regular fa-envelope"></i> Submit
                     </button>
                 </form>
             </div>
+        </div>
+        <div class="col-12 col-md-6">
+            
+        </div>
+        <div class="col-12 text-center my-2">
+            <hr>
+            <p class="logo-font fs-5 mb-0">
+                <a href="{% url 'home' %}" class="me-1 text-uppercase text-decoration-none text-dark"
+                    aria-label="Go back to the home page"><i class="fa-solid fa-angles-left"></i> go back Home</a>
+            </p>
         </div>
     </div>
 </div>
