@@ -49,6 +49,7 @@ h6 {
 } */
 
 /*------------- Background ---------------*/
+
 body {
     background: url('/media/bg-library.jpg') no-repeat center center fixed;
     background-size: cover;

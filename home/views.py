@@ -52,3 +52,9 @@ def faq(request):
     """ A view to return the faq page """
 
     return render(request, 'home/faq.html')
+
+
+def about_us(request):
+    """ A view to return the faq page """
+
+    return render(request, 'home/about_us.html')
