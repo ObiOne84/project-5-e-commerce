@@ -48,7 +48,6 @@
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=marvel_universe" aria-label="Marver Universe">Marvel</a>
                         </li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=dc_universe" aria-label="DC Universe">DC</a></li>
-                        <!-- <li><a class="dropdown-item" href="{% url 'products' %}?category=comics" aria-label="All Comic Books">All Comics</a></li> -->
                         <li><a class="dropdown-item"
                                 href="{% url 'products' %}?category=marvel_universe,dc_universe" aria-label="All Comic Books">All Comics</a></li>
 
@@ -56,7 +55,6 @@
                 </li>
             </ul>
             <div class="d-flex justify-content-center flex-grow-1 search-box-container d-none d-lg-block">
-                <!-- Add action to form -->
                 <form action="{% url 'products' %}" method="GET" class="w-100">
                     <div class="input-group">
                         <input type="text" class="form-control rounded-1 border-orange" name="q"

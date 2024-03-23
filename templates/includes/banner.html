@@ -1,0 +1,20 @@
+<div class="col-12 py-1 banner-border bg-warning">
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active text-center text-uppercase" data-bs-interval="5000">
+                <a href="{% url 'products' %}" class="text-decoration-none text-dark fw-bold text-banner"
+                    arial-label="Click the linke to start shopping.">Free delivery
+                    for orders above ${{ free_delivery_threshold }}!</a>
+            </div>
+            <div class="carousel-item text-center text-uppercase" data-bs-interval="5000">
+                <a href="{% url 'products' %}" class="text-decoration-none text-dark fw-bold text-banner"
+                    arial-label="Click the linke to start shopping.">Buy three
+                    products and get 10% off!</a>
+            </div>
+            <div class="carousel-item text-center text-uppercase" data-bs-interval="5000">
+                <a class="text-decoration-none text-dark fw-bold text-banner" id="newsletterToggle" href="#"
+                    aria-label="Click the link to subscribe to our newsletter.">Subscribe to our newsletter now!</a>
+            </div>
+        </div>
+    </div>
+</div>

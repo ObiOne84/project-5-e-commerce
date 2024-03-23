@@ -48,7 +48,7 @@ h6 {
 body {
     background: url('/media/bg-library.jpg') no-repeat center center fixed;
     background-size: cover;
-    /* height: calc(100vh - 280px); */
+    /* height: calc(100vh - 180px); */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -83,7 +83,7 @@ main {
 }
 
 .top-space {
-    height: 180px;
+    height: 210px;
 }
 
 footer {
@@ -193,7 +193,6 @@ footer {
     animation: slideOutLeft 0.5s ease-out forwards;
 }
 
-
 /* ----dropdown menu ----- */
 .dropdown-menu li {
     position: relative;
@@ -233,7 +232,6 @@ footer {
     color: #050101;
     border: 2px solid #050101;
 }
-
 
 .page-link:hover,
 .pagination-btn:hover {
@@ -282,6 +280,29 @@ footer {
     border-top: 3px solid #f09a53;
 }
 
+.banner-border {
+    border-top: 5px solid #050101;
+    border-bottom: 5px solid #050101;
+}
+
+.text-banner {
+    letter-spacing: 1px;
+}
+
+/* ----------Newsletter ------------ */
+.newsletter-form {
+    transform: translateY(-100%);
+  }
+
+  #mc_embed_signup {
+    color: #050101;
+    border-top: 4px solid #050101;
+    border-bottom: 4px solid #050101;
+}
+
+#mce-EMAIL {
+    width: 90%;
+}
 /* ---------------- Navbar -------------------- */
 
 .nav-bg-color {
