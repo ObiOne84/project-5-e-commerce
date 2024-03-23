@@ -44,12 +44,7 @@ h6 {
     min-height: 180px;
 }
 
-/* .mobile-nav-tabs {
-    border-radius: none;
-} */
-
 /*------------- Background ---------------*/
-
 body {
     background: url('/media/bg-library.jpg') no-repeat center center fixed;
     background-size: cover;
@@ -207,10 +202,6 @@ footer {
 .dropdown-menu .dropdown-submenu {
     display: none;
     position: absolute;
-    /* left: 100%; */
-    /* right: 100%; */
-    /* top: -7px; */
-    /* bottom: 100%; */
     top: 100%;
 }
 
@@ -227,7 +218,14 @@ footer {
 .action-button {
     background-color: #f09a53;
     color: #050101;
-    border: 2px solid #050101;
+    border: 3px solid #050101;
+}
+
+.action-button:hover {
+    background-color: #050101;
+    color: #f09a53;
+    border: 2px solid #f09a53;
+    transform: scale(1.03);
 }
 
 .page-link,
@@ -300,9 +298,9 @@ footer {
     transition: transform 0.01s ease;
 }
 
-.icon:hover {
+/* .icon:hover {
     color: white;
-}
+} */
 
 .icon,
 a.icon:focus {
@@ -318,6 +316,11 @@ nav a.icon {
 
 nav a.icon:hover {
     transform: scale(1.03);
+}
+
+.header-link:hover,
+.footer-link:hover {
+    color: #f09a53 !important;
 }
 
 /* ----------Allauth ---------------- */
