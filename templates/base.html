@@ -11,6 +11,13 @@
     {% endblock %}
 
     {% block extra_meta %}
+    <meta name="title" content="Cheap Books &amp; Comics Online with Free Delivery.">
+    <meta name="description"
+        content="Buy new &amp; comics online with Free Delivery at OwlBookstore.com. The ethical online bookshop that donates a book for every book sold.">
+    <meta name="keywords"
+        content="books, comics, new books, new comics, cheap books, cheap comics, online bookstore, buy books online, buy comics online, discounted books, discounted comicc, special offer on books, special offer on comics, books and comics, paperback books, buy books, buy comics, free delivery, free shipping">
+    <meta name="copyright" content="&copy;2024 OwlBookstore.">
+    <meta name="author" content="Szymon Stepien">
     {% endblock %}
 
     {% block corecss %}
@@ -26,8 +33,7 @@
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <!-- Web Icon -->
-    <link href="{{ MEDIA_URL }}favicon/owl-favicon.ico" rel="icon"
-        type="image/x-icon">
+    <link href="{{ MEDIA_URL }}favicon/owl-favicon.ico" rel="icon" type="image/x-icon">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css">
     {% endblock %}
@@ -58,8 +64,8 @@
         <div class="row d-flex">
             <div class="col-12 col-lg-6 my-auto text-center text-lg-start d-none d-lg-block">
                 <a href="{% url 'home' %}" class="nav-link">
-                    <h1 class="display-6 logo-font my-0 p-0 icon"><strong><i class="fa-brands fa-earlybirds"></i>
-                            Owl</strong><span class="text-uppercase">Bookstore</span></h1>
+                    <span class="display-6 logo-font my-0 p-0 icon"><i class="fa-brands fa-earlybirds"></i>
+                            Owl<strong><span class="text-uppercase">Bookstore</span></strong></span>
                 </a>
             </div>
             <div class="col-12 col-lg-6 my-3 text-white d-none d-lg-block">
@@ -84,31 +90,32 @@
                             <ul class="dropdown-menu bg-orange" aria-labelledby="user-options">
                                 {% if request.user.is_authenticated %}
                                 <!-- add link to accounts -->
-                                <li><a class="dropdown-item" href="{% url 'profile' %}"><i class="fa-regular fa-id-card me-1"></i> My
+                                <li><a class="dropdown-item" href="{% url 'profile' %}"><i
+                                            class="fa-regular fa-id-card me-1"></i> My
                                         Profile</a></li>
                                 <li><a class="dropdown-item" href="{% url 'account_logout' %}"><i
                                             class="fa-solid fa-right-from-bracket fa-flip-horizontal me-1"></i>
                                         Logout</a></li>
-                                    {% if request.user.is_superuser %}
-                                    <!-- Source: https://mdbootstrap.com/docs/standard/extended/dropdown-multilevel/# -->
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="fa-solid fa-gear me-1"></i> Product Management <i
-                                                class="fa-solid fa-caret-down"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-submenu">
-                                            <li>
-                                                <a class="dropdown-item" href="{% url 'add_book' %}">Add Book</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="{% url 'add_comic' %}">Add Comic</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="{% url 'admin:index' %}">Admin Panel</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    {% endif %}
+                                {% if request.user.is_superuser %}
+                                <!-- Source: https://mdbootstrap.com/docs/standard/extended/dropdown-multilevel/# -->
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fa-solid fa-gear me-1"></i> Product Management <i
+                                            class="fa-solid fa-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-submenu">
+                                        <li>
+                                            <a class="dropdown-item" href="{% url 'add_book' %}">Add Book</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{% url 'add_comic' %}">Add Comic</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{% url 'admin:index' %}">Admin Panel</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                {% endif %}
                                 {% else %}
                                 <li><a class="dropdown-item" href="{% url 'account_login' %}"><i
                                             class="fa-solid fa-right-to-bracket me-1"></i> Login</a></li>
@@ -120,18 +127,19 @@
                     </li>
                     <!-- Shopping basket total-->
                     <li class="list-inline-item mx-3">
-                        <a class="text-decoration-none {% if grand_total %}fw-bold full-bag-text animated-text{% else %}icon{% endif %}" href="{% url 'view_bag' %}" aria-label="Go to shopping basket">
+                        <a class="text-decoration-none {% if grand_total %}fw-bold full-bag-text animated-text{% else %}icon{% endif %}"
+                            href="{% url 'view_bag' %}" aria-label="Go to shopping basket">
                             <div class="text-center">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p>
                                     {% if grand_total %}
-                                        ${{ grand_total|floatformat:2 }}
+                                    ${{ grand_total|floatformat:2 }}
                                     {% else %}
-                                        $0.00
+                                    $0.00
                                     {% endif %}
                                 </p>
                             </div>
-                        </a>                        
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -147,17 +155,17 @@
 
     <div class="message-container">
         {% for message in messages %}
-            {% with message.level as level %}
-                {% if level == 40 %}
-                    {% include 'includes/toasts/toast_error.html' %}
-                {% elif level == 30 %}
-                    {% include 'includes/toasts/toast_warning.html' %}
-                {% elif level == 25 %}
-                    {% include 'includes/toasts/toast_success.html' %}
-                {% else %}
-                    {% include 'includes/toasts/toast_info.html' %}
-                {% endif %}
-            {% endwith %}
+        {% with message.level as level %}
+        {% if level == 40 %}
+        {% include 'includes/toasts/toast_error.html' %}
+        {% elif level == 30 %}
+        {% include 'includes/toasts/toast_warning.html' %}
+        {% elif level == 25 %}
+        {% include 'includes/toasts/toast_success.html' %}
+        {% else %}
+        {% include 'includes/toasts/toast_info.html' %}
+        {% endif %}
+        {% endwith %}
         {% endfor %}
     </div>
 
@@ -181,10 +189,11 @@
     <!-- Mailchimp script -->
     <!-- <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script> -->
     <script src="{% static 'js/toast.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/arrow_up.js' %}" type="text/javascript"></script>
     <script>
         $(document).ready(function () {
-        // Update html page date
-        $('#copyright').text(new Date().getFullYear());
+            // Update html page date
+            $('#copyright').text(new Date().getFullYear());
         })
     </script>
     <!-- <script type="text/javascript">

@@ -379,7 +379,7 @@ nav a.icon:hover {
     height: 42px;
     width: 42px;
     position: fixed;
-    bottom: 120px;
+    bottom: 200px;
     right: 20px;
 }
 
@@ -504,5 +504,9 @@ p.my-0.text-end {
     .toast-body,
     .toast-header {
         background-color: #ebecec !important;
+    }
+
+    .btt-button {
+        background-color: white;
     }
 }

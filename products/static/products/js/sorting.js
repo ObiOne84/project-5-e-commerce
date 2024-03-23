@@ -1,11 +1,4 @@
 $(document).ready(function () {
-
-    // Source: Boutique Ado walkthrough project
-    // Return to top button
-    $('.btt-link').click(function (e) {
-        window.scrollTo(0, 0);
-    });
-
     // Script for sorting functionality
     $('#sort-selector').change(function () {
         var selector = $(this);
