@@ -18,43 +18,48 @@
         <div class="col text-center">
             <h2 class="logo-font text-uppercase text-black">Products</h2>
             <!-- Source: Boutique Ado walkthrough project -->
-            {% for c in current_categories %}
-            <a class="category-badge text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">
-                <span
-                    class="p-2 mt-2 badge badge-white rounded-1 border border-dark text-black">{{ c.display_name }}</span>
-            </a>
-            {% endfor %}
-            {% if current_categories %}
-            {% for category in current_categories %}
+            <div class="col my-1">
+                {% for c in current_categories %}
+                <a class="category-badge text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">
+                    <span
+                        class="p-2 mt-1 badge badge-white rounded-1 border border-dark text-black">{{ c.display_name }}</span>
+                </a>
+                {% endfor %}
+                {% if current_categories %}
+                {% for category in current_categories %}
                 {% if category.product_type == 'comic' %}
-                    {% if forloop.counter == 1 %}
-                        <a class="category-badge text-decoration-none" href="{% url 'products' %}?category=marvel_universe,dc_universe" aria-label="All Comic Books">
-                            <span class="p-2 mt-2 badge badge-white rounded-1 border border-dark text-black">All Comics</span>
-                        </a>
-                    {% endif %}
-                    {% comment %} Exit the loop after first comic category {% endcomment %}
-                {% elif category.product_type == 'book' %}
-                    {% if forloop.counter == 1 %}
-                        <a class="category-badge text-decoration-none" href="{% url 'products' %}?category=adventure,business,children,crime,drama,fiction,non_fiction,religion,sci_fiction,science,travel" aria-label="All Books">
-                            <span class="p-2 mt-2 badge badge-white rounded-1 border border-dark text-black">All Books</span>
-                        </a>
-                    {% endif %}
-                {% else %}
-                    <span></span>
+                {% if forloop.counter == 1 %}
+                <a class="category-badge text-decoration-none"
+                    href="{% url 'products' %}?category=marvel_universe,dc_universe" aria-label="All Comic Books">
+                    <span class="p-2 mt-1 badge badge-white rounded-1 border border-dark text-black">All Comics</span>
+                </a>
                 {% endif %}
-            {% endfor %}
-            <!-- <a class="category-badge text-decoration-none"
+                {% comment %} Exit the loop after first comic category {% endcomment %}
+                {% elif category.product_type == 'book' %}
+                {% if forloop.counter == 1 %}
+                <a class="category-badge text-decoration-none"
+                    href="{% url 'products' %}?category=adventure,business,children,crime,drama,fiction,non_fiction,religion,sci_fiction,science,travel"
+                    aria-label="All Books">
+                    <span class="p-2 mt-1 badge badge-white rounded-1 border border-dark text-black">All Books</span>
+                </a>
+                {% endif %}
+                {% else %}
+                <span></span>
+                {% endif %}
+                {% endfor %}
+                <!-- <a class="category-badge text-decoration-none"
                 href="{% url 'products' %}?category={% for c in category %}{{ c.name }}{% if not forloop.last %},{% endif %}{% endfor %}">
                 <span class="p-2 mt-2 badge badge-white rounded-1 border border-dark text-black">All Products</span>
             </a> -->
-            {% endif %}
+                {% endif %}
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
-            <div class="sort-select-wrapper w-50">
+            <div class="sort-select-wrapper">
                 <select id="sort-selector"
-                    class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                    class="custom-select custom-select-sm rounded-1 border border-{% if current_sorting != 'None_None' %}info{% else %}dark{% endif %}">
                     <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
                     <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to
                         high)</option>
@@ -88,13 +93,13 @@
         <div class="col-12 col-sm-4 col-md-3 col-lg-2 px-3 px-md-1">
             <div class="card h-100 border-0">
                 {% if product.image %}
-                    <a href="{% url 'product_detail' product.id %}">
-                        <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.title }}">
-                    </a>
+                <a href="{% url 'product_detail' product.id %}">
+                    <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.title }}">
+                </a>
                 {% else %}
-                    <a href="{% url 'product_detail' product.id %}">
-                        <img class="card-img-top" src="{{ MEDIA_URL }}noimage.png" alt="Image not available">
-                    </a>
+                <a href="{% url 'product_detail' product.id %}">
+                    <img class="card-img-top" src="{{ MEDIA_URL }}noimage.png" alt="Image not available">
+                </a>
                 {% endif %}
                 <div class="card-body pb-0">
                     <p class="mb-0 text-black">{{ product.title}}</p>
@@ -104,11 +109,11 @@
                         <div class="col">
                             <p class="fw-bold fs-5">${{ product.price }}</p>
                             {% if product.category %}
-                                <a class="text-decoration-none"
-                                    href="{% url 'products' %}?category={{ product.category.name }}"
-                                    aria-label="{{ product.category.name }}">{{ product.category.display_name }}</a>
+                            <a class="text-decoration-none"
+                                href="{% url 'products' %}?category={{ product.category.name }}"
+                                aria-label="{{ product.category.name }}">{{ product.category.display_name }}</a>
                             {% else %}
-                                <p>Not Available</p>
+                            <p>Not Available</p>
                             {% endif %}
                             {% if product.rating %}
                             <p><i class="fa-solid fa-star"></i> {{ product.rating }} / 5</p>
@@ -125,17 +130,20 @@
                                     <div class="form-group">
                                         <div class="input-group input-group-{{ product.id }}">
                                             <span class="me-1 fw-bold p-1">Qty: </span>
-                                            <select class="form-control qty_input m-0 p-1 text-center id_qty_{{ product.id }} rounded-1" name="quantity" id="id_qty_{{ product.id }}">
+                                            <select
+                                                class="form-control qty_input m-0 p-1 text-center id_qty_{{ product.id }} rounded-1"
+                                                name="quantity" id="id_qty_{{ product.id }}">
                                                 <option value="" selected disabled>Choose</option>
                                                 {% for i in quantity_range %}
-                                                    <option value="{{ i }}">{{ i }}</option>
+                                                <option value="{{ i }}">{{ i }}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 p-0 px-md-3 my-0">
-                                    <input type="submit" class="btn btn-sm w-100 btn-black-brown rounded-1 text-uppercase"
+                                    <input type="submit"
+                                        class="btn btn-sm w-100 btn-black-brown rounded-1 text-uppercase"
                                         value="Add to Bag">
                                 </div>
                                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
@@ -147,32 +155,32 @@
         </div>
         <!-- Source: Boutique ado walkthrough project -->
         {% if forloop.counter|divisibleby:6 %}
-            <div class="col-12 d-none d-lg-block mb-4">
-                <hr class="counter-line">
-            </div>
+        <div class="col-12 d-none d-lg-block mb-4">
+            <hr class="counter-line">
+        </div>
         {% endif %}
         {% if forloop.counter|divisibleby:4 %}
-            <div class="col-12 d-none d-md-block d-lg-none mb-4">
-                <hr class="counter-line">
-            </div>
+        <div class="col-12 d-none d-md-block d-lg-none mb-4">
+            <hr class="counter-line">
+        </div>
         {% endif %}
         {% if forloop.counter|divisibleby:3 %}
-            <div class="col-12 d-none d-sm-block d-md-none mb-4">
-                <hr class="counter-line">
-            </div>
+        <div class="col-12 d-none d-sm-block d-md-none mb-4">
+            <hr class="counter-line">
+        </div>
         {% endif %}
         {% if forloop.counter|divisibleby:1 %}
-            <div class="col-12 d-block d-sm-none mb-4">
-                <hr class="counter-line">
-            </div>
+        <div class="col-12 d-block d-sm-none mb-4">
+            <hr class="counter-line">
+        </div>
         {% endif %}
         {% endfor %}
         {% with page_obj|length as n %}
-            {% if n|divisibleby:6 %}
-                <!-- No need for an HR element -->
-            {% else %}
-                <hr class="my-4 d-none d-sm-block">
-            {% endif %}
+        {% if n|divisibleby:6 %}
+        <!-- No need for an HR element -->
+        {% else %}
+        <hr class="my-4 d-none d-sm-block">
+        {% endif %}
         {% endwith %}
     </div>
 
@@ -215,8 +223,8 @@
 {% endblock %}
 
 {% block postload_js %}
-    {{ block.super }}
+{{ block.super }}
 
-    <script src="{% static 'products/js/sorting.js' %}" type="text/javascript"></script>
+<script src="{% static 'products/js/sorting.js' %}" type="text/javascript"></script>
 
 {% endblock %}

@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    // Source: Boutique Ado walkthrough project
     // Script for sorting functionality
     $('#sort-selector').change(function () {
         var selector = $(this);
