@@ -78,10 +78,12 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="col-12 col-lg-3 d-flex flex-column justify-content-between p-0">
+        <div class="col-12 col-lg-3 d-flex flex-column justify-content-between p-0 px-1">
             <div class="col-12 text-end mt-auto">
                 <h6 class="bag-total-info"><strong>Bag Total: ${{ total|floatformat:2 }}</strong></h6>
-                <h6 class="bag-total-info">Delivery: ${{ delivery|floatformat:2 }}</h6>
+                <h6 class="bag-total-info small">Delivery: ${{ delivery|floatformat:2 }}</h6>
+                <h6 class="bag-total-info small">VAT Included: ${{ vat|floatformat:2 }}</h6>
+                <h6 class="bag-total-info text-danger small">Discount: -${{ discount|floatformat:2 }}</h6>
                 <h4 class="bag-total-info"><strong>Grand Total: ${{ grand_total|floatformat:2 }}</strong></h4>
                 {% if free_delivery_delta > 0 %}
                 <p class="text-danger">

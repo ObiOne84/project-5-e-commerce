@@ -99,10 +99,6 @@
                                             </span>
                                         </p>
                                     </div>
-                                    <!-- remvoe below -->
-                                    <div class="col-3 text-right">
-
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -115,10 +111,14 @@
                     <div class="col-6 col-sm-7 offset-2">
                         <p class="my-0">Order Total:</p>
                         <p class="my-0">Delivery:</p>
+                        <p class="my-0">Vat Included:</p>
+                        <p class="my-0 text-danger">Discount:</p>
                     </div>
                     <div class="col-4 col-sm-3">
                         <p class="my-0 me-1 me-sm-0">${{ total | floatformat:2 }}</p>
                         <p class="my-0 me-1 me-sm-0">${{ delivery | floatformat:2 }}</p>
+                        <p class="my-0 me-1 me-sm-0">${{ vat | floatformat:2 }}</p>
+                        <p class="my-0 me-1 me-sm-0 text-danger">-${{ discount | floatformat:2 }}</p>
                     </div>
                 </div>
                 <hr class="my-0">

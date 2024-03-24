@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from decimal import Decimal
 import os
 import dj_database_url
 if os.path.isfile('env.py'):
@@ -204,7 +205,10 @@ if 'USE_AWS' in os.environ:
 
 # Stripe
 FREE_DELIVERY_THRESHOLD = 50
-STANDARD_DELIVERY_PRECENTAGE = 10
+STANDARD_DELIVERY_CHARGE = Decimal(5.95)
+STANDARD_VAT_RATE = 23
+DISCOUNT_THRESHOLD = 3
+DISCOUNT_RATE = 10
 
 STRIPE_CURRENCY = 'usd'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
