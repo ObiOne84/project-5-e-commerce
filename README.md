@@ -28,7 +28,7 @@ At OwlBookstore, it's not just about selling books and comics; it's about foster
 ### [Design](#design-1)
 
 - [Color Scheme](#color-scheme)
-- [Recipe Images](#recipe-images)
+- [Product Images](#product-images)
 - [Wireframes](#wireframes)
 - [Database Scheme](#database-scheme)
 - [Data Model](#data-models)
@@ -157,15 +157,9 @@ In essence, the Agile Methodology, coupled with Github's Project Boards and a st
 - Admin and Store Management
 - Registration and User Accounts
 
----
-
-Finished here
-
----
-
 #### User Stories
 
-1. Project set up
+1. Project setup
 
     - Develop wireframes for the user interface of the application.
     - Design Entity-Relationship Diagrams (ERD).
@@ -178,10 +172,12 @@ Finished here
     - Create the Navigation tabs for the site header.
     - Create links for navigation tabs on each page.
 
-3. Social network bar
+3. Footer
 
     - Create the footer
     - Create a link for social sites on each page.
+    - Create links for related pages.
+    - Add newsletter subscription.
 
 4. User Registration
 
@@ -189,139 +185,165 @@ Finished here
     - User registration, log in, log out.
     - Display the users' name.
 
-5. Manage recipes
+5. Manage products
 
     - Admin panel.
     - Crud functionality
     - Admin dashboard functionality.
 
-6. Create drafts
+6. Viewing products, product details and basket
 
-    - Add ingredients in the admin panel to the recipe.
-    - Recipe can be saved as a draft.
+    - Create appropiate templates and logic to display correct information.
 
 7. Approve reviews
 
     - Allow admin to approve reviews
     - Allow admin to create reviews through the admin panel
 
-8. Review a recipe
+8. Review a product
 
     - Create a form to allow user review the recipe
-    - Allow user to rate recipe only once
-
-9. Like a recipe
-
-    - Allow user to like recipe only once
-
-10. View reviews
-
     - Allow users to view approved reviews.
-    - Create a mechanism to calculate the average rating.
 
-11. Add a recipe
+9. User profile
 
-    - Create a recipe form
-    - Create a recipe template
+    - Create user profile on purchase
+    - Save shipping information to user's profile on purchase
 
-12. Open a recipe
+10. Email confirmation
 
-    - Create a recipe card template
+    - Set up email confirmation for orders.
 
-13. Add an ingredient to the recipe
+11. Product sorting
 
-    - Create an ingredient form.
+    - Create logic to sort products base on set parameters.
+    - Allow descending and ascending sorting.
 
-14. View likes
+12. Search products
 
-    - Display the like count next to the recipe.
+    - Create logic to support search functionality.
+    - Implement search functionality on the page.
 
-15. Online recipe book
+13. Password recovery, change and email update
 
-    - Add recipe content to the page.
+    - Add django-allauth password recovery funcionaltiy.
+    - Allow Users to change password.
+    - Allow Users to update email, set primary.
 
-16. Enhance Frontend Styling and Responsiveness
+14. Add, update and delete products
 
-    - Create a home page.
-    - Maintain consistent design.
-    - Test responsiveness.
+    - Allow store admin full CRUD functionality.
 
-17. Readme file
+15. Guest checkout
+
+    - Allow unregistered user to complete purchase.
+    - Ensure seamles Stripe integration.
+
+16. In-App messages
+
+    - Ensure user feedback upon success action.
+    - Ensure error are displayed to User clearly.
+  
+17. Add, update products in the basket
+
+    - Allow Users to add product to basket.
+    - Allow Users to update products in the basket.
+    - Allow Users to remove products from the basket.
+
+18. Code refactoring
+
+    - Ensure code readability and maintainability.
+
+19. Readme file and testing
 
     - Create comprehensive application's documentation.
+    - Ensure application pass all crucial tests.
 
-Detailed look can be found on the [project board](https://github.com/users/ObiOne84/projects/4)
+Detailed look can be found on the [project board](https://github.com/users/ObiOne84/projects/5)
 
 ### Target Audience
 
-- Home Cooks and Chefs: Individuals passionate about cooking, seeking a platform to store, manage, and share their recipes.
-- Recipe Enthusiasts: Those who enjoy discovering and trying out new recipes, leaving reviews, and engaging with a culinary community.
-- Tech-Savvy Foodies: Users who appreciate a seamless and user-friendly digital experience for managing their culinary creations.
-- Mobile Users: Individuals who prefer the convenience of accessing recipe management tools from their mobile devices.
-- Community-Driven Individuals: Those interested in engaging with a community of like-minded individuals, sharing culinary tips and inspiration.
-- Culinary Creatives: Home cooks, aspiring chefs, and culinary artists looking for a platform to showcase their creativity.
-- Families: Families who want to collect and manage their favourite recipes for shared meals and special occasions.
-- Healthy Lifestyle Enthusiasts: Individuals interested in maintaining a healthy lifestyle through diverse and nutritious recipes.
-Chef's Helper caters to a diverse audience of culinary enthusiasts, providing a hub for creativity, community, and culinary exploration.
+- Bookworms and Comic Enthusiasts: Individuals passionate about literature and graphic novels, seeking a platform to discover, purchase, and engage with their favorite reads.
+- Reading Enthusiasts: Those who enjoy exploring new authors, genres, and storylines, and appreciate curated recommendations and exclusive deals.
+- Tech-Savvy Readers: Users who value an intuitive and user-friendly digital experience for browsing, purchasing, and managing their book and comic collections.
+- Mobile Users: Individuals who prefer the convenience of accessing their favorite books and comics from their mobile devices, anytime and anywhere.
+- Community-Driven Readers: Those interested in connecting with fellow readers, sharing recommendations, and participating in discussions about their favorite literary works.
+- Literary Creatives: Writers, artists, and aspiring creators looking for inspiration and storytelling resources within the book and comic community.
+- Families and Educators: Families seeking quality reading materials for children and educators looking for educational resources and classroom materials.
+- Collectors: Collectors of rare editions, limited prints, and special releases, interested in expanding their collections and discovering new treasures.
+
+OwlBookstore caters to a diverse audience of book and comic enthusiasts, providing a vibrant platform for exploration, community, and literary discovery.
 
 ### First time user
 
 - Simple and intuitive website navigation for easy exploration and discovery.
-- Engaging visuals showcasing the various dishes of public recipes.
+- Engaging visuals showcasing available products.
 - Informative content providing an overview of application functionality and future updates.
-- Search bar, to allow user to find their favourite dishes.
+- Search bar, to allow user to find their favourite products.
 - Easy Registration process.
+- Seamless payment process.
 
 ### Registered User
 
 - Seamless login process with a secure and personalized user account.
-- Browsing recipe details.
-- Printing.
-- Adding new recipes.
-- Updating own recipes.
-- Reviewing, rating and liking recipes.
+- Reviewing existing products.
+- Faster checkout.
+- Storing personal information on user profile.
+- Updating own profile.
 
 ### Admin user
 
 - Secure and separate login portal for admin users with appropriate access control.
-- Access to an admin dashboard for recipes, reviews and ingredients.
-- Ability to add, edit, or delete recipes, including ingredients, reviews and likes.
-- Management of recipe options, such as adding, updating, or removing ingredients and reviews.
+- Access to an admin dashboard for products, reviews and users.
+- Ability to add, edit, or delete products, including reviews and rating.
+- Management of product options, such as adding, updating, or removing categories and subcategories.
 - Ability to delete user accounts, providing the necessary control for managing user data and accounts.
-- Management of recipes, including the ability to view, modify, or delete recipes as needed.
+- Management of user profiles and orders, including the ability to view, modify, or delete user profile or order as needed.
 
 ## Design
 
-The design of Chef's Helper platform is carefully crafted to provide a visually appealing and user-friendly experience. The design strikes a balance between simplicity and sophistication, ensuring a clean and modern appearance. The light blue background creates a harmonious backdrop for the culinary-focused content. The design emphasizes user interaction, with hover styles applied to key elements such as navigation, social links, and recipe cards. This provides users with a responsive and dynamic experience as they navigate through the platform. The consistent use of the color scheme, fonts, and styling elements across the platform creates a cohesive and unified visual identity. The design of Chef's Helper is tailored to appeal to users seeking a seamless and visually delightful experience while exploring and managing their recipes.
+The design of OwlBookstore's platform is meticulously crafted to deliver a visually captivating and user-friendly experience. Drawing inspiration from the world of literature, the design exudes elegance and sophistication, with a carefully curated color scheme.
+
+Black is primarily used for the navbar, footer and buttons, providing a sleek and professional appearance while ensuring easy navigation and access to essential features.
+
+Orange accents are strategically incorporated throughout the design to highlight important elements such as links, and call-to-action prompts. This vibrant color adds warmth and energy to the interface, guiding users' attention to key interactions and enhancing the overall visual appeal.
+
+White serves as the background color, ensuring optimal readability and creating a clean canvas for showcasing book covers, comic illustrations, and textual content. This neutral backdrop enhances the visibility of visual elements and maintains a cohesive aesthetic across the platform.
+
+The design prioritizes simplicity and clarity, with clear typography, spacious layouts, and intuitive navigation, allowing users to effortlessly browse, discover, and purchase their favorite books and comics.
+
+Interactive elements such as hover effects and animated transitions add a touch of dynamism and engagement, elevating the user experience and encouraging exploration within the platform.
+
+Consistency in design elements, including fonts, icons, and styling, ensures a cohesive and unified visual identity, reinforcing the brand's image and enhancing user recognition and trust.
+
+In summary, OwlBookstore's design combines elegance, functionality, and user-centric principles to create a captivating and immersive environment for book and comic enthusiasts to explore, discover, and indulge in their passion for literature.
 
 ### Color Scheme
 
-- The predominant color is a soothing light blue background ![#cff4fc](https://placehold.co/15x15/cff4fc/cff4fc.png) `#cff4fc` , creating a calm and inviting atmosphere for users.
+- The predominant color is a soothing white ![#fff](https://placehold.co/15x15/fff/fff.png) `#fff` , ensuring optimal readability and creating a clean canvas for showcasing book covers, comic illustrations, and textual content
 
-- The CH logo is elegantly presented in gold letters ![#dfb705](https://placehold.co/15x15/dfb705/dfb705.png) `#dfb705`, adding a touch of sophistication to the overall design.
+- The OwlBookstore logo, and logo-font is elegantly presented in white letters ![#fff](https://placehold.co/15x15/fff/fff.png) `#fff`, adding a touch of sophistication to the overall design.
 
-- The font choice is a classic black ![#000](https://placehold.co/15x15/000/000.png) `#000`, ensuring readability and a timeless aesthetic.
+- The font choice is a brown-black ![#050101](https://placehold.co/15x15/050101/050101.png) `#050101`, ensuring readability and a timeless aesthetic.
 
-- Navigation elements, including the nav bar and social links, are designed to respond dynamically to user interaction. On hover, the color transitions to a rich burgundy ![#630a0a](https://placehold.co/15x15/630a0a/630a0a.png) `#630a0a`, providing visual feedback.
+- Navigation elements, including the nav bar and social links, are designed to respond dynamically to user interaction. On hover, the color transitions to a orange ![#f09a53](https://placehold.co/15x15/f09a53/f09a53.png) `#f09a53`, providing visual feedback.
 Recipe Cards:
 
-- Recipe cards are styled with a hover effect to enhance the user's interaction. On hover, the card scales slightly increasing the size for a subtle animation. Additionally, a drop shadow is applied ![#2759fc](https://placehold.co/15x15/2759fc/2759fc.png) `#2759fc` to create depth and highlight the selected card.
+### Product Images
 
-### Recipe Images
-
-- Various high-quality images of delectable foods are strategically placed to evoke the essence of culinary delight. These images contribute to an immersive and engaging visual experience. All recipe images were created using [Canva](https://www.canva.com/) software.
+- Various high-quality images of delectable foods are strategically placed to evoke the essence of culinary delight. These images contribute to an immersive and engaging visual experience. All product images were sourced from [Amazon Book](https://www.amazon.co.uk/books-used-books-textbooks/b/?ie=UTF8&node=266239&ref_=nav_cs_books).
 
 ### Logo
 
-- Logo was also created using [Canva](https://www.canva.com/) software.
+- Logo was also created
 
 ### Typography
 
-- Lato is a modern and versatile sans-serif font. With a clean and friendly appearance, it ensures readability across various platforms. Ideal for paragraphs and body text, Lato provides a contemporary and professional look.
+- Lato: Lato is a modern and versatile sans-serif font. With a clean and friendly appearance, it ensures readability across various platforms. Ideal for paragraphs and body text, Lato provides a contemporary and professional look.
 
-- Roboto Slab is a serif font with a stylish and sophisticated feel. It adds a touch of elegance to headings and subheadings, making it suitable for conveying a sense of formality and structure in your design.
+- Libre Baskerville: Libre Baskerville is a serif font with a stylish and sophisticated feel. It adds a touch of elegance to headings and subheadings, making it suitable for conveying a sense of formality and structure in your design.
 
-- Pacifico is a lively and casual cursive font that brings a playful and handwritten charm to your special text. Perfect for creating a personalized and whimsical touch, Pacifico adds character and warmth to headings or elements you want to highlight.
+- Montserrat Alternates: Montserrat Alternates is a sans-serif font that brings a modern and sleek vibe to your brand. With its clean lines and geometric shapes, it offers a balanced and professional look, perfect for logo designs, headers, and branding elements.
 
 ### Wireframes
 
@@ -329,57 +351,79 @@ Recipe Cards:
 <summary> Home Page
 </summary>
 
-![Home Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703345763/wireframe-home-page_qobymk.png)
+![Home Page](/media/sreenshots_webp/home_page.webp)
 </details>
 
 <details>
 <summary> User Sign Up Page
 </summary>
 
-![User Sign Up Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703345881/wireframe-registration-page_i3wdcc.png)
+![User Sign Up Page](/media/sreenshots_webp/registration.webp)
 </details>
 
 <details>
 <summary> User Login Page
 </summary>
 
-![User Login Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703414612/django-project/login-page_w7ktsc.webp)
+![User Login Page](/media/sreenshots_webp/login.webp)
 </details>
 
 <details>
-<summary> Add Recipe Page / Update Recipe Page
+<summary> Product Management
 </summary>
 
-![Add and Update Recipe Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703346206/wireframe-add-recipe_qj9ury.png)
+![Product Management Page](/media/sreenshots_webp/product_management.webp)
 </details>
 
 <details>
-<summary> Recipe Detail View Page
+<summary> Product Detail Page
 </summary>
 
-![Recipe Detail View Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703346404/wireframe-recipe-view_qjkzsd.png)
+![Product Details View Page](/media/sreenshots_webp/book_details.webp)
 </details>
 
 <details>
-<summary> Recipe Images Page
+<summary> Products Page
 </summary>
 
-![Recipe Images Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703346478/wireframe-recipes-page_ovghpm.png)
+![Products Page](/media/sreenshots_webp/books.webp)
+</details>
+
+<details>
+<summary> Basket Page
+</summary>
+
+![Basket Page](/media/sreenshots_webp/basket.webp)
+</details>
+
+<details>
+<summary> Checkout Page
+</summary>
+
+![Checkout Page](/media/sreenshots_webp/checkout.webp)
+</details>
+
+<details>
+<summary> My Profile Page
+</summary>
+
+![My Profile Page](/media/sreenshots_webp/my_profile.webp)
 </details>
 
 ### Database Scheme
 
 Entity Relationship Diagram (ERD)
 
-> The current data scheme comprises models essential for the Minimum Viable Product (MVP) of the recipe management system. However, future updates are planned to enhance the application's functionality. The upcoming features include the addition of Categories to recipes, enabling users to better organize and filter recipes by category and allergens. This enhancement ensures that the system accommodates dietary needs and provides nutritional information for each ingredient and meal created using the recipes.
+> The current data scheme comprises models essential for the Minimum Viable Product (MVP) of the product purchase. The current functionality of OwlBookstore includes essential features such as product management, user profiles, reviews, and order processing. Also, the system introduces the addition of Categories and Subcategories to products, allowing users to navigate and filter books and comics more effectively. This enhancement ensures that the platform offers a seamless browsing experience, enabling users to explore and discover their favorite reads with ease. Moreover, future updates will introduce exciting new additions to enhance user engagement and interaction within the platform.
 >
-> In subsequent phases, the system will introduce a Supplier model to transform the application into a comprehensive tool for the hospitality sector. This addition will facilitate inventory management, catering to the specific needs of commercial users. The planned updates align with a strategic roadmap, progressively expanding the capabilities of the recipe management system to meet evolving user requirements and industry demands.
+> In subsequent phases, the system will introduce a Community Forum, providing users with a dedicated space to connect, discuss, and share their love for books and comics. This forum will foster a vibrant community of readers, where members can engage in discussions, exchange recommendations, and participate in literary events and challenges.
+> Additionally, OwlBookstore will introduce a Book Exchange Market, allowing members to trade or give away books and comics within the community. This feature will enable users to connect with fellow enthusiasts, expand their reading horizons, and contribute to sustainable practices by promoting the reuse and circulation of books.
 
 <details>
 <summary> Data Scheme
 </summary>
 
-![Data Scheme](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703347474/Database_ER_diagram_crow_s_foot_-_Database_ER_diagram_crow_s_foot_bowogm.png)
+![Data Scheme](/media/sreenshots_webp/erd.webp)
 </details>
 
 ### Data Models
@@ -390,77 +434,144 @@ Entity Relationship Diagram (ERD)
     - Django Allauth provides the default User model for authentication within the recipe management system.
     - The User etnity has one-to-many relationship with the Recipe entity, allowing each User to create a multiple recipes. Also, each individual recipe is associated with only one User, this means that users can create and manage their own collection of recipes, and each recipe is attributed to a specific user..
 
-2. Recipe Model
+2. Product:
 
-    - The Recipe model in the system represents a culinary recipe and encapsulates various attributes, including the recipe's title, author, creation/update timestamps, instructions, ingredients, featured image, and additional details related to preparation and user interactions.
+   - Represents a generic product with common attributes shared by books, comics, and other items.
 
-    - Fields:
-    - title: CharField for the title of the recipe, ensuring uniqueness.
-    - slug: SlugField for a URL-friendly version of the title.
-    - author: ForeignKey to the User model, establishing a many-to-one relationship.
-    - created_on: DateTimeField for the creation timestamp.
-    - updated_on: DateTimeField for the last update timestamp.
-    - instructions: TextField for the detailed recipe instructions.
-    - ingredients: ManyToManyField to the RecipeIngredient model, forming a many-to-many relationship.
-    - featured_image: CloudinaryField for storing images, with a default placeholder image.
-    - excerpt: TextField for a brief description or summary (optional).
-    - likes: ManyToManyField to the User model, allowing users to express their liking for a recipe.
-    - prep_time: IntegerField for the preparation time in minutes (optional).
-    - cook_time: IntegerField for the cooking time in minutes (optional).
-    - servings: IntegerField for the default number of servings.
-    - rating: FloatField for the overall rating, constrained between 1 and 5.
-    - total_ratings: IntegerField for the total number of ratings.
-    - status: IntegerField with choices representing the status of the recipe (Draft or Published).
-    - rated_users: ManyToManyField to the User model, tracking users who have rated the recipe.
-    - sum_of_rating: FloatField for the cumulative sum of all ratings.
+   Fields:
+   - title: CharField for the title of the product.
+   - author: CharField for the author or creator of the product.
+   - price: DecimalField for the price of the product.
+   - description: TextField for the description of the product.
+   - category: ForeignKey to the Category model, allowing categorization of the product.
+   - subcategory: ForeignKey to the Subcategory model, allowing further categorization.
+   - published_date: IntegerField for the publication year or release date.
+   - publisher: CharField for the publisher or publishing company.
+   - isbn_13: CharField for the ISBN-13 code.
+   - isbn_10: CharField for the ISBN-10 code.
+   - rating: DecimalField for the average rating of the product.
+   - ratings_count: IntegerField for the total number of ratings received.
+   - image_url: URLField for the image URL of the product.
+   - image: ImageField for uploading and storing product images.
 
-    - Meta specifies the default ordering based on the recipe title in descending order.
+3. Book (Inherits from Product):
 
-    - Methods:
-    - `__str__(self):` Returns the title of the recipe when converted to a string.
-    - `number_of_likes(self):` Returns the count of likes for the recipe.
-    - `number_of_reviews(self):` Returns the count of reviews for the recipe.
-    - `rate_recipe(self, user, user_rating):` Records a user's rating for the recipe, updating the total rating and user rating history.
-    - `calculate_average_rating(self):` Calculates and returns the average rating for the recipe.
-    - `has_unapproved_reviews(self):` Checks if there are unapproved reviews for the recipe.
-    - Custom save method to create a unique slug for each recipe, ensuring a URL-friendly representation.
+   - Represents a specific type of product: books.
 
-    - This model empowers the system to manage and present a diverse array of recipes, supporting interactions such as liking, rating, and reviewing. The inclusion of features like unique slugs and status tracking enhances the robustness of the recipe management system.
+   Additional Fields:
+   - subtitle: CharField for the subtitle of the book.
+   - num_pages: IntegerField for the number of pages in the book.
+   - genre: CharField for the genre of the book.
+   - cover: CharField with choices for the type of cover (paperback, hardcover).
 
-3. RecipeIngredient Model
+4. Comic (Inherits from Product):
 
-    - The RecipeIngredient model represents an individual ingredient used in a recipe. It encapsulates information such as the ingredient's name, quantity, unit of measurement, and the recipe to which it belongs.
+   - Represents a specific type of product: comics.
 
-    - Fields:
-    - name: CharField for the name of the ingredient.
-    - quantity: DecimalField for the quantity of the ingredient.
-    - unit: CharField for the unit of measurement.
-    - recipe: ForeignKey to the Recipe model, establishing a many-to-one relationship.
+   Additional Fields:
+   - series: CharField for the series of the comic.
+   - age_rating: CharField for the age rating of the comic.
+   - illustrator: CharField for the illustrator of the comic.
+   - cover_artist: CharField for the cover artist of the comic.
 
-    - This model serves as a crucial component in the recipe system, allowing for the detailed specification of each ingredient within a recipe. The ForeignKey establishes a link to the associated recipe, facilitating the organization and retrieval of ingredient information when needed. The `__str__` method provides a readable string representation for ease of use and display.
+5. Review:
 
-4. Review Model
+   - Represents a review left by a user for a product.
 
-    - The Review model represents user reviews for a specific recipe within the recipe management system. It includes essential details such as the reviewer's name, email, the content of the review, creation timestamp, and approval status.
+   Fields:
+   - product: ForeignKey to the Product model, establishing a many-to-one  - relationship.
+   - name: CharField for the name of the reviewer.
+   - email: EmailField for the email of the reviewer.
+   - body: TextField for the content of the review.
+   - created_on: DateTimeField for the timestamp of the review creation.
+   - approved: BooleanField indicating whether the review is approved or pending.
 
-    - Fields:
+6. Category:
 
-    - recipe: ForeignKey to the Recipe model, establishing a many-to-one relationship.
-    - name: CharField for the name of the reviewer.
-    - email: EmailField for the email of the reviewer.
-    - body: TextField for the content of the review.
-    - created_on: DateTimeField for the creation timestamp.
-    - approved: BooleanField indicating whether the review has been approved (default is False).
+   - The Category model represents a category or classification for products in the OwlBookstore. It includes fields for the category name, product type, and display name.
 
-    - Meta specifies the default ordering based on the creation timestamp in ascending order.
+   Fields:
+   - name: CharField representing the name of the category.
+   - product_type: CharField with choices representing the type of products within the category (comic, book, product).
+   - display_name: CharField representing the display name of the category (optional).
 
-    - This model plays a crucial role in collecting and managing user feedback for recipes. The ForeignKey establishes a link to the associated recipe, allowing for easy retrieval and organization of reviews. The approval status (approved) provides a mechanism to control the visibility of reviews, with the default set to False. The `__str__` method ensures a meaningful and readable representation of reviews when converted to a string. The ordering meta attribute ensures that reviews are sorted based on their creation timestamp.
+7. Subcategory:
+
+   - The Subcategory model represents a subcategory or sub-classification within a category. It includes fields for the subcategory name and a foreign key relationship to the parent category.
+
+   Fields:
+   - name: CharField representing the name of the subcategory.
+   - category: ForeignKey establishing a many-to-one relationship with the parent category.
+
+8. UserProfile:
+
+   - The UserProfile model in the OwlBookstore system represents user profiles, providing a space for users to maintain default delivery information and view their order history.
+
+   Fields:
+   - user: OneToOneField linking to the User model, ensuring a one-to-one relationship with each user.
+   - default_full_name: CharField for the default full name of the user.
+   - default_phone_number: CharField for the default phone number of the user.
+   - default_street_address1: CharField for the first line of the default street address of the user.
+   - default_street_address2: CharField for the second line of the default street address of the user.
+   - default_town_or_city: CharField for the default town or city of the user.
+   - default_postcode: CharField for the default postal code of the user.
+   - default_county: CharField for the default county of the user.
+   - default_country: CountryField for the default country of the user.
+
+   Signals:
+   - create_or_update_profile: A signal that creates or updates the user profile whenever a new user is created or an existing user's information is modified.
+
+   This model ensures that users have a personalized experience by storing their default delivery information and allowing them to view their order history seamlessly. Additionally, the signal ensures that a user profile is automatically created or updated whenever necessary, maintaining consistency and accuracy in user data.
+
+9. Order:
+
+   - The Order model in the OwlBookstore system represents an order made by a user. It includes fields for the order number, user profile, delivery information, order details, and payment information.
+
+   Fields:
+   - order_number: CharField for the unique order number, generated using UUID.
+   - user_profile: ForeignKey linking to the UserProfile model, establishing a many-to-one relationship.
+   - full_name: CharField for the full name of the user placing the order.
+   - email: EmailField for the email address of the user.
+   - phone_number: CharField for the phone number of the user.
+   - country: CountryField for the country of the user.
+   - postcode: CharField for the postal code of the user (optional).
+   - town_or_city: CharField for the town or city of the user.
+   - street_address1: CharField for the first line of the street address of the user.
+   - street_address2: CharField for the second line of the street address of the user (optional).
+   - county: CharField for the county of the user (optional).
+   - date: DateTimeField for the date and time when the order was placed.
+   - delivery_cost: DecimalField for the delivery cost of the order.
+   - order_total: DecimalField for the total cost of the order.
+   - grand_total: DecimalField for the grand total cost of the order, including delivery.
+   - original_bag: TextField for storing the original shopping bag contents.
+   - stripe_pid: CharField for the payment ID from Stripe.
+
+   Methods:
+   - ``_generate_order_number(self):`` Generates a random, unique order number using UUID.
+   - ``update_total(self):`` Updates the order total and grand total, accounting for delivery costs.
+   - ``save(self, *args, **kwargs):`` Overrides the original save method to set the order number if not already set.
+
+10. OrderLineItem:
+
+    - The OrderLineItem model represents individual line items within an order. It includes fields for the order, product, quantity, and line item total.
+
+    Fields:
+
+    - order: ForeignKey linking to the Order model, establishing a many-to-one relationship.
+    - product: ForeignKey linking to the Product model, representing the product included in the order.
+    - quantity: IntegerField for the quantity of the product in the order.
+    - lineitem_total: DecimalField for the total cost of the line item.
+
+    Methods:
+    - save(self, *args, **kwargs): Overrides the original save method to set the line item total and update the order total.
+
+    These models facilitate the management of orders in the OwlBookstore system, allowing users to place orders, view order history, and track deliveries. The inclusion of methods ensures accurate calculation and updating of order totals.
 
 ---
 
 ### User Journey
 
-![User Journey](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703352336/user-journey_qhdoqh.png)
+![User Journey](/media/sreenshots_webp/user_journey.webp)
 
 ## Security Features
 
@@ -492,6 +603,12 @@ By incorporating these CSRF protection mechanisms, Django helps prevent attacker
     <button type="submit">Submit</button>
 </form>
 ```
+
+---
+
+Here finished
+
+---
 
 ### Custom Views Security Measures
 
