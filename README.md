@@ -1,11 +1,16 @@
-# Chef's Helper
+# OwlBookstore
 
-Discover the ultimate solution for your culinary adventures! Our application empowers you to create, store, and explore a world of recipes, all in one place. Whether you're a seasoned chef or a home cook, our platform is designed to enhance your cooking experience.
-Join our thriving culinary community today and elevate your cooking journey with our feature-rich, user-friendly application. It's not just a recipe app; it's your culinary companion. Start creating, exploring, and savouring the joy of cooking!
+Embark on a journey through the captivating world of literature with OwlBookstore - your ultimate destination for all things books and comics! Our platform is meticulously crafted to provide you with an unparalleled experience in discovering, storing, and exploring a vast collection of literary treasures.
 
-![Home Screen](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703414611/django-project/responsivness-screenshot_maftgr.webp)
+Whether you're an avid reader or a casual enthusiast, OwlBookstore is your go-to companion for all your literary adventures. Delve into a diverse array of genres, from gripping novels to thrilling comics, and unlock the magic of storytelling at your fingertips.
 
-[Chef's Helper live website here](https://django-chefs-helper-90ca65af05b0.herokuapp.com/)
+Join our vibrant literary community today and immerse yourself in a world of endless possibilities. With our intuitive features and user-friendly interface, navigating through our extensive catalog is a breeze. Uncover hidden gems, rediscover timeless classics, and connect with fellow book lovers who share your passion for reading.
+
+At OwlBookstore, it's not just about selling books and comics; it's about fostering a love for literature and igniting the imagination of readers worldwide. Start your journey with us today and let the pages of our books and comics transport you to new and exciting realms. Happy reading!
+
+![Home Screen](/media/sreenshots_webp/owl_bookstore_responsive.webp)
+
+[OwlBookstore's live website here](https://owl-bookstore-2a747a64a0a9.herokuapp.com/)
 
 ---
 
@@ -68,71 +73,77 @@ Join our thriving culinary community today and elevate your cooking journey with
 
 ## User Experience (UX)
 
-Dive into an immersive culinary journey with Chef's Helper's Recipe Management feature. Our platform offers a seamless and engaging user experience, ensuring effortless organization and exploration of your favourite recipes. Experience the convenience of storing, viewing, and managing your own culinary creations, alongside the ability to discover, review, rate, and like recipes contributed by fellow users.
+Embark on an immersive literary journey with OwlBookstore's E-commerce Platform, where the world of books and comics awaits your exploration. Our platform offers a seamless and enriching user experience, ensuring effortless browsing, purchasing, and engagement with your favorite reads. Dive into a treasure trove of literary delights, where every click opens the door to new adventures.
 
-The Recipe Management system is designed with user-friendly navigation, providing a visually stunning interface for an enjoyable and hassle-free experience. Whether you're a seasoned chef or a home cook, our personalized recommendations and comprehensive information cater to your unique preferences, making each step of your culinary adventure delightful.
+OwlBookstore's E-commerce Platform is meticulously designed with user-friendly navigation, providing a visually captivating interface for an enjoyable and hassle-free shopping experience. Whether you're seeking the latest bestseller or a hidden gem, our personalized recommendations and comprehensive information cater to your unique literary preferences, making every purchase a delight.
 
-Create a personalized collection of recipes, easily accessible from any device with our mobile-friendly design. Edit your recipes with ease, add new ingredients, and share your culinary masterpieces with the Chef's Helper community. Explore a treasure trove of diverse recipes contributed by others, offering inspiration for your next kitchen endeavour.
+Browse through a curated selection of books and comics, conveniently categorized for easy navigation. Discover new releases, explore timeless classics, and uncover exclusive offers and discounts tailored to your interests. With our mobile-friendly design, access your wishlist and cart from any device, ensuring a seamless shopping experience wherever you go.
 
-Feel the satisfaction of not only managing your culinary creations but also engaging with a community passionate about food. Leave reviews, rate recipes, and show appreciation by liking outstanding dishes. For those cherished favourites, the option to print your recipes ensures they are always at your fingertips, ready to impress friends and family.
+Experience the satisfaction of finding the perfect book or comic, knowing that every purchase supports your passion for reading. Take advantage of exclusive discounts and promotions, including free delivery for orders above $50, ensuring that your literary treasures arrive at your doorstep without any extra cost.
 
-Chef's Helper's Recipe Management is more than just a tool; it's a culinary haven where your cooking journey transforms into a delightful and enriching experience. Join us in celebrating the art of cooking, sharing, and savouring the flavour of a vibrant and thriving culinary community.
+Engage with fellow bookworms in our vibrant community, where you can share recommendations, leave reviews, and connect with like-minded readers. From lively discussions to insightful reviews, OwlBookstore fosters a sense of camaraderie among literary enthusiasts, enriching your reading journey in more ways than one.
+
+OwlBookstore's E-commerce Platform is more than just a bookstore; it's a gateway to a world of literary wonders, where your love for books and comics flourishes. Join us in celebrating the magic of storytelling and indulge in the joy of discovering new adventures within a vibrant and thriving literary community. Happy reading!
 
 ### Project Goals
 
-Chef's Helper aims to create a user-friendly online platform for culinary enthusiasts. The project focuses on:
+OwlBookstore endeavors to create a comprehensive and user-friendly e-commerce platform tailored to book and comic enthusiasts. The project focuses on:
 
-- Seamless Experience: Provide an intuitive interface for effortless recipe storage, management, and exploration.
+- Enhanced User Experience: Provide a seamless and intuitive interface for browsing, purchasing, and engaging with a diverse selection of books and comics.
 
-- Community Engagement: Foster a vibrant community where users can view, review, rate, and like recipes shared by fellow enthusiasts.
+- Community Building: Foster an engaging community where users can interact, share recommendations, and participate in discussions related to their favorite literary works.
 
-- Effortless Management: Simplify the process of editing recipes, adding ingredients, and navigating through collections.
+- Streamlined Shopping Experience: Simplify the process of finding and purchasing books and comics by offering personalized recommendations, exclusive discounts, and hassle-free checkout.
 
-- Print and Share: Enhance the joy of sharing culinary creations by allowing users to print their favourite  recipes.
+- Promote Literary Exploration: Encourage users to discover new authors, genres, and titles through curated collections, featured releases, and thematic promotions.
 
-- Mobile Accessibility: Prioritize accessibility with a mobile-friendly design for planning and managing recipes on any device.
+- Accessibility and Convenience: Prioritize accessibility by ensuring the platform is optimized for mobile devices, allowing users to browse, shop, and manage their accounts on the go.
+
+By focusing on these project goals, OwlBookstore aims to create a vibrant and inclusive online community where readers can connect, explore, and celebrate the joy of literature.
 
 ### Agile Methodology
 
 Agile Methodology served as the guiding framework for prioritizing and organizing tasks in the Chef's Helper app development process. The workflow included:
 
 - User Story Creation: Utilizing the Agile approach, user stories were meticulously crafted, and a template was established to streamline the process. This allowed for a clear definition of project goals and user requirements.
-- Epics Development: Epics, each containing potential user stories, were formulated. These epics served as overarching themes, providing a foundation for the subsequent development of the Chef's Helper website.
+- Epics Development: Epics, each containing potential user stories, were formulated. These epics served as overarching themes, providing a foundation for the subsequent development of the OwlBookstore e-commerce platform.
 - Iterative Progression: User stories were generated by analyzing and refining the epics. Through iterative cycles, the project steadily advanced, ensuring that each user story contributed to the overall development goals.
 - Public Project Board on Github: A Project Board, accessible to the public, was implemented on Github. This board acted as a centralized hub for task tracking, employing columns such as Todo, In Progress, and Done.
 - Progress Tracking: The Project Board played a pivotal role in tracking the progression of tasks. Issues smoothly transitioned through the different columns, providing a visual representation of the project's status.
 - Labeling for Priority: Labels were strategically added to categorize issues based on their importance. This labeling system facilitated a systematic organization of tasks, allowing the team to focus on critical aspects and prioritize accordingly.
 
-In essence, the Agile Methodology, coupled with Github's Project Boards and a structured template for user stories and epics, ensured an efficient and collaborative approach to Chef's Helper app development. This methodology allowed for flexibility, adaptability, and continuous improvement throughout the project lifecycle.
+In essence, the Agile Methodology, coupled with Github's Project Boards and a structured template for user stories and epics, ensured an efficient and collaborative approach to OwlBookstore's app development. This methodology allowed for flexibility, adaptability, and continuous improvement throughout the project lifecycle.
 
 <details>
 <summary> User Stories Template
 </summary>
 
-![User Stories, Template](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703414610/django-project/user-story-template_tv3jc0.webp)
+![User Stories, Template](/media/sreenshots_webp/user_story.webp)
 </details>
 
 <details>
 <summary> User Stories, Issues
 </summary>
 
-![User Stories, Issues](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703414610/django-project/project-issues_t53i76.webp)
+![User Stories, Issues](/media/sreenshots_webp/issues.webp)
 </details>
 
 <details>
 <summary> Project Milestones
 </summary>
 
-![Project Milestones](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703268372/project-milestones_xpcjup.png)
+![Project Milestones](/media/sreenshots_webp/milestones.webp)
 </details>
 
 <details>
 <summary> Project Board
 </summary>
 
-![Project Board](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703414612/django-project/project-board_zrmszf.webp)
+![Project Board](/media/sreenshots_webp/project_board.webp)
 
-- <a href="https://github.com/users/ObiOne84/projects/4" target="_blank">Visit project GitHub page here.</a>
+- <a href="https://github.com/users/ObiOne84/projects/5" target="_blank">Visit project GitHub page here.</a>
+
+- <a href="https://github.com/users/ObiOne84/projects/5/views/1?layout=roadmap" target="_blank">Visit project GitHub roadmap here.</a>
 
 </details>
 
@@ -140,11 +151,17 @@ In essence, the Agile Methodology, coupled with Github's Project Boards and a st
 
 #### Epics
 
-- Project Setup and Initialization
-- Website Admin Management
-- Recipe Management System
-- Frontend Refinement and Content Enrichment
-- Comprehensive Documentation Enhancement
+- Product Viewing and Navigation
+- Product Sorting and Searching
+- Purchase and Checkout
+- Admin and Store Management
+- Registration and User Accounts
+
+---
+
+Finished here
+
+---
 
 #### User Stories
 
