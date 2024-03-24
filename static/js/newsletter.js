@@ -22,29 +22,10 @@ $(document).ready(function () {
     $('#newsletterToggle').click(function() {
         $('#collapseNewsletter').collapse('toggle');
         $('html, body').animate({
-            scrollTop: $('#collapseNewsletter').offset().top
-        }, 500); // Adjust the duration as needed
+            scrollTop: $(document).height() - $(window).height()
+        }, 500);
     });
-
-    $('#mc-embedded-subscribe-form').submit(function(event) {
-        event.preventDefault(); // Prevent default form submission
-        var form = $(this);
-        
-        $.ajax({
-            type: form.attr('method'),
-            url: form.attr('action'),
-            data: form.serialize(),
-            success: function(response) {
-                // If submission is successful, collapse the newsletter section
-                $('#collapseNewsletter').collapse('hide');
-                // Optionally, you can display a success message or perform any other action
-            },
-            error: function(err) {
-                // Handle errors if needed
-                console.log('Error:', err);
-            }
-        });
-    });
+    
 
     $('footer').mouseenter(function () {
         $('.newsletter').slideDown();
