@@ -20,10 +20,12 @@ $(document).ready(function () {
     $('#copyright').text(new Date().getFullYear());
 
     $('#newsletterToggle').click(function() {
-        $('#collapseNewsletter').collapse('toggle');
-        $('html, body').animate({
-            scrollTop: $(document).height() - $(window).height()
-        }, 500);
+        var maxScrollHeight = $(document).height() - $(window).height();
+        $('#collapseNewsletter').collapse('show');
+        window.scrollTo(0, maxScrollHeight);
+        setTimeout(function() {
+            $('#collapseNewsletter').collapse('hide');
+        }, 30000);
     });
     
 
@@ -38,6 +40,12 @@ $(document).ready(function () {
         setTimeout(function() {
             $('.newsletter').slideUp();
         }, 15000); // 15 seconds delay
+
+        // if ($(window).width() < 996) {
+        //     $('#collapseNewsletter').click(function() {
+        //         $('.newsletter').slideUp();
+        //     });
+        // }
     });
 
 })
