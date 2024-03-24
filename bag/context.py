@@ -8,6 +8,8 @@ def bag_content(request):
     bag_items = []
     total = 0
     product_count = 0
+    discount = 0
+    vat = 0
     bag = request.session.get('bag', {})
 
     for item_id, quantity in bag.items():
@@ -34,7 +36,7 @@ def bag_content(request):
     if product_count >= settings.DISCOUNT_THRESHOLD:
         discount = Decimal(total * settings.DISCOUNT_RATE) / 100
 
-    if total < settings.FREE_DELIVERY_THRESHOLD:
+    if total < settings.FREE_DELIVERY_THRESHOLD and product_count > 0:
         delivery = settings.STANDARD_DELIVERY_CHARGE
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
     else:
