@@ -11,6 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Comic, Book, Review, Subcategory, Category
 from .forms import ReviewForm, AddComicForm, AddBookForm
+from checkout.models import Order, OrderLineItem
 
 
 def all_products(request):
@@ -155,9 +156,12 @@ def product_detail(request, product_id):
 
     reviews = product.reviews.filter(approved=True).order_by('created_on')
 
+    product_in_orders = OrderLineItem.objects.filter(order__user_profile=request.user.userprofile, product=product).exists()
+
     if request.method == 'POST':
         if request.user.is_authenticated:
             form = ReviewForm(request.POST, request.FILES)
+            
             if form.is_valid():
                 form.instance.email = request.user.email
                 form.instance.name = request.user.username
@@ -166,6 +170,9 @@ def product_detail(request, product_id):
                 review.save()
                 messages.success(request, 'Review submitted successfully.')
                 return redirect(reverse('product_detail', args=[product_id]))
+                # else:
+                #     messages.error(request, "You can only review products that you've previously purchased.")
+                #     return redirect('product_detail', product_id=product_id)
             else:
                 messages.error(request, 'Failed to add review. Please ensure the form is valid.')
         else:
@@ -180,6 +187,7 @@ def product_detail(request, product_id):
         'reviews': reviews,
         'review_form': form,
         'reviewed': False,
+        'product_in_orders': product_in_orders,
     }
     
     return render(request, 'products/product_detail.html', context)

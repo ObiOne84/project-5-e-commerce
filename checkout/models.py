@@ -4,6 +4,7 @@ from django.db import models
 from django.db.models import Sum
 from django.conf import settings
 from django_countries.fields import CountryField
+from decimal import Decimal
 
 from products.models import Product
 from profiles.models import UserProfile
@@ -30,6 +31,8 @@ class Order(models.Model):
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     original_bag = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
+    discount = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
+    vat = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
 
     def _generate_order_number(self):
         """
@@ -43,11 +46,24 @@ class Order(models.Model):
         accounting for delivery costs.
         """
         self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
+
+        product_count = 0
+
+        for line_item in self.lineitems.all():
+            product_count += line_item.quantity
+
+        if product_count >= settings.DISCOUNT_THRESHOLD:
+            self.discount = Decimal(self.order_total * settings.DISCOUNT_RATE) / 100
+        else:
+            self.discount = 0
+        
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
-            self.delivery_cost = self.order_total * settings.STANDARD_DELIVERY_PRECENTAGE / 100
+            self.delivery_cost = settings.STANDARD_DELIVERY_CHARGE
         else:
             self.delivery_cost = 0
-        self.grand_total = self.order_total + self.delivery_cost
+
+        self.grand_total = self.order_total + self.delivery_cost - self.discount
+        self.vat = Decimal(self.grand_total * settings.STANDARD_VAT_RATE / 100)
         self.save()
 
     def save(self, *args, **kwargs):
