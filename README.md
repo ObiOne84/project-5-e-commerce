@@ -54,13 +54,16 @@ At OwlBookstore, it's not just about selling books and comics; it's about foster
 - [Languages Used](#languages-used)
 - [Databases Used](#databases-used)
 - [Frameworks Used](#frameworks-used)
+- [Payment Systyem](#payment-system)
 - [Programs Used](#programs-used)
+- [Emails and Newsletter](#emails-and-newsletter)
+- [SEO and Marketing](#seo-and-marketing-2)
 
 ### [Deployment and Local development](#deployment-and-local-development-1)
 
 - [Local Development](#local-development)
 - [ElephantSQL Database](#elephantsql-database)
-- [Cloudinary](#cloudinary)
+- [AWS Amazon](#aws-amazon)
 - [Heroku Deployment](#heroku-deployment)
 
 ### [Testing](#testing-1)
@@ -952,12 +955,12 @@ By incorporating these features, Chef's Helper will not only enhance the user ex
 - [CSS Validation Service](https://jigsaw.w3.org/css-validator/) - Used to validate CSS
 - [CI Python Linter](https://pep8ci.herokuapp.com/#) - Used to validate Python
 
-### Emails/Newsletter
+### Emails and Newsletter
 
 - [Gmail](https://mail.google.com/) - User for email services
 - [Mailchimp](https://mailchimp.com/?currency=EUR) - Automated newsletter subscription service
 
-### SEO/Marketing
+### SEO and Marketing
 
 - [XML Sitemaps](https://www.xml-sitemaps.com/) - sitemap generator
 - [Privacy Policy Generator](https://www.privacypolicygenerator.info/) - Used to generate privacy policy
@@ -1006,7 +1009,7 @@ To bring down project for local development, it is possible to clone a repositor
 7. Return to the ElephantSQL dashboard and click the database name you just created.
 8. In the URL section, click and copy icon to copy the database URL (you will need this for your **env.py** file)
 
-### Hosting images and static file with AWS
+### AWS Amazon
 
 1. Create AWS account and go to AWS Management Console in the My Account dropdown
 2. Find and access S3 as a service and create a new bucket:
