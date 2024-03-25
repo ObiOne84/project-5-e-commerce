@@ -25,6 +25,8 @@ At OwlBookstore, it's not just about selling books and comics; it's about foster
 - [Registered user](#registered-user)
 - [Admin user](#admin-user)
 
+### [SEO and Marketing](#seo-and-marketing-1)
+
 ### [Design](#design-1)
 
 - [Color Scheme](#color-scheme)
@@ -37,7 +39,7 @@ At OwlBookstore, it's not just about selling books and comics; it's about foster
 ### [Security Features](#security-features-1)
 
 - [User Authentication](#user-authentication)
-- [LoginRequiredMixin](#loginrequiredmixin)
+- [Login Required](#login-required)
 - [CSRF Protection](#csrf-protection)
 - [Custom Views Security Measures](#custom-views-security-measures)
 - [Form Validation](#form-validation)
@@ -299,6 +301,10 @@ OwlBookstore caters to a diverse audience of book and comic enthusiasts, providi
 - Management of product options, such as adding, updating, or removing categories and subcategories.
 - Ability to delete user accounts, providing the necessary control for managing user data and accounts.
 - Management of user profiles and orders, including the ability to view, modify, or delete user profile or order as needed.
+
+## SEO and Marketing
+
+Please see  [SEO and Marketing](SEO_MARKETING.md) for an extensive overview of the marketing research for this project.
 
 ## Design
 
@@ -579,13 +585,15 @@ Entity Relationship Diagram (ERD)
 
 - Django Allauth is a powerful and comprehensive third-party package for handling authentication, registration, and account management in Django applications. It provides several security features to help protect user accounts and sensitive information.
 
-### LoginRequiredMixin
+### Login Required
 
 - In Django, LoginRequiredMixin is a mixin class provided by the django.contrib.auth.mixins module. It is used in class-based views to require that the user making the request must be authenticated. If the user is not authenticated, the mixin will automatically redirect the user to the login page.
 
 - You can use LoginRequiredMixin by inheriting it in your class-based views. Typically, it's used as the leftmost mixin in the inheritance chain to ensure that authentication checks are performed before any other mixins. If the user is authenticated, the view proceeds as normal. If the user is not authenticated, the LoginRequiredMixin automatically redirects them to the login page.
 
 - Using LoginRequiredMixin helps in enforcing authentication requirements for views where you want to ensure that only authenticated users have access. It simplifies the process of handling authentication checks and redirects in class-based views.
+
+- Similarly, ``@login_required`` is a decorator commonly used in web development frameworks like Django in Python. When applied to a view function, it ensures that the user accessing that particular view is logged in. If the user is not logged in, they are typically redirected to a login page or given an appropriate error message, depending on how it's configured. This decorator helps protect sensitive or restricted views, ensuring that only authenticated users can access them.
 
 ### CSRF Protection
 
@@ -604,117 +612,131 @@ By incorporating these CSRF protection mechanisms, Django helps prevent attacker
 </form>
 ```
 
----
-
-Here finished
-
----
-
 ### Custom Views Security Measures
 
 - Overall, views incorporate authentication checks, form validation, and ownership verification to secure various operations. It's important to note that Django's built-in features, such as the authentication system, contribute to the overall security of the application.
-RecipeList:
 
-  - The RecipeDetails view requires authentication (LoginRequiredMixin) to access recipe details. It includes forms for adding reviews and ratings. Security measures include validating user input using Django forms (ReviewForm and RecipeForm), ensuring that only authenticated users can submit reviews and ratings.
-  - The RecipeLike view handles user likes for a recipe. It toggles whether a user has liked a recipe. The security measure includes checking if the user is authenticated before allowing them to like or unlike a recipe.
-  - The AddRecipeView view allows authenticated users to add new recipes. Security measures include using LoginRequiredMixin to ensure that only authenticated users can add recipes. It also validates user input using Django forms (AddRecipeForm and AddIngredientForm). The view handles both the recipe and its associated ingredients.
-  - The UpdateRecipeView view allows authenticated users to update their recipes. It includes security measures such as using LoginRequiredMixin to ensure only authenticated users can update recipes and validating user input using forms (UpdateRecipeForm and AddIngredientForm). It checks if the user trying to update the recipe is the actual owner.
-  - The DeleteRecipeView view allows authenticated users to delete their recipes. Security measures include using LoginRequiredMixin to ensure only authenticated users can delete recipes. It checks if the user trying to delete the recipe is the actual owner.
+  - The `all_products` view handles different scenarios gracefully and provides appropriate error messages to users. For instance, it informs users if there are no results matching their search query or category selection, and it redirects them to the appropriate page. Filtering of querysets (comics and books) based on user inputs is done using Django's ORM, which helps prevent direct SQL injection vulnerabilities. Also, pagination is implemented, which helps prevent overloading the server with large amounts of data requested by users. Lastly, the Django messages framework is used to display messages to users and the view only exposes necessary data to users, such as product information, search results, and pagination controls, while keeping sensitive server-side logic and data hidden from clients.
+  - The `product_detail` view checks if the provided product ID exists in the database before attempting to retrieve the product details. This helps prevent potential database-related errors or exploitation attempts. Before allowing users to submit a review, the view checks if the user is authenticated. If not, it redirects them to the login page and displays an appropriate error message. This prevents unauthorized access to the review functionality. When users submit a review, the view validates the form data. If the form is not valid, an error message is displayed to the user, ensuring that only properly formatted and validated reviews are accepted.
+  - The `AddComic` and `AddBook` views are protected using the LoginRequiredMixin, ensuring that only authenticated users can access it. Within the dispatch method, an additional check is performed to ensure that only users with superuser privileges (typically site owners) can access the views. If a user without superuser privileges attempts to access the views, they are redirected to the home page with an error message. The views validate the form data submitted when adding a new book or comic.
+  - The `edit_book`, `edit_comic`, `delete_book` and `delete_comic`. Similar to the AddBook view, an authorization check is performed to ensure that only superusers (store owners) can update products. If a non-superuser attempts to access this view, they are redirected to the home page with an error message. Additionaly, if the requested book does not exist, the view renders a custom 404 page, which provides a user-friendly error message. This prevents exposing internal details of the application and maintains a better user experience.
+  - The `profile` view implements security measures to protect user profiles, validate form data, and provide feedback to users about the outcome of profile updates.
+  - The `order_history` view implements security measures to protect user order history, ensure authorization, and provide relevant feedback to the user about the viewed order.
+  - The home app views providing feedback messages (success or error messages) to users after form submission. The form consist data validation, and user's messages are limited to 1000 charactres.
+  - The checkout app views ensure that form to used to collect data are valid before submissoin. Moreover, the payment process is handled securely by Stripe. The user's input is validated before processing and errors are displayed gracefully.
+  - The bag app views validate data inputs, to ensure that correct information are processed. Errors are handled gracefully using Django's messaging system. Session data is used to store only bag content. Also, users can only add limited number of each number to their bag (10 units).
 
 ### Form Validation
 
-- ReviewForm and RecipeForm is a basic form, and validation is handled by the default behavior of Django's ModelForm.
+- ReviewForm is a basic form and validation is handled by the default behaviour of Django's ModelForm. Additionaly, clean_data method is added, to ensure that users to not pass empty spaces as a review or exceed 500 characters limit.
 
-- AddIngredientForm uses Django form field types to ensure correct data types for name, quantity, and unit. Also, it specifies the available choices for the unit field and u tilizes attributes to control the appearance of form fields. Moreover, it sets specific constraints on the quantity field, limiting it to positive numbers and defining the maximum and minimum values. Uses the max_digits and decimal_places attributes for the quantity field to handle decimal precision.
-AddRecipeForm and UpdateRecipeForm ensure that the title is unique using a custom clean_title method. Also, they set specific constraints on the prep_time, cook_time, and servings fields, limiting them to positive numbers and defining maximum and minimum values. Furthermore, validate the size of the featured_image to ensure it is no larger than 5 MB. Next, customizes the appearance and behavior of form fields using widget attributes. Finally, the form methods checks for the uniqueness of the recipe title to prevent duplicate entries.
+- Remaining forms in the project, use basic Django form validation.
 
 ## Features
 
-- The home page contains a hero section, with the Join Now button, that allows unregistered users to go directly to the sign-up page. Also, the About section lists the main features of the application's future updates and invites users to register.
-- The application consists of a comprehensive list of recipes.
-- Users can sign up for an account and log in.
+- The home page contains a hero section, with the Shop Now button, that allows unregistered users to go directly to the products page. Also, the About Us, Contact Us, FAQ and Privacy Policy sections located in the footer list the main purpouse of the application's, allow users to contact the customer support, read answers to frequently asked questions and privacy policy. Moreover, footer allow user to visit related pages, connect with the company, or contact the web developer. Moreover, the naviation consist the search bar that allows to search product by name or author, sort by category, price, or rating. Additonaly user can sort products by product type. The Home button, will bring user back to home page, MyAccount allows for Login or Signup for unregistered users and Logout and view MyProfile for registered user and add, edit products for store admin and provide direct access to admin panel.
+- Unregisted users (all users)
+  - Users can sign up for an account and log in.
+  - Users can purchase products.
+  - Users can view detailed product information.
+  - Users can follow link in the footer.
+  - Users can search for the products.
+  - Users can view content of the basket.
 - Once logged in, the user can gain access to:
-  - detailed recipe overview
-  - add a new recipe
-  - update own recipes
-  - delete own recipes
-  - like the recipes (all - only once, and can change)
-  - rate the recipes (all - only once, and cannot change)
-  - leave a review (all, unlimited times)
-  - print a recipe
+  - my profile
+  - order history
+  - password update
+  - email update
+  - review products
+- Once logged in, the admin can gain access to:
+  - add a new product
+  - update product
+  - delete product
+  - approve reviews
+  - admin panel
 - User receives feedback upon completion of the above-listed actions.
-- Average recipe rating is displayed for the user underneath the recipe image.
-- Total number of likes is displayed for the user underneath the recipe image.
-- Total number of reviews and approved reviews are displayed for each recipe, for registered users only.
 
 ### Existing Features
 
 - Home Page
-  - Displays a navigation bar with logo, main heading, hero section, about section, footer with social links.
+  - Displays a navigation bar with logo, main heading, hero section, footer with social links, link to company information, related links, and web developer.
 
-![Home Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703355820/home-page_o8kxlx.png)
-
-- Once logged in the Join Now button disappers.
-
-![Logged in User Home Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703356009/django-project/home-page-logged_urehzy.png)
+![Home Page](/media/sreenshots_webp/home_page_live.webp)
 
 - Logo
-  - Logo was also created using [Canva](https://www.canva.com/) software. It is the abbreviation of the Chef's Helper name.
+  - Logo was also created using Fontawsome icon and text.
 
     <details>
     <summary> Logo
     </summary>
 
-    ![Logo](https://res.cloudinary.com/dcrbeonr9/image/upload/v1700595942/favicon_lr4ymg.ico)
-    </details>
+    ![Logo](/media/sreenshots_webp/logo.webp)
 
-- Navigation Bar differs for visitors, and logged in users.
-
-  - Navigation bar for a visitor
+- Navigation Bar
+  - Navigation bar allow seamless naviagtion through the application allowing users search, sort and filter products. Also, it display the total value of the baskets.
 
     <details>
     <summary> Navigation bar for website visitors.
     </summary>
 
-    ![Visitor's Navigation Bar](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703358255/django-project/visitior-nav-bar_vj275d.png)
+    ![Naviagation Bar](/media/sreenshots_webp/navigation_bar.webp)
     </details>
 
-  - Navigation bar for a user
+  - Navigation bar for a registered user
 
     <details>
-    <summary> Navigation bar for logged in users.
+    <summary> Navigation bar for registered users.
     </summary>
 
-    ![User's Navigation Bar](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703414610/django-project/user-nav-bar_lofpwu.webp)
+    ![Logged User's Navigation Bar](/media/sreenshots_webp/logged_user_nav.webp)
+    </details>
+
+  - Navigation bar for a unregistered user
+
+    <details>
+    <summary> Navigation bar for users.
+    </summary>
+
+    ![User's Navigation Bar](/media/sreenshots_webp/user_nav.webp)
     </details>
   
-    - Navigation bar for an admin
+  - Navigation bar for an admin
 
     <details>
     <summary> Navigation bar for logged in admin.
     </summary>
 
-    ![Admin's Navigation Bar](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703523109/django-project/admin-navbar_tbgime.webp)
-    </detai
+    ![Admin's Navigation Bar](/media/sreenshots_webp/admin_nav.webp)
+    </details>
 
 - About Section
-  - It contains a description of the main function of the application, and future updates.
+  - It contains a description of the main function of the application.
 
     <details>
     <summary> About Us Section.
     </summary>
 
-    ![About Us Section](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703358749/django-project/about-us_eusr88.png)
+    ![About Us Section](/media/sreenshots_webp/about_us.webp)
     </details>
 
 - Footer
-  - The website contains copyright information, creator details, and social links. The website includes links to the creator's LinkedIn and GitHub profiles. These links serve as a means for users to connect with the creator on professional and collaborative platforms.
+  - The website contains copyright information, creator details, and social links. The website includes links to the creator's LinkedIn and GitHub profiles. These links serve as a means for users to connect with the creator on professional and collaborative platforms. Additionaly, the footer contain newsletter block, that allows users to subsribe and stay updated about current promotions. The newsletter signup form appears on hover on large screen, and on the click, on the footer on the mobile devices. Also, the form will be shown when user click on subscribe now banner. Newsletter hides after 15 seconds and on mouseout.
 
     <details>
     <summary> Footer.
     </summary>
 
-    ![About Us Section](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703361653/django-project/footer_jw6gu9.png)
+    ![Footer](/media/sreenshots_webp/footer.webp)
+    </details>
+
+- Banner
+  - Our ubiquitous banner adorning every page is a beacon of savings and convenience, showcasing our latest promotions, free delivery offerings, and the call to subscribe to our newsletter. It's a vibrant reminder to all visitors that exclusive deals await, with enticing discounts and special offers to explore, alongside the convenience of complimentary delivery. Moreover, it allows user to display the newsletter form (on click) or redirects users to products page (on click).
+
+    <details>
+    <summary> Banner (3 options - carousel)
+    </summary>
+
+    ![Banner](/media/sreenshots_webp/banner.webp)
     </details>
 
 - Sign up Page
@@ -724,14 +746,26 @@ AddRecipeForm and UpdateRecipeForm ensure that the title is unique using a custo
     <summary> Sign-up page.
     </summary>
 
-    ![Sign Up](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703362666/django-project/sign-up-page_eni0dp.png)
+    ![Sign Up](/media/sreenshots_webp/signup_live.webp)
     </details>
 
+- Messages
+  - The application provides feedback with the use of a discreet messaging system implementing color coding to denote various states. Success messages are highlighted in a soothing green (#28a745), information messages in a calming blue (#17a2b8), warnings in a striking yellow (#ffc107), and danger messages in a bold red (#dc3545), ensuring users receive clear and intuitive feedback tailored to each situation.
+
     <details>
-    <summary> Success message, user logged in after sign-up completed.
+    <summary> Messages.
     </summary>
 
-    ![Login Message](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703414610/django-project/sign-up-message_pgtcri.webp)
+    ![Messages](/media/sreenshots_webp/toast_msg.webp)
+    </details>
+
+  - Additionally, when a product is added to the bag, a message discreetly prompts the user, offering the option to swiftly proceed to checkout and preview the bag's contents, ensuring a seamless and convenient shopping experience.
+
+    <details>
+    <summary> Message - bag content.
+    </summary>
+
+    ![Messages](/media/sreenshots_webp/toast_bag.webp)
     </details>
 
 - Login Page
@@ -741,151 +775,112 @@ AddRecipeForm and UpdateRecipeForm ensure that the title is unique using a custo
     <summary> Sign-in page.
     </summary>
 
-    ![Sign In](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703414612/django-project/login-page_w7ktsc.webp)
+    ![Sign In](/media/sreenshots_webp/sign_in_live.webp)
     </details>
 
-- Browse Available Recipes
-  - Visitors, as well as logged-in users, have the ability to browse through our extensive collection of available recipes. The search functionality allows users to find specific recipes by providing either the complete name or a partial name. Each recipe is accompanied by essential information displayed under the recipe image or image placeholder. This information includes the recipe name, the author, the date when the recipe was added or last updated, the number of likes, and the average rating.
-
-  - Additionally, when hovering over a recipe, users can access a short description (if provided), offering a glimpse into what makes each recipe special.
+- Browse Available Product
+  - Visitors, as well as logged-in users, have the ability to browse through our extensive collection of available products. The search functionality allows users to find specific product by providing either the complete name or a partial name of the product or author. Each product is accompanied by essential information displayed under the product image or image placeholder. This information includes the product name, category, rating, price, quantity select field and add to bag button.
 
     <details>
-    <summary> Recipes page.
+    <summary> Products page.
     </summary>
 
-    ![Recipes Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703364760/django-project/recipes-page-min_b2yo32.png)
-    </details>
-
-    <details>
-    <summary> Search results.
-    </summary>
-
-    ![Search Results](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703414612/django-project/search-results_vogash.webp)
+    ![Products Page](/media/sreenshots_webp/products.webp)
     </details>
 
     <details>
-    <summary> Recipe description on hover.
+    <summary> Search success.
     </summary>
 
-    ![Recipe Description](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703365349/django-project/recipe-on-hover_snmqkw.png)
-    </details>
-
-- Recipe pagination
-  - Recipes are displayed in four columns on large screens, two on medium, and one column on small. The application displays up to eight recipes per page.
-
-    <details>
-    <summary> Recipe pagination.
-    </summary>
-
-    ![Pagination](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703365689/django-project/pagination_pbqhs4.png)
-    </details>
-
-- Logged in User's taskbar
-  - Authorised users benefit from a handy taskbar to easily print, add, edit and delete recipes.
-
-    <details>
-    <summary> Recipes page taskbar.
-    </summary>
-
-    ![Recipes page taskbar](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703414514/django-project/recipes-page-taskbar_u5chos.webp)
+    ![Search Results](/media/sreenshots_webp/search_success.webp)
     </details>
 
     <details>
-    <summary> Recipe View page taskbar.
+    <summary> Search error - no result (error message appears to inform the user and return to products page view).
     </summary>
 
-    ![Recipe View page taskbar](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703414514/django-project/recipe-view-page-taskbar_xynpa5.webp)
+    ![No Results](/media/sreenshots_webp/search_error.webp)
+    </details>
+
+- Product pagination and sort box.
+  - Products are displayed in six columns on large screens, four on medium, three on small and one column on very small. The application displays up to twenty-four products per page.
+
+  - The sort box empowers users to effortlessly organize products on the page according to their preferences. With intuitive options, users can sort products in ascending or descending order by price, name, category, and rating, enabling them to swiftly navigate through the catalog and find precisely what they're looking for with ease.
+
+    <details>
+    <summary> Products pagination.
+    </summary>
+
+    ![Pagination And Sort Box](/media/sreenshots_webp/pagination.webp)
     </details>
 
 - Logout
-  - Implementing a confirmation modal before logout ensures users consciously confirm their decision, minimizing accidental logouts. This user-friendly step prevents inadvertent actions, particularly in scenarios where logging out may lead to data loss or workflow disruption. The modal prompts users to confirm their logout choice, enhancing overall user experience by adding a deliberate confirmation step.
+  - Implementing a logout confirmation page before logout ensures users consciously confirm their decision, minimizing accidental logouts. This user-friendly step prevents inadvertent actions, particularly in scenarios where logging out may lead to data loss or workflow disruption. The page prompts users to confirm their logout choice, enhancing overall user experience by adding a deliberate confirmation step.
 
     <details>
-    <summary> Logout confirmation modal.
+    <summary> Logout confirmation page.
     </summary>
 
-    ![Logout Modal](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703416516/django-project/logout-modal_s1xpjm.webp)
+    ![Logout Page](/media/sreenshots_webp/log_out_live.webp)
     </details>
 
-- Add a recipe
-  - Users can create a new recipe by completing all mandatory fields on the "Add Recipe" form.
-  - To save a recipe, users must fill in all required fields. They have the option to save the recipe as a draft or publish it.
-  - The recipe title must be unique, and at least one cooking instruction, one ingredient, preparation time, cooking time, and the number of servings must be provided.
-  - While the recipe description and image are optional, if a user does not provide an image, a standard image placeholder will be inserted.
+- Review product
+  - Users are granted the opportunity to share their thoughts by contributing unlimited reviews for books and comics they've previously purchased, fostering an exchange of insights and enabling captivating discussions within the community. The integration of a rating system not only facilitates the identification of popular titles but also enriches community engagement by providing a platform for users to express their opinions.
+  - Reviews are accompanied by mandatory ratings, ensuring that each review provides valuable feedback. Once a user rates a book or comic, the rating becomes permanent, and the average rating is automatically updated. Upon successful submission of a review, users receive a confirmation message, acknowledging their contribution to the community.
+  - Users can easily access the total number of reviews submitted for each book or comic. Additionally, to maintain transparency, an informational message is displayed to users when there are pending reviews awaiting approval, keeping them informed about the status of their submissions. It's worth noting that users can only review products they've previously purchased, ensuring that reviews are based on firsthand experiences.
+<!-- Update the image for the review - add ratings -->
+    <details>
+    <summary> Review and rate product.
+    </summary>
+
+    ![Review and Rate Product](/media/sreenshots_webp/product_detail_review.webp)
+    </details>
+
+- Admin - Add a product
+  - Admin can create a new product by completing all mandatory fields on the "Add Book" or "Add Comic" form.
+  - To save a product, admin must fill in all required fields.
+  - While the product description and image are optional, if a admin does not provide an image, a standard image placeholder will be inserted.
 
     <details>
-    <summary> Add Recipe page.
+    <summary> Add product page.
     </summary>
 
-    ![Add Recipe Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703416733/django-project/add-recipe_smpc0c.webp)
+    ![Add Product Page](/media/sreenshots_webp/add_product.webp)
     </details>
 
-- Edit the recipe
-  - Users can update their created recipe by filling in all mandatory fields on the "Update Recipe" form.
-  - Similar to the "Add Recipe" page, users can add or remove additional instructions or ingredients during the update process.
+- Admin - Update the recipe
+  - Admin can update product information by filling in all mandatory fields on the "Update Book" or "Update Comic" form.
 
     <details>
-    <summary> Update Recipe page.
+    <summary> Update product page.
     </summary>
 
-    ![Update Recipe Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703417609/django-project/edit-recipe_azyszp.webp)
+    ![Update Product Page](/media/sreenshots_webp/update_product_live.webp)
     </details>
 
-- Rate and review recipe
-  - Users have the flexibility to contribute unlimited reviews for a recipe, fostering the exchange of tips and enabling engaging conversations. The inclusion of a rating system not only aids in identifying popular recipes but also enhances community engagement.
-  - Ratings are mandatory and submitted alongside the review. Once a user rates a recipe, the rating becomes permanent, and the average rating is automatically recalculated. A confirmation message is provided upon the successful submission of the review.
-  - Users can easily view the total number of reviews submitted for a recipe. In cases where there are pending reviews awaiting approval, an informational message is displayed to users, keeping them informed about the status of the reviews.
-
-    <details>
-    <summary> Review and rate recipe.
-    </summary>
-
-    ![Review and Rate Recipe](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703418351/django-project/reviews-and-rating_zjveby.webp)
-    </details>
-
-- Like the recipe and average rating.
-  - Users have the option to express their appreciation for a recipe by clicking on the heart icon beneath the recipe image, toggling between like and unlike. The total number of likes is prominently displayed beside the heart icon.
-  - Additionally, an average rating score is showcased beside the likes, accompanied by the total number of full-filled golden stars representing the rating. In instances where the average rating is below 0.5, a half-filled golden star is displayed, providing a visual representation of the recipe's overall rating.
-
-    <details>
-    <summary> Likes and average rating.
-    </summary>
-
-    ![Likes and Average Rating](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703418350/django-project/likes_and_average_rating_vdnklx.webp)
-    </details>
-
-- Print Recipe
-  - Logged-in users have the capability to print recipes. The print view omits the review section and action buttons, streamlining the printed output for a focused and convenient recipe reference.
-
-    <details>
-    <summary> Print recipe.
-    </summary>
-
-    ![Print Recipe](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703419641/django-project/print-recipe_wpfk0n.webp)
-    </details>
-
-- Delete Recipe
-  - Users have the ability to delete their own recipes. To mitigate the risk of accidental deletion, users are required to confirm the action before the deletion process is initiated. It's important to note that this action is irreversible, emphasizing the need for careful consideration before proceeding with the deletion.
+- Admin - Delete Product
+  - Admin have the ability to delete products from the store. To mitigate the risk of accidental deletion, admin is required to confirm the action before the deletion process is initiated. It's important to note that this action is irreversible, emphasizing the need for careful consideration before proceeding with the deletion.
 
     <details>
     <summary> Delete recipe.
     </summary>
 
-    ![Delete Recipe](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703419937/django-project/delete-recipe_tfjos9.webp)
+    ![Delete Product](/media/sreenshots_webp/delete_product_msg.webp)
     </details>
 
-- Admin Features
+- Admin - Admin Panel
   - Django built in admin panel allows admin control over the website.
-  - Admin can access admin panel through his navigation bar
-  - Can add, update, delete recipes, ingredients.
+  - Admin can access admin panel through navigation bar
+  - Can add, update, delete products, categories, subcategories.
   - Can approve reviews.
+  - Can manage orders and profiles.
   - Can read, add, edit and delete users, email and manage social acccounts.
 
     <details>
     <summary> Admin panel.
     </summary>
 
-    ![Admin Panel](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703523440/django-project/admin-panel_xqgsan.webp)
+    ![Admin Panel](/media/sreenshots_webp/admin_panel.webp)
     </details>
 
 ### Features Left to Implement
@@ -928,20 +923,23 @@ By incorporating these features, Chef's Helper will not only enhance the user ex
 ### Databases Used
 
 - [ElephantSQL](https://www.elephantsql.com/) - Postgres database
-- [Cloudinary](https://cloudinary.com/) - Online static file storage
+- [AWSAmazon](https://aws.amazon.com/) - Online static and media file storage
 
 ### Frameworks Used
 
 - [Django](https://www.djangoproject.com/) - Python framework. Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers, it takes care of much of the hassle of web development, so you can focus on writing your app without needing to reinvent the wheel. It’s free and open source. (Source: [Django](https://www.djangoproject.com/))
-- [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction//) - CSS framework. Bootstrap is a popular open-source front-end framework that provides a collection of tools, styles, and components to simplify the process of designing and building responsive and mobile-first web pages.
+- [Bootstrap 5.1](https://getbootstrap.com/docs/5.1/getting-started/introduction//) - CSS framework. Bootstrap is a popular open-source front-end framework that provides a collection of tools, styles, and components to simplify the process of designing and building responsive and mobile-first web pages.
 - [jQuery 3.7.1](https://code.jquery.com/jquery-3.7.1.js) - jQuery is a fast, small, and feature-rich JavaScript library. It simplifies things like HTML document traversal and manipulation, event handling, and animation for web development. jQuery is open-source and designed to make things like HTML document traversal and manipulation, event handling, and animation much simpler with an easy-to-use API that works across a multitude of browsers. (Source: [jQuery](https://api.jquery.com/))
+
+### Payment System
+
+- [Stripe](https://stripe.com/ie) - Stripe is a technology company that provides online payment processing services, allowing businesses to accept payments securely over the internet. It offers a range of tools for handling transactions, subscriptions, and more.
 
 ### Programs Used
 
 - [Github](https://github.com/) - Used for creating application repository, version control, organising workflow utilising agile functionality of GitHub project, issues and milestones.
 - [Gitpod](https://www.gitpod.io/) - Used as a coding environment.
 - [Heroku](https://www.heroku.com/) - Used as the cloud-based platform to deploy the site.
-- [Canva](https://www.canva.com/) - Used to create logo, and recipe images.
 - [Google Fonts](https://fonts.google.com/) - Used for the typography.
 - [Figma](https://www.figma.com/) - Used for creation of wireframes.
 - [Lucidchart](https://www.lucidchart.com/pages/) - Used for creation of ERD.
@@ -954,6 +952,16 @@ By incorporating these features, Chef's Helper will not only enhance the user ex
 - [CSS Validation Service](https://jigsaw.w3.org/css-validator/) - Used to validate CSS
 - [CI Python Linter](https://pep8ci.herokuapp.com/#) - Used to validate Python
 
+### Emails/Newsletter
+
+- [Gmail](https://mail.google.com/) - User for email services
+- [Mailchimp](https://mailchimp.com/?currency=EUR) - Automated newsletter subscription service
+
+### SEO/Marketing
+
+- [XML Sitemaps](https://www.xml-sitemaps.com/) - sitemap generator
+- [Privacy Policy Generator](https://www.privacypolicygenerator.info/) - Used to generate privacy policy
+
 ## Deployment and Local Development
 
 ### Local Development
@@ -963,7 +971,7 @@ By incorporating these features, Chef's Helper will not only enhance the user ex
 To fork the repository, follow the steps below:
 
 1. Log in to your [GitHub](https://github.com).
-2. Navigate to the repository for this project [Chef's Helper](https://github.com/ObiOne84/django-chefs-helper)
+2. Navigate to the repository for this project [OwlBookstore](https://github.com/ObiOne84/project-5-e-commerce)
 3. In the top right corner of the window, click on the Fork button.
 4. The process will start, and you will see the message confirming the start.
 
@@ -974,7 +982,7 @@ Remember that if you forked the repository, none of the updates made to the sour
 To bring down project for local development, it is possible to clone a repository by following steps below:
 
 1. Log in(or Sign Up) to [GitHub](https://github.com).
-2. Navigate to the repository for this project [Chef's Helper](https://github.com/ObiOne84/django-chefs-helper)
+2. Navigate to the repository for this project [OwlBookstore](https://github.com/ObiOne84/project-5-e-commerce)
 3. Above the list of files, click the green button Code.
 4. Select Local tab.
 5. Copy to HTTPS code.
@@ -998,20 +1006,108 @@ To bring down project for local development, it is possible to clone a repositor
 7. Return to the ElephantSQL dashboard and click the database name you just created.
 8. In the URL section, click and copy icon to copy the database URL (you will need this for your **env.py** file)
 
-### Cloudinary
+### Hosting images and static file with AWS
 
-1. Visit [Cloudinary](https://cloudinary.com/) and click on Sing Up For Free.
-2. Provide your name, email address and choose a password
-3. For Primary interest, you can choose Programmable Media for image and video API
-4. Optional: edit your assigned cloud name to something more memorable
-5. Click Create Account
-5. Verify your email and you will be brought to the dashboard
-6. On your Cloudinary Dashboard, you can copy your API key.
-7. Add `CLOUDINARY_URL` to **env.py** and Heroku app variables. Make sure that env.py is added to .gitignore to not share you security key.
+1. Create AWS account and go to AWS Management Console in the My Account dropdown
+2. Find and access S3 as a service and create a new bucket:
+3. Under Object Ownership, check "ACLs enabled"
+4. Uncheck "Block all public access" and acknowledge (required for public access to static files)
+
+5. Configur bucket settings:
+
+    - Under Properties, enable Static Website Hosting
+    - Under Permissions, copy the following code into CORS section:
+
+    <details>
+    <summary> Code snippet.
+    </summary>
+
+    ```javascript
+    [
+        {
+            "AllowedHeaders": [
+                "Authorization"
+            ],
+            "AllowedMethods": [
+                "GET"
+            ],
+            "AllowedOrigins": [
+                "*"
+            ],
+            "ExposeHeaders": []
+        }
+    ]
+    ```
+
+    </details>
+
+    This is required to set up the access between the Heroku app and the S3 bucket.
+
+6. Under Bucket policy, go to Policy generator.
+
+    - Bucket Type = S3 Bucket Policy
+    - Principal = * (allows all principles)
+    - Actions = GetObject
+    - Paste in ARN from bucket settings tab.
+    - Click Add Statement, then Generate Policy.
+    - Copy policy in paste into bucket policy editor. Also add /* onto the end of the resource key.
+    - Click Save.
+    - Under Access control list (ACL), check "List" checkbox for "Everyone (public access)"
+
+7. Create user to access bucket with IAM (Identity and Access Management)
+
+    - In IAM, got to User Groups (sidebar left).
+    - There create a group for a user, create an access policy giving the group access to the S3 bucket and assign the user to the group so it can use the policy to access all files.
+
+8. Connect Django to S3
+
+    - Install packages "boto3" and "django-storages" and add 'storages' to INSTALLED_APPS in settings.py
+    - Configure settings.py accordingly, including necessary AWS variables.
+
+    <details>
+    <summary> Code snippet.
+    </summary>
+
+    ```python
+    # AWS settings
+    if 'USE_AWS' in os.environ:
+        # Cache control
+        AWS_S3_OBJECT_PARAMETERS = {
+            'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+            'CacheControl': 'max-age=94608000',
+        }
+        # Bucket Config
+        AWS_STORAGE_BUCKET_NAME = 'your-bucket-name'
+        AWS_S3_REGION_NAME = 'your-region'
+        AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+        AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
+        # Static and media files
+        STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+        STATICFILES_LOCATION = 'static'
+        DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+        MEDIAFILES_LOCATION = 'media'
+
+        # Override static and media URLs in production
+        STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+        MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+
+    ```
+
+    </details>
+
+9. Add new config vars in Heroku app settings, including user credentials from AWS.
+10. Create custom_storages.py file.
+11. Upload static files and media files to S3
+12. Add Stripe keys to Heroku
+    - From Stripe account, under Developers > API keys copy Public Key and Secret Key and set as config vars in Heroku app settings.
+    - Create new Webhook endpoint for deployed site and enable all events. Then add Signing Secret to Heroku app config vars.
 
 ### Heroku Deployment
 
-* Log into [Heroku](https://www.heroku.com/) account or create an account.
+- Log into [Heroku](https://www.heroku.com/) account or create an account.
+
 - Click the "New" button at the top right corner and select "Create New App".
 - Enter a unique application name
 - Select your region
@@ -1019,9 +1115,11 @@ To bring down project for local development, it is possible to clone a repositor
 
 #### Prepare enviroment and settings.py
 
-* In your workspace (GitPod) create an **env.py** file and add it to **.gitignore**
+- In your workspace (GitPod) create an **env.py** file and add it to **.gitignore**
+
 - Add the **DATABASE_URL** value and your chosen **SECRET_KEY** value to the **env.py file**.
 - Update the **settings.py** file to import the **env.py** file and add the SECRET-KEY and DATABASE_URL file paths.
+
     <details>
     <summary> See the code sample
     </summary>
@@ -1058,83 +1156,6 @@ To bring down project for local development, it is possible to clone a repositor
     </details>
 
 - Don't forget to makemigrations and migrate to update your database.
-- Add the **CLOUDINARY_URL** to **env.py**
-- Add cloudinary to **INSTALLED_APPS** in **settings.py**.
-
-     <details>
-    <summary> See the code sample
-    </summary>
-
-    ```python
-    INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'cloudinary',
-    'blog',
-    ]
-    ```
-
-    </details>
-
-- Add cloudinary to the static files in settings.py
-
-    <details>
-    <summary> See the code sample
-    </summary>
-
-    ```python
-    STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    MEDIA_URL = '/media/'
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-    ```
-
-    </details>
-
-- Link the file to the templates directory in Heroku.
-- Add TEMPLATES_DIR in settings.py
-
-    <details>
-    <summary> See the code sample
-    </summary>
-
-    ```python
-    TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-    ```
-
-    </details>
-
-- Change the templates directory to TEMPLATES_DIR
-
-    <details>
-    <summary> See the code sample
-    </summary>
-
-    ```python
-    TEMPLATES = [
-        {
-            'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': [TEMPLATES_DIR],
-            'APP_DIRS': True,
-            'OPTIONS': {
-                'context_processors': [
-                    'django.template.context_processors.debug',
-                    'django.template.context_processors.request',
-                    'django.contrib.auth.context_processors.auth',
-                    'django.contrib.messages.context_processors.messages',
-                ],
-            },
-        },
-    ]
-    ```
-
-    </details>
-
 - Add Heroku to the ALLOWED_HOSTS in settings.py
 
     <details>
@@ -1151,10 +1172,14 @@ To bring down project for local development, it is possible to clone a repositor
 
 - Add the following Config Vars in Heroku:
   - `SECRET_KEY` (Any Django random secret key).
-  - `CLOUDINARY_URL` (Insert your Cloudinary API key).
   - `PORT` = 8000.
   - `DISABLE_COLLECTSTATIC` = 1 (temporary and can be removed once static files are created).
   - `DATABASE_URL` (paste ElephantSQL database URL here).
+  - `STRIPE_SECRET_KEY`
+  - `STRIPE_PUBLIC_KEY`
+  - `STRIPE_WH_SECRET`
+  - `AWS_SECRET_ACCESS_KEY`
+  - `AWS_ACCESS_KEY_ID`
 
 - Heroku Additional Files:
   - Create requirements.txt
@@ -1179,7 +1204,7 @@ To bring down project for local development, it is possible to clone a repositor
 
 Site is now live
 
-You can visit the deployed application at [Chef's Helper](https://django-chefs-helper-90ca65af05b0.herokuapp.com/)
+You can visit the deployed application at [OwlBookstore](https://owl-bookstore-2a747a64a0a9.herokuapp.com/)
 
 ## Testing
 
@@ -1199,8 +1224,9 @@ Please see  [TESTING.md](TESTING.md) for all the detailed testing performed.
 
 ### Content
 
-- [Canva](https://www.canva.com/) - all images for the recipes where created with the software utilising available templates and photos.
+- [Amazon UK](https://www.amazon.co.uk) - all images for the products and content.
 - [Woodland Whispers Retreat](https://github.com/Thomas-Tomo/woodland-whispers-retreat?tab=readme-ov-file#user-journey) - the structure of the readme file.
+- Boutique Ado walkthrough project - for stripe setup, AWS setup and javascript for bag buttons.
 
 ### Acknowledgements
 

@@ -6,6 +6,14 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ('body',)
+    
+    def clean_body(self):
+        body = self.cleaned_data.get('body')
+        if not body.strip():
+            raise forms.ValidationError("Body cannot be empty.")
+        elif len(body) > 500:
+            raise forms.ValidationError("Body cannot exceed 500 characters.")
+        return body
 
 
 class AddComicForm(forms.ModelForm):

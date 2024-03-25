@@ -1,10 +1,15 @@
 from django import forms
 
 
+def validate_message_length(value):
+    if len(value) > 1000:
+        raise forms.ValidationError('The message must be no more than 500 characters.')
+
+
 class ContactForm(forms.Form):
     name = forms.CharField(max_length=100)
     email = forms.EmailField()
-    message = forms.CharField(widget=forms.Textarea)
+    message = forms.CharField(widget=forms.Textarea, validators=[validate_message_length])
 
     def __init__(self, *args, **kwargs):
         """
@@ -15,7 +20,7 @@ class ContactForm(forms.Form):
         placeholders = {
             'name': 'Full Name',
             'email': 'Email Address',
-            'message': 'Your message',
+            'message': 'Your message (max 1000 characters)',
         }
         classes = {
             'name': 'form-control',
