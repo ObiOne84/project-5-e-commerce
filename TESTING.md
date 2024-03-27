@@ -36,7 +36,7 @@ Return to [README](README.md)
 The deployed website underwent extensive testing across a spectrum of devices and screen sizes to guarantee its responsiveness and adaptability. Developer Tools were instrumental in simulating diverse screen dimensions, facilitating a comprehensive evaluation of the website's behavior on various devices.
 A combination of Bootstrap classes, custom CSS, and template syntax played a pivotal role in crafting the desired design. This strategic implementation not only ensured visual consistency but also maintained functional integrity across different platforms. By leveraging these tools and techniques, the website is poised to deliver an optimized user experience, regardless of the device being used.
 
-![Am I Responsive](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703414611/django-project/responsivness-screenshot_maftgr.webp)
+![Am I Responsive](/media/sreenshots_webp/owl_bookstore_responsive.webp)
 
 ## Browser Compatibility Testing
 
@@ -46,42 +46,42 @@ The project was tested on multiple web browsers to check for compatibility issue
 <summary> Firefox
 </summary>
 
-![Firefox](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703424346/django-project/mozzila-test_xipjzl.webp)
+![Firefox](/media/sreenshots_webp/owl_bookstore_responsive.webp)
 </details>
 
 <details>
 <summary> Microsoft Edge
 </summary>
 
-![Microsoft Edge](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703424348/django-project/microsoft-edge_xusvlm.webp)
+![Microsoft Edge](/media/sreenshots_webp/owl_bookstore_responsive.webp)
 </details>
 
 <details>
 <summary> Opera
 </summary>
 
-![Opera](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703424346/django-project/opera-test_um24qk.webp)
+![Opera](/media/sreenshots_webp/owl_bookstore_responsive.webp)
 </details>
 
 <details>
 <summary> Chrome - Laptop
 </summary>
 
-![Chrome on Laptop](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703424021/django-project/laptop-screen_y3wwiu.webp)
+![Chrome on Laptop](/media/sreenshots_webp/owl_bookstore_responsive.webp)
 </details>
 
 <details>
 <summary> Safari - iPad
 </summary>
 
-![Safari on iPad](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703423939/django-project/ipad-screen_ypqp3t.webp)
+![Safari on iPad](/media/sreenshots_webp/owl_bookstore_responsive.webp)
 </details>
 
 <details>
 <summary> Safari - iPhone
 </summary>
 
-![Safari on iPhone](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703423938/django-project/iphone-se-screen_o3gzzw.webp)
+![Safari on iPhone](/media/sreenshots_webp/owl_bookstore_responsive.webp)
 </details>
 
 ## Device Testing

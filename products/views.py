@@ -155,8 +155,10 @@ def product_detail(request, product_id):
             # You can change above line to the error message to display for the user.
 
     reviews = product.reviews.filter(approved=True).order_by('created_on')
-
-    product_in_orders = OrderLineItem.objects.filter(order__user_profile=request.user.userprofile, product=product).exists()
+    if request.user.is_authenticated:
+        product_in_orders = OrderLineItem.objects.filter(order__user_profile=request.user.userprofile, product=product).exists()
+    else:
+        product_in_orders = False
 
     if request.method == 'POST':
         if request.user.is_authenticated:
