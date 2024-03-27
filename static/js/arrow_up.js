@@ -1,3 +1,6 @@
+/*jshint esversion: 6 */
+/* globals $ */
+
 $(document).ready(function () {
     // Return to the top
     // Source: Boutique Ado walkthrough project

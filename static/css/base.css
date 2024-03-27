@@ -97,7 +97,7 @@ footer {
 .elliptical-image {
     border-radius: 50% / 25%;
     max-width: 300px;
-    max-height: auto;
+    height: auto;
   }
 
 /* Toasts */

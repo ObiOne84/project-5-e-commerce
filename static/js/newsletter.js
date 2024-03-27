@@ -1,3 +1,7 @@
+/*jshint esversion: 6 */
+/* globals $, jQuery, ftypes, fnames */
+
+// Chimpmail service script
 (function ($) {
     window.fnames = new Array();
     window.ftypes = new Array();
@@ -17,8 +21,10 @@
 var $mcj = jQuery.noConflict(true);
 
 $(document).ready(function () {
+    // Update the page date
     $('#copyright').text(new Date().getFullYear());
 
+    // Toggle the newsletter div
     $('#newsletterToggle').click(function () {
         var maxScrollHeight = $(document).height() - $(window).height();
         $('#collapseNewsletter').collapse('show');

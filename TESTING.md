@@ -96,67 +96,193 @@ Device testing encompassed various devices, including iPhone 12 Pro, iPad, MacBo
 <summary> Home Page
 </summary>
 
-![Home Page](/media/sreenshots_webp/firefox_test.webp)
+![Home Page](/media/sreenshots_webp/validation_home.webp)
 </details>
 
 <details>
-<summary> Recipes Page
+<summary> Products Page
 </summary>
 
-![Recipes Page](/media/sreenshots_webp/firefox_test.webp)
+![Products Page](/media/sreenshots_webp/validation_products.webp)
+</details>
+
+<details>
+<summary> Products Detail Page
+</summary>
+
+![Product Detail Page](/media/sreenshots_webp/validation_product_details.webp)
 </details>
 
 <details>
 <summary> Sign Up Page
 </summary>
 
-![Sign Up Page](/media/sreenshots_webp/firefox_test.webp)
+![Sign Up Page](/media/sreenshots_webp/validation_register.webp)
 </details>
 
 <details>
 <summary> Login Page
 </summary>
 
-![Login Page](/media/sreenshots_webp/firefox_test.webp)
+![Login Page](/media/sreenshots_webp/validation_signin.webp)
 </details>
 
 <details>
-<summary> Add Recipe Page
+<summary> Logout Page
 </summary>
 
-![Add Recipe Page](/media/sreenshots_webp/firefox_test.webp)
+![Logout Page](/media/sreenshots_webp/validation_signout.webp)
 </details>
 
 <details>
-<summary> Update Recipe Page
+<summary> Update Product Page
 </summary>
 
-![Update Recipe Page](/media/sreenshots_webp/firefox_test.webp)
+![Update Product Page](/media/sreenshots_webp/validation_update.webp)
 </details>
 
 <details>
-<summary> Recipe Detail View Page
+<summary> Add Comic Page
 </summary>
 
-![Recipe Detail View Page](/media/sreenshots_webp/firefox_test.webp)
+![Add Comic Page](/media/sreenshots_webp/validation_add_comic.webp)
+</details>
+
+<details>
+<summary> Add Book Page
+</summary>
+
+![Add Book Page](/media/sreenshots_webp/validation_add_book.webp)
+</details>
+
+<details>
+<summary> Bag Page
+</summary>
+
+![Bag Page](/media/sreenshots_webp/validation_bag.webp)
+</details>
+
+<details>
+<summary> Checkout Page
+</summary>
+
+![Checkout Page](/media/sreenshots_webp/validation_checkout.webp)
+</details>
+
+<details>
+<summary> Checkout Success / Order History
+</summary>
+
+![Checkout and Order History Page](/media/sreenshots_webp/validation_checkout_success.webp)
+</details>
+
+<details>
+<summary> My Profile Page
+</summary>
+
+![My Profile Page](/media/sreenshots_webp/validation_myprofile.webp)
+</details>
+
+<details>
+<summary> Change Password Page
+</summary>
+
+![Change Password Page](/media/sreenshots_webp/validation_password.webp)
+</details>
+
+<details>
+<summary> Update Email Page
+</summary>
+
+![Update Email Page](/media/sreenshots_webp/validation_email.webp)
 </details>
 
 ### CSS Validation
 
 <details>
-<summary> Custom CSS - style.css
+<summary> Custom CSS - base.css
 </summary>
 
-![Custom CSS](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703436749/django-project/css-validation_upqggg.webp)
+![Base css](/media/sreenshots_webp/validation_css_base.webp)
+</details>
+
+<details>
+<summary> Custom CSS - profile.css
+</summary>
+
+![Profile css](/media/sreenshots_webp/validation_css_profile.webp)
+</details>
+
+<details>
+<summary> Custom CSS - checkout.css
+</summary>
+
+![Checkout css](/media/sreenshots_webp/validation_css_checkout.webp)
 </details>
 
 ### JavaScript Validation
 
 <details>
-<summary> Custom JS script.js
+<summary> Custom JS arrow_up.js
 </summary>
 
-![Custom JS](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703437613/django-project/js-validation_ezfcj2.webp)
+![Arrow Up JS](/media/sreenshots_webp/js_arrow_up.webp)
+</details>
+
+<details>
+<summary> Custom JS bag.js
+</summary>
+
+![Bag JS](/media/sreenshots_webp/js_bag.webp)
+</details>
+
+<details>
+<summary> Custom JS newsletter.js
+</summary>
+
+![Newsletter JS](/media/sreenshots_webp/js_newsletter.webp)
+</details>
+
+<details>
+<summary> Custom JS toast.js
+</summary>
+
+![Toast JS](/media/sreenshots_webp/js_toast.webp)
+</details>
+
+<details>
+<summary> Custom JS profiles.js
+</summary>
+
+![Profiles JS](#)
+</details>
+
+<details>
+<summary> Custom JS quantity_input_script.js
+</summary>
+
+![Quantity Input JS](#)
+</details>
+
+<details>
+<summary> Custom JS script-product.js
+</summary>
+
+![Product JS](#)
+</details>
+
+<details>
+<summary> Custom JS sorting.js
+</summary>
+
+![Sorting JS](#)
+</details>
+
+<details>
+<summary> Custom JS stripe_elements.js
+</summary>
+
+![Stripe Elements JS](#)
 </details>
 
 ### Python

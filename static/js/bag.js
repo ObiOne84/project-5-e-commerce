@@ -1,3 +1,6 @@
+/*jshint esversion: 6 */
+/* globals $ */
+
 $(document).ready(function () {
     // Source: Boutique Ado walkthrough project
     // Update quantity on click
@@ -36,4 +39,4 @@ $(document).ready(function () {
                 console.error('Failed to remove item.');
             });
     });
-})
+});
