@@ -46,42 +46,42 @@ The project was tested on multiple web browsers to check for compatibility issue
 <summary> Firefox
 </summary>
 
-![Firefox](/media/sreenshots_webp/owl_bookstore_responsive.webp)
+![Firefox](/media/sreenshots_webp/firefox_test.webp)
 </details>
 
 <details>
 <summary> Microsoft Edge
 </summary>
 
-![Microsoft Edge](/media/sreenshots_webp/owl_bookstore_responsive.webp)
+![Microsoft Edge](/media/sreenshots_webp/edge_test.webp)
 </details>
 
 <details>
 <summary> Opera
 </summary>
 
-![Opera](/media/sreenshots_webp/owl_bookstore_responsive.webp)
+![Opera](/media/sreenshots_webp/opera_test.webp)
 </details>
 
 <details>
 <summary> Chrome - Laptop
 </summary>
 
-![Chrome on Laptop](/media/sreenshots_webp/owl_bookstore_responsive.webp)
+![Chrome on Laptop](/media/sreenshots_webp/chrome_test.webp)
 </details>
 
 <details>
 <summary> Safari - iPad
 </summary>
 
-![Safari on iPad](/media/sreenshots_webp/owl_bookstore_responsive.webp)
+![Safari on iPad](/media/sreenshots_webp/safari_ipad.webp)
 </details>
 
 <details>
 <summary> Safari - iPhone
 </summary>
 
-![Safari on iPhone](/media/sreenshots_webp/owl_bookstore_responsive.webp)
+![Safari on iPhone](/media/sreenshots_webp/safari_iphone.webp)
 </details>
 
 ## Device Testing
@@ -96,49 +96,49 @@ Device testing encompassed various devices, including iPhone 12 Pro, iPad, MacBo
 <summary> Home Page
 </summary>
 
-![Home Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703435437/django-project/home-validation_gcf6lh.webp)
+![Home Page](/media/sreenshots_webp/firefox_test.webp)
 </details>
 
 <details>
 <summary> Recipes Page
 </summary>
 
-![Recipes Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703435442/django-project/recipe-validation_fqmzcp.webp)
+![Recipes Page](/media/sreenshots_webp/firefox_test.webp)
 </details>
 
 <details>
 <summary> Sign Up Page
 </summary>
 
-![Sign Up Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703435441/django-project/singup-validation_szghx1.webp)
+![Sign Up Page](/media/sreenshots_webp/firefox_test.webp)
 </details>
 
 <details>
 <summary> Login Page
 </summary>
 
-![Login Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703435435/django-project/login-validation_ytgqd1.webp)
+![Login Page](/media/sreenshots_webp/firefox_test.webp)
 </details>
 
 <details>
 <summary> Add Recipe Page
 </summary>
 
-![Add Recipe Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703435440/django-project/add-recipe-validation_clrzt1.webp)
+![Add Recipe Page](/media/sreenshots_webp/firefox_test.webp)
 </details>
 
 <details>
 <summary> Update Recipe Page
 </summary>
 
-![Update Recipe Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703435438/django-project/update-recipe-validation_hhieem.webp)
+![Update Recipe Page](/media/sreenshots_webp/firefox_test.webp)
 </details>
 
 <details>
 <summary> Recipe Detail View Page
 </summary>
 
-![Recipe Detail View Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703436376/django-project/recipe-view-validation_nqatn4.webp)
+![Recipe Detail View Page](/media/sreenshots_webp/firefox_test.webp)
 </details>
 
 ### CSS Validation

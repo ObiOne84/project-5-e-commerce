@@ -1,36 +1,41 @@
 $(document).ready(function () {
     var toastElement = document.querySelector('.toast');
-    var toast = new bootstrap.Toast(toastElement);
-    toast.show();
-    toastElement.classList.add('slide-in-right');
 
-    startTime = new Date();
+    if (toastElement !== null) {
+        var toast = new bootstrap.Toast(toastElement);
+        toast.show();
+        toastElement.classList.add('slide-in-right');
 
-    setInterval(updateTime, 1000);
+        var startTime = new Date();
 
-    function updateTime() {
-        var timeElement = document.getElementsByClassName("time")[0];
-        var currentTime = new Date();
-        var elapsedTime = Math.round((currentTime - startTime) / 1000);
-        if (elapsedTime < 10) {
-            timeElement.textContent = "Just now";
-        } else {
-            if (elapsedTime < 60) {
-                var seconds = Math.floor(elapsedTime / 1);
-                timeElement.textContent = seconds + " seconds ago";
+        setInterval(updateTime, 1000);
+
+        function updateTime() {
+            var timeElement = document.getElementsByClassName("time")[0];
+            var currentTime = new Date();
+            var elapsedTime = Math.round((currentTime - startTime) / 1000);
+            if (elapsedTime < 10) {
+                timeElement.textContent = "Just now";
             } else {
-                var minutes = Math.floor(elapsedTime / 60);
-                if (minutes === 1) {
-                    timeElement.textContent = minutes + " minute ago";
+                if (elapsedTime < 60) {
+                    var seconds = Math.floor(elapsedTime / 1);
+                    timeElement.textContent = seconds + " seconds ago";
                 } else {
-                    timeElement.textContent = minutes + " minutes ago";
+                    var minutes = Math.floor(elapsedTime / 60);
+                    if (minutes === 1) {
+                        timeElement.textContent = minutes + " minute ago";
+                    } else {
+                        timeElement.textContent = minutes + " minutes ago";
+                    }
+                }
+            }
+
+            if (elapsedTime >= 15) {
+                if (toast) {
+                    toast.hide();
+                    toastElement.classList.add('slide-out-left');
                 }
             }
         }
-
-        if (elapsedTime >= 15) {
-            toast.hide();
-            toastElement.classList.add('slide-out-left');
-        }
     }
-})
+});

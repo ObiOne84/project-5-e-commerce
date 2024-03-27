@@ -11,10 +11,10 @@
                 <i class="fa-solid fa-user d-block"></i>
                 <span>My Account</span>
             </a>
-            <div class="dropdown-menu" aria-labelledby="user-options">
+            <ul class="dropdown-menu" title="Dropdwon menu for user options">
                 {% if request.user.is_authenticated %}
-                <a class="dropdown-item" href="{% url 'profile' %}">My Profile</a>
-                <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+                <li><a class="dropdown-item" href="{% url 'profile' %}">My Profile</a></li>
+                <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                 {% if request.user.is_superuser %}
                 <!-- Source: https://mdbootstrap.com/docs/standard/extended/dropdown-multilevel/# -->
                 <li>
@@ -39,7 +39,7 @@
                 <a class="dropdown-item" href="{% url 'account_signup' %}">Register</a>
                 {% endif %}
 
-            </div>
+            </ul>
         </div>
 
         <!-- Shopping basket total-->
@@ -90,27 +90,27 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="mobile-book-categories-links">
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=adventure"
-                                aria-label="Adventure">Adventure</a></li>
+                            title="Adventure">Adventure</a></li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=business"
-                                aria-label="Business">Business</a></li>
+                            title="Business">Business</a></li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=children"
-                                aria-label="Children">Children</a></li>
+                            title="Children">Children</a></li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=crime"
-                                arial-label="Crime">Crime</a></li>
+                            title="Crime">Crime</a></li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=drama"
-                                aria-label="Drama">Drama</a></li>
+                            title="Drama">Drama</a></li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=fiction"
-                                aria-label="Fiction">Fiction</a></li>
+                            title="Fiction">Fiction</a></li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=non_fiction"
-                                aria-label="Non-fiction">Non-Fiction</a></li>
+                            title="Non-fiction">Non-Fiction</a></li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=religion"
-                                aria-label="Religion">Religion</a></li>
+                            title="Religion">Religion</a></li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=sci_fiction"
-                                aria-label="Sci-Fiction">Sci-Fiction</a></li>
+                            title="Sci-Fiction">Sci-Fiction</a></li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=science"
-                                aria-label="Science">Science</a></li>
+                            title="Science">Science</a></li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=travel"
-                                arial-label="Travel">Travel</a></li>
+                            title="Travel">Travel</a></li>
                         <li><a class="dropdown-item"
                                 href="{% url 'products' %}?category=adventure,business,children,crime,drama,fiction,non_fiction,religion,sci_fiction,science,travel">All
                                 Books</a></li>
@@ -123,12 +123,12 @@
                     </a>
                     <ul class="dropdown-menu last-dropdown" aria-labelledby="mobile-comics-links">
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=marvel_universe"
-                                aria-label="Marver Universe">Marvel</a>
+                            title="Marver Universe">Marvel</a>
                         </li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=dc_universe"
-                                aria-label="DC Universe">DC</a></li>
+                            title="DC Universe">DC</a></li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=marvel_universe,dc_universe"
-                                aria-label="All Comic Books">All Comics</a></li>
+                            title="All Comic Books">All Comics</a></li>
                     </ul>
                 </li>
             </ul>
@@ -138,7 +138,7 @@
         <form action="{% url 'products' %}" method="GET" class="w-100">
             <div class="input-group">
                 <input type="text" class="form-control rounded-1 border-orange" name="q"
-                    placeholder="Search our library" aria-label="Search" aria-describedby="search-box">
+                    placeholder="Search our library" aria-label="Search" id="mobile-search-box">
                 <button class="btn btn-orange rounded-1 border-orange" type="submit" id="mobile-search-query"
                     aria-label="Search product">
                     <span class="icon">

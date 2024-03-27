@@ -47,21 +47,24 @@
                 <div class="row">
                     <div class="col">
                         {% for item in bag_items %}
-                        <div class="row my-1 item-row rounded-1" data-bs-toggle="collapse"
-                            href="#collapseItemNo{{ forloop.counter }}" role="button" aria-expanded="false"
+                        <div class="row my-1 item-row rounded-1 text-decoration-none text-dark" data-bs-toggle="collapse"
+                            role="button" aria-expanded="false" data-bs-target="#collapseItemNo{{ forloop.counter }}"
                             aria-controls="collapseItemNo{{ forloop.counter }}">
                             <div class="col-1 d-none d-sm-inline">
                                 <p class="m-0 text-start">{{ forloop.counter }}</p>
                             </div>
                             <div class="col-7" data-bs-toggle="popover" data-bs-trigger="hover focus"
-                                data-bs-content="Click to expand" data-bs-placement="top" tabindex="0" role="button"
-                                aria-expanded="false">
-                                <p class="my-0 d-none d-sm-inline"><strong>{{ item.product.title }} <i
-                                        class="fa-solid fa-angle-down"></i></strong></p>
+                                data-bs-content="Click to expand" data-bs-placement="top"
+                                aria-expanded="false" role="alert">
+                                <p class="my-0 d-none d-sm-inline">
+                                    <strong>{{ item.product.title }} <i class="fa-solid fa-angle-down"></i>
+                                    </strong>
+                                </p>
                                 <!-- make sure to update style inside the paragraph and move to CSS -->
                                 <p class="my-0 d-inline d-sm-none"><strong class="d-inline-block text-truncate"
                                         style="max-width: 180px;">{{ item.product.title }}
-                                        <i class="fa-solid fa-angle-down"></i></strong></p>
+                                        <i class="fa-solid fa-angle-down"></i></strong>
+                                </p>
                             </div>
                             <div class="col-2 col-sm-1">
                                 <p class="m-0 text-end">{{ item.quantity }}</p>
@@ -105,7 +108,6 @@
                         {% endfor %}
                     </div>
                 </div>
-                <!-- Here we have subtotals for which we need bag_tools  -->
                 <hr class="my-0">
                 <div class="row text-black text-end">
                     <div class="col-6 col-sm-7 offset-2">
@@ -153,8 +155,7 @@
                     <div class="form-check form-check-inline float-end me-0">
                         {% if user.is_authenticated %}
                         <label class="form-check-label" for="id-save-info">Save this information to my profile</label>
-                        <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info"
-                            unchecked>
+                        <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info">
                         {% else %}
                         <label class="form-check-label" for="id-save-info">
                             <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or
@@ -165,25 +166,22 @@
                 </fieldset>
                 <fieldset class="px-3">
                     <legend class="fieldset-label small px-2 w-auto fw-bold">Payment</legend>
-                    <!-- A Stripe card element will go here -->
+
                     <div class="mb-3" id="card-element"></div>
-                    <!-- Used to display form errors -->
+
                     <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                     <input type="hidden" value="{{ client_secret }}" name="client_secret">
                 </fieldset>
                 <div class="submit-button text-end mt-5 mb-2">
-                    <!-- Below is the link to shopping bag, in case user want to adjust anything in the bag  -->
                     <a href="{% url 'view_bag' %}" class="btn pagination-btn rounded-1 text-uppercase">
                         <span class="font-weight-bold"><i class="fa-solid fa-angles-left"></i> Basket</span>
                     </a>
-                    <!--  submit button that will submit form with JS script  -->
                     <button id="submit-button" class="btn btn-black-brown rounded-1 text-uppercase">
                         <span class="font-weight-bold">Buy Now</span>
                         <span>
                             <i class="fas fa-lock"></i>
                         </span>
                     </button>
-                    <!--  Message informing user they will be charged and amount that they will pay  -->
                     <p class="small text-danger my-0">
                         <span class="icon">
                             <i class="fas fa-exclamation-circle"></i>
@@ -202,28 +200,28 @@
             <i class="fa-solid fa-arrows-rotate fa-spin fa-2xl"></i>
         </p>
         <p class="icon mt-2">We are processing your payment. Please do not refresh the page.</p>
-    </div> 
+    </div>
 </div>
 {% endblock %}
 
 {% block postload_js %}
-    {{ block.super }}
-    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
-    {{ client_secret|json_script:"id_client_secret" }}
-    <script src="{% static 'checkout/js/stripe_elements.js' %}" type="text/javascript"></script>
+{{ block.super }}
+{{ stripe_public_key|json_script:"id_stripe_public_key" }}
+{{ client_secret|json_script:"id_client_secret" }}
+<script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 
-    <script>
-        var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-        var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-            var popover = new bootstrap.Popover(popoverTriggerEl);
+<script>
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        var popover = new bootstrap.Popover(popoverTriggerEl);
 
-            popoverTriggerEl.addEventListener('shown.bs.popover', function () {
-                setTimeout(function () {
-                    popover.hide();
-                }, 1000); // Adjust the time interval (in milliseconds) as needed
-            });
-
-            return popover;
+        popoverTriggerEl.addEventListener('shown.bs.popover', function () {
+            setTimeout(function () {
+                popover.hide();
+            }, 1000);
         });
-    </script>
+
+        return popover;
+    });
+</script>
 {% endblock %}

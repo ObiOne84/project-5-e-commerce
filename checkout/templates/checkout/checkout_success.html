@@ -110,13 +110,13 @@
                     {% else %}
                     <div class="row my-1">
                         <div class="col-3 col-sm-2">
-                            {% if item.product.image %}
                             <span class="order-conf-img">
+                            {% if item.product.image %}
                                 <img class="w-75" src="{{ item.product.image.url }}" alt="{{ product.name }}">
                             {% else %}
                                 <img class="w-75" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                            </span>
                             {% endif %}
+                            </span>
                         </div>
                         <div class="col-9 col-sm-10 text-start">
                             <p class="mb-0 p-0 fw-bold">{{ item.product.title }}</p>
@@ -178,8 +178,7 @@
                     {% endif %}
                 </div>
             </div>
-        </div>
-        
+        </div> 
         <hr class="my-4 p-0 order-last">
     </div>
 </div>
