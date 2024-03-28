@@ -1,3 +1,6 @@
+/*jshint esversion: 6 */
+/* globals $ */
+
 // Source: Boutique Ado walkthrough project (Thanks Scott!)
 $(document).ready(function () {
     // Disable +/- buttons outside 1-9 range

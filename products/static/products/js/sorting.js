@@ -1,3 +1,6 @@
+/*jshint esversion: 6 */
+/* globals $ */
+
 $(document).ready(function () {
     // Source: Boutique Ado walkthrough project
     // Script for sorting functionality

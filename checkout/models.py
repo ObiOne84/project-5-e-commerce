@@ -14,7 +14,8 @@ from profiles.models import UserProfile
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
     user_profile = models.ForeignKey(
-        UserProfile, on_delete=models.SET_NULL, null=True, blank=True, related_name='orders'
+        UserProfile, on_delete=models.SET_NULL, null=True,
+        blank=True, related_name='orders'
     )
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
@@ -26,13 +27,25 @@ class Order(models.Model):
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
     county = models.CharField(max_length=80, null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
-    delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
-    order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
-    grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
+    delivery_cost = models.DecimalField(
+        max_digits=6, decimal_places=2, null=False, default=0
+    )
+    order_total = models.DecimalField(
+        max_digits=10, decimal_places=2, null=False, default=0
+    )
+    grand_total = models.DecimalField(
+        max_digits=10, decimal_places=2, null=False, default=0
+    )
     original_bag = models.TextField(null=False, blank=False, default='')
-    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
-    discount = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
-    vat = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
+    stripe_pid = models.CharField(
+        max_length=254, null=False, blank=False, default=''
+    )
+    discount = models.DecimalField(
+        max_digits=6, decimal_places=2, null=False, default=0
+    )
+    vat = models.DecimalField(
+        max_digits=6, decimal_places=2, null=False, default=0
+    )
 
     def _generate_order_number(self):
         """
@@ -45,7 +58,8 @@ class Order(models.Model):
         Update grand total each time a line item is added,
         accounting for delivery costs.
         """
-        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
+        self.order_total = self.lineitems.aggregate(
+            Sum('lineitem_total'))['lineitem_total__sum'] or 0
 
         product_count = 0
 
@@ -53,16 +67,19 @@ class Order(models.Model):
             product_count += line_item.quantity
 
         if product_count >= settings.DISCOUNT_THRESHOLD:
-            self.discount = Decimal(self.order_total * settings.DISCOUNT_RATE) / 100
+            self.discount = Decimal(
+                self.order_total * settings.DISCOUNT_RATE) / 100
         else:
             self.discount = 0
-        
+
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
             self.delivery_cost = settings.STANDARD_DELIVERY_CHARGE
         else:
             self.delivery_cost = 0
 
-        self.grand_total = self.order_total + self.delivery_cost - self.discount
+        self.grand_total = (
+            self.order_total + self.delivery_cost - self.discount
+        )
         self.vat = Decimal(self.grand_total * settings.STANDARD_VAT_RATE / 100)
         self.save()
 
@@ -80,10 +97,18 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
-    order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
-    product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
+    order = models.ForeignKey(
+        Order, null=False, blank=False, on_delete=models.CASCADE,
+        related_name='lineitems'
+    )
+    product = models.ForeignKey(
+        Product, null=False, blank=False, on_delete=models.CASCADE
+    )
     quantity = models.IntegerField(null=False, blank=False, default=0)
-    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+    lineitem_total = models.DecimalField(
+        max_digits=6, decimal_places=2, null=False, blank=False,
+        editable=False
+    )
 
     def save(self, *args, **kwargs):
         """
@@ -97,5 +122,4 @@ class OrderLineItem(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        # Maybe add the SKU number or change below to Product - 
-        return f'SKU {self.product.title} on order {self.order.order_number}'
+        return f'{self.product.title} on order {self.order.order_number}'

@@ -32,7 +32,7 @@ def bag_content(request):
             'quantity': quantity,
             'product': product,
         })
-    
+
     if product_count >= settings.DISCOUNT_THRESHOLD:
         discount = Decimal(total * settings.DISCOUNT_RATE) / 100
 

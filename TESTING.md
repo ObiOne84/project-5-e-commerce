@@ -237,7 +237,7 @@ Device testing encompassed various devices, including iPhone 12 Pro, iPad, MacBo
 </details>
 
 <details>
-<summary> Custom JS newsletter.js
+<summary> Custom JS newsletter.js - one unused variable is part of the Mailchimp Newsletter service javascript code.
 </summary>
 
 ![Newsletter JS](/media/sreenshots_webp/js_newsletter.webp)
@@ -254,35 +254,35 @@ Device testing encompassed various devices, including iPhone 12 Pro, iPad, MacBo
 <summary> Custom JS profiles.js
 </summary>
 
-![Profiles JS](#)
+![Profiles JS](/media/sreenshots_webp/js_profiles.webp)
 </details>
 
 <details>
 <summary> Custom JS quantity_input_script.js
 </summary>
 
-![Quantity Input JS](#)
+![Quantity Input JS](/media/sreenshots_webp/js_quantity_input.webp)
 </details>
 
 <details>
 <summary> Custom JS script-product.js
 </summary>
 
-![Product JS](#)
+![Product JS](/media/sreenshots_webp/js_script-products.webp)
 </details>
 
 <details>
 <summary> Custom JS sorting.js
 </summary>
 
-![Sorting JS](#)
+![Sorting JS](/media/sreenshots_webp/js_sorting.webp)
 </details>
 
 <details>
 <summary> Custom JS stripe_elements.js
 </summary>
 
-![Stripe Elements JS](#)
+![Stripe Elements JS](/media/sreenshots_webp/js_stripe_elements.webp)
 </details>
 
 ### Python
@@ -293,7 +293,7 @@ Device testing encompassed various devices, including iPhone 12 Pro, iPad, MacBo
 <summary> admin.py
 </summary>
 
-![admin.py](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703440908/django-project/admin.py-validation_lzk27g.webp)
+![admin.py](/media/sreenshots_webp/#.webp)
 </details>
 
 <details>

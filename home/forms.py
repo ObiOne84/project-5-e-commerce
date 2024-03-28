@@ -3,13 +3,17 @@ from django import forms
 
 def validate_message_length(value):
     if len(value) > 1000:
-        raise forms.ValidationError('The message must be no more than 500 characters.')
+        raise forms.ValidationError(
+            'The message must be no more than 1000 characters.'
+        )
 
 
 class ContactForm(forms.Form):
     name = forms.CharField(max_length=100)
     email = forms.EmailField()
-    message = forms.CharField(widget=forms.Textarea, validators=[validate_message_length])
+    message = forms.CharField(
+        widget=forms.Textarea, validators=[validate_message_length]
+    )
 
     def __init__(self, *args, **kwargs):
         """
@@ -28,11 +32,13 @@ class ContactForm(forms.Form):
             'message': 'form-control',
         }
         for field in self.fields:
-            self.fields[field].widget.attrs['placeholder'] = placeholders[field]
+            self.fields[field].widget.attrs['placeholder'] = (
+                placeholders[field]
+            )
             self.fields[field].widget.attrs['class'] = classes[field]
             self.fields[field].label = False
         self.fields['name'].widget.attrs['autofocus'] = True
-    
+
     def clean_name(self):
         """
         Clean the name field and remove leading and trailing whitespace

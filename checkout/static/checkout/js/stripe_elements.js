@@ -1,3 +1,6 @@
+/*jshint esversion: 6 */
+/* globals $, Stripe */
+
 var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 var clientSecret = $('#id_client_secret').text().slice(1, -1);
 var stripe = Stripe(stripePublicKey);
@@ -102,11 +105,6 @@ form.addEventListener('submit', function(ev) {
                 // the payment has been processed!
                 if (result.paymentIntent.status === 'succeeded') {
                     form.submit();
-                    // show success message to your cutomer
-                    // There is a risk of the customer closing the window before callback
-                    // execution. Set up a webhook plugin to listen for the 
-                    // payment_intent.succeeded event that handles any business critical
-                    // post.payment actions.
                 }
             }
         });
@@ -114,5 +112,4 @@ form.addEventListener('submit', function(ev) {
         // just reload the page, the error will be in django messages
         location.reload();
     });
-
 });

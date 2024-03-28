@@ -48,8 +48,10 @@ def add_to_bag(request, item_id):
         total_quantity = bag[item_id] + quantity
         if total_quantity > 10:
             messages.error(
-                request, 'You can only add up to 10 items of the same product. '
-                'If you wish to pruchase more products, please contact our customer support! '
+                request,
+                'You can only add up to 10 items of the same product. '
+                'If you wish to pruchase more products, \
+                please contact our customer support! '
             )
             return redirect(redirect_url)
         else:
@@ -58,7 +60,9 @@ def add_to_bag(request, item_id):
         bag[item_id] = quantity
 
     request.session['bag'] = bag
-    messages.success(request, f'Successfully added {product.title} to the basket!')
+    messages.success(
+        request, f'Successfully added {product.title} to the basket!'
+    )
     return redirect(redirect_url)
 
 
@@ -82,12 +86,12 @@ def adjust_bag(request, item_id):
     if quantity > 0:
         total_quantity = bag[item_id] + quantity
         bag[item_id] = quantity
-        messages.success(
-            request, f'Successfully updated quantity of {product.title} to {quantity}!'
-        )
+        messages.success(request, f'Successfully updated \
+                quantity of {product.title} to {quantity}!')
     else:
         bag.pop(item_id)
-        messages.success(request, f'Successfully removed {product.title} from the basket!')
+        messages.success(request, f'Successfully removed \
+            {product.title} from the basket!')
 
     request.session['bag'] = bag
 
@@ -113,7 +117,8 @@ def remove_from_bag(request, item_id):
         bag = request.session.get('bag', {})
         bag.pop(item_id)
         request.session['bag'] = bag
-        messages.success(request, f'Successfully removed {product.title} from the basket!')
+        messages.success(request, f'Successfully removed \
+            {product.title} from the basket!')
         return HttpResponse(status=200)
 
     except KeyError:

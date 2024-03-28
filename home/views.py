@@ -13,7 +13,7 @@ def index(request):
 
 def contact(request):
     """
-    A view to return the contact page and handle 
+    A view to return the contact page and handle
     the contact form
     """
 
@@ -25,21 +25,24 @@ def contact(request):
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
-        
+
             email = EmailMessage(
                 subject=f'New contact from {name}',
-                body=(f'Name: {name}\nEmail: {email}\n'
-                f'Message: {message}\n'
-                'Regards'),
+                body=(
+                    f'Name: {name}\nEmail: {email}\n'
+                    f'Message: {message}\n'
+                    'Regards'
+                ),
                 to=['stepienszymon9@gmail.com']
             )
             email.send()
-            messages.success(request, "Thank you, your form was submitted successfully!\
-                One of our team members will be in contact with you shortly.")
+            messages.success(request, "Thank you, your form was submitted \
+                successfully! One of our team members will be in contact \
+                    with you shortly.")
             return redirect(reverse('products'))
         else:
             messages.error(request, "Sorry, there was problem with your form.")
-    
+
     template = 'home/contact.html'
     context = {
         'form': form,

@@ -3,8 +3,8 @@
 
 // Chimpmail service script
 (function ($) {
-    window.fnames = new Array();
-    window.ftypes = new Array();
+    window.fnames = [];
+    window.ftypes = [];
     fnames[0] = 'EMAIL';
     ftypes[0] = 'email';
     fnames[1] = 'FNAME';
@@ -31,7 +31,7 @@ $(document).ready(function () {
         window.scrollTo(0, maxScrollHeight);
         setTimeout(function () {
             $('#collapseNewsletter').collapse('hide');
-        }, 30000);
+        }, 60000);
     });
 
     if ($(window).width() > 996) {
@@ -41,7 +41,7 @@ $(document).ready(function () {
         $('footer').mouseleave(function () {
             setTimeout(function () {
                 $('.newsletter').slideUp();
-            }, 15000);
+            }, 60000);
         });
     } else {
         $('footer').click(function (event) {

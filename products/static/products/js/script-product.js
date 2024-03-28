@@ -1,3 +1,6 @@
+/*jshint esversion: 6 */
+/* globals $ */
+
 $(document).ready(function () {
     // toggle between product description, reviews, and details
     $('.extra-info').on('click', function (e) {
@@ -16,10 +19,6 @@ $(document).ready(function () {
     $('.truncated-text').on('click', function () {
         $(this).toggleClass('expanded');
     });
-
-    function expandText(element) {
-        element.classList.toggle('expanded');
-    }
 
     // Add and remove active class for mobile device when toggle
     $('.collapse-link').on('click', function () {
@@ -47,7 +46,7 @@ $(document).ready(function () {
 
     // Show review from or hide if for is displayed
     $('#cancel-review').on('click', function () {
-        const ScreenWidth = screen.width
+        const ScreenWidth = screen.width;
         if (ScreenWidth >= 768) {
             hideReviewForm();
             $('.extra-info').last().removeClass('active');
@@ -74,10 +73,12 @@ $(document).ready(function () {
 
 });
 
-// ____________FUNCTIONS_________________________________________
-
+/**
+ * Function show review container in the review tab on the large
+ * screen, and in collapsable div on the mobile screens
+ */
 function showReviewForm() {
-    const ScreenWidth = screen.width
+    const ScreenWidth = screen.width;
     if (ScreenWidth >= 768) {
         $('.extra-info').removeClass('active');
         $('.reviews-nav').addClass('active');
@@ -90,6 +91,9 @@ function showReviewForm() {
     }
 }
 
+/**
+ * Function hide a review container
+ */
 function hideReviewForm() {
     if ($('#review-form-container').hasClass('d-block')) {
         $('#review-form-container').removeClass('d-block').addClass('d-none');
@@ -98,7 +102,6 @@ function hideReviewForm() {
 
 // Checking for form errors saved in the storage
 document.addEventListener("DOMContentLoaded", function () {
-    // Check if there's an error stored in local storage
     const showError = localStorage.getItem("formError");
     if (showError) {
         showReviewForm();
