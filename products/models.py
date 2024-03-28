@@ -11,7 +11,10 @@ class Category(models.Model):
     ]
 
     name = models.CharField(max_length=254)
-    product_type = models.CharField(max_length=20, choices=PRODUCT_CHOICES, null=True, blank=True, default=None)
+    product_type = models.CharField(
+        max_length=20, choices=PRODUCT_CHOICES, null=True,
+        blank=True, default=None
+    )
     display_name = models.CharField(max_length=254, null=True, blank=True)
 
     class Meta:
@@ -29,11 +32,14 @@ class Subcategory(models.Model):
     name = models.CharField(max_length=254)
     category = models.ForeignKey(
         'Category', null=True, blank=True, on_delete=models.CASCADE)
-    
+
     class Meta:
         verbose_name_plural = 'Subcategories'
         constraints = [
-            UniqueConstraint(fields=['name', 'category'], name='unique_subcategory_per_category')
+            UniqueConstraint(
+                fields=['name', 'category'],
+                name='unique_subcategory_per_category'
+            )
         ]
 
     def __str__(self):
@@ -49,7 +55,9 @@ class Product(models.Model):
         'Category', null=True, blank=True, on_delete=models.SET_NULL,
         default=19
     )
-    subcategory = models.ForeignKey('Subcategory', null=True, blank=True, on_delete=models.SET_NULL)
+    subcategory = models.ForeignKey(
+        'Subcategory', null=True, blank=True, on_delete=models.SET_NULL
+    )
     published_date = models.IntegerField(null=True, blank=True)
     publisher = models.CharField(max_length=50, null=True, blank=True)
     isbn_13 = models.CharField(max_length=13, null=True, blank=True)
@@ -107,4 +115,3 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review {self.body} by {self.name}"
-

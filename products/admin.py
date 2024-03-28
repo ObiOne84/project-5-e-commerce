@@ -35,4 +35,3 @@ admin.site.register(Subcategory, SubcategoryAdmin)
 admin.site.register(Book, BookAdmin)
 admin.site.register(Comic, ComicAdmin)
 admin.site.register(Review, ReviewAdmin)
-
