@@ -375,20 +375,124 @@ Device testing encompassed various devices, including iPhone 12 Pro, iPad, MacBo
 ![webhook_handler.py](/media/sreenshots_webp/py_checkout_wh_handler.webp)
 </details>
 
-#### chefshelper
+#### home app
 
 <details>
-<summary> settings.py
+<summary> forms.py
 </summary>
 
-![settings.py](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703438756/django-project/settings.py-validator_koh00o.webp)
+![forms.py](/media/sreenshots_webp/py_home_forms.webp)
 </details>
 
 <details>
 <summary> urls.py
 </summary>
 
-![urls.py](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703438755/django-project/urls.py-validation_j9pk9y.webp)
+![urls.py](/media/sreenshots_webp/py_home_urls.webp)
+</details>
+
+<details>
+<summary> views.py
+</summary>
+
+![views.py](/media/sreenshots_webp/py_home_views.webp)
+</details>
+
+#### products app
+
+<details>
+<summary> admin.py
+</summary>
+
+![admin.py](/media/sreenshots_webp/py_products_admin.webp)
+</details>
+
+<details>
+<summary> forms.py
+</summary>
+
+![forms.py](/media/sreenshots_webp/py_products_forms.webp)
+</details>
+
+<details>
+<summary> models.py
+</summary>
+
+![models.py](/media/sreenshots_webp/py_products_models.webp)
+</details>
+
+<details>
+<summary> test_views.py
+</summary>
+
+![test_views.py](/media/sreenshots_webp/py_products_test_views.webp)
+</details>
+
+<details>
+<summary> urls.py
+</summary>
+
+![urls.py](/media/sreenshots_webp/py_products_urls.webp)
+</details>
+
+<details>
+<summary> views.py
+</summary>
+
+![views.py](/media/sreenshots_webp/py_products_views.webp)
+</details>
+
+#### profiles app
+
+<details>
+<summary> admin.py
+</summary>
+
+![admin.py](/media/sreenshots_webp/py_profiles_admin.webp)
+</details>
+
+<details>
+<summary> forms.py
+</summary>
+
+![forms.py](/media/sreenshots_webp/py_profiles_forms.webp)
+</details>
+
+<details>
+<summary> models.py
+</summary>
+
+![models.py](/media/sreenshots_webp/py_profiles_models.webp)
+</details>
+
+<details>
+<summary> urls.py
+</summary>
+
+![urls.py](/media/sreenshots_webp/py_profiles_urls.webp)
+</details>
+
+<details>
+<summary> views.py
+</summary>
+
+![views.py](/media/sreenshots_webp/py_profiles_views.webp)
+</details>
+
+### owl_bookstore project
+
+<details>
+<summary> urls.py
+</summary>
+
+![urls.py](/media/sreenshots_webp/py_urls.webp)
+</details>
+
+<details>
+<summary> settings.py - line too long, django-allauth password validation code
+</summary>
+
+![settings.py](/media/sreenshots_webp/py_settings.webp)
 </details>
 
 ## Lighthouse Report

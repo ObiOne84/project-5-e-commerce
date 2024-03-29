@@ -19,15 +19,15 @@
         <div
             class="col-12 col-lg-10 col-xl-8 offset-xl-2 offset-lg-1 mt-3 px-md-5 px-lg-0 text-center text-sm-start mb-0">
             {% if product_type == 'book' %}
-            <a class="text-decoration-none ms-2 me-5" href="{% url 'edit_book' product.id %}"><i
+            <a class="text-decoration-none ms-2 me-5" href="{% url 'edit_book' product.id %}" aria-label="Edit book"><i
                     class="fa-solid fa-pen-to-square"></i> Edit</a>
             <a class="text-decoration-none text-danger ms-5" role="button" data-bs-toggle="modal"
                 data-bs-target="#bookModal" href=""><i class="fa-solid fa-trash-can"></i> Delete</a>
             {% elif product_type == 'comic' %}
-            <a class="text-decoration-none ms-2 me-5" href="{% url 'edit_comic' product.id %}"><i
+            <a class="text-decoration-none ms-2 me-5" href="{% url 'edit_comic' product.id %}" aria-label="Edit comic"><i
                     class="fa-solid fa-pen-to-square"></i> Edit</a>
             <a class="text-decoration-none text-danger ms-5" role="button" data-bs-toggle="modal"
-                data-bs-target="#comicModal" href=""><i class="fa-solid fa-trash-can"></i> Delete</a>
+                data-bs-target="#comicModal" href="#"><i class="fa-solid fa-trash-can"></i> Delete</a>
             {% else %}
             <p class="text-muted">Product you are looing for no exists.</p>
             {% endif %}
@@ -39,11 +39,11 @@
             <div class="row mx-auto mx-md-0 my-3">
                 <div class="col-lg-4 col-sm-5">
                     {% if product.image %}
-                    <a href="{{ product.image.url }}" target="_blank">
+                    <a href="{{ product.image.url }}" target="_blank" aria-label="Open image for {{ product.title }} in seprate window">
                         <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                     </a>
                     {% else %}
-                    <a href="">
+                    <a href="" aria-label="Image placeholder for products without image">
                         <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                     </a>
                     {% endif %}
@@ -54,11 +54,11 @@
                             class="small ps-1 btt-link">{{ product.author }}</span></p>
                     <p class="fw-bold fs-5">${{ product.price }}</p>
                     {% if product_type == 'book' %}
-                    <a href="{% url 'products' %}?category=books" class="text-decoration-none">
+                    <a href="{% url 'products' %}?category=books" class="text-decoration-none" aria-label="Go to the products in book category">
                         <p><span><i class="fa-solid fa-tag"></i> </span>Books</p>
                     </a>
                     {% elif product_type == 'comic' %}
-                    <a href="{% url 'products' %}?category=comics" class="text-decoration-none">
+                    <a href="{% url 'products' %}?category=comics" class="text-decoration-none" aria-label="Go to the products in comic category">
                         <p><span><i class="fa-solid fa-tag"></i> </span>Comics</p>
                     </a>
                     {% endif %}
@@ -85,17 +85,17 @@
                                     <div class="input-group mb-3 w-50 input-group-{{ product.id }}">
                                         <button class="decrement-qty btn btn-black-brown rounded-left p-1 m-0 decrement-qty_{{ product.id }}"
                                             type="button" data-item_id="{{ product.id }}"
-                                            id="decrement-qty_{{ product.id }}">
+                                            id="decrement-qty_{{ product.id }}" title="Decrement quantity">
                                             <span class="px-2">
                                                 <i class="fa-solid fa-minus"></i>
                                             </span>
                                         </button>
                                         <input class="form-control qty_input m-0 p-1 text-center id_qty_{{ product.id }}" type="number" name="quantity"
                                             value="1" min="1" max="10" data-item_id="{{ product.id }}"
-                                            id="id_qty_{{ product.id }}">
+                                            id="id_qty_{{ product.id }}" aria-label="Qunatity input - choose input in range 1 to 10">
                                         <button class="increment-qty btn btn-black-brown rounded-right p-1 m-0 increment-qty_{{ product.id }}"
                                             type="button" data-item_id="{{ product.id }}"
-                                            id="increment-qty_{{ product.id }}">
+                                            id="increment-qty_{{ product.id }}" title="Increment quantity">
                                             <span class="px-2">
                                                 <i class="fa-solid fa-plus"></i>
                                             </span>
@@ -112,7 +112,7 @@
                                     <span class="text-uppercase">Keep Shopping</span>
                                 </a>
                                 <input type="submit" class="btn btn-black-brown rounded-1 text-uppercase"
-                                    value="Add to Bag">
+                                    value="Add to Bag" aria-label="Add product to the bag">
                             </div>
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         </div>
@@ -127,13 +127,18 @@
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
                                     <a class="nav-link extra-info active text-muted" aria-current="page"
-                                        href="#">Description</a>
+                                        href="#" aria-label="Read product description">Description
+                                    </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link extra-info text-muted" href="">More Details</a>
+                                    <a class="nav-link extra-info text-muted" href="" aria-label="Find more details about the product">
+                                        More Details
+                                    </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link extra-info text-muted reviews-nav" href="#">Reviews</a>
+                                    <a class="nav-link extra-info text-muted reviews-nav" href="#" aria-label="Read product reviews">
+                                        Reviews
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -183,9 +188,13 @@
                                 <tr>
                                     <th class="text-black text-start my-1"><strong>Category:</strong></th>
                                     <!-- <td><span class="ms-2">{{ product.category.display_name }}</span></td> -->
-                                    <td><span class="ms-2"><a class="text-decoration-none"
+                                    <td>
+                                        <span class="ms-2">
+                                            <a class="text-decoration-none"
                                                 href="{% url 'products' %}?category={{ product.category.name }}"
-                                                aria-label="{{ product.category.name }}">{{ product.category.display_name }}</a></span>
+                                                aria-label="{{ product.category.name }}">{{ product.category.display_name }}
+                                            </a>
+                                        </span>
                                     </td>
                                     {% else %}
                                 </tr>

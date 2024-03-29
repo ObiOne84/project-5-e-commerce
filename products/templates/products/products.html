@@ -15,7 +15,7 @@
 <div class="container-lg h-100">
     <div class="row">
         <div class="col text-center">
-            <h2 class="logo-font text-uppercase text-black">Products</h2>
+            <h2 id="up" class="logo-font text-uppercase text-black">Products</h2>
             <!-- Source: Boutique Ado walkthrough project -->
             <div class="col my-1">
                 {% for c in current_categories %}
@@ -127,7 +127,7 @@
                                             <span class="me-1 fw-bold p-1">Qty: </span>
                                             <select
                                                 class="form-control qty_input m-0 p-1 text-center id_qty_{{ product.id }} rounded-1"
-                                                name="quantity" id="id_qty_{{ product.id }}">
+                                                name="quantity" id="id_qty_{{ product.id }}" aria-label="Select product quantity">
                                                 <option value="" selected disabled>Choose</option>
                                                 {% for i in quantity_range %}
                                                 <option value="{{ i }}">{{ i }}</option>
@@ -209,7 +209,7 @@
     </nav>
     {% endif %}
     <div class="btt-button shadow-sm rounded-0 border border-black">
-        <a class="btt-link d-flex h-100">
+        <a href="#up" class="btt-link d-flex h-100">
             <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
         </a>
     </div>

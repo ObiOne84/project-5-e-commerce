@@ -382,6 +382,7 @@ nav a.icon:hover {
     position: fixed;
     bottom: 200px;
     right: 20px;
+    z-index: 99999999999;
 }
 
 .btt-link {

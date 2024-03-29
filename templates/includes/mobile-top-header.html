@@ -35,10 +35,13 @@
                 </li>
                 {% endif %}
                 {% else %}
-                <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>
-                <a class="dropdown-item" href="{% url 'account_signup' %}">Register</a>
+                <li>
+                    <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{% url 'account_signup' %}">Register</a>
+                </li>
                 {% endif %}
-
             </ul>
         </div>
 
