@@ -287,41 +287,92 @@ Device testing encompassed various devices, including iPhone 12 Pro, iPad, MacBo
 
 ### Python
 
-#### recipes app
+#### bag app
 
 <details>
-<summary> admin.py
+<summary> context.py
 </summary>
 
-![admin.py](/media/sreenshots_webp/#.webp)
+![context.py](/media/sreenshots_webp/py_bag_context.webp)
 </details>
 
 <details>
-<summary> forms.py
+<summary> bag_tools.py
 </summary>
 
-![forms.py](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703440910/django-project/forms.py-validation_aka7ac.webp)
-</details>
-
-<details>
-<summary> models.py
-</summary>
-
-![models.py](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703440907/django-project/models.py-validation_yrsjis.webp)
-</details>
-
-<details>
-<summary> views.py
-</summary>
-
-![views.py](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703443092/django-project/views.py-validation_ptpsob.webp)
+![bag_tools.py](/media/sreenshots_webp/py_bag_tools.webp)
 </details>
 
 <details>
 <summary> urls.py
 </summary>
 
-![urls.py](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703443091/django-project/user-urls.py-validation_x4qqg5.webp)
+![urls.py](/media/sreenshots_webp/py_bag_urls.webp)
+</details>
+
+<details>
+<summary> views.py
+</summary>
+
+![views.py](/media/sreenshots_webp/py_bag_views.webp)
+</details>
+
+#### checkout app
+
+<details>
+<summary> admin.py
+</summary>
+
+![admin.py](/media/sreenshots_webp/py_checkout_admin.webp)
+</details>
+
+<details>
+<summary> forms.py
+</summary>
+
+![forms.py](/media/sreenshots_webp/py_checkout_forms.webp)
+</details>
+
+<details>
+<summary> models.py
+</summary>
+
+![models.py](/media/sreenshots_webp/py_checkout_modles.webp)
+</details>
+
+<details>
+<summary> signals.py
+</summary>
+
+![signals.py](/media/sreenshots_webp/py_checkout_signals.webp)
+</details>
+
+<details>
+<summary> urls.py
+</summary>
+
+![urls.py](/media/sreenshots_webp/py_checkout_urls.webp)
+</details>
+
+<details>
+<summary> views.py
+</summary>
+
+![views.py](/media/sreenshots_webp/py_checkout_views.webp)
+</details>
+
+<details>
+<summary> webhooks.py
+</summary>
+
+![webhooks.py](/media/sreenshots_webp/py_checkout_wh.webp)
+</details>
+
+<details>
+<summary> webhook_handler.py
+</summary>
+
+![webhook_handler.py](/media/sreenshots_webp/py_checkout_wh_handler.webp)
 </details>
 
 #### chefshelper
