@@ -261,8 +261,6 @@ class AddBook(LoginRequiredMixin, View):
             context = {
                 'book_form': book_form,
             }
-            print(comic_form.errors)
-            print(book_form.errors)
             return render(request, 'products/add_book.html', context)
 
 
@@ -299,8 +297,6 @@ class AddComic(LoginRequiredMixin, View):
                 'comic_form': comic_form,
 
             }
-            print(comic_form.errors)
-
             return render(request, 'products/add_comic.html', context)
 
 

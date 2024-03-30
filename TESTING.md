@@ -497,6 +497,8 @@ Device testing encompassed various devices, including iPhone 12 Pro, iPad, MacBo
 
 ## Lighthouse Report
 
+Most common issue affecting performance was AWS loading time, HTTP1 protocol and Stipe.js.
+
 <details>
 <summary> Home Page
 </summary>
@@ -643,134 +645,13 @@ Device testing encompassed various devices, including iPhone 12 Pro, iPad, MacBo
 
 #### Form Not Submitting
 
-* Javascript code prevents adding recipe form from being submitted by always returning a false value.
+* Javascript code.
 
 <details>
 <summary> Code changes
 </summary>
 
 ```javascript
-
-function validateReviewForm(className) {
-
-    let isValid = true;
-
-    $(className).each(function () {
-        let reviewField = $(this);
-        let reviewValue = reviewField.val().trim();
-        isValid = false; // Before, isValid inside loop, always return false
-
-        if (reviewValue === '') {
-            isValid = false; // After, isValid placed outside loop
-
-            $('.empty-error').text('Text input cannot be empty').show();
-            setTimeout(function () {
-                $('.empty-error').empty().hide();
-            }, 8000);
-
-            reviewField.focus();
-        }
-    });
-    return isValid;
-}
-
-```
-
-</details>
-
-#### Add Recipe Page - HTML validation errors
-
-* The HTML page was missing aria labels for some buttons and links. Also, form needed form labels for some fields. Missing labels were added, and the code passed the test.
-
-#### Update Recipe Page - HTML validation errors
-
-* The update_recipe.html had three errors when validating the HTML code. The `button` was wrapped in the `a` element, the `i` element had `type="button"` attribute added, and the `div` element was wrapped in `span`. All errors were corrected by removing not allowed elements`button, type="button" and span` and changing them to `a` with Bootstrap class btn, and `span` element to `div`.
-
-#### Index Page - HTML validation errors
-
-* The page failed the validator test due to the `a` element containing attribute `type="button"`. The issue was resolved by removing the attribute.
-
-#### Print button not visible for all recipes
-
-* Users could not print recipes created by others. This was due to the template code issue; the print button was inside the if statement, which checks if the user is the recipe's author, hiding the print button for all recipes not created by the user. The function was fixed by moving the `{% endif %}` statement before the print button.
-
-<details>
-<summary> Code changes
-</summary>
-
-```html
-
-<div class="row taskbar no-print">
-        <div class="col-lg-6 offset-lg-6 col-12 py-2 no-print d-flex justify-content-center">
-            {% if request.user == recipe.author %}
-            <a class="btn btn-outline-info btn-sm control-button" role="button"
-                href="{% url 'update_recipe' slug=recipe.slug %}">
-                <i class="fa-regular fa-pen-to-square"></i> Edit <span class="d-none d-xl-inline">Recipe</span>
-            </a>
-            <a class="btn btn-outline-danger btn-sm control-button" role="button" href="#" id="delete-recipe-link">
-                <i class="fa-regular fa-trash-can"></i>
-                <span class="d-none d-sm-inline"> Delete</span><span class="d-none d-xl-inline"> Recipe</span>
-            </a>
-            {% endif %}
-            <a class="btn btn-outline-warning btn-sm control-button" role="button" href="#" id="print-button">
-                <i class="fa-solid fa-print no-print"></i>
-                <span class="d-none d-sm-inline"> Print</span><span class="d-none d-xl-inline"> Recipe</span>
-            </a>
-            <!-- {% endif %} Before -->
-        </div>
-    </div>
-
-```
-
-</details>
-
-#### Search field do not display results
-
-* The issue was caused by incorrect `url` for the form used to submit User search request. The issue was fixed by providing the correct `url`.
-
-<details>
-<summary> Code changes
-</summary>
-
-```html
-
-<!-- <form action="{% url 'home' %}" method="GET" class="form-inline my-2 my-lg-0"> -->
-<form action="{% url 'recipe_images' %}" method="GET" class="form-inline my-2 my-lg-0">
-
-```
-
-</details>
-
-#### User could remove all ingredients
-
-* The script allowed Users to remove all ingredients fields. This was causing form to be invalid and preventing submitting. The code was fixed by adding `not(:first)`.
-
-<details>
-<summary> Code changes
-</summary>
-
-```javascript
-
-const hideEmptyIngredientFieldsExceptFirst = () => {
-
-    $('.ingredient-name:first').attr('required', 'required');
-    $('.ingredient-quantity:first').attr('required', 'required');
-    //  $("#ingredient-formset-container").find('.formset-row').each(function () {
-    $("#ingredient-formset-container").find('.formset-row:not(:first)').each(function () {
-        var nameField = $(this).find('input[name$="name"]');
-        var quantityField = $(this).find('input[name$="quantity"]');
-
-        if (!quantityField.val()) {
-            $(this).removeClass('show').addClass('hide');
-            $(this).find("[name$='-DELETE']").prop('checked', true);
-        } else {
-            $(this).removeClass('hide').addClass('show');
-            nameField.prop('required', true);
-            quantityField.prop('required', true);
-        }
-    });
-};
-
 
 ```
 
@@ -784,33 +665,59 @@ const hideEmptyIngredientFieldsExceptFirst = () => {
 
 | Page          | User Action   | Expected Result  | Notes            |
 |---------------|---------------|------------------|------------------|
-| Home Page     |               |                  |                  |
-|               | Click on Logo | Redirect to Home Page | PASS        |
+| Home Page  | Nav Bar  |  |  |
+|               | Hover over Navigation bar and Footer elements | Change colour | PASS |
+|               | Click on Logo/Home button | Redirect to Home Page | PASS        |
 |               | Click on Register - Navigation Bar | Redirect to Sign Up page | PASS |
-|               | Click on Join Now button - Hero Section | Redirect to Sign Up page | PASS |
-|               | Click on Recipes - Navigation Bar | Redirect to Recipes page | PASS |
-|               | Click on Home - Navigation Bar | Redirect to Home Page | PASS |
-|               | Click on GitHub icon - Footer | Open a new tab to project GitHub repository | PASS |
-|               | Click on LinkedIn icon - Footer | Open a new tab with developer account | PASS |
-|               | Hover over Navigation bar elements | Change colour | PASS |
-| Home Page (Logged In - User)  |                 |          |  |
-|               | After Login/Sign Up | Join Now button is not visible | PASS |
-|               | After Login/Sign Up | Navigation Bar change (Logout option available) | PASS |
-|               | After Login/Sign Up | Confirmation message is displayed above Hero section | PASS |
-|               | Click on users name | Open dropdown menu | PASS |
-|               | Click on Logout | Open confirmation modal | PASS |
-|               | Click on Sign Out - Modal | User received confirmation message | PASS |
-|               | Click on Sign Out - Modal | Redirect to Home page | PASS |
+|               | Click on Shop Now button - Hero Section | Redirect to Products page | PASS |
+|               | Click on All Products - By Price | Redirects to Products and sort by price in ascending order | PASS |
+|               | Click on All Products - By Rating | Redirects to Products and sort by rating in descending order | PASS |
+|               | Click on All Products - By Category | Redirects to Products and sort by category in ascending order | PASS |
+|               | Click on All Products - All Products | Redirects to Products | PASS |
+|               | Click on Books | Opens submenu with book categories | PASS |
+|               | Click on Books - Category name | Redirects to Products and display books in the catgory and success message, if no books, displays all products and error message | PASS |
+|               | Click on Books - All Books | Redirects to Products and display all books and all category names | PASS |
+|               | Click on Comics | Opens submenu with comic categories | PASS |
+|               | Click on Comics - Category name | Redirects to Products and display comics in the catgory and success message, if no comics, displays all products and error message | PASS |
+|               | Click on Comics - All Comics | Redirects to Products and display all comics and all category names | PASS |
+|               | Click on Basket Icon | Redirects to basket | PASS |
+|               | Click on My Account Icon | Opens submenu | PASS |
+|               | Click on My Account - Login | Redirects to login page | PASS |
+|               | Click on My Account - Register | Redirects to signup page | PASS |
+|               | When logged |  |  |
+|               | Click on My Account - Logout | Redirects to logout page | PASS |
+|               | Click on My Account - My Profile | Redirect to My Profile Page | PASS |
+|               | When logged - admin |  |  |
+|               | Hover Over My Account - Product Management | Display submenu | PASS |
+|               | Click on Add Book in submenu | Redirects to add book page | PASS |
+|               | Click on Add Comic in submenu | Redirects to add comic page | PASS |
+|               | Click on Admin Panel in submenu | Redirects to django admin panel | PASS |
+| Home Page | Banner|  |  |
+|               | Banner auto change | Free delivery, Discount, Newsletter | PASS |
+|               | Click on Banner - Free Delivery | Redirects to products page | PASS |
+|               | Click on Banner - Discount | Redirects to products page | PASS |
+|               | Click on Banner - Newsletter | Opens subscribe to newsletter form and sroll down | PASS |
+| Home Page | Footer |  |  |
+|               | Click on LinkedIn icon | Open a new tab with developer account | PASS |
+|               | Click on GitHub icon | Open a new tab with developer account | PASS |
+|               | Click on Social Media icon | Open social media page in a new tab | PASS |
+|               | Click on About Us | Open about us page | PASS |
+|               | Click on Contact Us | Open contact us page | PASS |
+|               | Click on FAQ | Open faq page | PASS |
+|               | Click on Privacy Policy | Open privacy policy page | PASS |
+|               | Click on Partners Link | Open partner link in a new tab | PASS |
+|               | Hover over footer | Show newsletter signup form, auto-hide after 60 seconds | PASS |
+|               | Click on clear footer area - mobile | Show newsletter signup form, click again to hide | PASS |
 | Sign Up Page  |                  |                  |                  |
 |               | Enter not valid email | Form will not submit, request valid email format | PASS |
 |               | Enter valid email | No request | PASS |
-|               | No email provided | Form will submit, email is optional | PASS |
+|               | No email provided | Form will not submit, error displayed | PASS |
 |               | Type invalid password | Error will inform user about incorrect password | PASS |
 |               | Type valid password | Form will submit | PASS |
 |               | Type different second password | Form will not submit, error will inform about incorrect password | PASS |
 |               | Click Sign Up when form is blank | Required form fields message appears | PASS |
 |               | Click Sign In | Redirect to Login page | PASS |
-|               | Provide all correct information and click Sign Up | Account is created, user is logged in, redirected to home page and success message appears | PASS |
+|               | Provide all correct information and click Sign Up | Account is created, user is redirected to confirm email page and success message appears | PASS |
 | Login Page  |                  |                  |                  |
 |               | Click on Sign Up | Redirect to Sign Up page | PASS |
 |               | Try invalid username | Username is not correct | PASS |
@@ -818,24 +725,76 @@ const hideEmptyIngredientFieldsExceptFirst = () => {
 |               | Valid password and username | User is logged in and success message displayed | PASS |
 |               | Click Sign In when form is blank | Required form fields message appears | PASS |
 | Logout Page  |                  |                  |                  |
-|               | Click on Logout button | Opens logout confirmation modal | PASS |
-|               | Click on Logout button (Modal) | User is logged out, success message appears, redirects to home page | PASS |
-| Browse Recipes Page (Unregister User) |                  |                  |                  |
-|               | Hover over recipe cards | Recipe name and partial description appears | PASS |
-|               | Enter recipe name in the search box | Recipe exists, recipe displays below | PASS |
-|               | Enter recipe name in the search box | Recipe exists, heading changes to search results | PASS |
-|               | Enter recipe name in the search box | Recipe does not exist, message appears, no recipes found | PASS |
-|               | Enter partial recipe name in the search box | Recipe does not exist, recipes containing search fraze in the name appear | PASS |
-|               | Click on the recipe card | Redirect to login page | PASS |
+|               | Click on Logout button | Opens logout confirmation page | PASS |
+|               | Click on Logout button | User is logged out, success message appears, redirects to home page | PASS |
+| Browse Products Page (All User) |                  |                  |                  |
+|               | Click on product image | Redirects to product details page | PASS |
+|               | Click on category name | Show all products in the category | PASS |
+|               | Click on select Qty | Opens select box with numbers in range of 1 to 10 | PASS |
+|               | Click on Add to bag button| If no number selected, displays error message | PASS |
+|               | Click on Add to bag button| If number selected, add product to the bag, confirmation message display bag content | PASS |
+| Browse Product Details Page (All User) |  |  |  |
+|               | Click on product image| Opens products image in a new tab | PASS |
+|               | Click on product type name | Show all products of the same type | PASS |
+|               | Click on Add to bag button | If total number of the same product less than 10, add product to the bag, confirmation message display bag content | PASS |
+|               | Click on Add to bag button | If total number of the same product more than 10, display error message with feedback | PASS |
+|               | Click on More Details tab | Displays additional product information | PASS |
+|               | Manually enter number |If number outside the range of 1 to 10, validation error | PASS |
+|               | Click on category name | Show all products in the category | PASS |
+|               | Click on Reviews tab | Displays product reviews | PASS |
+|               | Click Review Button | Displays review form in reviews tab (only if user is logged and purchased the product) | PASS |
+|               | Click Review Button | Displays review form in reviews tab (only if user is logged and purchased the product) | PASS |
+|               | Submit review form | If entered valid data, form submitted | PASS |
+|               | Edit Product - Admin Only | Redirects to update product page | PASS |
+|               | Delete Product - Admin Only | Opens confirmation modal | PASS |
+|               | Delete Product - Admin Only, confirm modal | Product is deleted permanently | PASS |
+| Search Box |  |  |  |
+|               | Enter product name in the search box | Product exists, success message and product displays below | PASS |
+|               | Enter partial product name in the search box | Product exists, success message and product displays below | PASS |
+|               | Enter product name in the search box | Product does not exist, error message and redirects to all products | PASS |
+|               | Enter partial product name in the search box | Product does not exist, error message and redirects to all products | PASS |
+| Pagination |  |  |  |
 |               | Click on the Next button | Redirect to the next page | PASS |
 |               | Click on the Prev button | Redirect to the previous page | PASS |
 |               | Click on the page number | Redirect to the page with that number | PASS |
-| Browse Recipes Page (Registered User)  |                 |                  |                  |
-|               | All actions as per Unregister User | All correct | PASS |
-|               | Click on the recipe card | Redirect to recipe detail view page | PASS |
-|               | Visible Add Recipe button | Button is visible underneath nav-bar | PASS |
+| Bag |  |  |  |
+|  | Click increment product qty | Qty number increases up to 10 | PASS |
+|  | Click decrement product qty | Qty number decreases up to 1 | PASS |
+|  | Click update button | Product qty updates, success message page refresh | PASS |
+|  | Click delete button | Product deleted from bag, success message, page refresh | PASS |
+|  | Enter less than 0 or more than 10 | Error message appear when update product qty button is clicked | PASS |
+|  | Update product qty | Total product qty and bag totals update | PASS |
+|  | Add 3 or more products | Bag total updates (less 10% ddiscount) | PASS |
+|  | Bag value more than $50 | Bag total updates (no delivery charge) | PASS |
+|  | Click Keep Shopping Button| Redirects to products page | PASS |
+|  | Click Checkout Button| Redirects to checkout page | PASS |
+| Checkout Page (Guest) |  |  |  |
+|               | Fill all required information | Payment is processed, success message, redirect to order confirmation page | PASS |
+|               | Missing form values | Validation form errors | PASS |
+|               | Correct payment details | Payment is processed, success message, redirect to order confirmation page | PASS |
+|               | Incorrect payment details | Payment is not processed, validation error | PASS |
+|               | Order Summary - Click product name | More details dispalyed about the product | PASS |
 |               | Click Add Recipe button | Redirect to add recipe page page | PASS |
-| Recipe Detail View Page |  |    |    |
+| Checkout Page (Registered User) |  |  |  |
+|               | On load - form contains save information if saved in user profile |  | PASS |
+|               | User check save info (personal details) | Personal details are saved to user profile | PASS |
+| Order Confirmation |  |  |  |
+|  | After purchase | Display order details | PASS |
+|  | Click keep shopping button | Redirects to products page | PASS |
+| My Profile |  |  |  |
+|  | Click on Default Delivery Info tab | Opens update information form, displays saved information | PASS |
+|  | Click Update Information | Updates users information, success message | PASS |
+|  | Click Order Number | Redirects to order history page, info message | PASS |
+|  | Click Change Passoword | Redirects to change password page | PASS |
+|  | Provide old and new password (repeat 2 times) | New password is set | PASS |
+|  | Provide invalid old or new password (repeat 2 times) | Form validation error | PASS |
+|  | Click back to my profiles | Redirects to my profile page | PASS |
+|  | Click Update Email | Redirects to update email page | PASS |
+|  | Click Add Email | Email added to user's emails - unverifed, verify email sent, success message displayed | PASS |
+|  | Click Re-send verification | Re-sends verification email to highlighted email | PASS |
+|  | Click Remove Email | Removes highlighted email | PASS |
+|  | Click Make Primary | Makes primary highlighted email | PASS |
+-------------------------------------
 |               | Read the recipe details | All recipe details provided by author are visible to user | PASS |
 |               | Submit empty review field | The error message will appear | PASS |
 |               | Submit review without rating | The review submits, rating is not required | PASS |
@@ -852,49 +811,35 @@ const hideEmptyIngredientFieldsExceptFirst = () => {
 |               | Visible Delete button | Only for recipes where user is author | PASS |
 |               | Click on Delete button | Opens delete recipe confirmation modal | PASS |
 |               | Click on Delete button | Deletes the recipe, confirmation message | PASS |
-| Add Recipe Page |  |    |    |
-|               | Add recipe with the same title | The recipe name already exist message | PASS |
-|               | Remove all instruction | This field cannot be empty | PASS |
-|               | Click plus | Add new instruction field | PASS |
-|               | Click minus | Remove instruction field | PASS |
-|               | Instruction > 350 length | The text is cropped at 350 characters | PASS |
-|               | Instruction field | The scroll bar appear for longer text | PASS |
-|               | Add image above 5MB | Image cannot be above 5MB | PASS |
-|               | No image provided | Form submits, image is not required | PASS |
-|               | No prep time | Field is required message | PASS |
-|               | Prep time above 600 | Alert message, value must be equal or less to 600 | PASS |
-|               | Prep time is negative | Alert message, value must be greater or equal to 0 | PASS |
-|               | Prep time left empty | Alert message, please fill in this field | PASS |
-|               | Prep time accepts only numbers | Field do not accept other values | PASS |
-|               | Cook time | All tests as per prep time | PASS |
-|               | Number of Servings equal 0 | Alert message, value must be greater or equal to 1 | PASS |
-|               | Number of Servings equal 0 | Alert message, value must be less than or equal to 10 | PASS |
-|               | Number of Servings is negative | Alert message, value must be greater or equal to 1 | PASS |
-|               | Ingredients fields is empty | Alert message, Please fill in this field | PASS |
-|               | Ingredients fields is space bar | Alert message, This field is required | PASS |
-|               | Ingredients quantity value < 0 | Alert message, value must be greater or equal to 0 | PASS |
-|               | Ingredients quantity value > 9999.99 | Alert message, value must be greater or equal to 0 | PASS |
-|               | Click plus | Add new ingredient field | PASS |
-|               | Click minus | Remove ingredient field | PASS |
-|               | Publish or Save as Draft | Alert message, value must be less than or equal to 9999.99 | PASS |
-|               | When submitted as draft | Redirects to recipes page, success message displayed, recipe is placed behind published recipes, recipe is marked as draft, recipe is not visible to other users | PASS |
-|               | When submitted as published | Redirects to recipes page, success message displayed, recipe is placed at the beginning of the recipes, recipe is visible to other users  | PASS |
-| Edit Recipe Page |  |    |    |
-|               | As per Add Recipe | All test as for add recipe page | PASS |
+| Add Book/Comic Page |  |  |  |
+|               | Add product with missing required field | Form validation error - this field is required, error message | PASS |
+|               | Add product with all valid required field | Form submitted, product added to database, success message | PASS |
+|               | Click Cancel | Cancel, and redirect to products page | PASS |
+| Newsletter Form |  |  |  |
+|  | Enter valid email and click subscribe |  Form is submitted, confirmation message displayed  |  |
+|  | Enter invalid email and click subscribe |  Form is not submitted, validation error displayed |  |
+|  | Enter email already subscribed and click subscribe |  Form is not submitted, info message email already register |  |
+| Update Product Page |  |    |    |
+|               | As per Add Comic/Book | All test as for add comic/book page | PASS |
 |               | Existing fields content | All content displays correctly | PASS |
 |               | Change Existing fields content | All content can be modified | PASS |
 | Admin Panel |  |    |    |
-|               | Add Recipe | Admin can build the recipe | PASS |
-|               | Add Ingredient | Admin can add ingredient | PASS |
-|               | Edit Recipe | Admin can edit recipe | PASS |
-|               | Edit Ingredient | Admin can edit ingredient | PASS |
+|               | Add Comic/Book | Admin can add products | PASS |
+|               | Add Category | Admin can add category | PASS |
+|               | Add Subcategory | Admin can add subcategory | PASS |
+|               | Edit product | Admin can edit product | PASS |
+|               | Edit Category | Admin can edit category | PASS |
+|               | Edit Subcategory | Admin can edit subcategory | PASS |
 |               | CRUD Review | Admin can read, add, edit and delete reviews | PASS |
 |               | Approve Review | Admin approve one or selected reviews | PASS |
-|               | Delete Recipe| Admin can delete one or selected reviews | PASS |
-|               | Filter/Sort Recipe | Admin can filter/sort recipes | PASS |
+|               | Delete Products | Admin can delete one or selected reviews | PASS |
+|               | Filter/Sort Comics/Books | Admin can filter/sort products | PASS |
 |               | Filter/Sort Review | Admin can filter/sort reviews | PASS |
 |               | Search Review | Admin can search reviews | PASS |
-|               | Search Recipe | Admin can search recipe | PASS |
+|               | Search Product | Admin can search product | PASS |
+|               | Manage Order | Admin can manage orders | PASS |
+|               | Manage Accounts | Admin can manage accounts | PASS |
+|               | Manage Profiles | Admin can manage profiles | PASS |
 
 ## Django Framework Testing
 
@@ -904,7 +849,7 @@ const hideEmptyIngredientFieldsExceptFirst = () => {
 <summary> Django Coverage
 </summary>
 
-![Django Coverage](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703877076/django-project/django-testing_njzgit.webp)
+![Django Coverage](#)
 </details>
 
 - - -

@@ -27,7 +27,8 @@
                 class="form product-form">
                 {% csrf_token %}
                 {{ book_form | crispy }}
-                <button class="btn btn-black-brown rounded-1" type="submit">Add Product</button>
+                <a href="{% url 'products' %}" class="btn btn-outline-danger rounded-1 text-uppercase" aria-label="Cancel and return to products">Cancel</a>
+                <button class="btn btn-black-brown rounded-1 text-uppercase" type="submit" title="Add product">Add Product</button>
             </form>
         </div>
     </div>
