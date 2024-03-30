@@ -48,6 +48,10 @@
     <script src="https://js.stripe.com/v3/"></script>
     <!-- Fontawesome -->
     <script src="https://kit.fontawesome.com/d46864ea4e.js" crossorigin="anonymous"></script>
+    <!-- Lazysizes -->
+    <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"
+        integrity="sha384-A6Ovei/8G1sOVjb3Zbd8CZIvPsJrC7ihQgSVn8z3TzU3QIu9x8MItK5NqoXAFQwR" crossorigin="anonymous">
+    </script>
     {% endblock %}
 
     {% block extra_js %}
@@ -188,11 +192,11 @@
     </main>
 
     <!-- Footer -->
-    <footer class="mt-auto bring-above border-org-top nav-bg-color"> 
+    <footer class="mt-auto bring-above border-org-top nav-bg-color">
         <div class="row border-org-bottom collapse newsletter" id="collapseNewsletter">
             <div class="col-12">
                 {% include 'includes/newsletter.html' %}
-             </div>
+            </div>
         </div>
         {% include 'includes/footer.html' %}
     </footer>
