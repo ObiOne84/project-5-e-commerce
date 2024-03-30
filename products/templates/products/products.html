@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'products/css/products.css' %}" type="text/css">
+{% endblock %}
+
 {% block page_header %}
 <div class="container top-space">
     <div class="row">
@@ -96,11 +100,11 @@
             <div class="card h-100 border-0">
                 {% if product.image %}
                 <a href="{% url 'product_detail' product.id %}">
-                    <img class="lazyload card-img-top" data-src="{{ product.image.url }}" alt="Image for {{ product.title }}">
+                    <img class="lazyload card-img-top product-img" data-src="{{ product.image.url }}" alt="Image for {{ product.title }}">
                 </a>
                 {% else %}
                 <a href="{% url 'product_detail' product.id %}">
-                    <img class="lazyload card-img-top" src="{{ MEDIA_URL }}noimage.png" alt="Image not available for {{ product.title }}">
+                    <img class="lazyload card-img-top product-img" src="{{ MEDIA_URL }}noimage.png" alt="Image not available for {{ product.title }}">
                 </a>
                 {% endif %}
                 <div class="card-body pb-0">
