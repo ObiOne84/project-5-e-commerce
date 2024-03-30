@@ -38,12 +38,13 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-sm-4 col-md-2">
-                        <a href="{% url 'product_detail' item.product.id %}">
+                        <a href="{% url 'product_detail' item.product.id %}" aria-label="View product image in a new window">
                         {% if item.product.image %}
                         <img class="img-fluid rounded-1 mx-auto mx-md-0 thumbnail d-block" src="{{ item.product.image.url }}"
                             alt="Image of {{ item.product.name }}">
                         {% else %}
-                        <img class="img-fluid rounded-1 mx-auto mx-md-0 thumbnail d-block" src="{{ MEDIA_URL }}noimage.png" alt="No image available for {{ item.product.name }}">
+                        <img class="img-fluid rounded-1 mx-auto mx-md-0 thumbnail d-block" src="{{ MEDIA_URL }}noimage.png"
+                            alt="No image available for {{ item.product.name }}">
                         {% endif %}
                         </a>
                     </div>
@@ -80,11 +81,11 @@
         </div>
         <div class="col-12 col-lg-3 d-flex flex-column justify-content-between p-0 px-1">
             <div class="col-12 text-end mt-auto">
-                <h6 class="bag-total-info"><strong>Bag Total: ${{ total|floatformat:2 }}</strong></h6>
-                <h6 class="bag-total-info small">Delivery: ${{ delivery|floatformat:2 }}</h6>
-                <h6 class="bag-total-info small">VAT Included: ${{ vat|floatformat:2 }}</h6>
-                <h6 class="bag-total-info text-danger small">Discount: -${{ discount|floatformat:2 }}</h6>
-                <h4 class="bag-total-info"><strong>Grand Total: ${{ grand_total|floatformat:2 }}</strong></h4>
+                <p class="bag-total-info fs-6 my-0"><strong>Bag Total: ${{ total|floatformat:2 }}</strong></p>
+                <p class="bag-total-info small fs-6 my-0">Delivery: ${{ delivery|floatformat:2 }}</p>
+                <p class="bag-total-info small fs-6 my-0">VAT Included: ${{ vat|floatformat:2 }}</p>
+                <p class="bag-total-info text-danger small fs-6 my-0">Discount: -${{ discount|floatformat:2 }}</p>
+                <p class="bag-total-info fs-4 my-0"><strong>Grand Total: ${{ grand_total|floatformat:2 }}</strong></p>
                 {% if free_delivery_delta > 0 %}
                 <p class="text-danger">
                     You could get a free delivery by spending just <strong>${{ free_delivery_delta }}</strong> more!
@@ -113,7 +114,8 @@
         <hr class="m-0 p-0 d-block d-lg-none">
         <div class="col-12 mb-4">
             <p class="lead">Your bag is empty</p>
-            <a href="{% url 'products' %}" class="btn pagination-btn rounded-1 btn-lg">
+            <a href="{% url 'products' %}" class="btn pagination-btn rounded-1 btn-lg"
+                aria-label="Continue shopping, return to products">
                 <span>
                     <i class="fa-solid fa-chevron-left"></i>
                 </span>

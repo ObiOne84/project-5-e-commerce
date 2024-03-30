@@ -6,6 +6,10 @@
 <link rel="stylesheet" type="text/css" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
+{% block extra_js %}
+<!-- Stripe -->
+<script src="https://js.stripe.com/v3/"></script>
+{% endblock %}
 
 {% block page_header %}
 <div class="container top-space">

@@ -6,7 +6,7 @@
             <div class="input-group mb-3 input-group-{{ item.item_id }}">
                 <button
                     class="decrement-qty btn btn-sm btn-black-brown rounded-left m-0 decrement-qty_{{ item.item_id }}"
-                    type="button" data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                    type="button" data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}" title="Decrement quantity">
                     <span>
                         <i class="fa-solid fa-minus fa-sm"></i>
                     </span>
@@ -14,19 +14,21 @@
                 <input class="form-control form-control-sm qty_input p-0 m-0 text-center id_qty_{{ item.item_id }}"
                     type="number" name="quantity" value="{{ item.quantity }}" min="1" max="10"
                     data-item_id="{{ item.item_id }}" data-product_title="{{ item.product.title }}"
-                    id="id_qty_{{ item.item_id }}">
+                    id="id_qty_{{ item.item_id }}" title="Enter quantity between 1 and 10"
+                    aria-label="Quantity">
                 <button
                     class="increment-qty btn btn-sm btn-black-brown rounded-right m-0 increment-qty_{{ item.item_id }}"
-                    type="button" data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                    type="button" data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}" title="Increment quantity">
                     <span>
                         <i class="fa-solid fa-plus fa-sm"></i>
                     </span>
                 </button>
-                <a class="update-item btn btn-sm btn-outline-primary mx-1 rounded-1">
-                    <small><i class="fa-solid fa-rotate px-2 px-md-0"></i></small></a>
-                <a id="remove_{{ item.item_id }}" class="remove-item btn btn-sm btn-outline-danger rounded-1 float-end">
+                <button class="update-item btn btn-sm btn-outline-primary mx-1 rounded-1" title="Update product quantity in the bag">
+                    <small><i class="fa-solid fa-rotate px-2 px-md-0"></i></small></button>
+                <button id="remove_{{ item.item_id }}" class="remove-item btn btn-sm btn-outline-danger rounded-1 float-end"
+                    title="Remove product from the bag">
                     <small><i class="fa-solid fa-trash-can px-2 px-md-0"></i></small>
-                </a>
+                </button>
             </div>
             <div class="input-error border border-danger rounded-1 text-danger d-none small p-1" id="input-error-{{ item.item_id }}"></div>
         </div>
