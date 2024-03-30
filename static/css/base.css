@@ -250,6 +250,11 @@ footer {
     border: 2px solid #f09a53;
 }
 
+.btn-orange:hover {
+    background-color: #e98330;
+    border-color: #e98330;
+}
+
 /* -------------- Borders ----------------------- */
 .border-orange {
     border: 2px solid #f09a53;
@@ -277,7 +282,7 @@ footer {
     transform: translateY(-100%);
   }
 
-  #mc_embed_signup {
+#mc_embed_signup {
     color: #050101;
     border-top: 5px solid #050101;
     border-bottom: 5px solid #050101;
@@ -361,11 +366,34 @@ nav a.icon:hover {
     border-color: #050101;
 }
 
+.form select:hover,
+.form textarea:hover,
+.form input:hover,
+.allauth-form-inner-content input:hover {
+    border: 1px solid #f09a53 !important;
+    background-color: #eebd962c;
+}
+
+.form select:focus,
+.form textarea:focus,
+.form input:focus,
+.allauth-form-inner-content input:focus {
+    border: 1px solid #f09a53 !important;
+    box-shadow: 0 0 0 0.25rem rgba(247, 224, 175, 0.5) !important;
+}
 .allauth-form-inner-content input::placeholder {
     color: #aab7c4;
 }
 
 /* ----------Forms ------------ */
+.search-box:hover {
+    background-color: #fae8d9;
+    z-index: 99999999;
+}
+
+.search-box:focus {
+    border: 1px solid #f09a53 !important;
+}
 .form select,
 .form textarea,
 .form input {

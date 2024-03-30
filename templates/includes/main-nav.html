@@ -35,7 +35,6 @@
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=sci_fiction" title="Sci-Fiction">Sci-Fiction</a></li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=science" title="Science">Science</a></li>
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=travel" title="Travel">Travel</a></li>
-                        <!-- <li><a class="dropdown-item" href="{% url 'products' %}?category=books" aria-label="All Books">All Books</a></li> -->
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=adventure,business,children,crime,drama,fiction,non_fiction,religion,sci_fiction,science,travel" title="All Books">All Books</a></li>
                     </ul>
                 </li>
@@ -47,19 +46,20 @@
                     <ul class="dropdown-menu mb-3" aria-labelledby="comic-books-links">
                         <li><a class="dropdown-item" href="{% url 'products' %}?category=marvel_universe" title="Marver Universe">Marvel</a>
                         </li>
-                        <li><a class="dropdown-item" href="{% url 'products' %}?category=dc_universe" title="DC Universe">DC</a></li>
+                        <li><a class="dropdown-item" href="{% url 'products' %}?category=dc_universe" title="DC Universe">DC</a>
+                        </li>
                         <li><a class="dropdown-item"
-                                href="{% url 'products' %}?category=marvel_universe,dc_universe" title="All Comic Books">All Comics</a></li>
-
+                                href="{% url 'products' %}?category=marvel_universe,dc_universe" title="All Comic Books">All Comics</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
             <div class="d-flex justify-content-center flex-grow-1 search-box-container d-none d-lg-block">
                 <form action="{% url 'products' %}" method="GET" class="w-100">
                     <div class="input-group">
-                        <input type="text" class="form-control rounded-1 border-orange" name="q"
+                        <input type="text" class="form-control rounded-left border-orange search-box" name="q"
                             placeholder="Search our library" aria-label="Search" id="page-search-box">
-                        <button class="btn btn-orange rounded-1 border-orange" type="submit" id="search-query"
+                        <button class="btn btn-orange rounded-right border-orange" type="submit" id="search-query"
                             aria-label="Search product">
                             <span class="icon">
                                 <i class="fas fa-search"></i>
