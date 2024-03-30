@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/signup/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/bag/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/?sort=price&amp;direction=asc</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/?sort=rating&amp;direction=desc</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/?sort=category&amp;direction=asc</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/?category=fiction</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/?category=adventure,business,children,crime,drama,fiction,non_fiction,religion,sci_fiction,science,travel</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/?category=marvel_universe</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/?category=dc_universe</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/?category=marvel_universe,dc_universe</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/about/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/contact/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/faq/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/policy/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/password/reset/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/59/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/2/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/37/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/36/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/35/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/34/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/33/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/32/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/31/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/44/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/43/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/41/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/40/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/39/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/38/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/49/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/48/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/47/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/46/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/45/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/51/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/50/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/42/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/5/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/?page=1&amp;sort=price&amp;direction=asc</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/?page=2&amp;sort=price&amp;direction=asc</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/6/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/1/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/?page=1&amp;sort=rating&amp;direction=desc</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/?page=2&amp;sort=rating&amp;direction=desc</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/?page=1&amp;sort=category&amp;direction=asc</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/?page=2&amp;sort=category&amp;direction=asc</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/?page=1&amp;sort=None&amp;direction=None</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/?page=2&amp;sort=None&amp;direction=None</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/comic/59/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/book/59/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/?category=books</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/comic/2/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/book/2/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/products/?category=comics</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/comic/37/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/book/37/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/comic/36/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/book/36/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/comic/35/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/book/35/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/comic/34/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/book/34/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/comic/33/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/book/33/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/comic/32/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/book/32/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/comic/31/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/book/31/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/comic/44/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/book/44/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/comic/43/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/login/?next=/products/delete/book/43/</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/signup/?next=%2Fproducts%2Fdelete%2Fcomic%2F2%2F</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://owl-bookstore-2a747a64a0a9.herokuapp.com/accounts/signup/?next=%2Fproducts%2Fdelete%2Fbook%2F33%2F</loc>
+  <lastmod>2024-03-30T14:04:08+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+
+
+</urlset>

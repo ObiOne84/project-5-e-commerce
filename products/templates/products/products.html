@@ -96,11 +96,16 @@
             <div class="card h-100 border-0">
                 {% if product.image %}
                 <a href="{% url 'product_detail' product.id %}">
-                    <img class="lazyload card-img-top" src="{{ product.image.url }}" alt="{{ product.title }}">
+                    <!-- <img class="lazyload card-img-top" data-sizes="auto" data-src="{{ product.image.url }}"
+                    src="{{ product.image.url }}" alt="{{ product.title }}"> -->
+                    <img class="lazyload card-img-top" data-src="{{ product.image.url }}" alt="{{ product.title }}">
+
                 </a>
                 {% else %}
                 <a href="{% url 'product_detail' product.id %}">
-                    <img class="lazyload card-img-top" src="{{ MEDIA_URL }}noimage.png" alt="Image not available">
+                    <img class="lazyload card-img-top" data-sizes="auto" data-src="image2.jpg"
+                    data-srcset="image1.jpg 300w, image2.jpg 600w, image3.jpg 900w"
+                    src="{{ MEDIA_URL }}noimage.png" alt="Image not available">
                 </a>
                 {% endif %}
                 <div class="card-body pb-0">

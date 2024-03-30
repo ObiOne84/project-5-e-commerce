@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /accounts/
+Disallow: /bag/
+Sitemap: https://owl-bookstore-2a747a64a0a9.herokuapp.com/sitemap.xml
