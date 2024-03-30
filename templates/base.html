@@ -49,12 +49,8 @@
     <!-- Fontawesome -->
     <script src="https://kit.fontawesome.com/d46864ea4e.js" crossorigin="anonymous"></script>
     <!-- Lazysizes -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" crossorigin="anonymous"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" crossorigin="anonymous">
     </script>
-    <!-- Custome javascript -->
-    <script src="{% static 'js/toast.js' %}"></script>
-    <script src="{% static 'js/arrow_up.js' %}"></script>
-    <script src="{% static 'js/newsletter.js' %}"></script>
     {% endblock %}
 
     {% block extra_js %}
@@ -205,11 +201,14 @@
     </footer>
 
     {% block postload_js %}
-    <!-- jquery link -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <!-- AWS Amazon javascript -->
-    <script src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-
+        <!-- jquery link -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <!-- AWS Amazon javascript -->
+        <script src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+        <!-- Custome javascript -->
+        <script src="{% static 'js/toast.js' %}"></script>
+        <script src="{% static 'js/arrow_up.js' %}"></script>
+        <script src="{% static 'js/newsletter.js' %}"></script>
     {% endblock %}
 </body>
 
