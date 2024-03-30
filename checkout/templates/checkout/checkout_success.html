@@ -171,9 +171,16 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-12 text-end border-top">     
+                        <a href="{% url 'products' %}" class="btn btn-black-brown rounded-1 my-2 text-uppercase" aria-label="Continue shopping">
+                            <i class="fa-solid fa-angles-left"></i> Keep Shopping
+                        </a>      
+                    </div>
                     {% if from_profile %}
                     <div class="col-12 text-end border-top">     
-                        <a href="{% url 'profile' %}" class="btn btn-black-brown rounded-1 my-2 text-uppercase"><i class="fa-solid fa-angles-left"></i> Back to My Profile</a>      
+                        <a href="{% url 'profile' %}" class="btn btn-black-brown rounded-1 my-2 text-uppercase" aria-label="Return to my profile">
+                            <i class="fa-solid fa-angles-left"></i> Back to My Profile
+                        </a>      
                     </div>
                     {% endif %}
                 </div>

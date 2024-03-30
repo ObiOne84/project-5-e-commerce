@@ -302,11 +302,11 @@
                                 <p>Leave a review:</p>
                                 <form method="POST" id="review-form">
                                     {% csrf_token %}
-                                    {{ review_form | crispy | safe }}
+                                    {{ review_form | crispy | safe }}  
+                                    <button type="button" class="btn btn-outline-danger m-1 rounded-1 text-uppercase" id="cancel-review"
+                                        aria-label="Cancel">Cancel</button>
                                     <button type="submit" class="btn btn-black-brown m-1 rounded-1 text-uppercase" id="review-button"
                                         aria-label="Submit">Submit</button>
-                                    <button type="button" class="btn pagination-btn m-1 rounded-1 text-uppercase" id="cancel-review"
-                                        aria-label="Cancel">Cancel</button>
                                 </form>
                             </div>
                             <hr class="d-block d-md-none nav mt-1 mb-4 mx-2">
