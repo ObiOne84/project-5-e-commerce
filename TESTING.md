@@ -624,6 +624,13 @@ Device testing encompassed various devices, including iPhone 12 Pro, iPad, MacBo
 </details>
 
 <details>
+<summary> Reset Password Page
+</summary>
+
+![Reset Password Page](/media/sreenshots_webp/lighthouse_password_reset.webp)
+</details>
+
+<details>
 <summary> Update Email Page
 </summary>
 
