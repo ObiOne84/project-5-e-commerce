@@ -40,11 +40,11 @@
                 <div class="col-lg-4 col-sm-5">
                     {% if product.image %}
                     <a href="{{ product.image.url }}" target="_blank" aria-label="Open image for {{ product.title }} in seprate window">
-                        <img class="card-img-top img-fluid lazyload" src="{{ product.image.url }}" alt="Image for {{ product.title }}">
+                        <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="Image for {{ product.title }}">
                     </a>
                     {% else %}
                     <a href="" aria-label="Image placeholder for products without image">
-                        <img class="card-img-top img-fluid lazyload" src="{{ MEDIA_URL }}noimage.png" alt="Image not available for {{ product.title }}">
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="Image not available for {{ product.title }}">
                     </a>
                     {% endif %}
                 </div>
