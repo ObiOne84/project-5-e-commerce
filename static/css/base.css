@@ -345,9 +345,7 @@ nav a.icon:hover {
 
 .allauth-form-inner-content p {
     margin-top: 1.5rem;
-    /* mt-4 */
     color: #6c757d;
-    /* text-secondary */
 }
 
 .allauth-form-inner-content .form-buttons,
@@ -368,7 +366,6 @@ nav a.icon:hover {
 }
 
 /* ----------Forms ------------ */
-
 .form select,
 .form textarea,
 .form input {
