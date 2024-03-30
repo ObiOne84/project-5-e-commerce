@@ -501,49 +501,133 @@ Device testing encompassed various devices, including iPhone 12 Pro, iPad, MacBo
 <summary> Home Page
 </summary>
 
-![Home Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703526648/django-project/home-lighthouse-test_yxdyii.webp)
+![Home Page](/media/sreenshots_webp/lighthouse_home.webp)
 </details>
 
 <details>
-<summary> Recipes Page
+<summary> About Us Page
 </summary>
 
-![Recipes Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703526648/django-project/recipes-lighthouse-test_kxll43.webp)
+![About Us Page](/media/sreenshots_webp/lighthouse_about_us.webp)
+</details>
+
+<details>
+<summary> Privacy Page
+</summary>
+
+![Privacy Page](/media/sreenshots_webp/lighthouse_privacy.webp)
+</details>
+
+<details>
+<summary> Contact Us Page
+</summary>
+
+![Contact Us Page](/media/sreenshots_webp/lighthouse_contact_us.webp)
+</details>
+
+<details>
+<summary> FAQ Page
+</summary>
+
+![FAQ Page](/media/sreenshots_webp/lighthouse_faq.webp)
+</details>
+
+<details>
+<summary> Products Page
+</summary>
+
+![Products Page](/media/sreenshots_webp/lighthouse_products.webp)
+</details>
+
+<details>
+<summary> Product Details Page
+</summary>
+
+![Product Details Page](/media/sreenshots_webp/lighthouse_product_details.webp)
+</details>
+
+<details>
+<summary> Add Book Page
+</summary>
+
+![Add Book Page](/media/sreenshots_webp/lighthouse_add_book.webp)
+</details>
+
+<details>
+<summary> Add Comic Page
+</summary>
+
+![Add Comic Page](/media/sreenshots_webp/lighthouse_add_comic.webp)
+</details>
+
+<details>
+<summary> Update Product Page
+</summary>
+
+![Update Product Page](/media/sreenshots_webp/lighthouse_update_product.webp)
+</details>
+
+<details>
+<summary> Bag Page
+</summary>
+
+![Bag Page](/media/sreenshots_webp/lighthouse_bag.webp)
+</details>
+
+<details>
+<summary> Checkout Page
+</summary>
+
+![Checkout Page](/media/sreenshots_webp/lighthouse_checkout.webp)
+</details>
+
+<details>
+<summary> Checkout Success/Order History Page
+</summary>
+
+![Checkout Success/Order History Page](/media/sreenshots_webp/lighthouse_order_history.webp)
+</details>
+
+<details>
+<summary> Profile Page
+</summary>
+
+![Profile Page](/media/sreenshots_webp/lighthouse_profile.webp)
 </details>
 
 <details>
 <summary> Sign Up Page
 </summary>
 
-![Sign Up Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703526649/django-project/sign-up-lighthouse-test_vyehxz.webp)
+![Sign Up Page](/media/sreenshots_webp/lighthouse_register.webp)
 </details>
 
 <details>
 <summary> Login Page
 </summary>
 
-![Login Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703526649/django-project/sign-in-lighthouse-test_k4uqxk.webp)
+![Login Page](/media/sreenshots_webp/lighthouse_login.webp)
 </details>
 
 <details>
-<summary> Add Recipe Page
+<summary> Logout Page
 </summary>
 
-![Add Recipe Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703535015/django-project/add-recipe-lighthouse-test_ld5eyi.webp)
+![Logout Page](/media/sreenshots_webp/lighthouse_logout.webp)
 </details>
 
 <details>
-<summary> Update Recipe Page
+<summary> Change Password Page
 </summary>
 
-![Update Recipe Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703535740/django-project/edit-recipe-lighthouse-test_k1obog.webp)
+![Change Password Page](/media/sreenshots_webp/lighthouse_password_change.webp)
 </details>
 
 <details>
-<summary> Recipe Detail View Page
+<summary> Update Email Page
 </summary>
 
-![Recipe Detail View Page](https://res.cloudinary.com/dcrbeonr9/image/upload/v1703526648/django-project/recipe-view-lighthouse-test_ehxdjn.webp)
+![Update Email Page](/media/sreenshots_webp/lighthouse_email_update.webp)
 </details>
 
 ## Bugs

@@ -25,6 +25,7 @@
     background-color: #ecf0f3bb;
 }
 
+.success-msg-container,
 #checkout-summary {
     min-height: 400px;
 }

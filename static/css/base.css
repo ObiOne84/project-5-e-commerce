@@ -98,6 +98,7 @@ footer {
     border-radius: 50% / 25%;
     max-width: 300px;
     height: auto;
+    aspect-ratio: 300 / 200;
   }
 
 /* Toasts */
