@@ -471,7 +471,7 @@ p.my-0.text-end {
 
     /* overflow for mobile devices */
     .overflow-auto {
-        max-height: 600px !important;
+        max-height: 400px !important;
     }
 
     .btn-sm {

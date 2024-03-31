@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'products/css/products.css' %}" type="text/css">
+{% endblock %}
 
 {% block page_header %}
 <div class="container top-space">
@@ -184,10 +187,8 @@
                                 </tr>
                                 {% endif %}
                                 {% if product.category is not null %}
-                                <!-- Update the style of the <a> link -->
                                 <tr>
                                     <th class="text-black text-start my-1"><strong>Category:</strong></th>
-                                    <!-- <td><span class="ms-2">{{ product.category.display_name }}</span></td> -->
                                     <td>
                                         <span class="ms-2">
                                             <a class="text-decoration-none"
@@ -281,11 +282,12 @@
                                     {% if reviews %}
                                     <div class="card-body overflow-auto p-0 m-0">
                                         {% for review in reviews %}
-                                        <div class="p-0">
-                                            <p class="m-0 p-0">By: <strong>{{ review.name }}</strong>
-                                                <span>, on: {{ review.created_on }}</span>
+                                        <div class="p-1 border rounded-1 m-1 review-body">
+                                            <p class="m-0 p-1 review-author rounded-1">By: <strong>{{ review.name|capfirst }}</strong>
+                                                <span>, on: {{ review.created_on|date:"d m Y" }} | {{ review.created_on|time:"H:i" }}</span>
                                             </p>
-                                            <p class="mx-0 my-1 p-0">{{ review.body | safe }}</p>
+                                            <hr class="my-0">
+                                            <p class="mx-0 my-1 p-1">{{ review.body | safe }}</p>
                                         </div>
                                         {% endfor %}
                                     </div>
