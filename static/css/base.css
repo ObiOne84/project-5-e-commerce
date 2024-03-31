@@ -43,6 +43,16 @@ h6 {
     min-height: 180px;
 }
 
+/* ------------- Error page -------------- */
+.error-img {
+    max-height: 200px;
+    width: auto;
+}
+
+.error-font {
+    font-size: 10rem;
+}
+
 /*------------- Background ---------------*/
 body {
     background: url('/media/bg-library.webp') no-repeat center center fixed;
