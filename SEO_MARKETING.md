@@ -105,7 +105,23 @@ OwlBookstore is an e-commerce platform specializing in selling books and comics 
     >
     > * SEO: Utilize targeted keywords to improve search engine rankings and visibility.
     > * Social Media Marketing: Engage with customers on platforms like Facebook, Instagram, and Twitter to showcase new arrivals, promotions, and community events.
+    >
+    > <details>
+    > <summary> Facebook Page
+    > </summary>
+    >
+    > ![Newsletter](/media/sreenshots_webp/facebook.webp)
+    > </details>
+    >
     > * Content Marketing: Create blog posts, articles, and videos related to books, comics, and  sustainability to attract and engage audiences.
+    >
+    > <details>
+    > <summary> Newsletter
+    > </summary>
+    >
+    > ![Newsletter](/media/sreenshots_webp/newsletter.webp)
+    > </details>
+    >
     > * Email Marketing: Send newsletters and promotional emails to subscribers to inform them about new releases, discounts, special offers, and upcoming events.
     >
     > **Offline Marketing**:
@@ -164,10 +180,31 @@ These keywords are selected based on their relevance to your project, aiming to 
 * Examples of keyword searches:
 
 <details>
-<summary> Firefox
+<summary> bookstore
 </summary>
 
-![Firefox](/media/sreenshots_webp/firefox_test.webp)
+![bookstore](/media/sreenshots_webp/keyword_bookstore.webp)
+</details>
+
+<details>
+<summary> buy comics online
+</summary>
+
+![buy comics online](/media/sreenshots_webp/keyword_buy_comics_online.webp)
+</details>
+
+<details>
+<summary> cheap books
+</summary>
+
+![buy comics online](/media/sreenshots_webp/keyword_cheap_books.webp)
+</details>
+
+<details>
+<summary> keyword search results
+</summary>
+
+![keyword search results](/media/sreenshots_webp/keyword_search.webp)
 </details>
 
 ## SEO Improvements
@@ -179,10 +216,45 @@ These keywords are selected based on their relevance to your project, aiming to 
     * Ensure that meta tags, including title tags, meta descriptions, and alt attributes for images, are optimized with relevant keywords related to books, comics, genres, and authors.
     * Meta tags should be concise, descriptive, and compelling to encourage clicks from search engine users.
 
+    <details>
+    <summary> Meta Tags
+    </summary>
+
+    ```html
+
+    <meta name="title" content="Cheap Books &amp; Comics Online with Free Delivery.">
+    <meta name="description"
+        content="Purchase new books & comics online with Free Delivery at OwlBookstore.com. The eco-conscious online bookshop that plants a tree for every book sold.">
+    <meta name="keywords"
+        content="books, comics, new books, new comics, cheap books, cheap comics, online bookstore, good reads, buy books online, buy comics online, discounted books, discounted comicc, special offer on books, special offer on comics, books and comics, paperback books, buy books, buy comics, free delivery, free shipping">
+    <meta name="copyright" content="&copy;2024 OwlBookstore.">
+    <meta name="author" content="Szymon Stepien">
+
+    ```
+
+    </details>
+
 2. Internal Linking:
 
     * Implement internal linking strategies to connect related pages and improve website navigation.
     * Link relevant product pages, category pages, and blog posts to enhance the user experience and distribute link equity throughout the website.
+    * Link to external resources that complement the offerings of OwlBookstore, literary communities, and sustainable initiatives supporting tree planting for each book sold and comics book updates.
+
+    <details>
+    <summary> External links
+    </summary>
+
+    ```html
+
+    <li class="list-item text-uppercase">
+        <a href="https://www.marvel.com/articles" target="_blank" aria-label="Visit Marvel News to read about upcoming comic books" class="icon">
+            <span class="footer-link">Marvel News</span>
+        </a>
+    </li>
+
+    ```
+
+    </details>
 
 3. FAQ Section:
 
@@ -222,4 +294,5 @@ These keywords are selected based on their relevance to your project, aiming to 
 
     * Optimize Google My Business listing with accurate business information, including name, address, phone number, and business hours.
     * Encourage customer reviews and citations from local directories to improve visibility in local search results.
+
 Implementing these SEO improvements will enhance OwlBookstore's visibility, organic search rankings, and overall online presence, driving more targeted traffic and potential customers to the website.
