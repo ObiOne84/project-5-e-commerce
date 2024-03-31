@@ -37,5 +37,8 @@ class OrderAdmin(admin.ModelAdmin):
 
     ordering = ('-date',)
 
+    list_filter = ('date',)
+    search_fields = ['full_name', 'order_number', 'email', 'phone_number']
+
 
 admin.site.register(Order, OrderAdmin)
