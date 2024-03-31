@@ -197,6 +197,20 @@ Device testing encompassed various devices, including iPhone 12 Pro, iPad, MacBo
 ![Update Email Page](/media/sreenshots_webp/validation_email.webp)
 </details>
 
+<details>
+<summary> Error 404 Page
+</summary>
+
+![Error 404 Page](/media/sreenshots_webp/validation_error404.webp)
+</details>
+
+<details>
+<summary> Error 500 Page
+</summary>
+
+![Error 500 Page](/media/sreenshots_webp/validation_error500.webp)
+</details>
+
 ### CSS Validation
 
 <details>
@@ -989,6 +1003,9 @@ When testing HTML code, some of validation errors displayed:
 |               | Manage Order | Admin can manage orders | PASS |
 |               | Manage Accounts | Admin can manage accounts | PASS |
 |               | Manage Profiles | Admin can manage profiles | PASS |
+| Error 404/500 |  |    |    |
+|               | Enter incorrect url | Custom error 404 dispalyed | PASS |
+|               | Attempt to find not exisitng product | Custom error 500 dispalyed | PASS |
 
 ## Django Framework Testing
 

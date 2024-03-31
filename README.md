@@ -831,7 +831,7 @@ By incorporating these CSRF protection mechanisms, Django helps prevent attacker
   - Users are granted the opportunity to share their thoughts by contributing unlimited reviews for books and comics they've previously purchased, fostering an exchange of insights and enabling captivating discussions within the community. The integration of a rating system not only facilitates the identification of popular titles but also enriches community engagement by providing a platform for users to express their opinions.
   - Reviews are accompanied by mandatory ratings, ensuring that each review provides valuable feedback. Once a user rates a book or comic, the rating becomes permanent, and the average rating is automatically updated. Upon successful submission of a review, users receive a confirmation message, acknowledging their contribution to the community.
   - Users can easily access the total number of reviews submitted for each book or comic. Additionally, to maintain transparency, an informational message is displayed to users when there are pending reviews awaiting approval, keeping them informed about the status of their submissions. It's worth noting that users can only review products they've previously purchased, ensuring that reviews are based on firsthand experiences.
-<!-- Update the image for the review - add ratings -->
+
     <details>
     <summary> Review and rate product.
     </summary>
@@ -885,6 +885,35 @@ By incorporating these CSRF protection mechanisms, Django helps prevent attacker
 
     ![Admin Panel](/media/sreenshots_webp/admin_panel.webp)
     </details>
+
+- Error 404: Page Not Found
+
+  - If a user tries to access a page that doesn't exist on OwlBookstore, they'll encounter a 404 error page. This page informs them that the requested page couldn't be found. We can customize this page to maintain the branding and provide helpful navigation options. Additionally, we can include links to popular sections of the website or a search bar to help users find what they're looking for.
+
+    <details>
+    <summary> Error 404 Page.
+    </summary>
+
+    ![Error 404 Page](/media/sreenshots_webp/error_404.webp)
+    </details>
+
+- Error 500: Internal Server Error
+
+  - In the event of an internal server error, such as a misconfiguration or a problem with the website's code, users will see a generic 500 error page. To enhance the user experience, we'll create a custom error page for this scenario as well. This page can apologize for the inconvenience and reassure users that the issue is being addressed. We can also include contact information or links to customer support to help users get assistance if needed.
+
+    <details>
+    <summary> Error 500 Page.
+    </summary>
+
+    ![Error 500 Page](/media/sreenshots_webp/error_500.webp)
+    </details>
+
+  - Benefits
+
+    - Maintains Branding: Custom error pages ensure that even error messages align with OwlBookstore's branding and design.
+    - Improves User Experience: By providing helpful information and navigation options, custom error pages can mitigate user frustration and encourage them to continue exploring the website.
+    - Demonstrates Professionalism: A well-designed error page reflects positively on the professionalism and attention to detail of OwlBookstore.
+    - Implementing custom error pages for OwlBookstore is an essential step in providing a seamless and user-friendly browsing experience. By crafting informative and visually appealing error pages, we can turn moments of frustration into opportunities to engage and assist our users.
 
 ### Features Left to Implement
 
