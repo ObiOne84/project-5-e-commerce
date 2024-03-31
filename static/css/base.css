@@ -360,6 +360,7 @@ nav a.icon:hover {
 }
 
 /* allauth form and other forms */
+.review-form-body,
 .form select,
 .form textarea,
 .form input,
@@ -367,6 +368,7 @@ nav a.icon:hover {
     border-color: #050101;
 }
 
+.review-form-body:hover,
 .form select:hover,
 .form textarea:hover,
 .form input:hover,
@@ -375,6 +377,7 @@ nav a.icon:hover {
     background-color: #eebd962c;
 }
 
+.review-form-body:focus,
 .form select:focus,
 .form textarea:focus,
 .form input:focus,

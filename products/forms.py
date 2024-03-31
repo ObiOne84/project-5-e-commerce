@@ -7,6 +7,10 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = ('body',)
 
+    def __init__(self, *args, **kwargs):
+        super(ReviewForm, self).__init__(*args, **kwargs)
+        self.fields['body'].widget.attrs['class'] = 'review-form-body'
+
     def clean_body(self):
         body = self.cleaned_data.get('body')
         if not body.strip():
