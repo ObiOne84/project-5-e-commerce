@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container top-space">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+<div class="overlay-cover"></div>
+
+<div class="container-lg">
+    <div class="row">
+        <hr class="mt-5">
+    </div>
+    <div class="row my-0 my-sm-2 mx-1 mb-4">
+        <div class="col-12 text-center">
+            <p class="fw-bold my-0 p-0 text-uppercase" style="font-size: 2rem;">Oops! <br class="d-block d-sm-none">Something went wrong!</p>
+        </div>
+        <div class="row my-0">
+            <div class="col-12 col-sm-6 text-center text-sm-end">
+                <img class="" style="max-height: 200px; width: auto;" src="{{ MEDIA_URL }}error-owl.webp"
+                    alt="Image of the book and comic community meeting group.">
+            </div>
+            <div class="col-12 col-sm-6 text-sm-start text-center m-0 p-0">
+                <p class="fw-bold my-0 p-0" style="font-size: 10rem;">500</p>
+                <p class="fw-bold my-0 p-0 text-uppercase" style="font-size: 2rem;">error</p>
+            </div>
+        </div>
+        <div class="col-12 text-center">
+            <p class="my-0  p-0 text-uppercase">We are sorry, the server encountered an internal error or misconfiguration and was unable to complete your request.</p>
+        </div>
+        <div class="col-12 text-center mt-1 mb-5">
+            <a href="{% url 'home' %}" class="btn btn-black-brown rounded-1 my-2 text-uppercase" aria-label="Return to my profile"><i class="fa-solid fa-angles-left"></i> Return to Home Page</a>
+        </div>
+    </div>
+    <div class="row">
+        <hr class="mt-5">
+    </div>
+</div>
+
+{% endblock %}

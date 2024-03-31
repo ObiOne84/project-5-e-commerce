@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from .views import handler404
+from .views import handler500
 
 
 urlpatterns = [
@@ -31,3 +32,4 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'owl_bookstore.views.handler404'
+handler500 = 'owl_bookstore.views.handler500'
