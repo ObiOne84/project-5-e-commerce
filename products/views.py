@@ -187,6 +187,8 @@ def product_detail(request, product_id):
             return render(request, '404.html')
 
     reviews = product.reviews.filter(approved=True).order_by('created_on')
+    pending_reviews = product.reviews.filter(approved=False).exists()
+
     if request.user.is_authenticated:
         product_in_orders = OrderLineItem.objects.filter(
             order__user_profile=request.user.userprofile,
@@ -224,6 +226,7 @@ def product_detail(request, product_id):
         'review_form': form,
         'reviewed': False,
         'product_in_orders': product_in_orders,
+        'pending_reviews': pending_reviews,
     }
 
     return render(request, 'products/product_detail.html', context)

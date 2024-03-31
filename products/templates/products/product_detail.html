@@ -279,6 +279,15 @@
                             </div>
                             <div class="mx-0 mx-sm-2 collapse d-md-block" id="collapse-reviews">
                                 <div id="review-list" class="d-block">
+                                    {% if pending_reviews %}
+                                    <div class="alert bg-info text-dark bg-opacity-10 alert-dismissible fade show" role="alert">
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        <p class="my-0">
+                                            <strong>Thank you for your reviews!</strong> We appreciate your feedback. Please note that all reviews
+                                            are moderated and will be published shortly.
+                                        </p>
+                                    </div>
+                                    {% endif %}
                                     {% if reviews %}
                                     <div class="card-body overflow-auto p-0 m-0">
                                         {% for review in reviews %}
@@ -307,7 +316,7 @@
                                     {{ review_form | crispy | safe }}  
                                     <button type="button" class="btn btn-outline-danger m-1 rounded-1 text-uppercase" id="cancel-review"
                                         aria-label="Cancel">Cancel</button>
-                                    <button type="submit" class="btn btn-black-brown m-1 rounded-1 text-uppercase" id="review-button"
+                                    <button type="submit" class="btn btn-black-brown m-1 rounded-1 text-uppercase" id="submit-review-button"
                                         aria-label="Submit">Submit</button>
                                 </form>
                             </div>
