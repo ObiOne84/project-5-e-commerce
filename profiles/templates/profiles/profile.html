@@ -17,7 +17,7 @@
 
 {% block content %}
 <div class="overlay-cover"></div>
-<!-- dont forget to remove min-height 400px -->
+
 <div class="container-lg h-100">
     <div class="row mb-3">
         <div class="col text-center my-2 pb-2">
@@ -38,15 +38,15 @@
         </div>
         <hr class="m-0 p-0">
     </div>
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-12 col-md-6">
             <div class="row">
                 <div class="col-12 mb-3">
-                    <a class="text-muted text-decoration-none" data-bs-toggle="collapse" href="#updateProfileDetailsForm"
-                        role="button" aria-expanded="false" aria-controls="updateProfileDetailsForm">
+                    <a class="text-muted text-decoration-none" data-bs-toggle="collapse"
+                        href="#updateProfileDetailsForm" role="button" aria-expanded="false"
+                        aria-controls="updateProfileDetailsForm">
                         Default Delivery Information <i class="fa-solid fa-caret-down mx-1"></i>
                     </a>
-                    <!-- <p class="text-muted d-none d-md-block">Default Delivery Information</p> -->
                 </div>
                 <div class="col-12 collapse" id="updateProfileDetailsForm">
                     <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
@@ -74,7 +74,6 @@
                 </div>
             </div>
         </div>
-        <hr class="mb-3 m-md-0 d-block d-md-none">
         <div class="col-12 col-md-6">
             {% if orders %}
             <p class="text-muted">Order History</p>
@@ -121,7 +120,6 @@
             <p>You don't have any past orders to display.</p>
             {% endif %}
         </div>
-        <!-- <hr class="my-2 p-0"> -->
     </div>
 </div>
 
@@ -129,5 +127,5 @@
 
 {% block postload_js %}
 {{ block.super }}
-    <script src="{% static 'profiles/js/profiles.js' %}"></script>
+<script src="{% static 'profiles/js/profiles.js' %}"></script>
 {% endblock %}

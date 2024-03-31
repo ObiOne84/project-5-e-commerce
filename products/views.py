@@ -151,7 +151,7 @@ def all_products(request):
 
     current_sorting = f'{sort}_{direction}'
 
-    paginator = Paginator(products, 6)
+    paginator = Paginator(products, 24)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
@@ -167,7 +167,7 @@ def all_products(request):
         start_page = max(1, end_page - max_page_number + 1)
     page_range = range(start_page, end_page + 1)
 
-    is_paginated = paginator.count > 6
+    is_paginated = paginator.count > 24
     quantity_range = range(1, 11)
 
     context = {
