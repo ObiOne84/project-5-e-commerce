@@ -643,19 +643,168 @@ Most common issue affecting performance was AWS loading time, HTTP1 protocol and
 
 ### Resolved Bugs
 
-#### Form Not Submitting
+#### Sorting error when category is None
 
-* Javascript code.
+* When user choose option to sort products by category from the navbar menu and there were products without category name the applicaton stopped work and throw error. The issue was fixed by updating sorting logic (logic was updated for all sorting to prevent similar issues). Also, Not Available category was added to the model as defaul for all products.
 
 <details>
 <summary> Code changes
 </summary>
 
-```javascript
+products/views.py
+
+```python
+
+sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'category':
+                    # books = books.annotate(category_name=Lower('category__name'))
+                    # comics = comics.annotate(category_name=Lower('category__name'))
+                    books = books.annotate(category_name=Lower('category__name')).exclude(category__isnull=True)
+                    comics = comics.annotate(category_name=Lower('category__name')).exclude(category__isnull=True)
+                    products = list(chain(comics, books))
+                    if 'direction' in request.GET:
+                        direction = request.GET['direction']
+                        # if direction == 'asc' or None:
+                        if direction == 'asc' or direction is None:
+                            products = sorted(products, key=lambda x: x.category_name)
+                        else:
+                            products = sorted(products, key=lambda x: x.category_name, reverse=True)
+
+```
+
+products/models.py
+
+```python
+
+category = models.ForeignKey(
+        'Category', null=True, blank=True, on_delete=models.SET_NULL,
+        # default='Non Available'
+        default=19
+    )
 
 ```
 
 </details>
+
+#### Sorting error 500 on deployed project
+
+* When user choose option to sort products the 500 error was displayed. It was caused by the use of union() on the queryset not support by SQL database. The issue was fixed by reverting to the use of list() and chain() methods to combine sorting results of two querysets and by sorting the result list in ascending or descending order.
+
+<details>
+<summary> Code changes
+</summary>
+
+products/views.py
+
+```python
+
+    # products = comics.union(books)
+    product = list(chain(comics, books))
+    
+    # if 'direction' in request.GET:
+    #     direction = request.GET['direction']
+    #         if direction == 'desc':
+    #             sortkey = f'-{sortkey}'
+    if 'direction' in request.GET:
+        direction = request.GET['direction']
+        if direction == 'asc' or None:
+            products = sorted(products, key=lambda x: x.product_title)
+        else:
+            products = sorted(products, key=lambda x: x.product_title, reverse=True)
+
+```
+
+</details>
+
+#### User could add more than 10 units of the same product
+
+* User wa able to add unlimited number of the same product to the basket, despite the maximum number of items set to 10. This was possible by repeating the addition to the basket by any number between 1 and 10. The issue was fixed by adding logic to the view, to prevent user from adding more product, when totla number of the same product reach 10.
+
+<details>
+<summary> Code changes
+</summary>
+
+bag/views.py
+
+```python
+
+    total_quantity = bag[item_id] + quantity
+        if total_quantity > 10:
+            messages.error(
+                request, 'You can only add up to 10 items of the same product. '
+                'If you wish to pruchase more products, please contact our customer support! '
+            )
+            return redirect(reverse('view_bag'))
+        else:
+            bag[item_id] = quantity
+            messages.success(
+                request, f'Successfully updated quantity of {product.title} to {quantity}!'
+            )
+
+```
+
+</details>
+
+#### User could add more than 10 or negative number of products
+
+* User wa able to add unlimited number of the same product when updating the bag, or enter negative number of product which caused product to be deleted from the bag. The issue was fixed with the script that prevents user from adding number outside the range from 1 to 10.
+
+<details>
+<summary> Code changes
+</summary>
+
+bag/views.py
+
+```javascript
+
+$('.update-item').click(function (e) {
+    e.preventDefault();
+    var qtyInputVal = parseInt($(this).closest('.table-row').find('.qty_input').val());
+    var productTitle = $(this).closest('.table-row').find('.qty_input').data('product_title');
+    var itemId = $(this).closest('.table-row').find('.qty_input').data('item_id');
+    var $errorDiv = $('#input-error-' + itemId);
+    if (qtyInputVal > 0 && qtyInputVal < 11) {
+        var form = $(this).closest('.table-row').find('.update-form');
+        form.submit();
+    } else {
+        // alert(
+        //     `You are attempting to add ${qtyInputVal} units of ${productTitle}. You can choose max 10 and min 1 product.`
+        //  );
+        $errorDiv.text(`You are attempting to add ${qtyInputVal} units of ${productTitle}. You can choose max 10 and min 1 product.`).removeClass('d-none');
+        setTimeout(function() {
+            $('.input-error').addClass('d-none');
+        }, 15000); 
+    }
+});
+
+```
+
+</details>
+
+#### HTML Validation Erros
+
+When testing HTML code, some of validation errors displayed:
+
+* `div` element containing `href` attribute (resolved by replacing with `data-bs-target`),
+* `div` element containting `tabindex` attribute, resolved by removing attribute,
+* `input` element containing `unchecked` attribute, resolved by removing attribute,
+* incorrect heading order, fixed by following descending heading order,
+* warning for `script` tags, unneccessary `type=text/javascript` attribute, fixed by removing attribute,
+* `ul` element containing `aria-labelledby` attribute that was not link to describing element, replaced with `title` attribute,
+* `div` element containing `aria-label` attribute, fixed by replacing with `title`,
+* `a` element nested in `li` containing `aria-label`, fixed by replacing with `title`
+* `input` element described by `aria-describedby` attribute, fixed by replacing with `title`
+
+#### Python Validation Erros
+
+* Line too long, reduce the lenght of the characters per line
+* White spaces trailing, removed empty spaces
+* One empty line when two needed, added additional line
+
+#### Javascript Validation Erros
+
+* missing `;`, fixed by adding missing elements
 
 ### Unresolved Bug
 
