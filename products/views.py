@@ -151,10 +151,23 @@ def all_products(request):
 
     current_sorting = f'{sort}_{direction}'
 
-    paginator = Paginator(products, 24)
+    paginator = Paginator(products, 6)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    is_paginated = paginator.count > 24
+
+    # Limit paginator to display max of 5 page at the time
+    max_page_number = 5
+    current_page = page_obj.number
+    total_pages = paginator.num_pages
+
+    start_page = max(1, current_page - (max_page_number // 2))
+    end_page = min(total_pages, start_page + max_page_number - 1)
+
+    if end_page - start_page + 1 < max_page_number:
+        start_page = max(1, end_page - max_page_number + 1)
+    page_range = range(start_page, end_page + 1)
+
+    is_paginated = paginator.count > 6
     quantity_range = range(1, 11)
 
     context = {
@@ -169,6 +182,7 @@ def all_products(request):
         'sort': sort,
         'direction': direction,
         'quantity_range': quantity_range,
+        'page_range': page_range,
     }
 
     return render(request, 'products/products.html', context)

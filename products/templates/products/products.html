@@ -203,7 +203,7 @@
             </li>
             {% endif %}
 
-            {% for i in paginator.page_range %}
+            {% for i in page_range %}
             <li class="page-item page-num-link {% if i == page_obj.number %}active{% endif %}">
                 <a href="?page={{ i }}&sort={{ sort }}&direction={{ direction }}" class="page-link" aria-label="Current page">{{ i }}</a>
             </li>
