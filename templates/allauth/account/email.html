@@ -53,7 +53,7 @@
     <form method="post" action="{% url 'account_email' %}" class="add_email">
         {% csrf_token %}
         {{ form|crispy }}
-        <a href="{% url 'profile' %}" class="btn pagination-btn rounded-1 my-2 text-uppercase"><i class="fa-solid fa-angles-left"></i> Back to My Profile</a>
+        <a href="{% url 'profile' %}" class="btn pagination-btn rounded-1 my-2 text-uppercase" aria-label="Return to my profile"><i class="fa-solid fa-angles-left"></i> Back to My Profile</a>
         <button name="action_add" type="submit" class="btn btn-black-brown rounded-1 text-uppercase">{% trans "Add E-mail" %}</button>
     </form>
 
