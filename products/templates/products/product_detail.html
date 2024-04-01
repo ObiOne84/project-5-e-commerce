@@ -74,7 +74,7 @@
 
                     {% if user.is_authenticated %}
                         {% if product_in_orders %}
-                    <button type="button" class="btn btn-sm ms-2 p-0 p-sm-1 pagination-btn review-btn text-uppercase"
+                    <button type="button" class="btn btn-sm ms-2 p-1 pagination-btn review-btn text-uppercase"
                         id="review-button"><small>Review</small></button>
                         {% endif %}
                     {% endif %}
@@ -89,7 +89,7 @@
                             <div class="col-10 col-sm-12 col-md-8 mt-1 mx-0">
                                 <p class="mt-2"><strong>Quantity:</strong></p>
                                 <div class="form-group">
-                                    <div class="input-group mb-3 w-50 input-group-{{ product.id }}">
+                                    <div class="input-group mb-3 quantity-input-container input-group-{{ product.id }}">
                                         <button class="decrement-qty btn btn-black-brown rounded-left p-1 m-0 decrement-qty_{{ product.id }}"
                                             type="button" data-item_id="{{ product.id }}"
                                             id="decrement-qty_{{ product.id }}" title="Decrement quantity">
@@ -111,14 +111,14 @@
                                 </div>
                             </div>
                             <div class="col-12 mt-1 mx-0">
-                                <a href="{% url 'products' %}" class="btn pagination-btn rounded-1"
+                                <a href="{% url 'products' %}" class="btn pagination-btn rounded-1 small-btn"
                                     aria-label="Go back to products.">
                                     <span class="">
                                         <i class="fas fa-chevron-left color-dark"></i>
                                     </span>
                                     <span class="text-uppercase">Keep Shopping</span>
                                 </a>
-                                <input type="submit" class="btn btn-black-brown rounded-1 text-uppercase"
+                                <input type="submit" class="btn btn-black-brown rounded-1 small-btn text-uppercase"
                                     value="Add to Bag" aria-label="Add product to the bag">
                             </div>
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">

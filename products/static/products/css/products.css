@@ -15,3 +15,19 @@
 .review-body {
     background-color: #eeeeee;
 }
+
+.quantity-input-container {
+    width: 50%;
+}
+
+@media (max-width: 576px) {
+    .quantity-input-container {
+        align-items: center;
+        width: 100%;
+    }
+
+    .small-btn {
+        font-size: 85%;
+        padding: 4px;
+    }
+}
