@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'products/css/products.css' %}" type="text/css">
+{% endblock %}
+
+{% block page_header %}
+<div class="container top-space">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+<div class="overlay-cover"></div>
+<div class="container-lg h-100">
+    <div class="row">
+        <div class="col text-center">
+            <h2 id="up" class="logo-font text-uppercase text-black">Wishlist</h2>
+        </div>
+    </div>
+    <div>
+        <ul>
+            {% for product in wishlist_items %}
+            <li>
+                {{ product.title }} - {{ product.author }}
+                <!-- Add more product details you want to display -->
+                <a href="{% url 'remove_from_wishlist' product.id %}">Remove</a>
+            </li>
+            {% empty %}
+            <li>Your wishlist is empty.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="btt-button shadow-sm rounded-0 border border-black">
+        <a href="#up" class="btt-link d-flex h-100" aria-label="Go to the top of the page">
+            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+        </a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block postload_js %}
+{{ block.super }}
+
+<script src="{% static 'products/js/sorting.js' %}"></script>
+
+{% endblock %}

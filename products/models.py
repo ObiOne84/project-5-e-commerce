@@ -72,6 +72,9 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+    def is_in_wishlist(self, user):
+        return self in user.wishlist.items.all()
+
 
 class Book(Product):
     COVER_TYPES = [

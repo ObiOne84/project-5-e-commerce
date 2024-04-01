@@ -100,11 +100,11 @@
             <div class="card h-100 border-0">
                 {% if product.image %}
                 <a href="{% url 'product_detail' product.id %}">
-                    <img class="card-img-top product-img" width="300" height="450" src="{{ product.image.url }}" alt="Image for {{ product.title }}">
+                    <img class="card-img-top product-img" loading="lazy" width="300" height="450" src="{{ product.image.url }}" alt="Image for {{ product.title }}">
                 </a>
                 {% else %}
                 <a href="{% url 'product_detail' product.id %}">
-                    <img class="card-img-top product-img" width="300" height="450" src="{{ MEDIA_URL }}noimage.png" alt="Image not available for {{ product.title }}">
+                    <img class="card-img-top product-img" loading="lazy" width="300" height="450" src="{{ MEDIA_URL }}noimage.png" alt="Image not available for {{ product.title }}">
                 </a>
                 {% endif %}
                 <div class="card-body pb-0">
