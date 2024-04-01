@@ -12,4 +12,8 @@ def create_user_wishlist(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def save_user_wishlist(sender, instance, **kwargs):
-    instance.wishlist.save()
+    try:
+        instance.wishlist.save()
+    except Wishlist.DoesNotExist:
+        Wishlist.objects.create(user=instance)
+
