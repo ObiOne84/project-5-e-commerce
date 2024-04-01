@@ -78,6 +78,10 @@
                         id="review-button"><small>Review</small></button>
                         {% endif %}
                     {% endif %}
+
+                    <!-- User wishlist form -->
+                    {% include 'includes/wishlist_form.html' %}
+
                     <!-- Boutique ado walkthrough project -->
                     <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                         {% csrf_token %}
@@ -339,7 +343,7 @@
     <script src="{% static 'products/js/script-product.js' %}"></script>
     <script src="{% static 'products/js/quantity_input_script.js' %}"></script>
     <script>
-        var myModal = new bootstrap.Modal(document.getElementById('myModal'), options)
+        var myModal = new bootstrap.Modal(document.getElementById('myModal'))
     </script>
 
 {% endblock %}

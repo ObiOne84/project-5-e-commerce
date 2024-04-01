@@ -1,0 +1,19 @@
+{% if product_in_wishlist %}
+<form class="my-1" id="remove-from-wishlist-form" method="POST" action="{% url 'remove_from_wishlist' product.id %}">
+    {% csrf_token %}
+    <input type="hidden" name="product_id" value="{{ product.id }}">
+    <button type="submit" class="btn btn-link text-decoration-none">
+        <i class="fas fa-heart fa-xl text-danger"></i>
+    </button>
+    <span class="text-muted"><small>Remove from Wishlist</small></span>
+</form>
+{% else %}
+<form class="my-1" id="add-to-wishlist-form" method="POST" action="{% url 'add_to_wishlist' product.id %}">
+    {% csrf_token %}
+    <input type="hidden" name="product_id" value="{{ product.id }}">
+    <button type="submit" class="btn btn-link text-decoration-none">
+        <i class="far fa-heart fa-xl text-danger"></i>
+    </button>
+    <span class="text-muted"><small>Add to Wishlist</small></span>
+</form>
+{% endif %}

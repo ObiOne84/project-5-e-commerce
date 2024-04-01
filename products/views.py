@@ -208,8 +208,11 @@ def product_detail(request, product_id):
             order__user_profile=request.user.userprofile,
             product=product
         ).exists()
+        product_in_wishlist = request.user.wishlist.items.filter(
+            pk=product_id).exists()
     else:
         product_in_orders = False
+        product_in_wishlist = False
 
     if request.method == 'POST':
         if request.user.is_authenticated:
@@ -241,6 +244,7 @@ def product_detail(request, product_id):
         'reviewed': False,
         'product_in_orders': product_in_orders,
         'pending_reviews': pending_reviews,
+        'product_in_wishlist': product_in_wishlist,
     }
 
     return render(request, 'products/product_detail.html', context)
