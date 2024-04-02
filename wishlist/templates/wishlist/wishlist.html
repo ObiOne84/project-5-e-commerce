@@ -61,16 +61,13 @@
                 <div class="row">
                     <div class="col custom-overflow">
                         {% for product in wishlist_items %}
-                        <div class="row my-1 py-1 item-row rounded-1 text-decoration-none text-dark"
-                            data-bs-toggle="collapse" role="button" aria-expanded="false"
-                            data-bs-target="#collapseItemNo{{ forloop.counter }}"
-                            aria-controls="collapseItemNo{{ forloop.counter }}">
+                        <div class="row my-1 py-1 item-row rounded-1 text-decoration-none text-dark">
                             <div class="col-1 d-none d-sm-inline">
                                 <p class="m-0 text-start">{{ forloop.counter }}</p>
                             </div>
-                            <div class="col-7" data-bs-toggle="popover" data-bs-trigger="hover focus"
-                                data-bs-content="Click to expand" data-bs-placement="top" aria-expanded="false"
-                                role="alert">
+                            <div class="col-7" data-bs-toggle="collapse" role="button" aria-expanded="false"
+                            data-bs-target="#collapseItemNo{{ forloop.counter }}"
+                            aria-controls="collapseItemNo{{ forloop.counter }}">
                                 <p class="my-0 d-none d-sm-inline">
                                     <strong>
                                         {{ product.title }} <i class="fa-solid fa-angle-down"></i>
@@ -86,9 +83,9 @@
                                 <p class="m-0 text-end">${{ product.price }}</p>
                             </div>
                             <div class="col-3 text-end">
-                                <p class="my-0 p-0 me-1 me-sm-0 small fw-bold">
-                                    <a href="{% url 'remove_from_wishlist' product.id %}"
-                                        class="text-decoration-none text-uppercase text-danger">
+                                <p class="my-0 p-0 me-1 me-sm-0 small fw-bold">                                   
+                                    <a href="{% url 'remove_from_wishlist' product.id %}" role="button"
+                                        class="text-decoration-none text-uppercase text-danger" aria-label="Remove {{ product.title }} from the wishlist">
                                         <i class="fa-solid fa-trash-can fa-xl"></i>
                                     </a>
                                 </p>
