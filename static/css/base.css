@@ -57,7 +57,6 @@ h6 {
 body {
     background: url('/media/bg-library.webp') no-repeat center center fixed;
     background-size: cover;
-    /* height: calc(100vh - 180px); */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -101,6 +100,10 @@ footer {
 
 .container-vh-100 {
     min-height: calc(100vh - 280px);
+}
+
+.row-min-height {
+    min-height: 55vh;
 }
 
 /* ------------ Home - about us page ------------- */
@@ -217,35 +220,32 @@ footer {
 .action-button:hover {
     background-color: #050101;
     color: #f09a53;
-    border: 2px solid #f09a53;
-    transform: scale(1.03);
+    border: 3px solid #f09a53;
 }
 
 .page-link,
 .pagination-btn {
     color: #050101;
-    border: 2px solid #050101;
+    border: 1px solid #050101;
 }
 
 .page-link:hover,
 .pagination-btn:hover {
     color: #050101;
     background: #ebeaea;
-    transform: scale(1.03);
 }
 
 .btn-black-brown,
 .page-item.active .page-link {
-    border: 2px solid #050101;
+    border: 1px solid #050101;
     background-color: #050101;
     color: white;
 }
 
 .btn-black-brown:hover {
-    border: 2px solid #050101;
+    border: 1px solid #050101;
     background-color: white;
     color: #050101;
-    transform: scale(1.03);
 }
 
 .rounded-right {
@@ -321,14 +321,10 @@ footer {
 }
 
 .search-box-container {
-    max-width: 40vW;
+    max-width: 40vw;
 }
 
 /* -------- Dropdown Menu ------------ */
-.icon {
-    transition: transform 0.01s ease;
-}
-
 .icon,
 a.icon:focus {
     color: white !important;
@@ -338,11 +334,6 @@ a.icon:focus {
 nav a.icon {
     color: #000;
     font-weight: 600;
-    transition: transform 0.01s ease;
-}
-
-nav a.icon:hover {
-    transform: scale(1.03);
 }
 
 .header-link:hover,
@@ -369,7 +360,6 @@ nav a.icon:hover {
     margin: 0.5rem 0 0.5rem 0;
 }
 
-/* allauth form and other forms */
 .review-form-body,
 .form select,
 .form textarea,
@@ -399,6 +389,12 @@ nav a.icon:hover {
     color: #aab7c4;
 }
 
+.form input.btn.btn-sm.w-100.btn-black-brown.rounded-1.text-uppercase:hover,
+.form input.btn.m-0.p-1.ms-1.me-sm-2.me-md-4.me-lg-0.w-100.btn-black-brown.rounded-1.text-uppercase:hover {
+    border: 1px solid #050101 !important;
+    background-color: white;
+    color: #050101;
+}
 /* ----------Forms ------------ */
 .search-box:hover {
     background-color: #fae8d9;
@@ -428,10 +424,9 @@ nav a.icon:hover {
     cursor: pointer;
 }
 
-/* _______________BAG____________ */
+/* -------- Bag ------------------- */
 .full-bag-text {
     transition: text-shadow 0.3s ease;
-    /* text-shadow: 0px 0px 5px #f3d9936e; */
     color: #f09a53;
 }
 
@@ -473,10 +468,6 @@ p.my-0.text-end {
         background-color: white !important;
     }
 
-    nav a.icon:hover {
-        transform: none;
-    }
-
     /* Show the dropdown submenu when its parent is focused */
     .dropdown-menu>li:focus>.dropdown-submenu {
         display: block;
@@ -509,7 +500,6 @@ p.my-0.text-end {
 }
 
 @media (max-width: 576px) {
-
     .basket-btn {
         font-size: 90%;
     }
@@ -525,6 +515,7 @@ p.my-0.text-end {
         padding-left: 5px;
         padding-right: 5px;
     }
+
     .toast {
         padding: 5px 0 5px 0;
         background-color: #ebecec !important;

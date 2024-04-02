@@ -111,9 +111,9 @@
                         <div class="col-3 col-sm-2">
                             <span class="order-conf-img">
                             {% if item.product.image %}
-                                <img class="w-75" src="{{ item.product.image.url }}" alt="{{ product.name }}">
+                                <img class="w-75" src="{{ item.product.image.url }}" alt="{{ product.title }}">
                             {% else %}
-                                <img class="w-75" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                <img class="w-75" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.title }}">
                             {% endif %}
                             </span>
                         </div>

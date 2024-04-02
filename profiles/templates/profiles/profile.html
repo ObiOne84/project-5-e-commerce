@@ -38,7 +38,7 @@
         </div>
         <hr class="m-0 p-0">
     </div>
-    <div class="row mb-3">
+    <div class="row mb-3 row-min-height">
         <div class="col-12 col-md-6">
             <div class="row">
                 <div class="col-12 mb-3">
@@ -119,6 +119,15 @@
             <p class="text-muted">Order History</p>
             <p>You don't have any past orders to display.</p>
             {% endif %}
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-12 text-center my-2">
+            <hr class="mb-3">
+            <p class="logo-font fs-5 mb-0">
+                <a href="{% url 'products' %}" class="me-1 text-uppercase text-decoration-none text-dark"
+                    aria-label="Go back to the home page"><i class="fa-solid fa-angles-left"></i>Keep Shopping</a>
+            </p>
         </div>
     </div>
 </div>

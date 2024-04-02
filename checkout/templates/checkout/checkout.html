@@ -86,10 +86,10 @@
                                         <a href="{% url 'product_detail' item.product.id %}">
                                             {% if item.product.image %}
                                             <img class="w-100 w-ld-75" src="{{ item.product.image.url }}"
-                                                alt="{{ product.name }}">
+                                                alt="{{ product.title }}">
                                             {% else %}
                                             <img class="w-100 w-lg-75" src="{{ MEDIA_URL }}noimage.png"
-                                                alt="{{ product.name }}">
+                                                alt="{{ product.title }}">
                                             {% endif %}
                                         </a>
                                     </div>

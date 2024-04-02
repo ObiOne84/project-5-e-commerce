@@ -10,9 +10,11 @@ from .models import Wishlist
 def view_wishlist(request):
     wishlist, created = Wishlist.objects.get_or_create(user=request.user)
     wishlist_items = request.user.wishlist.items.all()
+    quantity_range = range(1, 11)
     template = 'wishlist/wishlist.html'
     context = {
         'wishlist_items': wishlist_items,
+        'quantity_range': quantity_range,
     }
     return render(request, template, context)
 
