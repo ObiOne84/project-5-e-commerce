@@ -1,9 +1,13 @@
 from decimal import Decimal
 from django.conf import settings
 from products.models import Comic, Book
+from wishlist.models import Wishlist
 
 
 def bag_content(request):
+
+    wishlist, created = Wishlist.objects.get_or_create(user=request.user)
+    wishlist_items = request.user.wishlist.items.all()
 
     bag_items = []
     total = 0
@@ -57,6 +61,7 @@ def bag_content(request):
         'grand_total': grand_total,
         'vat': vat,
         'discount': discount,
+        'wishlist_items': wishlist_items,
     }
 
     return context

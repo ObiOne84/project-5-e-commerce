@@ -69,13 +69,14 @@
                         Owl<strong><span class="text-uppercase">Bookstore</span></strong>
                     </span>
                 </a>
-            </div>  
+            </div>
             <div class="col-12 col-lg-6 my-3 text-white d-none d-lg-block">
                 <ul class="list-inline list-unstyled text-lg-end me-3 my-auto">
                     <li class="list-inline-item drowpdown mx-3">
                         {% if request.user.is_authenticated %}
                         <div class="text-center">
-                            <a class="text-decoration-none icon header-link" href="{% url 'view_wishlist' %}">
+                            <a class="text-decoration-none {% if wishlist_items.count > 0 %}fw-bold full-bag-text animated-text{% else %}icon{% endif %} header-link"
+                                href="{% url 'view_wishlist' %}" aria-label="Link to your favourite books and comics">
                                 <i class="fa-solid fa-heart"></i>
                                 <p class="my-0">Wishlist</p>
                             </a>
@@ -110,26 +111,26 @@
                                         Logout
                                     </a>
                                 </li>
-                                    {% if request.user.is_superuser %}
-                                    <!-- Source: https://mdbootstrap.com/docs/standard/extended/dropdown-multilevel/# -->
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="fa-solid fa-gear me-1"></i> Product Management <i
-                                                class="fa-solid fa-caret-down"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-submenu">
-                                            <li>
-                                                <a class="dropdown-item" href="{% url 'add_book' %}">Add Book</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="{% url 'add_comic' %}">Add Comic</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" href="{% url 'admin:index' %}">Admin Panel</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    {% endif %}
+                                {% if request.user.is_superuser %}
+                                <!-- Source: https://mdbootstrap.com/docs/standard/extended/dropdown-multilevel/# -->
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fa-solid fa-gear me-1"></i> Product Management <i
+                                            class="fa-solid fa-caret-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-submenu">
+                                        <li>
+                                            <a class="dropdown-item" href="{% url 'add_book' %}">Add Book</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{% url 'add_comic' %}">Add Comic</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{% url 'admin:index' %}">Admin Panel</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                {% endif %}
                                 {% else %}
                                 <li>
                                     <a class="dropdown-item" href="{% url 'account_login' %}">
@@ -211,14 +212,14 @@
     </footer>
 
     {% block postload_js %}
-        <!-- jquery link -->
-        <script rel="dns-prefetch" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <!-- AWS Amazon javascript -->
-        <script rel="dns-prefetch" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-        <!-- Custome javascript -->
-        <script src="{% static 'js/toast.js' %}"></script>
-        <script src="{% static 'js/arrow_up.js' %}"></script>
-        <script src="{% static 'js/newsletter.js' %}"></script>
+    <!-- jquery link -->
+    <script rel="dns-prefetch" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- AWS Amazon javascript -->
+    <script rel="dns-prefetch" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+    <!-- Custome javascript -->
+    <script src="{% static 'js/toast.js' %}"></script>
+    <script src="{% static 'js/arrow_up.js' %}"></script>
+    <script src="{% static 'js/newsletter.js' %}"></script>
     {% endblock %}
 </body>
 

@@ -491,7 +491,7 @@ p.my-0.text-end {
     }
 
     .dropdown-menu[data-bs-popper] {
-        left: -50% !important;
+        left: -70% !important;
     }
 
     .thumbnail {
@@ -502,6 +502,10 @@ p.my-0.text-end {
 @media (max-width: 576px) {
     .basket-btn {
         font-size: 90%;
+    }
+
+    .dropdown-menu[data-bs-popper] {
+        left: -140% !important;
     }
 
     .thumbnail {
@@ -527,5 +531,9 @@ p.my-0.text-end {
 
     .btt-button {
         background-color: white;
+    }
+
+    .sm-screen-btn {
+        padding: 0.25rem 0.5rem;
     }
 }
