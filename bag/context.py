@@ -2,12 +2,16 @@ from decimal import Decimal
 from django.conf import settings
 from products.models import Comic, Book
 from wishlist.models import Wishlist
+from django.contrib.auth.models import User
 
 
 def bag_content(request):
 
-    wishlist, created = Wishlist.objects.get_or_create(user=request.user)
-    wishlist_items = request.user.wishlist.items.all()
+    if request.user.is_authenticated:
+        wishlist, created = Wishlist.objects.get_or_create(user=request.user)
+        wishlist_items = request.user.wishlist.items.all()
+    else:
+        wishlist_items = 0
 
     bag_items = []
     total = 0
