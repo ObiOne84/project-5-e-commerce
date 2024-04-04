@@ -1,6 +1,8 @@
 /*jshint esversion: 6 */
 /* globals $, Stripe */
 
+console.log('script loaded')
+
 var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 var clientSecret = $('#id_client_secret').text().slice(1, -1);
 var stripe = Stripe(stripePublicKey);
@@ -104,6 +106,7 @@ form.addEventListener('submit', function(ev) {
             } else {
                 // the payment has been processed!
                 if (result.paymentIntent.status === 'succeeded') {
+                    console.log('submitting form');
                     form.submit();
                 }
             }
