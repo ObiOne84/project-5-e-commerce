@@ -1,5 +1,5 @@
 from django import forms
-from .models import Review, Comic, Book, Category
+from .models import Review, Comic, Book, Category, Subcategory
 
 
 class ReviewForm(forms.ModelForm):
@@ -30,10 +30,15 @@ class AddComicForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Source: Boutique Ado walktrough project
-        categories = Category.objects.all()
+        categories = Category.objects.filter(product_type='comic')
+        # categories = Category.objects.all()
         display_names = [(c.id, c.get_display_name()) for c in categories]
 
         self.fields['category'].choices = [('', '---------')] + display_names
+
+        subcategories = Subcategory.objects.filter(
+            category__product_type='comic')
+        self.fields['subcategory'].queryset = subcategories
 
 
 class AddBookForm(forms.ModelForm):
@@ -46,7 +51,12 @@ class AddBookForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Source: Boutique Ado walktrough project
-        categories = Category.objects.all()
+        categories = Category.objects.filter(product_type='book')
+        # categories = Category.objects.all()
         display_names = [(c.id, c.get_display_name()) for c in categories]
 
         self.fields['category'].choices = [('', '---------')] + display_names
+
+        subcategories = Subcategory.objects.filter(
+            category__product_type='book')
+        self.fields['subcategory'].queryset = subcategories
