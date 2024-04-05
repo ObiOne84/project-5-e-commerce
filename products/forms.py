@@ -1,5 +1,6 @@
 from django import forms
 from .models import Review, Comic, Book, Category, Subcategory
+from .widgets import CustomClearableFileInput
 
 
 class ReviewForm(forms.ModelForm):
@@ -26,6 +27,8 @@ class AddComicForm(forms.ModelForm):
     class Meta:
         model = Comic
         fields = '__all__'
+
+    image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
