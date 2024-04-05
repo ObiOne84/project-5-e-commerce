@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'products/css/products.css' %}" type="text/css">
+{% endblock %}
 
 {% block page_header %}
 <div class="container top-space">
@@ -34,5 +37,17 @@
     </div>
 </div>
 
+
+{% endblock %}
+
+{% block postload_js %}
+{{ block.super }}
+
+<script type="text/javascript">
+    $('#new-image').change(function() {
+        var file = $('#new-image')[0].files[0];
+        $('#filename').text(`Image will be set to: ${file.name}`);
+    });
+</script>
 
 {% endblock %}

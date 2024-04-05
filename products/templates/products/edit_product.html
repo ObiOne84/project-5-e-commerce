@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'products/css/products.css' %}" type="text/css">
+{% endblock %}
 
 {% block page_header %}
 <div class="container top-space">
@@ -30,11 +33,11 @@
             {% endif %}
                 {% csrf_token %}
                 {% for field in form %}
-                {% if field.name != 'image' %}
-                {{ field | as_crispy_field }}
-                {% else %}
-                {{ field }}
-                {% endif %}
+                    {% if field.name != 'image' %}
+                        {{ field | as_crispy_field }}
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
                 {% endfor %}
 
                 <div class="form-buttons">
@@ -52,5 +55,11 @@
 {{ block.super }}
 
 <script src="{% static 'products/js/script-product.js' %}"></script>
+<script type="text/javascript">
+    $('#new-image').change(function() {
+        var file = $('#new-image')[0].files[0];
+        $('#filename').text(`Image will be set to: ${file.name}`);
+    });
+</script>
 
 {% endblock %}
