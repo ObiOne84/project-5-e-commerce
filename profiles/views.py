@@ -18,8 +18,14 @@ def profile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, instance=profile)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Profile updated successfully')
+            cleaned_data = form.clean()
+            form = ProfileForm(instance=profile, data=cleaned_data)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Profile updated successfully')
+            else:
+                messages.error(
+                    request, 'Update failed. Please ensure the form is valid.')
         else:
             messages.error(
                 request, 'Update failed. Please ensure the form is valid.')

@@ -35,3 +35,12 @@ class ProfileForm(forms.ModelForm):
                 profile-style-input'
             self.fields[field].label = False
         self.fields['default_country'].widget.attrs['title'] = "Country Selection"
+
+    def clean(self):
+        cleaned_data = super().clean()
+        # Clean up the data
+        for field in cleaned_data:
+            if isinstance(cleaned_data[field], str):
+                # Remove extra quotes and parentheses
+                cleaned_data[field] = cleaned_data[field].strip('()\'"')
+        return cleaned_data

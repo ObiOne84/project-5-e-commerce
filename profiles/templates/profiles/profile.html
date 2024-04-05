@@ -51,7 +51,7 @@
                 <div class="col-12 collapse" id="updateProfileDetailsForm">
                     <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                         {% csrf_token %}
-                        {{ form|crispy|safe }}
+                        {{ form | crispy | safe }}
                         <div class="submit-button text-end mt-1 mb-2">
                             <a href="{% url 'home' %}" class="btn btn-sm pagination-btn rounded-1 text-uppercase me-1">
                                 <span class="font-weight-bold"><i class="fa-solid fa-angles-left"></i> Home</span>
