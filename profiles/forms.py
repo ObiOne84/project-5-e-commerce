@@ -34,7 +34,8 @@ class ProfileForm(forms.ModelForm):
             self.fields[field].widget.attrs['class'] = 'mt-1 rounded-1\
                 profile-style-input'
             self.fields[field].label = False
-        self.fields['default_country'].widget.attrs['title'] = "Country Selection"
+        self.fields['default_country'].widget.attrs['title'] = "Country \
+            Selection"
 
     def clean(self):
         cleaned_data = super().clean()

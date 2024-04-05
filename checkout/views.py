@@ -42,7 +42,7 @@ def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
-    intent = None
+    # intent = None
 
     if request.method == 'POST':
         print('Guest user buys, #2')
@@ -144,13 +144,12 @@ def checkout(request):
     context = {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
-        # 'client_secret': intent.client_secret,
+        'client_secret': intent.client_secret,
     }
 
-    if intent:
-        context['client_secret'] = intent.client_secret
-    print('-------------------------------------------------------------------')
-    print(intent)
+    # if intent:
+    #     context['client_secret'] = intent.client_secret
+
     return render(request, template, context)
 
 
