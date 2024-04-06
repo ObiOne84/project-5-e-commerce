@@ -114,6 +114,13 @@ Device testing encompassed various devices, including iPhone 12 Pro, iPad, MacBo
 </details>
 
 <details>
+<summary> Wishlist Page
+</summary>
+
+![Wishlist Page](/media/sreenshots_webp/wishlist_validation.webp)
+</details>
+
+<details>
 <summary> Sign Up Page
 </summary>
 
@@ -331,6 +338,36 @@ Device testing encompassed various devices, including iPhone 12 Pro, iPad, MacBo
 ![views.py](/media/sreenshots_webp/py_bag_views.webp)
 </details>
 
+#### wishlist app
+
+<details>
+<summary> models.py
+</summary>
+
+![models.py](/media/sreenshots_webp/wishlist_models.webp)
+</details>
+
+<details>
+<summary> views.py
+</summary>
+
+![views.py](/media/sreenshots_webp/wishlist_views.webp)
+</details>
+
+<details>
+<summary> signals.py
+</summary>
+
+![signals.py](/media/sreenshots_webp/wishlist_signals.webp)
+</details>
+
+<details>
+<summary> urls.py
+</summary>
+
+![urls.py](/media/sreenshots_webp/wishlist_urls.webp)
+</details>
+
 #### checkout app
 
 <details>
@@ -525,6 +562,13 @@ Most common issue affecting performance was AWS loading time, HTTP1 protocol and
 </summary>
 
 ![About Us Page](/media/sreenshots_webp/lighthouse_about_us.webp)
+</details>
+
+<details>
+<summary> Wishlist Page
+</summary>
+
+![Wishlist Page](/media/sreenshots_webp/lighthouse_wishlist.webp)
 </details>
 
 <details>
@@ -796,6 +840,48 @@ $('.update-item').click(function (e) {
 
 </details>
 
+#### Deployed project Stripe Webhook - error 500
+
+* After successfull purchase, logged user did not receive confirmation email. However, guest users were recieving emails correct. Also, both email worked on the development enviroment. The issue was caused by inncorrectly added '()' and ',' to the code.
+
+<details>
+<summary> Profile error
+</summary>
+
+![Profile Error](/media/sreenshots_webp/profile_error.webp)
+</details>
+
+<details>
+<summary> Solution
+</summary>
+
+wishlist/wishlist.html
+
+```python
+
+    # profile.default_country = shipping_details.address.country,
+    profile.default_country = shipping_details.address.country
+    # profile.default_postcode = shipping_details.address.postal_code,
+    profile.default_postcode = shipping_details.address.postal_code
+    # profile.default_town_or_city = shipping_details.address.city,
+    profile.default_town_or_city = shipping_details.address.city
+    # profile.default_street_address1 = (
+    #     shipping_details.address.line1),
+    profile.default_street_address1 = (
+        shipping_details.address.line1
+    )
+    # profile.default_street_address2 = (
+        # shipping_details.address.line2),
+    profile.default_street_address2 = (
+        shipping_details.address.line2
+    )
+    profile.default_county = shipping_details.address.state
+    profile.save()
+
+```
+
+</details>
+
 #### HTML Validation Erros
 
 When testing HTML code, some of validation errors displayed:
@@ -809,12 +895,83 @@ When testing HTML code, some of validation errors displayed:
 * `div` element containing `aria-label` attribute, fixed by replacing with `title`,
 * `a` element nested in `li` containing `aria-label`, fixed by replacing with `title`
 * `input` element described by `aria-describedby` attribute, fixed by replacing with `title`
+* wishlist validation error
+    <details>
+    <summary> Wishlist validation error
+    </summary>
+
+    ![Wishlist Error](/media/sreenshots_webp/wishlist_html_error.webp)
+    </details>
+
+    <details>
+    <summary> Solution
+    </summary>
+
+    wishlist/wishlist.html
+
+    ```html
+
+        <!-- <div class="col-7" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Click to expand" data-bs-placement="top" aria-expanded="false" role="alert"> -->
+        <div class="col-7" data-bs-toggle="collapse" role="button" aria-expanded="false" data-bs-target="#collapseItemNo{{ forloop.counter }}"           aria-controls="collapseItemNo{{ forloop.counter }}">
+
+    ```
+
+    </details>
 
 #### Python Validation Erros
 
 * Line too long, reduce the lenght of the characters per line
 * White spaces trailing, removed empty spaces
 * One empty line when two needed, added additional line
+* context.py error
+
+    <details>
+    <summary> Context Error
+    </summary>
+
+    ![Context Error](/media/sreenshots_webp/context_error.webp)
+    </details>
+
+    <details>
+    <summary> Solution
+    </summary>
+
+    bag/context.py
+
+    ```python
+
+        # wishlist, created = Wishlist.objects.get_or_create(user=request.user)
+        # wishlist_items = request.user.wishlist.items.all()
+        if request.user.is_authenticated:
+            wishlist, created = Wishlist.objects.get_or_create(user=request.user)
+            wishlist_items = request.user.wishlist.items.all()
+        else:
+            wishlist_items = 0
+
+    ```
+
+    </details>
+
+* checkout/views.py error
+
+    <details>
+    <summary> Solution
+    </summary>
+
+    ```python
+
+    if order_form.is_valid():
+        order = order_form.save(commit=False)
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        # order.stipe_pid = pid
+        order.stripe_pid = pid
+        order.original_bag = json.dumps(bag)
+        order.save()
+        for item_id, quantity in bag.items():
+
+    ```
+
+    </details>
 
 #### Javascript Validation Erros
 
