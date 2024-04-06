@@ -1,3 +1,4 @@
+<!-- Source: Boutique Ado -->
 {% if widget.is_initial %}
     <p>{{ widget.initial_text }}:</p>
     <a href="{{ widget.value.url }}">
@@ -12,7 +13,7 @@
     <br>
     {{ widget.input_text }}
 {% endif %}
-<span class="btn btn-black-brown rounded-1 btn-file">
+<span class="btn btn-black-brown rounded-1 btn-file my-1">
     Select Image <input id="new-image" type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
 </span>
 <strong><p class="text-danger" id="filename"></p></strong>

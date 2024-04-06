@@ -41,7 +41,7 @@
                 {% endfor %}
 
                 <div class="form-buttons">
-                    <a href="{% url 'products' %}" class="btn pagination-btn rounded-1 me-1 text-uppercase">Cancel</a>
+                    <a href="{% url 'products' %}" class="btn btn-outline-danger rounded-1 me-1 text-uppercase">Cancel</a>
                     <button class="btn btn-black-brown rounded-1" type="submit">Update Product</button>
                 </div>
             </form>
@@ -55,6 +55,7 @@
 {{ block.super }}
 
 <script src="{% static 'products/js/script-product.js' %}"></script>
+<!-- Source: Boutique Ado -->
 <script type="text/javascript">
     $('#new-image').change(function() {
         var file = $('#new-image')[0].files[0];

@@ -29,7 +29,14 @@
             <form action="{% url 'add_comic' %}" method="POST" id="add-comic-form" enctype="multipart/form-data"
                 class="form product-form">
                 {% csrf_token %}
-                {{ comic_form|crispy }}
+                <!-- Source: Boutique Ado -->
+                {% for field in comic_form %}
+                    {% if field.name != 'image' %}
+                        {{ field | as_crispy_field }}
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                {% endfor %}
                 <a href="{% url 'products' %}" class="btn btn-outline-danger rounded-1 text-uppercase" aria-label="Cancel and return to products">Cancel</a>
                 <button class="btn btn-black-brown rounded-1 mt-1" type="submit">Add Product</button>
             </form>
@@ -43,6 +50,7 @@
 {% block postload_js %}
 {{ block.super }}
 
+<!-- Source: Boutique Ado -->
 <script type="text/javascript">
     $('#new-image').change(function() {
         var file = $('#new-image')[0].files[0];
