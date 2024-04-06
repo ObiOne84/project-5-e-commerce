@@ -911,6 +911,12 @@ When testing HTML code, some of validation errors displayed:
 |               | Edit Product - Admin Only | Redirects to update product page | PASS |
 |               | Delete Product - Admin Only | Opens confirmation modal | PASS |
 |               | Delete Product - Admin Only, confirm modal | Product is deleted permanently | PASS |
+|               | Click on heart to add product to wishlist | Product is added to wishlist, heart color fill is red | PASS |
+|               | Click on heart to remove product from wishlist | Product is removed from wishlist, heart fill color is none | PASS |
+| Wishlist |  |  |  |
+|  | Click on the product name | Expands products details | PASS |
+|  | Choose Qty and add product to bag | Product is added to the bag, success message | PASS |
+|  | Click on trash can | Product is removed from the wishlist | PASS |
 | Search Box |  |  |  |
 |               | Enter product name in the search box | Product exists, success message and product displays below | PASS |
 |               | Enter partial product name in the search box | Product exists, success message and product displays below | PASS |
@@ -957,31 +963,6 @@ When testing HTML code, some of validation errors displayed:
 |  | Click Re-send verification | Re-sends verification email to highlighted email | PASS |
 |  | Click Remove Email | Removes highlighted email | PASS |
 |  | Click Make Primary | Makes primary highlighted email | PASS |
-
-...
-
-Here I stopped
-
-...
-
-| Page          | User Action   | Expected Result  | Notes            |
-|---------------|---------------|------------------|------------------|
-|               | Read the recipe details | All recipe details provided by author are visible to user | PASS |
-|               | Submit empty review field | The error message will appear | PASS |
-|               | Submit review without rating | The review submits, rating is not required | PASS |
-|               | Submit review with rating | Review submits, average rating changes, success message appears and redirect to recipes page | PASS |
-|               | Return to rated recipe detail page | Message appears to inform, recipe was rated already | PASS |
-|               | Return to rated recipe detail page | Message appears to inform, reviews are moderated | PASS |
-|               | Return to rated recipe detail page | User can submit another review | PASS |
-|               | Submit review | Total number of reviews updates | PASS |
-|               | Click on heart | Total number of likes changes, heart change to full | PASS |
-|               | Click on heart to unlike | Total number of likes changes, heart change to empty | PASS |
-|               | Visible Edit button | Only for recipes where user is author | PASS |
-|               | Click on Edit button | Redirect to update recipe page | PASS |
-|               | Click on Print button | Opens print menu, reviews are hidden | PASS |
-|               | Visible Delete button | Only for recipes where user is author | PASS |
-|               | Click on Delete button | Opens delete recipe confirmation modal | PASS |
-|               | Click on Delete button | Deletes the recipe, confirmation message | PASS |
 | Add Book/Comic Page |  |  |  |
 |               | Add product with missing required field | Form validation error - this field is required, error message | PASS |
 |               | Add product with all valid required field | Form submitted, product added to database, success message | PASS |
