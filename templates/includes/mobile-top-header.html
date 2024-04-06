@@ -5,6 +5,7 @@
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        {% if request.user.is_authenticated %}
         <div class="text-center my-auto">
             <a class="text-decoration-none {% if grand_total %}fw-bold full-bag-text animated-text{% else %}icon{% endif %}"
                 href="{% url 'view_wishlist' %}" aria-label="Link to your favourite books and comics">
@@ -15,6 +16,7 @@
                 </p>
             </a>
         </div>
+        {% endif %}
         <div class="text-center my-auto dropdown">
             <a class="dropdown-toggle text-decoration-none icon header-link p-0 m-0" href="#" id="mobile-account-menu"
                 data-bs-toggle="dropdown" aria-expanded="false">
