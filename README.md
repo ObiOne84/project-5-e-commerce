@@ -651,6 +651,8 @@ By incorporating these CSRF protection mechanisms, Django helps prevent attacker
   - password update
   - email update
   - review products
+  - add/remove products to the wishlist
+  - add products to the bag from the wishlist
 - Once logged in, the admin can gain access to:
   - add a new product
   - update product
@@ -692,6 +694,15 @@ By incorporating these CSRF protection mechanisms, Django helps prevent attacker
     </summary>
 
     ![Logged User's Navigation Bar](/media/sreenshots_webp/logged_user_nav.webp)
+    </details>
+
+  - Navigation bar for a registered user (wishlist)
+
+    <details>
+    <summary> Navigation bar for registered users - if wishlist is empty, the color of the heart is white, once items are added to the wishlist, color changes to orange.
+    </summary>
+
+    ![Logged User's Navigation Wishlist](/media/sreenshots_webp/logged_user_wishlist.webp)
     </details>
 
   - Navigation bar for a unregistered user
@@ -781,7 +792,7 @@ By incorporating these CSRF protection mechanisms, Django helps prevent attacker
     ![Sign In](/media/sreenshots_webp/sign_in_live.webp)
     </details>
 
-- Browse Available Product
+- Browse Available Products
   - Visitors, as well as logged-in users, have the ability to browse through our extensive collection of available products. The search functionality allows users to find specific product by providing either the complete name or a partial name of the product or author. Each product is accompanied by essential information displayed under the product image or image placeholder. This information includes the product name, category, rating, price, quantity select field and add to bag button.
 
     <details>
@@ -806,7 +817,7 @@ By incorporating these CSRF protection mechanisms, Django helps prevent attacker
     </details>
 
 - Product pagination and sort box.
-  - Products are displayed in six columns on large screens, four on medium, three on small and one column on very small. The application displays up to twenty-four products per page.
+  - Products are displayed in six columns on large screens, four on medium, three on small and one column on very small. The application displays up to twenty-four products per page. Also, to ensure smooth operation, the pagination displays maximum five page number at the time.
 
   - The sort box empowers users to effortlessly organize products on the page according to their preferences. With intuitive options, users can sort products in ascending or descending order by price, name, category, and rating, enabling them to swiftly navigate through the catalog and find precisely what they're looking for with ease.
 
@@ -827,16 +838,26 @@ By incorporating these CSRF protection mechanisms, Django helps prevent attacker
     ![Logout Page](/media/sreenshots_webp/log_out_live.webp)
     </details>
 
+- Wishlist
+  - A wishlist page is a user-friendly feature on e-commerce platforms that simplifies the shopping experience. It enables users to save their favorite products for future reference and easy access. With the ability to add or remove items directly from product pages, users can effortlessly manage their wishlist. Moreover, the seamless integration with the shopping cart allows for swift checkout, as users can move desired items from their wishlist directly to their cart. This convenient functionality not only enhances user satisfaction but also encourages repeat visits, ultimately leading to increased sales and customer loyalty.
+
+    <details>
+    <summary> Wishlist page.
+    </summary>
+
+    ![Wishlist Page](/media/sreenshots_webp/wishlist.webp)
+    </details>
+
 - Review product
   - Users are granted the opportunity to share their thoughts by contributing unlimited reviews for books and comics they've previously purchased, fostering an exchange of insights and enabling captivating discussions within the community. The integration of a rating system not only facilitates the identification of popular titles but also enriches community engagement by providing a platform for users to express their opinions.
   - Reviews are accompanied by mandatory ratings, ensuring that each review provides valuable feedback. Once a user rates a book or comic, the rating becomes permanent, and the average rating is automatically updated. Upon successful submission of a review, users receive a confirmation message, acknowledging their contribution to the community.
   - Users can easily access the total number of reviews submitted for each book or comic. Additionally, to maintain transparency, an informational message is displayed to users when there are pending reviews awaiting approval, keeping them informed about the status of their submissions. It's worth noting that users can only review products they've previously purchased, ensuring that reviews are based on firsthand experiences.
 
     <details>
-    <summary> Review and rate product.
+    <summary> Review.
     </summary>
 
-    ![Review and Rate Product](/media/sreenshots_webp/product_detail_review.webp)
+    ![Review Product](/media/sreenshots_webp/product_detail_review.webp)
     </details>
 
 - Admin - Add a product
@@ -917,31 +938,13 @@ By incorporating these CSRF protection mechanisms, Django helps prevent attacker
 
 ### Features Left to Implement
 
-I. Feature Left to Implement with the next update:
-
-- Shopping List Functionality - *Allow users to add ingredients directly to their shopping list from a recipe.*
-Provide an interface for users to manage and view their shopping list.
-- Cross-Off Steps and Ingredients - *Enable users to mark off completed steps and ingredients while following a recipe.*
-- Dynamic Serving Size Adjustment -*Allow users to adjust the ingredient quantities for a recipe based on the desired number of servings.*
-- Uploaded Recipe Image Preview - *Allow users to upload an image preview for their recipes, enhancing the visual appeal.*
-- Image Cropping - *Implement image cropping functionality to enhance control over the appearance of uploaded images.*
-- Allergen Information - *Include allergen information for each recipe, ensuring users are aware of potential allergens.*
-- Recipe Categories - *Implement a categorization system for recipes, enabling better organization and filtering.*
-- Nutritional Information - *Provide detailed nutritional information for each ingredient and the overall recipe.*
-- Saved Ingredients Library - *Allow users to save and reuse ingredients, streamlining the recipe creation process.*
-
-II. Transformation into Inventory Application:
-
-- Supplier Management - *Enable users to add and manage suppliers for ingredients.*
-
-- Ordering System - *Implement a system for creating and managing ingredient orders.*
-
-- Order Tracking - *Allow users to send and receive orders, with tracking capabilities.*
-- Stock Management - *Provide tools to update and monitor current stock levels.*
-- Data Analytics - *Offer data analytics features to highlight stock numbers, usage patterns, and order trends.*
-- Compatibility with POS Applications - *Ensure compatibility with popular Point of Sale (POS) applications used by restaurants and takeaways.*
-
-By incorporating these features, Chef's Helper will not only enhance the user experience but also position itself as a versatile tool catering to both home cooks and the hospitality sector. The inclusion of advanced inventory management features and compatibility with POS systems will make it a comprehensive solution for the culinary industry.
+- **Advanced Community Forum**: Aimed at fostering deeper connections among users, the upcoming forum will include specialized sub-forums for different genres, book clubs, and reading challenges. Enhanced moderation tools and user badges will encourage quality contributions.
+- **Gifts - Products**: OwlBookstore is expanding its gift offerings to include an exciting range of merchandise related to books, comics, and popular culture. This new selection is designed to cater to a wide audience of book lovers and comic enthusiasts, making it easier to find the perfect gift for any occasion. Here’s what to expect:
+  - Superhero figures
+  - Collector's items
+  - Posters
+  - Apparel
+  - Book-Themed Accessories
 
 ## Technologies Used
 
@@ -1247,7 +1250,7 @@ Please see  [TESTING.md](TESTING.md) for all the detailed testing performed.
 ### Docs
 
 - [jQuery](https://api.jquery.com/)
-- [Bootstrap 5.3](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+- [Bootstrap 5.1](https://getbootstrap.com/docs/5.1/getting-started/introduction/)
 - [Django docs](https://docs.djangoproject.com/en/5.0/)
 - [Django Allauth](https://docs.allauth.org/en/latest/)
 - [Stack Overflow](https://stackoverflow.com/)
@@ -1258,7 +1261,8 @@ Please see  [TESTING.md](TESTING.md) for all the detailed testing performed.
 
 - [Amazon UK](https://www.amazon.co.uk) - all images for the products and content.
 - [Woodland Whispers Retreat](https://github.com/Thomas-Tomo/woodland-whispers-retreat?tab=readme-ov-file#user-journey) - the structure of the readme file.
-- Boutique Ado walkthrough project - for stripe setup, AWS setup and javascript for bag buttons.
+- [Code Institute](https://codeinstitute.net/ie/) - [Boutique Ado](https://github.com/Code-Institute-Solutions/boutique_ado_v1/tree/250e2c2b8e43cccb56b4721cd8a8bd4de6686546) project - for stripe setup, AWS setup, javascript for bag buttons, arrow up scroll and toast styling.
+- [Pexels](https://www.pexels.com/) - images used for the hero page and about us.
 
 ### Acknowledgements
 
