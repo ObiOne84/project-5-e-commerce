@@ -957,7 +957,15 @@ When testing HTML code, some of validation errors displayed:
 |  | Click Re-send verification | Re-sends verification email to highlighted email | PASS |
 |  | Click Remove Email | Removes highlighted email | PASS |
 |  | Click Make Primary | Makes primary highlighted email | PASS |
--------------------------------------
+
+...
+
+Here I stopped
+
+...
+
+| Page          | User Action   | Expected Result  | Notes            |
+|---------------|---------------|------------------|------------------|
 |               | Read the recipe details | All recipe details provided by author are visible to user | PASS |
 |               | Submit empty review field | The error message will appear | PASS |
 |               | Submit review without rating | The review submits, rating is not required | PASS |
