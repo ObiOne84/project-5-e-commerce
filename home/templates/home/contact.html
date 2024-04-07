@@ -26,13 +26,12 @@
                 <form method="POST">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <button type="submit" class="btn btn-black-brown rounded-1 text-uppercase">
+                    <button type="submit" class="btn btn-black-brown rounded-1 text-uppercase" title="Submit contact form">
                         <i class="fa-regular fa-envelope"></i> Submit
                     </button>
                 </form>
             </div>
         </div>
-        <!-- Maybe enter address and contact details in the div below, consider Google Maps -->
         <hr class="d-block d-md-none mt-3">
         <div class="col-12 col-md-6 my-md-1">
             <div class="my-0 ps-0 ps-md-3">
@@ -40,17 +39,18 @@
                 <p class="my-0">6 St Stephen's Green</p>
                 <p class="my-0">Dublin 2, Co.Dublin</p>
                 <p class="my-0">(+353) 1 456 4444</p>
-                <a href="mailto:owl.bookstore@gmail.com" class="text-decoration-none">
+                <a href="mailto:szymon17.developer@gmail.com" target="_blank" class="text-decoration-none"
+                    aria-label="Contact us by sending direct email message">
                     <p class="my-0">owl.bookstore@gmail.com</p>
                 </a>
             </div>
             <div class="w-100 my-2 ps-0 ps-md-3">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4764.371363118638!2d-6.262400823032837!3d53.33993227520309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e995531df67%3A0x1aa6e74b5e24b1c1!2s6%20St%20Stephen&#39;s%20Green%2C%20Dublin%202%2C%20Ireland!5e0!3m2!1sen!2snl!4v1712510801189!5m2!1sen!2snl"
-                    class="w-100 rounded-1 px-1" allowfullscreen="" loading="lazy" height="220px"
+                    class="w-100 rounded-1 px-1" allowfullscreen="" loading="lazy" height="220"
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
-            </div>    
+            </div>
         </div>
         <div class="col-12 text-center my-2">
             <hr>
