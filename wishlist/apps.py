@@ -7,4 +7,3 @@ class WishlistConfig(AppConfig):
 
     def ready(self):
         import wishlist.signals
-

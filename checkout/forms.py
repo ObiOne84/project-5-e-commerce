@@ -39,4 +39,3 @@ class OrderForm(forms.ModelForm):
             self.fields[field].label = False
 
         self.fields['country'].widget.attrs['title'] = "Country Selection"
-

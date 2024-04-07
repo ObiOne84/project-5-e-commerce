@@ -1,6 +1,5 @@
 from django.db import models
 from django.db.models.constraints import UniqueConstraint
-from django.utils.text import slugify
 
 
 class Category(models.Model):

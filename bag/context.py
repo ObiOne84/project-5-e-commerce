@@ -1,5 +1,6 @@
 from decimal import Decimal
 from django.conf import settings
+from django.shortcuts import render
 from products.models import Comic, Book
 from wishlist.models import Wishlist
 from django.contrib.auth.models import User

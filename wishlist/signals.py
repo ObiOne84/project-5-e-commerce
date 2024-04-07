@@ -16,4 +16,3 @@ def save_user_wishlist(sender, instance, **kwargs):
         instance.wishlist.save()
     except Wishlist.DoesNotExist:
         Wishlist.objects.create(user=instance)
-
