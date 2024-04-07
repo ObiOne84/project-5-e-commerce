@@ -190,7 +190,7 @@ footer {
     animation: slideOutLeft 0.5s ease-out forwards;
 }
 
-/* ----dropdown menu ----- */
+/* ----Dropdown menu ----- */
 .dropdown-menu li {
     position: relative;
 }
@@ -324,7 +324,6 @@ footer {
     max-width: 40vw;
 }
 
-/* -------- Dropdown Menu ------------ */
 .icon,
 a.icon:focus {
     color: white !important;
@@ -410,7 +409,7 @@ nav a.icon {
     margin: 0.5rem 0 0.5rem 0;
 }
 
-/* return to top arrow */
+/* Return to top arrow */
 .btt-button {
     height: 42px;
     width: 42px;
@@ -450,12 +449,6 @@ p.my-0.text-end {
     overflow-x: hidden;
 }
 
-/* check if below code is used in the bag html */
-.price-content {
-    display: flex;
-    flex-direction: column;
-}
-
 /* -----MEDIA QUERIES ----------- */
 @media (max-width: 991.98px) {
     .search-box-container {
@@ -468,12 +461,10 @@ p.my-0.text-end {
         background-color: white !important;
     }
 
-    /* Show the dropdown submenu when its parent is focused */
     .dropdown-menu>li:focus>.dropdown-submenu {
         display: block;
     }
 
-    /* overflow for mobile devices */
     .overflow-auto {
         max-height: 400px !important;
     }

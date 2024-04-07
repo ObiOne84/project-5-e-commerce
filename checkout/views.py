@@ -38,14 +38,14 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
+    """
+    View to handle checkout process
+    """
 
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
-    # intent = None
-
     if request.method == 'POST':
-        print('Guest user buys, #2')
         bag = request.session.get('bag', {})
 
         form_data = {
@@ -66,7 +66,6 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
             order.save()
-            print('Order is saved, #4')
             for item_id, quantity in bag.items():
                 try:
                     product = Product.objects.get(id=item_id)
@@ -77,7 +76,6 @@ def checkout(request):
                     )
                     order_line_item.save()
                 except Product.DoesNotExist:
-                    print('No product, #3')
                     messages.error(request, (
                         "One of the products in your bag \
                             wasn't found in our database."
@@ -91,13 +89,11 @@ def checkout(request):
                 reverse('checkout_success', args=[order.order_number])
             )
         else:
-            print('Form error, #5')
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
     else:
         bag = request.session.get('bag', {})
         if not bag:
-            print('#7, no bag')
             messages.error(
                 request, "There's nothing in your bag at the moment."
             )
@@ -113,12 +109,10 @@ def checkout(request):
         )
 
         if request.user.is_authenticated:
-            print('#8 user is logged')
             try:
                 profile = UserProfile.objects.get(user=request.user)
                 order_form = OrderForm(initial={
                     'full_name': profile.user.get_full_name(),
-                    # 'full_name': profile.default_full_name,
                     'email': profile.user.email,
                     'phone_number': profile.default_phone_number,
                     'country': profile.default_country,
@@ -128,13 +122,10 @@ def checkout(request):
                     'street_address2': profile.default_street_address2,
                     'county': profile.default_county,
                 })
-                print('#10, user has profile')
             except UserProfile.DoesNotExist:
-                print('#9 user has no profile')
                 order_form = OrderForm()
         else:
             order_form = OrderForm()
-            print('#11 user has no profile')
 
     if not stripe_public_key:
         messages.warning(request, 'Stripe public key is missing. \
@@ -147,9 +138,6 @@ def checkout(request):
         'client_secret': intent.client_secret,
     }
 
-    # if intent:
-    #     context['client_secret'] = intent.client_secret
-
     return render(request, template, context)
 
 
@@ -161,11 +149,9 @@ def checkout_success(request, order_number):
 
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
-        # Attach the user's profile to the order
         order.user_profile = profile
         order.save()
 
-        # Save the user's info
         if save_info:
             profile_data = {
                 'default_full_name': order.full_name,

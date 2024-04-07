@@ -52,7 +52,6 @@ form.addEventListener('submit', function(ev) {
     $('#loading-overlay').fadeToggle(100);
 
     var saveInfo = Boolean($('#id-save-info').attr('checked'));
-    // From using {% csrf_token %} in the form
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     var postData = {
         'csrfmiddlewaretoken': csrfToken,
@@ -91,7 +90,6 @@ form.addEventListener('submit', function(ev) {
             },
         }).then(function(result) {
             if (result.error) {
-                // show error to your customer (e.g. insuficient funds)
                 var errorDiv = document.getElementById('card-errors');
                 var html = `
                     <span class="icon" role="alert">
@@ -104,7 +102,6 @@ form.addEventListener('submit', function(ev) {
                 card.update({ 'disabled': false});
                 $('#submit-button').attr('disabled', false);
             } else {
-                // the payment has been processed!
                 if (result.paymentIntent.status === 'succeeded') {
                     console.log('submitting form');
                     form.submit();
@@ -112,7 +109,6 @@ form.addEventListener('submit', function(ev) {
             }
         });
     }).fail(function() {
-        // just reload the page, the error will be in django messages
         location.reload();
     });
 });

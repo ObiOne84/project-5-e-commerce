@@ -12,6 +12,7 @@ import time
 import stripe
 
 
+# Source: Boutique Ado
 class StripeWH_Handler:
     """Handle Stripe webhooks"""
 
@@ -20,6 +21,7 @@ class StripeWH_Handler:
 
     def _send_confirmation_email(self, order):
         """Send the user a confirmation email"""
+
         cust_email = order.email
         subject = render_to_string(
             'checkout/confirmation_emails/confirmation_email_subject.txt',
@@ -56,21 +58,18 @@ class StripeWH_Handler:
         print(bag, '#3')
         save_info = intent.metadata.save_info
 
-        # Get the Charge object
         stripe_charge = stripe.Charge.retrieve(
             intent.latest_charge
         )
         print(stripe_charge, '#4')
-        billing_details = stripe_charge.billing_details  # updated
+        billing_details = stripe_charge.billing_details
         shipping_details = intent.shipping
-        grand_total = round(stripe_charge.amount / 100, 2)  # updated
+        grand_total = round(stripe_charge.amount / 100, 2)
 
-        # Clean data in the shipping details
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
 
-        # Update profile infromation if save_info was checked
         profile = None
         username = intent.metadata.username
         if username != 'AnonymousUser':
@@ -115,7 +114,6 @@ class StripeWH_Handler:
                 attempt += 1
                 time.sleep(1)
         if order_exists:
-            # send an email
             self._send_confirmation_email(order)
             return HttpResponse(
                     content=f'Webhook received: {event["type"]} | \

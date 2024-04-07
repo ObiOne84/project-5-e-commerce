@@ -26,7 +26,6 @@
                 <form method="POST">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <!-- <a href="{% url 'home' %}" class="btn pagination-btn rounded-1 me-1 text-uppercase"><i class="fa-solid fa-angles-left"></i> Home</a> -->
                     <button type="submit" class="btn btn-black-brown rounded-1 text-uppercase">
                         <i class="fa-regular fa-envelope"></i> Submit
                     </button>

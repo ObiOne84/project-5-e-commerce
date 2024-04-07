@@ -9,7 +9,7 @@ $(document).ready(function () {
         toast.show();
         toastElement.classList.add('slide-in-right');
 
-        var startTime = new Date(); // Moved declaration here
+        var startTime = new Date();
         setInterval(updateTime, 1000);
     }
 

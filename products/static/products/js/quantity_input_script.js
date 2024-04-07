@@ -3,7 +3,9 @@
 
 // Source: Boutique Ado walkthrough project (Thanks Scott!)
 $(document).ready(function () {
-    // Disable +/- buttons outside 1-9 range
+    /**
+     * Function to disable +/- buttons outside 1-9 range
+    */
     function handleEnableDisable(itemId) {
         var currentValue = parseInt($(`.id_qty_${itemId}`).val());
         var minusDisabled = currentValue < 2;

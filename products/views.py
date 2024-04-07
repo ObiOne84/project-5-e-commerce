@@ -80,14 +80,11 @@ def all_products(request):
                             reverse=True)
             elif sortkey == 'name':
                 sortkey = 'title'
-                # Annotate both querysets with a common field name for title
                 books = books.annotate(product_title=Lower('title'))
                 comics = comics.annotate(product_title=Lower('title'))
-                # Combine the annotated querysets
                 products = list(chain(comics, books))
                 if 'direction' in request.GET:
                     direction = request.GET['direction']
-                    # Sort the combined queryset by title
                     if direction == 'asc' or direction is None:
                         products = sorted(
                             products, key=lambda x: x.product_title)
@@ -97,14 +94,11 @@ def all_products(request):
                             key=lambda x: x.product_title,
                             reverse=True)
             elif sortkey == 'price':
-                # Annotate both querysets with a common field name for price
                 books = books.annotate(product_price=F('price'))
                 comics = comics.annotate(product_price=F('price'))
-                # Combine the annotated querysets
                 products = list(chain(comics, books))
                 if 'direction' in request.GET:
                     direction = request.GET['direction']
-                    # Sort the combined queryset by price
                     if direction == 'asc' or direction is None:
                         products = sorted(
                             products, key=lambda x: x.product_price)
@@ -114,14 +108,11 @@ def all_products(request):
                             key=lambda x: x.product_price,
                             reverse=True)
             elif sortkey == 'rating':
-                # Annotate both querysets with a common field name for rating
                 books = books.annotate(product_rating=F('rating'))
                 comics = comics.annotate(product_rating=F('rating'))
-                # Combine the annotated querysets
                 products = list(chain(comics, books))
                 if 'direction' in request.GET:
                     direction = request.GET['direction']
-                    # Sort the combined queryset by rating
                     if direction == 'asc' or direction is None:
                         products = sorted(
                             products, key=lambda x: x.product_rating)
@@ -155,7 +146,6 @@ def all_products(request):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
-    # Limit paginator to display max of 5 page at the time
     max_page_number = 5
     current_page = page_obj.number
     total_pages = paginator.num_pages

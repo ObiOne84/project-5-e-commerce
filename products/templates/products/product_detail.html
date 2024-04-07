@@ -82,7 +82,7 @@
                     <!-- User wishlist form -->
                     {% include 'includes/wishlist_form.html' %}
 
-                    <!-- Boutique ado walkthrough project -->
+                    <!-- Source:Boutique ado walkthrough project -->
                     <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                         {% csrf_token %}
                         <div class="row">

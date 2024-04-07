@@ -4,6 +4,7 @@ from .widgets import CustomClearableFileInput
 
 
 class ReviewForm(forms.ModelForm):
+    """A form to add review"""
     class Meta:
         model = Review
         fields = ('body',)
@@ -36,7 +37,6 @@ class AddComicForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         # Source: Boutique Ado walktrough project
         categories = Category.objects.filter(product_type='comic')
-        # categories = Category.objects.all()
         display_names = [(c.id, c.get_display_name()) for c in categories]
 
         self.fields['category'].choices = [('', '---------')] + display_names
@@ -61,7 +61,6 @@ class AddBookForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         # Source: Boutique Ado walktrough project
         categories = Category.objects.filter(product_type='book')
-        # categories = Category.objects.all()
         display_names = [(c.id, c.get_display_name()) for c in categories]
 
         self.fields['category'].choices = [('', '---------')] + display_names
