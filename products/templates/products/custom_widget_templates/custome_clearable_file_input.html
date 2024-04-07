@@ -6,7 +6,7 @@
     </a>
     {% if not widget.required %}
     <div class="custom-control custom-checkbox mt-2">
-        <input class="custom-control-input" type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}"{% if widget.attrs.disabled %} disabled{% endif %}{% if widget.attrs.checked %} checked{% endif %}>
+        <input class="custom-control-input" type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}">
         <label class="custom-control-label" for="{{ widget.checkbox_id }}">{{ widget.clear_checkbox_label }}</label>
     </div>
     {% endif %}
@@ -14,6 +14,6 @@
     {{ widget.input_text }}
 {% endif %}
 <span class="btn btn-black-brown rounded-1 btn-file my-1">
-    Select Image <input id="new-image" type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
+    Select Image <input id="new-image" type="{{ widget.type }}" name="{{ widget.name }}">
 </span>
-<strong><p class="text-danger" id="filename"></p></strong>
+<p class="text-danger fw-bold" id="filename"></p>
