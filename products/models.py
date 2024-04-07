@@ -74,6 +74,9 @@ class Product(models.Model):
     def is_in_wishlist(self, user):
         return self in user.wishlist.items.all()
 
+    def number_of_reviews(self):
+        return self.reviews.count()
+
 
 class Book(Product):
     COVER_TYPES = [

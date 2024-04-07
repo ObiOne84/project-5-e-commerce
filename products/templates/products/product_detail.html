@@ -78,7 +78,7 @@
                         id="review-button" title="Add Review"><small>Review</small></button>
                         {% endif %}
                     {% endif %}
-
+                    
                     <!-- User wishlist form -->
                     {% include 'includes/wishlist_form.html' %}
 
@@ -144,7 +144,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link extra-info text-muted reviews-nav" href="#" aria-label="Read product reviews">
-                                        Reviews
+                                        Reviews {% if reviews %}({{ product.number_of_reviews }}){% endif %}
                                     </a>
                                 </li>
                             </ul>
@@ -278,7 +278,7 @@
                                 <a class="nav-item text-decoration-none text-muted collapse-link"
                                     data-bs-toggle="collapse" href="#collapse-reviews" role="button"
                                     aria-expanded="false" aria-controls="collapse-reviews">
-                                    <p class="my-0">Reviews <span><i class="fa-solid fa-caret-down"></i></span></p>
+                                    <p class="my-0">Reviews <span>{% if reviews %}({{ product.number_of_reviews }}){% endif %} <i class="fa-solid fa-caret-down"></i></span></p>
                                 </a>
                             </div>
                             <div class="mx-0 mx-sm-2 collapse d-md-block" id="collapse-reviews">
