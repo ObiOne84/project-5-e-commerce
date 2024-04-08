@@ -26,9 +26,15 @@
         <div class="bag-toast-view">
             {% for item in bag_items %}
             <div class="row my-1">
+                {% if item.product.image %}  
                 <div class="col-3">
                     <img class="ms-3 w-100" src="{{ item.product.image.url }}" alt="Image for {{ item.product.title }}">
                 </div>
+                {% else %}
+                <div class="col-3">
+                    <img class="ms-3 w-100" src="{{ MEDIA_URL }}noimage.png" alt="Image not available for {{ item.product.title }}">
+                </div>
+                {% endif %}
                 <div class="col-9">
                     <p class="my-0">{{ item.product.title }}</p>
                     <p class="my-0">Qty: {{ item.quantity }}</p>

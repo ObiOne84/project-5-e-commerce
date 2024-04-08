@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib import messages
-
+from django.http import JsonResponse
 from products.models import Book, Comic
 
 

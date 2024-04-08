@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import load_subcategories
 
 
 urlpatterns = [
@@ -15,5 +16,10 @@ urlpatterns = [
     path(
         'delete/comic/<int:product_id>/', views.delete_comic,
         name='delete_comic'
+    ),
+    path(
+        'ajax/load-subcategories/',
+        load_subcategories,
+        name='ajax_load_subcategories'
     ),
 ]

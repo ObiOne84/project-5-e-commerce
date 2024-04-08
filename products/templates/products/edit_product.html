@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'products/css/products.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'products/css/products.css' %}" type="text/css">
 {% endblock %}
 
 {% block page_header %}
@@ -27,24 +27,27 @@
     <div class="row mb-4">
         <div class="col-12 col-md-6">
             {% if product_type == 'book' %}
-            <form action="{% url 'edit_book' product.id %}" method="POST" id="add-book-form" enctype="multipart/form-data" class="form product-form">
-            {% else %}
-            <form action="{% url 'edit_comic' product.id %}" method="POST" id="add-book-form" enctype="multipart/form-data" class="form product-form">
-            {% endif %}
-                {% csrf_token %}
-                {% for field in form %}
-                    {% if field.name != 'image' %}
-                        {{ field | as_crispy_field }}
-                    {% else %}
-                        {{ field }}
+            <form action="{% url 'edit_book' product.id %}" method="POST" id="add-book-form"
+                enctype="multipart/form-data" class="form product-form">
+                {% else %}
+                <form action="{% url 'edit_comic' product.id %}" method="POST" id="add-book-form"
+                    enctype="multipart/form-data" class="form product-form">
                     {% endif %}
-                {% endfor %}
+                    {% csrf_token %}
+                    {% for field in form %}
+                    {% if field.name != 'image' %}
+                    {{ field | as_crispy_field }}
+                    {% else %}
+                    {{ field }}
+                    {% endif %}
+                    {% endfor %}
 
-                <div class="form-buttons">
-                    <a href="{% url 'products' %}" class="btn btn-outline-danger rounded-1 me-1 text-uppercase">Cancel</a>
-                    <button class="btn btn-black-brown rounded-1" type="submit">Update Product</button>
-                </div>
-            </form>
+                    <div class="form-buttons">
+                        <a href="{% url 'products' %}"
+                            class="btn btn-outline-danger rounded-1 me-1 text-uppercase">Cancel</a>
+                        <button class="btn btn-black-brown rounded-1" type="submit">Update Product</button>
+                    </div>
+                </form>
         </div>
     </div>
 </div>
@@ -57,9 +60,29 @@
 <script src="{% static 'products/js/script-product.js' %}"></script>
 <!-- Source: Boutique Ado -->
 <script>
-    $('#new-image').change(function() {
+    $('#new-image').change(function () {
         var file = $('#new-image')[0].files[0];
         $('#filename').text(`Image will be set to: ${file.name}`);
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        document.getElementById('id_category').addEventListener('change', function () {
+            var url = "{% url 'ajax_load_subcategories' %}";
+            var categoryId = this.value;
+
+            fetch(`${url}?category_id=${categoryId}`)
+                .then(response => response.json())
+                .then(data => {
+                    var subcategorySelect = document.getElementById('id_subcategory');
+                    subcategorySelect.innerHTML = '<option value="">---------</option>';
+
+                    data.forEach(function (subcategory) {
+                        var option = new Option(subcategory.name, subcategory.id);
+                        subcategorySelect.appendChild(option);
+                    });
+                });
+        });
     });
 </script>
 

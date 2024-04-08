@@ -8,6 +8,7 @@ from itertools import chain
 from django.db.models.functions import Lower
 from django.db.models import F
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 
 from .models import Comic, Book, Review, Subcategory, Category
 from .forms import ReviewForm, AddComicForm, AddBookForm
@@ -426,3 +427,19 @@ def delete_comic(request, product_id):
         messages.error(request, f"The {product.title} does not exist!")
 
     return redirect(reverse('products'))
+
+
+def load_subcategories(request):
+    """
+    View to return JsonResponse to update subcategories
+    depending on category choice
+    """
+    category_id = request.GET.get('category_id')
+    if category_id is not None and category_id != '':
+        subcategories = Subcategory.objects\
+            .filter(category_id=category_id).order_by('name')
+        subcategory_data = list(subcategories.values('id', 'name'))
+    else:
+        subcategory_data = []
+
+    return JsonResponse(subcategory_data, safe=False)
