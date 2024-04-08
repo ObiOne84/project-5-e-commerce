@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Category, Book, Comic, Subcategory, Review
+from .models import Category, Book, Comic, Subcategory, Review
 
 
 class SubcategoryAdmin(admin.ModelAdmin):
