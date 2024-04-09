@@ -440,6 +440,6 @@ def load_subcategories(request):
             .filter(category_id=category_id).order_by('name')
         subcategory_data = list(subcategories.values('id', 'name'))
     else:
-        subcategory_data = list(Subcategory.objects.all().values('id', 'name'))
+        subcategory_data = []
 
     return JsonResponse(subcategory_data, safe=False)
