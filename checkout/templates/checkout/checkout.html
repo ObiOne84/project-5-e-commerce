@@ -92,14 +92,16 @@
                                         <p class="my-0"><strong>{{ item.product.title }}</strong></p>
                                         <p class="my-0 small text-muted">Author(s): {{ item.product.author }}</p>
                                         <p class="my-0 small text-muted">Price: ${{ item.product.price }}</p>
+                                        {% if item.product.category %}
                                         <p class="my-0 small text-muted"><span>Category: </span>
                                             <span class="ms-2">
                                                 <a class="text-decoration-none"
-                                                    href="{% url 'products' %}?category={{ product.category.name }}"
-                                                    aria-label="{{ product.category.name }}">{{ item.product.category.display_name }}
+                                                    href="{% url 'products' %}?category={{ item.product.category.name }}"
+                                                    aria-label="{{ item.product.category.name }}">{{ item.product.category.display_name }}
                                                 </a>
                                             </span>
                                         </p>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
