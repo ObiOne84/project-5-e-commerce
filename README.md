@@ -574,6 +574,15 @@ Entity Relationship Diagram (ERD)
     Methods:
     - save(self, *args, **kwargs): Overrides the original save method to set the line item total and update the order total.
 
+11. Wishlist:
+
+    - The Wishlist model allows users to create and manage their wishlists, associating them with their user accounts and allowing them to add multiple products to their wishlists.
+
+    Fields:
+
+    - user: This field establishes a one-to-one relationship with the User model, and it means that each Wishlist instance is associated with exactly one User. The on_delete=models.CASCADE parameter ensures that if a user is deleted, their associated wishlist will also be deleted.
+    - items: This field establishes a many-to-many relationship with the Product model from products.models. It means that each Wishlist instance can contain multiple products, and each product can belong to multiple wishlists. This relationship is represented by a separate table in the database to handle the many-to-many relationship efficiently.
+
     These models facilitate the management of orders in the OwlBookstore system, allowing users to place orders, view order history, and track deliveries. The inclusion of methods ensures accurate calculation and updating of order totals.
 
 ---
