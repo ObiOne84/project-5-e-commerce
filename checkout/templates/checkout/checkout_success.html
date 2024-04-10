@@ -96,24 +96,15 @@
                         <p class="mb-0 fw-bolder fs-4 my-1 my-sm-2 text-center text-sm-start">Order Details:</p>
                     </div>
                 </div>
+                <div class=" custom-overflow">
                 {% for item in order.lineitems.all %}
-                    {% if order.lineitems.count > 10 %}
-                    <div class="row my-1">
-                        <div class="col-8">
-                            {{ item.product.title }}
-                        </div>
-                        <div class="col-4 text-end">
-                            <p class="mb-0"></p>{{ item.quantity }} x ${{ item.product.price }}
-                        </div>
-                    </div>     
-                    {% else %}
                     <div class="row my-1">
                         <div class="col-3 col-sm-2">
                             <span class="order-conf-img">
                             {% if item.product.image %}
-                                <img class="w-75" src="{{ item.product.image.url }}" alt="{{ product.title }}">
+                                <img class="w-75" src="{{ item.product.image.url }}" alt="Image for {{ item.product.title }}">
                             {% else %}
-                                <img class="w-75" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.title }}">
+                                <img class="w-75" src="{{ MEDIA_URL }}noimage.png" alt=" No image for {{ item.product.title }}">
                             {% endif %}
                             </span>
                         </div>
@@ -122,8 +113,8 @@
                             <p class="mb-0">{{ item.quantity }} x ${{ item.product.price }}</p>
                         </div>
                     </div>
-                    {% endif %}
                 {% endfor %}
+                </div>
                 <div class="row border-bottom border-top mx-1 my-1 text-center text-sm-start">
                     <div class="col">
                         <p class="mb-0 fw-bolder fs-4 my-1 my-sm-2">Order Summary:</p>
