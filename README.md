@@ -772,6 +772,36 @@ By incorporating these CSRF protection mechanisms, Django helps prevent attacker
     ![Sign Up](/media/sreenshots_webp/signup_live.webp)
     </details>
 
+- Contact Us Page
+  - The user can contact the store by filling up online form or by sending direct email message. Also, the page contain interactive Google Map that allow easy store location and finding direction to the store.
+
+    <details>
+    <summary> Contact Us page.
+    </summary>
+
+    ![Contact Us](/media/sreenshots_webp/contact_us.webp)
+    </details>
+
+- FAQ Page
+  - The user can find anwser for frequently asked question or follow the link to contact support team with specific questions.
+
+    <details>
+    <summary> FAQ page.
+    </summary>
+
+    ![FAQ](/media/sreenshots_webp/faq.webp)
+    </details>
+
+- Privacy Policy Page
+  - The user can legal inforamtion about data and privacy policy.
+
+    <details>
+    <summary> Privacy policy page.
+    </summary>
+
+    ![Privacy Policy](/media/sreenshots_webp/privacy_policy.webp)
+    </details>
+
 - Messages
   - The application provides feedback with the use of a discreet messaging system implementing color coding to denote various states. Success messages are highlighted in a soothing green (#28a745), information messages in a calming blue (#17a2b8), warnings in a striking yellow (#ffc107), and danger messages in a bold red (#dc3545), ensuring users receive clear and intuitive feedback tailored to each situation.
 

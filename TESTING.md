@@ -27,8 +27,6 @@ Return to [README](README.md)
 
 ### [Features Testing](#features-testing-1)
 
-### [Django Framework Testing](#django-framework-testing-1)
-
 - - -
 
 ## Responsiveness Testing
@@ -202,6 +200,34 @@ Device testing encompassed various devices, including iPhone 12 Pro, iPad, MacBo
 </summary>
 
 ![Update Email Page](/media/sreenshots_webp/validation_email.webp)
+</details>
+
+<details>
+<summary> Contact Us Page
+</summary>
+
+![Contact Us Page](/media/sreenshots_webp/validation_contact_us.webp)
+</details>
+
+<details>
+<summary> About Us Page
+</summary>
+
+![About Us Page](/media/sreenshots_webp/validation_about_us.webp)
+</details>
+
+<details>
+<summary> FAQ Page
+</summary>
+
+![FAQ Page](/media/sreenshots_webp/validation_faq.webp)
+</details>
+
+<details>
+<summary> Privacy Policy Page
+</summary>
+
+![Privacy Policy Page](/media/sreenshots_webp/validation_privacy.webp)
 </details>
 
 <details>
@@ -1152,17 +1178,6 @@ When testing HTML code, some of validation errors displayed:
 | Error 404/500 |  |    |    |
 |               | Enter incorrect url | Custom error 404 dispalyed | PASS |
 |               | Attempt to find not exisitng product | Custom error 500 dispalyed | PASS |
-
-## Django Framework Testing
-
-* Django Automated Testing was added to test the basic functionality of Django models and views.
-
-<details>
-<summary> Django Coverage
-</summary>
-
-![Django Coverage](#)
-</details>
 
 - - -
 
